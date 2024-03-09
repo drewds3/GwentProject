@@ -5,15 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MenúInicial : MonoBehaviour
 {
-    //Este método se usa para cambiar de escena.
-
+    // Funcion para iniciar una partida y cargar la escena siguiente a la actual.
     public void Jugar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    //Este otro para salir de la aplicación.
-    
+    // Funcion para salir del juego
     public void Salir()
     {
         Debug.Log("Salir...");
