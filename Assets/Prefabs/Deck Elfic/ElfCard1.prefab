@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4791996619338446980
+--- !u!1 &7655664588968956935
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4791996619338446987}
-  - component: {fileID: 4791996619338446984}
-  - component: {fileID: 4791996619338446985}
-  - component: {fileID: 4791996619338446986}
-  - component: {fileID: -8077461281738308923}
-  - component: {fileID: -7692471373192382412}
+  - component: {fileID: 7655664588968956936}
+  - component: {fileID: 7655664588968956939}
+  - component: {fileID: 7655664588968956938}
+  - component: {fileID: 7655664588968956937}
+  - component: {fileID: -7766291764568724166}
+  - component: {fileID: -3989134371253228159}
   m_Layer: 3
-  m_Name: ExampleCard
+  m_Name: ElfCard1
   m_TagString: Carta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4791996619338446987
+--- !u!224 &7655664588968956936
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4791996619338446980}
+  m_GameObject: {fileID: 7655664588968956935}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -38,24 +38,24 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -761, y: -191}
+  m_AnchoredPosition: {x: -128, y: -352.49}
   m_SizeDelta: {x: 62.566, y: 76.082}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &4791996619338446984
+  m_Pivot: {x: 0.4999999, y: 0.5000002}
+--- !u!222 &7655664588968956939
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4791996619338446980}
+  m_GameObject: {fileID: 7655664588968956935}
   m_CullTransparentMesh: 1
---- !u!114 &4791996619338446985
+--- !u!114 &7655664588968956938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4791996619338446980}
+  m_GameObject: {fileID: 7655664588968956935}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a7218ea6c653f21458912c899f8dbb78, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ee146c77a97e304da5a5a1eb2c4e382, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -79,40 +79,40 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4791996619338446986
+--- !u!114 &7655664588968956937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4791996619338446980}
+  m_GameObject: {fileID: 7655664588968956935}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa0d55a690a8c154fac8ca2e7849624d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8077461281738308923
+--- !u!114 &-7766291764568724166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4791996619338446980}
+  m_GameObject: {fileID: 7655664588968956935}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardName: ExampleCard
-  puntosPoder: 10
-  tipoCarta: M
---- !u!114 &-7692471373192382412
+  CardName: Regimiento de Elfos Arqueros
+  puntosPoder: 5
+  tipoCarta: R
+--- !u!114 &-3989134371253228159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4791996619338446980}
+  m_GameObject: {fileID: 7655664588968956935}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}

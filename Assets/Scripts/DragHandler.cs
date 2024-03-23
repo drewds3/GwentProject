@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /*Se define una clase DragHandler que implementa las interfaces IDragHandler, IEndDragHandler y IBeginDragHandler.
  Estas interfaces se utilizan para controlar el comportamiento del objeto durante el arrastre.
@@ -9,8 +10,8 @@ using UnityEngine.EventSystems;
 public class DragHandler : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
     /*La variable Vector3 almacena la posición inicial, en itemDragging se almacena el objeto mientras está siendo arratrado.
-    La variable Transform almacena el padre del objeto antes de ser arrastrado.
-    La variable Transform almacena el padre especial para el objeto durante el arrastre.
+    La variable Transform startPosition almacena el padre del objeto antes de ser arrastrado.
+    La variable Transform dragParent almacena el padre especial para el objeto durante el arrastre.
     */
     public static GameObject itemDragging;
     Vector3 startPosition;
@@ -79,11 +80,6 @@ public class DragHandler : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginD
 
             transform.SetParent(startParent);
         }
-    }
-
-    void Update()
-    {
-        
     }
 }
 

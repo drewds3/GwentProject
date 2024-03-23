@@ -33,7 +33,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
     {
         if (item != null && item.transform.parent != transform)
         {
-            // Si ya no lo es, establece el objto como null para permitir que se suelte un nuevo objeto en la slot
+            // Si ya no lo es, establece el objeto como null para permitir que se suelte un nuevo objeto en la slot
             item = null;
         }
     }

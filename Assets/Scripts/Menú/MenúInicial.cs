@@ -18,4 +18,9 @@ public class MenúInicial : MonoBehaviour
 
         //Aplication.Quit();
     }
+
+     public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
 }

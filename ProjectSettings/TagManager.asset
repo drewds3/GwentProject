@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DragParent
   - ZonaDePuntaje
+  - Carta
   layers:
   - Default
   - TransparentFX

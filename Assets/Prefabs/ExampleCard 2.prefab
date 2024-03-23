@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7655664588968956938}
   - component: {fileID: 7655664588968956937}
   - component: {fileID: -7766291764568724166}
+  - component: {fileID: 3254861030889680838}
   m_Layer: 3
   m_Name: ExampleCard 2
-  m_TagString: Untagged
+  m_TagString: Carta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 874e5928b9bffdf4ba3c202729132c22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5130f5217e7128847a2575cb14e56865, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -102,5 +103,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardName: 
   puntosPoder: 8
   tipoCarta: M
+--- !u!114 &3254861030889680838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7655664588968956935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
