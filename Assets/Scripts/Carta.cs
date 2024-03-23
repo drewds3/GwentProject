@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Carta : MonoBehaviour
 {
-    public string CardName;
+    public string cardName;
     public int puntosPoder;
-    public string tipoCarta;
+    public string typeCard;
+    public string deck;
 }

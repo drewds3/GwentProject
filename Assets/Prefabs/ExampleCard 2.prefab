@@ -103,9 +103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardName: 
+  cardName: ExampleCard2
   puntosPoder: 8
-  tipoCarta: M
+  typeCard: All
+  deck: Raven
 --- !u!114 &3254861030889680838
 MonoBehaviour:
   m_ObjectHideFlags: 0

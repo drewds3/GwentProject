@@ -103,9 +103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardName: Regimiento de Elfos Arqueros
+  cardName: Regimiento de Elfos Arqueros
   puntosPoder: 5
-  tipoCarta: R
+  typeCard: R
+  deck: Raven
 --- !u!114 &-3989134371253228159
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -90,9 +90,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardName: Rey Anastarian
+  cardName: Rey Anastarian
   puntosPoder: 0
-  tipoCarta: Leader
+  typeCard: Leader
+  deck: Raven
 --- !u!114 &3254861030889680838
 MonoBehaviour:
   m_ObjectHideFlags: 0

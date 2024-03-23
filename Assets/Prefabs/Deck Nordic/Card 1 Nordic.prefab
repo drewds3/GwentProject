@@ -103,9 +103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardName: Lobos Huargos
+  cardName: Lobos Huargos
   puntosPoder: 4
-  tipoCarta: M
+  typeCard: M
+  deck: Dragon
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -90,9 +90,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardName: Dovahkiin
+  cardName: Dovahkiin
   puntosPoder: 0
-  tipoCarta: Leader
+  typeCard: Leader
+  deck: Dragon
 --- !u!114 &-7692471373192382412
 MonoBehaviour:
   m_ObjectHideFlags: 0

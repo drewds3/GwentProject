@@ -8,6 +8,7 @@ public class PanelCartas : MonoBehaviour
     void Update()
     {
         CalcularPuntosTotal();
+        UnDraggeable();
     }
 
     public int puntosTotal;
@@ -28,5 +29,13 @@ public class PanelCartas : MonoBehaviour
         puntosTotal = 0;
     }
 
-    
+    public void UnDraggeable()
+    {
+        DragHandler[] dragHandlers = GetComponentsInChildren<DragHandler>();
+
+        foreach(DragHandler dragHandler in  dragHandlers)
+        {
+            dragHandler.enabled = false;
+        }
+    }
 }
