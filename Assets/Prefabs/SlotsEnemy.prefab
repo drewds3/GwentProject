@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Raven
   item: {fileID: 0}
 --- !u!1 &1198988325853235163
 GameObject:
@@ -179,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Raven
   item: {fileID: 0}
 --- !u!1 &3140607576107870445
 GameObject:
@@ -276,6 +278,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntosTotal: 0
+  previousChildCount: 0
+  NextTurnPanel: {fileID: 0}
+  Block1: {fileID: 0}
+  Block2: {fileID: 0}
 --- !u!1 &5756509507906526243
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Raven
   item: {fileID: 0}
 --- !u!1 &5981167936488793463
 GameObject:
@@ -455,6 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Raven
   item: {fileID: 0}
 --- !u!1 &8005664119134161439
 GameObject:
@@ -545,6 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Raven
   item: {fileID: 0}
 --- !u!1 &8843740838399478395
 GameObject:
@@ -635,4 +644,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Raven
   item: {fileID: 0}
