@@ -106,7 +106,9 @@ MonoBehaviour:
   cardName: Regimiento de Elfos Arqueros
   puntosPoder: 5
   typeCard: R
-  deck: Raven
+  typeCard2: null
+  typeCard3: null
+  faction: Raven
 --- !u!114 &-3989134371253228159
 MonoBehaviour:
   m_ObjectHideFlags: 0

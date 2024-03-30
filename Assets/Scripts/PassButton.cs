@@ -97,7 +97,7 @@ public class PassButton : MonoBehaviour
         else //Si se vuelve a pulsar el botón pasa a la siguiente ronda
         {
             //Manda las cartas al cementerio
-           GameObject[] cardsToGraveyard = GameObject.FindGameObjectsWithTag("Carta");
+           GameObject[] cardsToGraveyard = GameObject.FindGameObjectsWithTag("CartaJugada");
 
            foreach(GameObject objeto in cardsToGraveyard)
            {

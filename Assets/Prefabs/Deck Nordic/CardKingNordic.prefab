@@ -93,7 +93,9 @@ MonoBehaviour:
   cardName: Dovahkiin
   puntosPoder: 0
   typeCard: Leader
-  deck: Dragon
+  typeCard2: null
+  typeCard3: null
+  faction: Dragon
 --- !u!114 &-7692471373192382412
 MonoBehaviour:
   m_ObjectHideFlags: 0

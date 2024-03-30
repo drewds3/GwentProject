@@ -105,8 +105,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: ExampleCard
   puntosPoder: 10
-  typeCard: All
-  deck: Dragon
+  typeCard: M
+  typeCard2: R
+  typeCard3: S
+  faction: Dragon
 --- !u!114 &-7692471373192382412
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1514,9 +1514,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 325314977625332218, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -1530,9 +1554,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 2183231486355333662, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -1542,9 +1590,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 2870057461291362439, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -1562,9 +1634,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 4319101293780255069, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -1670,9 +1766,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 5906599971353677283, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -1682,9 +1802,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 8062036791382944311, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -3286,25 +3430,97 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: item
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: item
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 3140607576107870445, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: m_Name
       value: Slots M Enemy
@@ -3314,9 +3530,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 5053184580943425231, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3406,17 +3646,65 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: item
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 8504598493757287173, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: Block1
       value: 
@@ -4039,25 +4327,97 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: item
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: item
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 3140607576107870445, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: m_Name
       value: 'Slots R Enemy '
@@ -4067,9 +4427,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 5053184580943425231, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4159,17 +4543,65 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: item
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 8504598493757287173, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: Block1
       value: 
@@ -4209,9 +4641,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 325314977625332218, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -4225,9 +4681,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 2183231486355333662, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -4237,9 +4717,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 2870057461291362439, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -4257,9 +4761,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 4319101293780255069, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -4365,9 +4893,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 5906599971353677283, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -4377,9 +4929,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: R
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 8062036791382944311, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -5658,25 +6234,97 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: item
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: item
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 3140607576107870445, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: m_Name
       value: 'Slots S Enemy '
@@ -5686,9 +6334,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 5053184580943425231, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5778,17 +6450,65 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: item
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: type
+      value: S
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 198495706}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989520261}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 1868300497}
+    - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 8504598493757287173, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: Block1
       value: 
@@ -6121,6 +6841,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3399495278312251152, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 3399495278312251152, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 3399495278312251152, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: DragParent
+      value: 
+      objectReference: {fileID: 621710137}
+    - target: {fileID: 3399495278312251152, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 3399495278312251152, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 3399495278312251152, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 3535184409208139338, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -6133,10 +6877,58 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.000012748
       objectReference: {fileID: 0}
+    - target: {fileID: 4911360678410728056, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 4911360678410728056, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 4911360678410728056, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: DragParent
+      value: 
+      objectReference: {fileID: 621710137}
+    - target: {fileID: 4911360678410728056, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 4911360678410728056, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 4911360678410728056, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 5432088746109995844, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
       propertyPath: m_Name
       value: Slots Aumentos
       objectReference: {fileID: 0}
+    - target: {fileID: 6164396703127236896, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 6164396703127236896, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 6164396703127236896, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: DragParent
+      value: 
+      objectReference: {fileID: 621710137}
+    - target: {fileID: 6164396703127236896, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 6164396703127236896, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 6164396703127236896, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 6559367111095100148, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -6167,9 +6959,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 325314977625332218, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -6195,9 +7011,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 2183231486355333662, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -6207,9 +7047,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 2870057461291362439, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -6243,9 +7107,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 4319101293780255069, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -6387,9 +7275,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 5906599971353677283, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -6411,9 +7323,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: type
+      value: M
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 8062036791382944311, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -6460,6 +7396,30 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1466073063929595996, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 1466073063929595996, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 1466073063929595996, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: DragParent
+      value: 
+      objectReference: {fileID: 621710137}
+    - target: {fileID: 1466073063929595996, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 1466073063929595996, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 1466073063929595996, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 1779372528239288813, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -38.4
@@ -6568,10 +7528,58 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -58.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7996617753087534700, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 7996617753087534700, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 7996617753087534700, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: DragParent
+      value: 
+      objectReference: {fileID: 621710137}
+    - target: {fileID: 7996617753087534700, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 7996617753087534700, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 7996617753087534700, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     - target: {fileID: 8076995587903921160, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
       propertyPath: m_Name
       value: Slots Clima
       objectReference: {fileID: 0}
+    - target: {fileID: 9177579427756746036, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: blockDeck
+      value: 
+      objectReference: {fileID: 2136775643}
+    - target: {fileID: 9177579427756746036, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: blockHand
+      value: 
+      objectReference: {fileID: 989469741}
+    - target: {fileID: 9177579427756746036, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: DragParent
+      value: 
+      objectReference: {fileID: 621710137}
+    - target: {fileID: 9177579427756746036, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: passButton
+      value: 
+      objectReference: {fileID: 667000585}
+    - target: {fileID: 9177579427756746036, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: nextTurnPanel
+      value: 
+      objectReference: {fileID: 522286931}
+    - target: {fileID: 9177579427756746036, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: passButtonBlock
+      value: 
+      objectReference: {fileID: 1245587387}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
 --- !u!224 &5862488507368612689 stripped

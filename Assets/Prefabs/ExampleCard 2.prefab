@@ -105,8 +105,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: ExampleCard2
   puntosPoder: 8
-  typeCard: All
-  deck: Raven
+  typeCard: M
+  typeCard2: R
+  typeCard3: S
+  faction: Raven
 --- !u!114 &3254861030889680838
 MonoBehaviour:
   m_ObjectHideFlags: 0

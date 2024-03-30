@@ -106,7 +106,9 @@ MonoBehaviour:
   cardName: Lobos Huargos
   puntosPoder: 4
   typeCard: M
-  deck: Dragon
+  typeCard2: null
+  typeCard3: null
+  faction: Dragon
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
