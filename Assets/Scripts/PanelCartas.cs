@@ -5,28 +5,39 @@ using System.Linq;
 
 public class PanelCartas : MonoBehaviour
 {
-    //para los puntos
+    //Variables para el sistema de puntuación
      public int puntosTotal;
      
-     //para el sistema de turnos
+     //Variables para el sistema de turnos
      public int previousChildCount;
      public GameObject NextTurnPanel;
      public GameObject Block1;
      public GameObject Block2;
+     public GameObject passButtonBlock;
 
+     //Variable para el sistema de rondas
+     private int count = 0;
+     public GameObject passButton;
 
     void Start()
     {
+        //Se inicializa la cantidad de objetos en 0
         previousChildCount = CountAllChildren(transform) - 6;
     }
     void Update()
     {
+        //Se llaman a los métodos
         CalcularPuntosTotal();
         UnDraggeable();
         
+        //Una variable que es igual a la cantidad de cartas en la fila en cuestión en todo momento
         int currentChildCount = CountAllChildren(transform) - 6;
 
-        if (currentChildCount != previousChildCount)
+        //Se actualiza el contador de pase
+        count = passButton.GetComponent<PassButton>().passCount;
+
+        //Se igualan las variables si son diferentes y se pasa de turno
+        if(currentChildCount != previousChildCount && count%2==0)
         {
             previousChildCount = currentChildCount;
            
@@ -35,9 +46,11 @@ public class PanelCartas : MonoBehaviour
             NextTurnPanel.SetActive(!NextTurnPanel.activeSelf);
             Block1.SetActive(!Block1.activeSelf);
             Block2.SetActive(!Block2.activeSelf);
+            passButtonBlock.SetActive(passButton.activeSelf);
         }
     }
 
+    //Método para calcular la puntuación en la fila
     void CalcularPuntosTotal()
     {
         puntosTotal = 0;
@@ -49,6 +62,7 @@ public class PanelCartas : MonoBehaviour
         }
     }
 
+    //Método para que las cartas dejen de ser movibles
     public void UnDraggeable()
     {
         DragHandler[] dragHandlers = GetComponentsInChildren<DragHandler>();
@@ -59,7 +73,7 @@ public class PanelCartas : MonoBehaviour
         }
     }
 
-    //Aplicando un poco de recursividad xd
+    //Contador de los hijos(cartas) del objeto(fila) aplicando un poco de recursividad
     public int CountAllChildren(Transform parent)
     {
         int count = parent.childCount;
