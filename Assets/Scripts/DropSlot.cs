@@ -50,7 +50,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
                     nextTurnPanel.SetActive(!nextTurnPanel.activeSelf);
                     blockHand.SetActive(!blockHand.activeSelf);
                     blockDeck.SetActive(!blockDeck.activeSelf);
-                    passButtonBlock.SetActive(passButtonBlock.activeSelf);
+                    passButtonBlock.SetActive(!passButtonBlock.activeSelf);
                 }
         }
     }

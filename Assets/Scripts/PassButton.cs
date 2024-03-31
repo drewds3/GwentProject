@@ -37,7 +37,7 @@ public class PassButton : MonoBehaviour
     public GameObject victoryCartel1;
     public GameObject victoryCartel2;
     public int round = 1;
-    private int winner = 0;
+    public int winner = 0;
 
     //Variable para mandar las cartas al cementerio al finalizar la ronda
     public Transform graveyard;
@@ -46,6 +46,7 @@ public class PassButton : MonoBehaviour
     public GameObject counterScore;
     public int winP1 = 0;
     public int winP2 = 0;
+    public bool victory = false;
 
     void Start()
     {
@@ -92,7 +93,7 @@ public class PassButton : MonoBehaviour
                 blockHand1.SetActive(!blockHand1.activeSelf);
                 blockDeck1.SetActive(!blockDeck1.activeSelf);
                 nextTurnCartel1.SetActive(!nextTurnCartel1.activeSelf);
-                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                passButtonBlock.SetActive(true);
 
                 //Cuenta que usaron el pase
                 passCount++;    
@@ -104,7 +105,7 @@ public class PassButton : MonoBehaviour
                 blockHand2.SetActive(!blockHand2.activeSelf);
                 blockDeck2.SetActive(!blockDeck2.activeSelf);
                 nextTurnCartel2.SetActive(!nextTurnCartel2.activeSelf);
-                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                passButtonBlock.SetActive(true);
 
                 //Cuenta que usaron el pase
                 passCount++;    
@@ -204,7 +205,9 @@ public class PassButton : MonoBehaviour
             else if(winP1 == 2 && winP2 == 2)
             {
                 //Queda en empate y termina la partida
-                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                victory = true;
+
+                passButtonBlock.SetActive(true);
                 blockHand1.SetActive(true);
                 blockDeck1.SetActive(true);
                 blockHand2.SetActive(true);
@@ -214,7 +217,9 @@ public class PassButton : MonoBehaviour
             else if(winP1 == 2)
             {
                 //Gana el jugador 1 y termina la partida
-                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                victory = true;
+
+                passButtonBlock.SetActive(true);
                 blockHand1.SetActive(true);
                 blockDeck1.SetActive(true);
                 blockHand2.SetActive(true);
@@ -224,7 +229,9 @@ public class PassButton : MonoBehaviour
             else
             {
                 //Gana el jugador 2 y termina la partida
-                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                victory = true;
+
+                passButtonBlock.SetActive(true);
                 blockHand1.SetActive(true);
                 blockDeck1.SetActive(true);
                 blockHand2.SetActive(true);

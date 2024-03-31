@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-/*Se define una clase DragHandler que implementa las interfaces IDragHandler, IEndDragHandler y IBeginDragHandler.
- Estas interfaces se utilizan para controlar el comportamiento del objeto durante el arrastre.
- */
 public class DragHandler : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
     /*La variable Vector3 almacena la posición inicial, en itemDragging se almacena el objeto mientras está siendo arratrado.
