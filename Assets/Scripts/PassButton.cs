@@ -29,11 +29,23 @@ public class PassButton : MonoBehaviour
 
     //Variable para pasar de ronda
     public int passCount;
-    public GameObject nextRoundCartel;
+    public GameObject nextRoundCartel1;
+    public GameObject nextRoundCartel2;
+    public GameObject lastRoundCartel1;
+    public GameObject lastRoundCartel2;
+    public GameObject tiedGameCartel;
+    public GameObject victoryCartel1;
+    public GameObject victoryCartel2;
     public int round = 1;
+    private int winner = 0;
 
     //Variable para mandar las cartas al cementerio al finalizar la ronda
     public Transform graveyard;
+
+    //Variables para saber quién gana cada ronda
+    public GameObject counterScore;
+    public int winP1 = 0;
+    public int winP2 = 0;
 
     void Start()
     {
@@ -59,7 +71,11 @@ public class PassButton : MonoBehaviour
             comparador2 = turnCount2.GetComponent<TurnCount>().count;
         }
 
-        if(turnCount2 != null && comparador2 != player2Turn)
+        if(turnCount2 != null && comparador2 != player2Turn && winner == 2)
+        {
+            player2Turn = comparador2 - 1;
+        }
+        else
         {
             player2Turn = comparador2;
         }
@@ -94,30 +110,128 @@ public class PassButton : MonoBehaviour
                 passCount++;    
             }
         }
-        else //Si se vuelve a pulsar el botón pasa a la siguiente ronda
+        else //Si se vuelve a pulsar el botón verifica quién gano y pasa a la siguiente ronda
         {
+            if(counterScore.GetComponent<ScoreText>().scorePlayer1 > counterScore.GetComponent<ScoreText>().scorePlayer2)
+            {
+                winP1++;
+                winner = 1;
+            }
+            else if(counterScore.GetComponent<ScoreText>().scorePlayer1 < counterScore.GetComponent<ScoreText>().scorePlayer2)
+            {
+                winP2++;
+                winner = 2;
+            }
+            else
+            {
+                winP1++;
+                winP2++;
+            }
+
             //Manda las cartas al cementerio
-           GameObject[] cardsToGraveyard = GameObject.FindGameObjectsWithTag("CartaJugada");
+            GameObject[] cardsToGraveyard = GameObject.FindGameObjectsWithTag("CartaJugada");
 
-           foreach(GameObject objeto in cardsToGraveyard)
-           {
-            objeto.transform.position = graveyard.position;
-            objeto.transform.SetParent(graveyard);
-           }
+            foreach(GameObject objeto in cardsToGraveyard)
+            {
+                objeto.transform.position = graveyard.position;
+                objeto.transform.SetParent(graveyard);
+            }
 
-           //Algunos cambios en el escenario
-            passButtonBlock.SetActive(!passButtonBlock.activeSelf);
-            blockHand1.SetActive(true);
-            blockDeck1.SetActive(true);
-            blockHand2.SetActive(true);
-            blockDeck2.SetActive(true);
-            nextRoundCartel.SetActive(true);
+            //Evalua la situación de la partida y procede en consecuencia
+            if(winP1 == 1 && winP2 == 1)
+            {
+                //Prepara el escenario para la siguiente ronda
+                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                blockHand1.SetActive(true);
+                blockDeck1.SetActive(true);
+                blockHand2.SetActive(true);
+                blockDeck2.SetActive(true);
 
-            passCount++;
-            round++;
+                //Evalúa si hubo empate o alguien ganó la última ronda y procede en consecuencia
+                if(round==1 || winner==1)
+                {
+                    lastRoundCartel1.SetActive(true);
+                    
+                    passCount++;
+                    round++;
 
-            nextTurnCartel1.SetActive(!nextTurnCartel1.activeSelf);
-            nextTurnCartel2.SetActive(!nextTurnCartel2.activeSelf);
+                    nextTurnCartel1.SetActive(!nextTurnCartel1.activeSelf);
+                    nextTurnCartel2.SetActive(!nextTurnCartel2.activeSelf);
+                }
+                else
+                {
+                    lastRoundCartel2.SetActive(true);
+                    
+                    passCount++;
+                    round++;
+
+                    nextTurnCartel1.SetActive(!nextTurnCartel1.activeSelf);
+                    nextTurnCartel2.SetActive(!nextTurnCartel2.activeSelf);
+                }
+            }
+            else if(winP1 == 1 && winP2 == 0)
+            {
+                //Prepara el escenario para la siguiente ronda
+                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                blockHand1.SetActive(true);
+                blockDeck1.SetActive(true);
+                blockHand2.SetActive(true);
+                blockDeck2.SetActive(true);
+                nextRoundCartel1.SetActive(true);
+                
+                passCount++;
+                round++;
+
+                nextTurnCartel1.SetActive(!nextTurnCartel1.activeSelf);
+                nextTurnCartel2.SetActive(!nextTurnCartel2.activeSelf);
+            }
+            else if(winP1 == 0 && winP2 == 1)
+            {
+                //Prepara el escenario para la siguiente ronda
+                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                blockHand1.SetActive(true);
+                blockDeck1.SetActive(true);
+                blockHand2.SetActive(true);
+                blockDeck2.SetActive(true);
+                nextRoundCartel2.SetActive(true);
+                
+                passCount++;
+                round++;
+
+                nextTurnCartel1.SetActive(!nextTurnCartel1.activeSelf);
+                nextTurnCartel2.SetActive(!nextTurnCartel2.activeSelf);
+            }
+            else if(winP1 == 2 && winP2 == 2)
+            {
+                //Queda en empate y termina la partida
+                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                blockHand1.SetActive(true);
+                blockDeck1.SetActive(true);
+                blockHand2.SetActive(true);
+                blockDeck2.SetActive(true);
+                tiedGameCartel.SetActive(true);
+            }
+            else if(winP1 == 2)
+            {
+                //Gana el jugador 1 y termina la partida
+                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                blockHand1.SetActive(true);
+                blockDeck1.SetActive(true);
+                blockHand2.SetActive(true);
+                blockDeck2.SetActive(true);
+                victoryCartel1.SetActive(true);
+            }
+            else
+            {
+                //Gana el jugador 2 y termina la partida
+                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                blockHand1.SetActive(true);
+                blockDeck1.SetActive(true);
+                blockHand2.SetActive(true);
+                blockDeck2.SetActive(true);
+                victoryCartel2.SetActive(true);
+            }
+
         }
     }
 }

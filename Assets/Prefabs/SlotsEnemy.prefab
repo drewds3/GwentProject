@@ -90,7 +90,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Raven
+  type: 
+  DragParent: {fileID: 0}
   item: {fileID: 0}
+  nextTurnPanel: {fileID: 0}
+  blockHand: {fileID: 0}
+  blockDeck: {fileID: 0}
+  passButtonBlock: {fileID: 0}
+  passButton: {fileID: 0}
 --- !u!1 &1198988325853235163
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +188,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Raven
+  type: 
+  DragParent: {fileID: 0}
   item: {fileID: 0}
+  nextTurnPanel: {fileID: 0}
+  blockHand: {fileID: 0}
+  blockDeck: {fileID: 0}
+  passButtonBlock: {fileID: 0}
+  passButton: {fileID: 0}
 --- !u!1 &3140607576107870445
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +210,7 @@ GameObject:
   - component: {fileID: 8504598493757287173}
   m_Layer: 0
   m_Name: SlotsEnemy
-  m_TagString: Untagged
+  m_TagString: FilaPlayer2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,10 +292,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntosTotal: 0
-  previousChildCount: 0
-  NextTurnPanel: {fileID: 0}
-  Block1: {fileID: 0}
-  Block2: {fileID: 0}
 --- !u!1 &5756509507906526243
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +382,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Raven
+  type: 
+  DragParent: {fileID: 0}
   item: {fileID: 0}
+  nextTurnPanel: {fileID: 0}
+  blockHand: {fileID: 0}
+  blockDeck: {fileID: 0}
+  passButtonBlock: {fileID: 0}
+  passButton: {fileID: 0}
 --- !u!1 &5981167936488793463
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +480,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Raven
+  type: 
+  DragParent: {fileID: 0}
   item: {fileID: 0}
+  nextTurnPanel: {fileID: 0}
+  blockHand: {fileID: 0}
+  blockDeck: {fileID: 0}
+  passButtonBlock: {fileID: 0}
+  passButton: {fileID: 0}
 --- !u!1 &8005664119134161439
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +578,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Raven
+  type: 
+  DragParent: {fileID: 0}
   item: {fileID: 0}
+  nextTurnPanel: {fileID: 0}
+  blockHand: {fileID: 0}
+  blockDeck: {fileID: 0}
+  passButtonBlock: {fileID: 0}
+  passButton: {fileID: 0}
 --- !u!1 &8843740838399478395
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,4 +676,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Raven
+  type: 
+  DragParent: {fileID: 0}
   item: {fileID: 0}
+  nextTurnPanel: {fileID: 0}
+  blockHand: {fileID: 0}
+  blockDeck: {fileID: 0}
+  passButtonBlock: {fileID: 0}
+  passButton: {fileID: 0}

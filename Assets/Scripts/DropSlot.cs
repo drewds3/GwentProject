@@ -41,6 +41,9 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
                 Debug.Log("Carta colocada correctamente");
 
+                //Se le quita la movilidad a la carta
+                item.GetComponent<DragHandler>().enabled = false;
+
                 //Además pasa de turno si el otro jugador no ha pasado
                 if(count%2==0)
                 {
