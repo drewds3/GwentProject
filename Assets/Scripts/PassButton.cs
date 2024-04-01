@@ -40,7 +40,8 @@ public class PassButton : MonoBehaviour
     public int winner = 0;
 
     //Variable para mandar las cartas al cementerio al finalizar la ronda
-    public Transform graveyard;
+    public Transform graveyard1;
+    public Transform graveyard2;
 
     //Variables para saber quién gana cada ronda
     public GameObject counterScore;
@@ -130,12 +131,19 @@ public class PassButton : MonoBehaviour
             }
 
             //Manda las cartas al cementerio
-            GameObject[] cardsToGraveyard = GameObject.FindGameObjectsWithTag("CartaJugada");
+            GameObject[] cardsToGraveyard1 = GameObject.FindGameObjectsWithTag("CartaJugada1");
+            GameObject[] cardsToGraveyard2 = GameObject.FindGameObjectsWithTag("CartaJugada2");
 
-            foreach(GameObject objeto in cardsToGraveyard)
+            foreach(GameObject objeto in cardsToGraveyard1)
             {
-                objeto.transform.position = graveyard.position;
-                objeto.transform.SetParent(graveyard);
+                objeto.transform.position = graveyard1.position;
+                objeto.transform.SetParent(graveyard1);
+            }
+
+            foreach(GameObject objeto in cardsToGraveyard2)
+            {
+                objeto.transform.position = graveyard2.position;
+                objeto.transform.SetParent(graveyard2);
             }
 
             //Evalua la situación de la partida y procede en consecuencia

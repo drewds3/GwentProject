@@ -8,9 +8,10 @@ TagManager:
   - ZonaDePuntaje
   - Carta
   - LeaderCard
-  - CartaJugada
   - FilaPlayer1
   - FilaPlayer2
+  - CartaJugada1
+  - CartaJugada2
   layers:
   - Default
   - TransparentFX

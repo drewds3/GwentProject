@@ -37,8 +37,18 @@ public class DropSlot : MonoBehaviour, IDropHandler
                 item = DragHandler.itemDragging;
                 item.transform.SetParent(transform);
                 item.transform.position = transform.position;
-                item.tag = "CartaJugada";
 
+                /*Se le otorga un tag dependiendo de su facción para luego
+                ser enviada a sus respectivos cementerios desde otro script*/
+                if(cardScript.faction == "Dragon")
+                {
+                    item.tag = "CartaJugada1";
+                }
+                else if(cardScript.faction == "Raven")
+                {
+                    item.tag = "CartaJugada2";
+                }
+               
                 Debug.Log("Carta colocada correctamente");
 
                 //Se le quita la movilidad a la carta

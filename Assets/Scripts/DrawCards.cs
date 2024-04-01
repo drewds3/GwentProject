@@ -10,6 +10,9 @@ public class DrawCards : MonoBehaviour
     //Zona donde se "dibujan"
     public Transform cartasZone;
 
+    //Zona donde se descartan, es decir, el cementerio
+    public Transform graveyard;
+
     //Carta a dibujar
     int indice;
 
@@ -29,6 +32,13 @@ public class DrawCards : MonoBehaviour
     int count = 0;
     private bool condicion3 = false;
     private int roundWinner = 0;
+
+    //Variables para el sistema de robo de una carta cada turno fuera del inicial de la ronda
+    int countRound = 1;
+    int countTurn1 = 0;
+    int countTurn2 = 0;
+    public GameObject blockdeck1;
+    public GameObject blockdeck2;
 
     void Update()
     {   
@@ -57,12 +67,42 @@ public class DrawCards : MonoBehaviour
             }
         }
 
-        
-
         //Desbloquea el botón si ya ha pasado 1 turno en ambos jugadores y alguno está jugando
-        if(turnP1 != 0 && turnP2 != 0 && !condicion2.activeSelf && !condicion1.activeSelf && !condicion3)
+        if(turnP1 != 0 && turnP2 != 0 && !condicion2.activeSelf && !condicion1.activeSelf && !condicion3 && roundWinner != 2)
         {
             blockPassButton.SetActive(false);
+        }
+        else if(turnP1 != 0 && turnP2 != -1 && !condicion2.activeSelf && !condicion1.activeSelf && !condicion3 && roundWinner == 2)
+        {
+            blockPassButton.SetActive(false);
+        }
+
+        //Actualiza variables para controlar que se robe una carta cada turno fuera del inicial
+        if(countRound < round)
+        {   
+            countTurn1 = 0;
+
+            if(roundWinner < 2)
+            {
+                countTurn2 = 0;
+            }
+            else
+            {
+                countTurn2 = -1;
+            }
+
+            countRound++;
+        }
+
+        //Limita el robo de cartas cada turno a 1 después del primero
+        if(countTurn1 == turnP1 - 2)
+        {   
+            countTurn1++;
+        }
+
+        if(countTurn2 == turnP2 - 2)
+        {
+            countTurn2++;
         }
     }
 
@@ -104,13 +144,27 @@ public class DrawCards : MonoBehaviour
                 }
             }
             //Si estamos en la 2da o 3ra ronda y es el primer turno roban 2 cartas
-            else if(round > 1 && (turnP1 == 0 || turnP2 == 0))
+            else if(round > 1 && (turnP1 == 0 || (turnP2 == 0 && roundWinner == 1) || (turnP2 == -1 && roundWinner == 2)))
             {
+                //Si tiene menos de 10 cartas, roba
                 if(cartasZone.childCount<10 && ((count<2 && round == 2) || (count<4 && round == 3)))
                 {
                     indice = Random.Range(0, prefabs.Count);
 
                     Instantiate(prefabs[indice], cartasZone);
+
+                    prefabs.Remove(prefabs[indice]);
+
+                    count++;
+
+                    Debug.Log(count);
+                }
+                //De no ser así las cartas robadas serán descartadas al cementerio
+                else if((count != 2 && round == 2) || (count !=4 && round == 3))
+                {
+                    indice = Random.Range(0, prefabs.Count);
+
+                    Instantiate(prefabs[indice], graveyard);
 
                     prefabs.Remove(prefabs[indice]);
 
@@ -129,6 +183,43 @@ public class DrawCards : MonoBehaviour
                     Debug.Log("Ya puedes jugar");
                 }
 
+            }
+            //Si ya pasó el primer turno de ambos jugadores entonces pueden robar únicamente una carta cada turno
+            else if(cartasZone.childCount < 10 && (countTurn1 < turnP1 && blockdeck2.activeSelf) 
+                                               || (countTurn2 < turnP2 && blockdeck1.activeSelf))
+            {
+                indice = Random.Range(0, prefabs.Count);
+
+                Instantiate(prefabs[indice], cartasZone);
+
+                prefabs.Remove(prefabs[indice]);
+
+                if(blockdeck2.activeSelf)
+                {
+                    countTurn1++;
+                }
+                else
+                {
+                    countTurn2++;
+                }
+            }
+            //Si ya se alcanzó el limite de cartas en mano será descartada al cementerio
+            else if((countTurn1 < turnP1 && blockdeck2.activeSelf) || (countTurn2 < turnP2 && blockdeck1.activeSelf))
+            {
+                indice = Random.Range(0, prefabs.Count);
+
+                Instantiate(prefabs[indice], graveyard);
+
+                prefabs.Remove(prefabs[indice]);
+
+                if(blockdeck2.activeSelf)
+                {
+                    countTurn1++;
+                }
+                else
+                {
+                    countTurn2++;
+                }
             }
         }
     }
