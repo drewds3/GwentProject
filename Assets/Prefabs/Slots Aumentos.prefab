@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6632371909998492699}
   - component: {fileID: 3859797658068982454}
   - component: {fileID: 7332120984078290142}
-  - component: {fileID: 6164396703127236896}
+  - component: {fileID: 8133380042218587501}
   m_Layer: 0
-  m_Name: Slot (2)
+  m_Name: IncreaseS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6164396703127236896
+--- !u!114 &8133380042218587501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,10 +86,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3744297307866728158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 022c78b832d459b4696977d6945bd011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
 --- !u!1 &5432088746109995844
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,9 +179,9 @@ GameObject:
   - component: {fileID: 2577324239894558369}
   - component: {fileID: 5260549990169281213}
   - component: {fileID: 6559367111095100148}
-  - component: {fileID: 4911360678410728056}
+  - component: {fileID: 7900823508536230257}
   m_Layer: 0
-  m_Name: Slot
+  m_Name: IncreaseM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,7 +245,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4911360678410728056
+--- !u!114 &7900823508536230257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,10 +254,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7782063296276882689}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 022c78b832d459b4696977d6945bd011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
 --- !u!1 &8094274320313181298
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,9 +268,9 @@ GameObject:
   - component: {fileID: 4468847914758460531}
   - component: {fileID: 4899571205370157149}
   - component: {fileID: 3535184409208139338}
-  - component: {fileID: 3399495278312251152}
+  - component: {fileID: 1404147862951257175}
   m_Layer: 0
-  m_Name: Slot (1)
+  m_Name: IncreaseR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,7 +334,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3399495278312251152
+--- !u!114 &1404147862951257175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,7 +343,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8094274320313181298}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 022c78b832d459b4696977d6945bd011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DrawCards : MonoBehaviour
 {   
@@ -29,16 +30,14 @@ public class DrawCards : MonoBehaviour
     public GameObject blockPassButton;
     public GameObject condicion1;
     public GameObject condicion2;
-    int count = 0;
+    public int count = 0;
     private bool condicion3 = false;
     private int roundWinner = 0;
 
-    //Variables para el sistema de robo de una carta cada turno fuera del inicial de la ronda
-    int countRound = 1;
-    int countTurn1 = 0;
-    int countTurn2 = 0;
-    public GameObject blockdeck1;
-    public GameObject blockdeck2;
+    //Variables para cambiar de cartas
+    public GameObject cardChangeSlot;
+    public Transform trash;
+    private int count2 = 0;
 
     void Update()
     {   
@@ -77,32 +76,10 @@ public class DrawCards : MonoBehaviour
             blockPassButton.SetActive(false);
         }
 
-        //Actualiza variables para controlar que se robe una carta cada turno fuera del inicial
-        if(countRound < round)
-        {   
-            countTurn1 = 0;
-
-            if(roundWinner < 2)
-            {
-                countTurn2 = 0;
-            }
-            else
-            {
-                countTurn2 = -1;
-            }
-
-            countRound++;
-        }
-
-        //Limita el robo de cartas cada turno a 1 después del primero
-        if(countTurn1 == turnP1 - 2)
-        {   
-            countTurn1++;
-        }
-
-        if(countTurn2 == turnP2 - 2)
+        //Se desactiva la posibilidad de cambio
+        if((round == 1 && (turnP1 != 0 && turnP2 != 0)) || round > 1)
         {
-            countTurn2++;
+            cardChangeSlot.SetActive(false);
         }
     }
 
@@ -130,21 +107,23 @@ public class DrawCards : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("No puedes robar más cartas en este turno");
+                    Debug.Log("No puedes robar más en este turno");
                 }
 
-                //Si ya tiene las 10 se le permite jugar
-                if(cartasZone.childCount == 10)
+                //Si ya tiene las 10 se le permite jugar y se activa la posibilidad de cambiar de carta
+                if(cartasZone.childCount == 10 && count == 0)
                 {
                     blockRows1.SetActive(false);
                     blockRows2.SetActive(false);
                     blockPassButton.SetActive(false);
 
+                    cardChangeSlot.SetActive(true);
+
                     Debug.Log("Ya puedes jugar");
                 }
             }
             //Si estamos en la 2da o 3ra ronda y es el primer turno roban 2 cartas
-            else if(round > 1 && (turnP1 == 0 || (turnP2 == 0 && roundWinner == 1) || (turnP2 == -1 && roundWinner == 2)))
+            else if(round > 1 && (turnP1 == 0 || (turnP2 == 0 && roundWinner < 2) || (turnP2 == -1 && roundWinner == 2)))
             {
                 //Si tiene menos de 10 cartas, roba
                 if(cartasZone.childCount<10 && ((count<2 && round == 2) || (count<4 && round == 3)))
@@ -184,43 +163,30 @@ public class DrawCards : MonoBehaviour
                 }
 
             }
-            //Si ya pasó el primer turno de ambos jugadores entonces pueden robar únicamente una carta cada turno
-            else if(cartasZone.childCount < 10 && (countTurn1 < turnP1 && blockdeck2.activeSelf) 
-                                               || (countTurn2 < turnP2 && blockdeck1.activeSelf))
+            //Si ya pasó el primer turno de ambos jugadores no pueden robar más cartas
+            else
             {
-                indice = Random.Range(0, prefabs.Count);
-
-                Instantiate(prefabs[indice], cartasZone);
-
-                prefabs.Remove(prefabs[indice]);
-
-                if(blockdeck2.activeSelf)
-                {
-                    countTurn1++;
-                }
-                else
-                {
-                    countTurn2++;
-                }
+                Debug.Log("No puedes robar cartas en este turno");
             }
-            //Si ya se alcanzó el limite de cartas en mano será descartada al cementerio
-            else if((countTurn1 < turnP1 && blockdeck2.activeSelf) || (countTurn2 < turnP2 && blockdeck1.activeSelf))
-            {
-                indice = Random.Range(0, prefabs.Count);
+        }
+    }
 
-                Instantiate(prefabs[indice], graveyard);
+    //Método que añade la carta a la lista(mazo) y luego la "descarta"
+    public void Swap()
+    {
+        //Se añade la carta al mazo
+        prefabs.Add(cardChangeSlot.GetComponent<ChangeCard>().item);
 
-                prefabs.Remove(prefabs[indice]);
+        //Se envía a un objeto auxiliar para que desaparezca de la escena
+        cardChangeSlot.GetComponent<ChangeCard>().item.transform.SetParent(trash);
+        cardChangeSlot.GetComponent<ChangeCard>().item.transform.position = trash.position;
 
-                if(blockdeck2.activeSelf)
-                {
-                    countTurn1++;
-                }
-                else
-                {
-                    countTurn2++;
-                }
-            }
+        count2++;
+
+        //Solo se puede usar 2 veces
+        if(count2 == 2)
+        {
+            cardChangeSlot.SetActive(false);
         }
     }
 }

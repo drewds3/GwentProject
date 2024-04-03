@@ -6,71 +6,45 @@ using UnityEngine.UI;
 
 public class DragHandler : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
-    /*La variable Vector3 almacena la posición inicial, en itemDragging se almacena el objeto mientras está siendo arratrado.
-    La variable Transform startPosition almacena el padre del objeto antes de ser arrastrado.
-    La variable Transform dragParent almacena el padre especial para el objeto durante el arrastre.
-    */
+    //Variables para arrastrar la carta y almacenar la posición inicial
     public static GameObject itemDragging;
     Vector3 startPosition;
-
-    Transform startParent;
-
+    public static Transform startParent;
     Transform dragParent;
+
     void Start()
     {
         //Busca un objeto en la escena con la etiqueta "DragParent" y lo asigna a la variable dragParent
         dragParent = GameObject.FindGameObjectWithTag("DragParent").transform;
     }
 
-    /*
-    Implementación del método OnBeginDrag de la interfaz IDragHandler.
-    Este método se ejecuta cuando el usuario comienza a arrastrar un objeto con el que ha interactuado.
-    */
+    //Al comenzar el arrastre se guardan el padre y posición iniciales
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
-
-        /*Almacena el objeto que está siendo arrastrado en la variable itemDragging y
-         guarda su posición inicial y su padre actual en las variables startPosition y startParent, respectivamente.
-        */
         itemDragging = gameObject;
-
         startPosition = transform.position;
-
         startParent = transform.parent;
-
-        /*Establece el padre del objeto en dragParent, el cual fue definido en el método Start().
-         Esto permite que el objeto siga al cursor durante el arrastre.
-        */
         transform.SetParent(dragParent);
+
+        Debug.Log("OnBeginDrag");
     }
 
-    /*
-    Implementación del método OnDrag de la interfaz IDragHandler.
-    Este método se ejecuta mientras el usuario arrastra el objeto con el que ha interactuado.
-    */
+    //Mientras se arrastra se actualiza la posición de la carta a la del puntero
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
-
-        /*Actualiza la posición del objeto al valor de la posición del mouse.*/
         transform.position = Input.mousePosition;
+
+        Debug.Log("OnDrag");
     }
 
-    /*
-    Implementación del método OnEndDrag de la interfaz IEndDragHandler.
-    Este método se ejecuta cuando el usuario suelta el objeto que ha estado arrastrando.
-    */
+    //Dependiendo de dónde se halla dejado la carta se procede de una forma u otra
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
-
-        /*Restablece la variable itemDragging a null, ya que el usuario ha soltado el objeto.*/
+        //Se restablece la variable a null puesto que el usuario ha soltado la carta
         itemDragging = null;
 
-        /*Si el padre actual del objeto es igual a dragParent, es decir, el objeto aún está siendo arrastrado,
-         entonces se restaura su posición y su padre originales.
-        */
+        Debug.Log("OnEndDrag");
+
         if (transform.parent == dragParent)
         {
             transform.position = startPosition;
@@ -79,10 +53,3 @@ public class DragHandler : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginD
         }
     }
 }
-
-/*
-En resumen, este código permite arrastrar un objeto en la escena de Unity con el mouse.
-Cuando el usuario comienza a arrastrar el objeto, el código guarda su posición inicial y su padre original.
-Luego, el objeto sigue al cursor mientras el usuario lo arrastra. Cuando el usuario suelta el objeto,
-el código restaura su posición y su padre originales.
-*/

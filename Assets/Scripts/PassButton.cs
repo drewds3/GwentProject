@@ -128,6 +128,8 @@ public class PassButton : MonoBehaviour
             {
                 winP1++;
                 winP2++;
+
+                winner = 0;
             }
 
             //Manda las cartas al cementerio
@@ -138,12 +140,14 @@ public class PassButton : MonoBehaviour
             {
                 objeto.transform.position = graveyard1.position;
                 objeto.transform.SetParent(graveyard1);
+                objeto.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
 
             foreach(GameObject objeto in cardsToGraveyard2)
             {
                 objeto.transform.position = graveyard2.position;
                 objeto.transform.SetParent(graveyard2);
+                objeto.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
 
             //Evalua la situación de la partida y procede en consecuencia
@@ -157,7 +161,7 @@ public class PassButton : MonoBehaviour
                 blockDeck2.SetActive(true);
 
                 //Evalúa si hubo empate o alguien ganó la última ronda y procede en consecuencia
-                if(round==1 || winner==1)
+                if(winner < 2)
                 {
                     lastRoundCartel1.SetActive(true);
                     
