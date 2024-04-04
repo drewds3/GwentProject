@@ -5,11 +5,23 @@ using UnityEngine.UI;
 
 public class Carta : MonoBehaviour
 {
-    //El nombre y algunas propiedades de las cartas
+    //Nonbre de la carta
     public string cardName;
+    
+    //Sus puntos de poder
     public int puntosPoder;
+
+    //Su tipo o tipos de carta
     public string typeCard;
     public string typeCard2;
     public string typeCard3;
+    public string typeCard4;
+
+    //Su facción
     public string faction;
+
+    public void IncreasePower()
+    {
+        puntosPoder *= 2;
+    }
 }

@@ -30,6 +30,7 @@ public class DrawCards : MonoBehaviour
     public GameObject blockPassButton;
     public GameObject condicion1;
     public GameObject condicion2;
+    public GameObject leaderBlock;
     public int count = 0;
     private bool condicion3 = false;
     private int roundWinner = 0;
@@ -81,6 +82,17 @@ public class DrawCards : MonoBehaviour
         {
             cardChangeSlot.SetActive(false);
         }
+
+        //Hasta el segundo turno no se pueden activar las habilidades de líder
+        if((turnP1 == 0 || turnP2 == 0) && roundWinner < 2)
+        {
+            leaderBlock.SetActive(true);
+        }
+        else if((turnP1 == 0 || turnP2 == -1) && roundWinner == 2)
+        {
+            leaderBlock.SetActive(true);
+        }
+        
     }
 
     //Método que "dibuja" las cartas

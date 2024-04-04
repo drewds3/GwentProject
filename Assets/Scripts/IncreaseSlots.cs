@@ -17,16 +17,16 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
     public GameObject blockHand;
     public GameObject blockDeck;
     public GameObject passButtonBlock;
+    public GameObject leaderBlock;
 
     //Variables para saber si se pasó el otro jugador
     private int count = 0;
     public GameObject passButton;
 
-    //Variables para controlar el efecto del clima
+    //Variables para controlar el aumento
     public string type;
-    public bool increaseM = false;
-    public bool increaseR = false;
-    public bool increaseS = false;
+    public bool increase = false;
+    public GameObject[] slots = new GameObject[6];
 
     //Variable para mandar al cementerio los aumentos usados
     public Transform graveyard;
@@ -35,6 +35,24 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
     {
         //Se actualiza el contador de pase
         count = passButton.GetComponent<PassButton>().passCount;
+
+        /*Si el aumento está activo comprueba que haya pasado
+          por todos los slots de la fila que afecta para de-
+          sactivarlo*/
+        if(increase)
+        {
+            bool[] increases = new bool[6];
+
+            for(int i = 0; i < 6; i++)
+            {
+                increases[i] = slots[i].GetComponent<DropSlot>().increaseOn;
+            }
+
+            if(increases[0] && increases[1] && increases[2] && increases[3] && increases[4] && increases[5])
+            {
+                increase = false;
+            }
+        }
     }
 
     //Método para verificar si sueltas una carta en la casilla correcta y pasar de turno
@@ -46,24 +64,9 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
         if(cardScript && faction == cardScript.faction && cardScript.typeCard == "Increase")
         {       
             //Zona a la que afecta
-            if(type == "M")
-            {
-                increaseM = true;
+            increase = true;
 
-                Debug.Log("Fila M aumentada");
-            }
-            else if(type == "R")
-            {
-                increaseR = true;
-
-                Debug.Log("Fila R aumentadas");
-            }
-            else
-            {
-                increaseS = true;
-
-                Debug.Log("Fila S aumentadas");
-            } 
+            Debug.Log($"Fila {type} aumentada");
 
             //Además pasa de turno si el otro jugador no ha pasado
             if(count%2==0)
@@ -72,6 +75,7 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
                     blockHand.SetActive(!blockHand.activeSelf);
                     blockDeck.SetActive(!blockDeck.activeSelf);
                     passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                    leaderBlock.SetActive(true);
             }
 
             //Al ser usada se va al cementerio y pasa de turno

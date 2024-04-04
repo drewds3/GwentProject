@@ -26,6 +26,8 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
     public GameObject blockDeck1;
     public GameObject blockHand2;
     public GameObject blockDeck2;
+    public GameObject leaderBlock1;
+    public GameObject leaderBlock2;
     public GameObject passButtonBlock;
     public int p1Turn;
     public int p2Turn;
@@ -84,7 +86,7 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
             }
             else if(cardScript.faction == "Raven")
             {
-                item.tag = "CartaJugada2";
+                item.tag = "ClimaJugado2";
             }
                
             Debug.Log("Carta colocada correctamente");
@@ -102,6 +104,7 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
                     blockDeck1.SetActive(!blockDeck1.activeSelf);
                     nextTurnCartel1.SetActive(!nextTurnCartel1.activeSelf);
                     passButtonBlock.SetActive(true);
+                    leaderBlock1.SetActive(true);
                 }
                 
                 //En caso de que el turno sea del jugador 2, pasa al 1
@@ -111,6 +114,7 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
                     blockDeck2.SetActive(!blockDeck2.activeSelf);
                     nextTurnCartel2.SetActive(!nextTurnCartel2.activeSelf);
                     passButtonBlock.SetActive(true); 
+                    leaderBlock2.SetActive(true);
                 }   
             }
 
@@ -164,6 +168,7 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
                     blockDeck1.SetActive(!blockDeck1.activeSelf);
                     nextTurnCartel1.SetActive(!nextTurnCartel1.activeSelf);
                     passButtonBlock.SetActive(true);
+                    leaderBlock1.SetActive(true);
                 }
             }
             else
@@ -178,6 +183,7 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
                     blockDeck2.SetActive(!blockDeck2.activeSelf);
                     nextTurnCartel2.SetActive(!nextTurnCartel2.activeSelf);
                     passButtonBlock.SetActive(true); 
+                    leaderBlock2.SetActive(true);
                 }
             }
         }

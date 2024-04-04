@@ -108,6 +108,7 @@ MonoBehaviour:
   typeCard: R
   typeCard2: null
   typeCard3: null
+  typeCard4: Silver
   faction: Raven
 --- !u!114 &-3989134371253228159
 MonoBehaviour:

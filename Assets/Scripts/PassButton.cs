@@ -13,6 +13,7 @@ public class PassButton : MonoBehaviour
     public GameObject blockHand1;
     public GameObject blockDeck1;
     public GameObject nextTurnCartel1;
+    public GameObject blockLeader1;
 
     //Variables para el contador de turnos del jugador 2
     public int player2Turn = 0;
@@ -23,6 +24,7 @@ public class PassButton : MonoBehaviour
     public GameObject blockHand2;
     public GameObject blockDeck2;
     public GameObject nextTurnCartel2;
+    public GameObject blockLeader2;
 
     //Variable para bloquear el botón momentáneamente al tocarlo
     public GameObject passButtonBlock;
@@ -95,6 +97,7 @@ public class PassButton : MonoBehaviour
                 blockDeck1.SetActive(!blockDeck1.activeSelf);
                 nextTurnCartel1.SetActive(!nextTurnCartel1.activeSelf);
                 passButtonBlock.SetActive(true);
+                blockLeader1.SetActive(true);
 
                 //Cuenta que usaron el pase
                 passCount++;    
@@ -107,6 +110,7 @@ public class PassButton : MonoBehaviour
                 blockDeck2.SetActive(!blockDeck2.activeSelf);
                 nextTurnCartel2.SetActive(!nextTurnCartel2.activeSelf);
                 passButtonBlock.SetActive(true);
+                blockLeader2.SetActive(true);
 
                 //Cuenta que usaron el pase
                 passCount++;    
@@ -126,18 +130,31 @@ public class PassButton : MonoBehaviour
             }
             else
             {
-                winP1++;
-                winP2++;
+                //Si está activa la habilidad del lider del jugador 1 entonces gana en caso de empate
+                bool effectLeaderNordic = GameObject.Find("CardKingNordic").GetComponent<LeaderEffect>().actived;
 
+                if(effectLeaderNordic)
+                {
+                    winP1++;
+
+                }
+                else
+                {
+                    winP1++;
+                    winP2++;
+                }
+               
                 winner = 0;
             }
 
             //Manda las cartas al cementerio
             GameObject[] cardsToGraveyard1 = GameObject.FindGameObjectsWithTag("CartaJugada1");
             GameObject[] cardsToGraveyard2 = GameObject.FindGameObjectsWithTag("CartaJugada2");
+            GameObject[] cardsToGraveyard3 = GameObject.FindGameObjectsWithTag("ClimaJugado2");
 
             foreach(GameObject objeto in cardsToGraveyard1)
             {
+                objeto.tag = "CartaDescartada";
                 objeto.transform.position = graveyard1.position;
                 objeto.transform.SetParent(graveyard1);
                 objeto.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -145,10 +162,20 @@ public class PassButton : MonoBehaviour
 
             foreach(GameObject objeto in cardsToGraveyard2)
             {
+                objeto.tag = "CartaDescartada";
                 objeto.transform.position = graveyard2.position;
                 objeto.transform.SetParent(graveyard2);
                 objeto.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
+
+            foreach(GameObject objeto in cardsToGraveyard3)
+            {
+                objeto.tag = "CartaDescartada";
+                objeto.transform.position = graveyard2.position;
+                objeto.transform.SetParent(graveyard2);
+                objeto.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
 
             //Evalua la situación de la partida y procede en consecuencia
             if(winP1 == 1 && winP2 == 1)
@@ -159,6 +186,8 @@ public class PassButton : MonoBehaviour
                 blockDeck1.SetActive(true);
                 blockHand2.SetActive(true);
                 blockDeck2.SetActive(true);
+                blockLeader1.SetActive(true);
+                blockLeader2.SetActive(true);
 
                 //Evalúa si hubo empate o alguien ganó la última ronda y procede en consecuencia
                 if(winner < 2)
@@ -191,6 +220,8 @@ public class PassButton : MonoBehaviour
                 blockHand2.SetActive(true);
                 blockDeck2.SetActive(true);
                 nextRoundCartel1.SetActive(true);
+                blockLeader1.SetActive(true);
+                blockLeader2.SetActive(true);
                 
                 passCount++;
                 round++;
@@ -207,6 +238,8 @@ public class PassButton : MonoBehaviour
                 blockHand2.SetActive(true);
                 blockDeck2.SetActive(true);
                 nextRoundCartel2.SetActive(true);
+                blockLeader1.SetActive(true);
+                blockLeader2.SetActive(true);
                 
                 passCount++;
                 round++;
@@ -225,6 +258,8 @@ public class PassButton : MonoBehaviour
                 blockHand2.SetActive(true);
                 blockDeck2.SetActive(true);
                 tiedGameCartel.SetActive(true);
+                blockLeader1.SetActive(true);
+                blockLeader2.SetActive(true);
             }
             else if(winP1 == 2)
             {
@@ -237,6 +272,8 @@ public class PassButton : MonoBehaviour
                 blockHand2.SetActive(true);
                 blockDeck2.SetActive(true);
                 victoryCartel1.SetActive(true);
+                blockLeader1.SetActive(true);
+                blockLeader2.SetActive(true);
             }
             else
             {
@@ -249,6 +286,8 @@ public class PassButton : MonoBehaviour
                 blockHand2.SetActive(true);
                 blockDeck2.SetActive(true);
                 victoryCartel2.SetActive(true);
+                blockLeader1.SetActive(true);
+                blockLeader2.SetActive(true);
             }
 
         }

@@ -108,6 +108,7 @@ MonoBehaviour:
   typeCard: M
   typeCard2: null
   typeCard3: null
+  typeCard4: Silver
   faction: Dragon
 --- !u!114 &-5262470235149670892
 MonoBehaviour:

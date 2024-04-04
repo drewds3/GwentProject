@@ -108,6 +108,7 @@ MonoBehaviour:
   typeCard: Climate
   typeCard2: null
   typeCard3: null
+  typeCard4: null
   faction: Dragon
 --- !u!114 &-7692471373192382412
 MonoBehaviour:
