@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 4791996619338446985}
   - component: {fileID: 4791996619338446986}
   - component: {fileID: -8077461281738308923}
-  - component: {fileID: -7692471373192382412}
+  - component: {fileID: -5262470235149670892}
+  - component: {fileID: 6737082784146364620}
   m_Layer: 3
-  m_Name: ClimateCard Elfic
-  m_TagString: ClimaNoJugado2
+  m_Name: DragonCard Gold Nordic
+  m_TagString: Carta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6a86bf7fb16eefd4bb97d20700e2a0c9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3432877090c2d524ba375c22dafb80ac, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -103,15 +104,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Niebla
-  puntosPoder: 0
-  typeCard: Climate
-  typeCard2: null
+  cardName: Paarthurnax
+  puntosPoder: 12
+  typeCard: M
+  typeCard2: R
   typeCard3: null
-  typeCard4: null
-  faction: Raven
-  effect: 0
---- !u!114 &-7692471373192382412
+  typeCard4: Gold
+  faction: Dragon
+  effect: 1
+--- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,3 +124,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6737082784146364620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4791996619338446980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e929e42eb7dd6847905e55b0bdd9166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graveyardRival: {fileID: 0}
+  graveyardOwn: {fileID: 0}
+  graveyardEnemy: GraveyardEnemy
+  graveyard: Graveyard
+  tagRival: CartaJugada2
+  tagOwn: CartaJugada1
+  esc: 1
+  cr: 0
+  ewc: 0

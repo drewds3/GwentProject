@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Carta : MonoBehaviour
 {
@@ -20,8 +21,12 @@ public class Carta : MonoBehaviour
     //Su facción
     public string faction;
 
-    public void IncreasePower()
+    //Booleano de si tiene efecto o no
+    public bool effect;
+
+    //Aumenta el poder por 2 si se activa un aumento o en n si se activa cierta habilidad
+    public void IncreasePower(int n)
     {
-        puntosPoder *= 2;
+        puntosPoder *= n;
     }
 }

@@ -2920,6 +2920,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slots S
       objectReference: {fileID: 0}
+    - target: {fileID: 3140607576107870445, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: m_TagString
+      value: Fila
+      objectReference: {fileID: 0}
     - target: {fileID: 3421047603395398142, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -4092,7 +4096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09517218, g: 0, b: 0.62352943, a: 0.392}
+  m_Color: {r: 0.09517218, g: 0, b: 0.62352943, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5234,19 +5238,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 7655664588968956935, guid: 14fda49e74a0e5c42a77bfe902312c94, type: 3}
-  - {fileID: 7655664588968956935, guid: 14fda49e74a0e5c42a77bfe902312c94, type: 3}
-  - {fileID: 7655664588968956935, guid: 14fda49e74a0e5c42a77bfe902312c94, type: 3}
-  - {fileID: 7655664588968956935, guid: 14fda49e74a0e5c42a77bfe902312c94, type: 3}
+  - {fileID: 7655664588968956935, guid: 50234f3d16df8f54c9fc553e65403f6a, type: 3}
+  - {fileID: 7655664588968956935, guid: 50234f3d16df8f54c9fc553e65403f6a, type: 3}
+  - {fileID: 7655664588968956935, guid: 50234f3d16df8f54c9fc553e65403f6a, type: 3}
+  - {fileID: 7655664588968956935, guid: 50234f3d16df8f54c9fc553e65403f6a, type: 3}
   - {fileID: 7655664588968956935, guid: 14fda49e74a0e5c42a77bfe902312c94, type: 3}
   - {fileID: 7655664588968956935, guid: 14fda49e74a0e5c42a77bfe902312c94, type: 3}
   - {fileID: 7655664588968956935, guid: 14fda49e74a0e5c42a77bfe902312c94, type: 3}
   - {fileID: 4791996619338446980, guid: 48d1339ddc7f3ce43b6cf38650e25db3, type: 3}
-  - {fileID: 4791996619338446980, guid: 48d1339ddc7f3ce43b6cf38650e25db3, type: 3}
+  - {fileID: 7655664588968956935, guid: 9064c26e2101c954ea18c823da56e4c3, type: 3}
   - {fileID: 4791996619338446980, guid: eb9b22273a144f044bb36390223b8082, type: 3}
-  - {fileID: 4791996619338446980, guid: eb9b22273a144f044bb36390223b8082, type: 3}
-  - {fileID: 4791996619338446980, guid: eb9b22273a144f044bb36390223b8082, type: 3}
-  - {fileID: 4791996619338446980, guid: 008df4c4bbcb42e48bdd83afa389ea06, type: 3}
+  - {fileID: 7655664588968956935, guid: 9064c26e2101c954ea18c823da56e4c3, type: 3}
+  - {fileID: 7655664588968956935, guid: 9064c26e2101c954ea18c823da56e4c3, type: 3}
+  - {fileID: 7655664588968956935, guid: 9064c26e2101c954ea18c823da56e4c3, type: 3}
   - {fileID: 4791996619338446980, guid: 008df4c4bbcb42e48bdd83afa389ea06, type: 3}
   - {fileID: 4791996619338446980, guid: beeed7cfc1270fb40a78585b0684f53c, type: 3}
   cartasZone: {fileID: 1715024022}
@@ -5640,7 +5644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6226415, g: 0, b: 0.05055174, a: 0.392}
+  m_Color: {r: 0.6226415, g: 0, b: 0.05055174, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6044,6 +6048,10 @@ PrefabInstance:
     - target: {fileID: 3140607576107870445, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: m_Name
       value: Slots M Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140607576107870445, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: m_TagString
+      value: Fila
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: hand
@@ -8289,6 +8297,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Slots R Enemy '
       objectReference: {fileID: 0}
+    - target: {fileID: 3140607576107870445, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: m_TagString
+      value: Fila
+      objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: hand
       value: 
@@ -9115,6 +9127,10 @@ PrefabInstance:
     - target: {fileID: 3140607576107870445, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Name
       value: Slots R
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140607576107870445, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: m_TagString
+      value: Fila
       objectReference: {fileID: 0}
     - target: {fileID: 3421047603395398142, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a
@@ -10397,13 +10413,13 @@ MonoBehaviour:
   - {fileID: 4791996619338446980, guid: 65a404c8b1d102d439e416a487e92dac, type: 3}
   - {fileID: 4791996619338446980, guid: 65a404c8b1d102d439e416a487e92dac, type: 3}
   - {fileID: 4791996619338446980, guid: 65a404c8b1d102d439e416a487e92dac, type: 3}
-  - {fileID: 4791996619338446980, guid: 65a404c8b1d102d439e416a487e92dac, type: 3}
-  - {fileID: 4791996619338446980, guid: 65a404c8b1d102d439e416a487e92dac, type: 3}
-  - {fileID: 4791996619338446980, guid: 65a404c8b1d102d439e416a487e92dac, type: 3}
+  - {fileID: 4791996619338446980, guid: e5660d4906483ba42a38b8b1ecf5bb68, type: 3}
+  - {fileID: 4791996619338446980, guid: e5660d4906483ba42a38b8b1ecf5bb68, type: 3}
+  - {fileID: 4791996619338446980, guid: e5660d4906483ba42a38b8b1ecf5bb68, type: 3}
+  - {fileID: 4791996619338446980, guid: e5660d4906483ba42a38b8b1ecf5bb68, type: 3}
   - {fileID: 4791996619338446980, guid: e05f4fa8ca8d50d4fa70479599fb2946, type: 3}
   - {fileID: 4791996619338446980, guid: e05f4fa8ca8d50d4fa70479599fb2946, type: 3}
-  - {fileID: 4791996619338446980, guid: 2cdbc061f7c086442b49696864f28871, type: 3}
-  - {fileID: 4791996619338446980, guid: 2cdbc061f7c086442b49696864f28871, type: 3}
+  - {fileID: 4791996619338446980, guid: e05f4fa8ca8d50d4fa70479599fb2946, type: 3}
   - {fileID: 4791996619338446980, guid: 2cdbc061f7c086442b49696864f28871, type: 3}
   - {fileID: 4791996619338446980, guid: 5dcf09cb95bde76498099af4f056aa18, type: 3}
   - {fileID: 4791996619338446980, guid: 5dcf09cb95bde76498099af4f056aa18, type: 3}
@@ -11280,6 +11296,10 @@ PrefabInstance:
     - target: {fileID: 3140607576107870445, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: m_Name
       value: 'Slots S Enemy '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140607576107870445, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
+      propertyPath: m_TagString
+      value: Fila
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: hand
@@ -12925,7 +12945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3140607576107870445, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_TagString
-      value: FilaPlayer1
+      value: Fila
       objectReference: {fileID: 0}
     - target: {fileID: 3421047603395398142, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: m_Color.a

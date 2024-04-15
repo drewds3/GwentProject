@@ -8,13 +8,15 @@ TagManager:
   - ZonaDePuntaje
   - Carta
   - LeaderCard
-  - FilaPlayer1
-  - FilaPlayer2
   - CartaJugada1
   - CartaJugada2
   - CartaDescartada
   - CartaSalvada
   - ClimaJugado2
+  - ClimaNoJugado2
+  - Fila
+  - FilaPlayer2
+  - FilaPlayer1
   layers:
   - Default
   - TransparentFX

@@ -14,10 +14,9 @@ public class RowScoreController : MonoBehaviour
     private bool S = false;
     public GameObject climate;
 
-    void Start()
-    {
-        
-    }
+    //Variable para el efecto de limpiar fila
+    public int numberCards = 0;
+
     void Update()
     {
         //Se actualizan las zonas afectadas por el clima
@@ -35,25 +34,30 @@ public class RowScoreController : MonoBehaviour
         rowScore = 0;
         Carta[] cartas = GetComponentsInChildren<Carta>();
 
+        numberCards = cartas.Length;
+
+        //Verifica si algún clima afecta a dicha fila
         if((typeRow == "M" && M) || (typeRow == "R" && R) || (typeRow == "S" && S))
         {
             foreach (Carta carta in cartas)
-        {
-            rowScore += carta.puntosPoder/2;
+            {
+                //Si la carta es de oro se mantiene su poder
+                if(carta.typeCard4 == "Gold")
+                {
+                    rowScore += carta.puntosPoder;
+                }
+                else //De lo contrario se divide su poder a la mitad
+                {
+                    rowScore += carta.puntosPoder/2;
+                }
+            }
         }
-        }
-        else
+        else //De lo contrario se procede con normalidad
         {
             foreach (Carta carta in cartas)
-        {
-            rowScore += carta.puntosPoder;
+            {
+                rowScore += carta.puntosPoder;
+            }
         }
-        }
-        
-        
-        // //Si la fila es afectada por el clima se le resta la mitad de su puntuación
-        // if(typeRow == "M" && M) rowScore/=2;
-        // else if(typeRow == "R" && R) rowScore/=2;
-        // else if(typeRow == "S" && S) rowScore/=2;
     }
 }

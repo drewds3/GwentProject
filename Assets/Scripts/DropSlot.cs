@@ -81,6 +81,17 @@ public class DropSlot : MonoBehaviour, IDropHandler
         //De lo contrario comprueba si la carta soltada es válida y no hay otra
         else if(cardScript && faction == cardScript.faction && !item && (type == cardScript.typeCard || type == cardScript.typeCard2 || type == cardScript.typeCard3))
         {
+                //Verifica si la carta tiene efecto que se deba activar en este momento
+                if(cardScript.effect == true)
+                {
+                    EffectCards effects = DragHandler.itemDragging.GetComponent<EffectCards>();
+
+                    //De ser así, activa el efecto en cuestión
+                    if(effects.esc == true)       effects.EliminateStrongerCard();
+                    else if(effects.cr == true)   effects.CleanRow();
+                    else if(effects.ewc == true)  effects.EliminateWeakerCard();
+                }
+
                 /* Si no es así, establece el objeto que se está arrastrando
                 como el objeto de la slot y lo posiciona en la slot
                 */
@@ -103,6 +114,15 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
                 //Se le quita la movilidad a la carta
                 item.GetComponent<DragHandler>().enabled = false;
+                
+                //Verifica si hay algún efecto que se deba activar en este momento
+                if(cardScript.effect == true)
+                {   
+                    EffectCards effects = DragHandler.itemDragging.GetComponent<EffectCards>();
+
+                    if(effects.br == true)      effects.BandReinforcement();
+                    else if(effects.dc == true) effects.DrawCard();
+                }
 
                 //Además pasa de turno si el otro jugador no ha pasado
                 if(count%2==0)
@@ -138,7 +158,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
                 if(cardScript.typeCard4 == "Silver")
                 {
-                    cardScript.IncreasePower();
+                    cardScript.IncreasePower(2);
 
                     increaseOn = true;
                 }

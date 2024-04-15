@@ -201,4 +201,26 @@ public class DrawCards : MonoBehaviour
             cardChangeSlot.SetActive(false);
         }
     }
+
+    //Al activarse el respectivo efecto de carta se roba una carta extra
+    public void DrawCard()
+    {
+        //Si en la mano hay menos de 10 cartas se roba
+        if(cartasZone.childCount<10)
+        {
+            indice = Random.Range(0, prefabs.Count);
+
+            Instantiate(prefabs[indice], cartasZone);
+
+            prefabs.Remove(prefabs[indice]);
+        }
+        else //Sino se descarta la carta robada
+        {
+            indice = Random.Range(0, prefabs.Count);
+
+            Instantiate(prefabs[indice], graveyard);
+
+            prefabs.Remove(prefabs[indice]);
+        }
+    }
 }
