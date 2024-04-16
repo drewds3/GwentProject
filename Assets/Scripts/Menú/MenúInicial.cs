@@ -16,7 +16,7 @@ public class MenúInicial : MonoBehaviour
     {
         Debug.Log("Salir...");
 
-        //Aplication.Quit();
+        Application.Quit();
     }
 
      public void BackToMainMenu()
