@@ -131,7 +131,7 @@ public class PassButton : MonoBehaviour
             else
             {
                 //Si está activa la habilidad del lider del jugador 1 entonces gana en caso de empate
-                bool effectLeaderNordic = GameObject.Find("CardKingNordic").GetComponent<LeaderEffect>().actived;
+                bool effectLeaderNordic = GameObject.Find("DovahkiinCardNordic").GetComponent<LeaderEffect>().actived;
 
                 if(effectLeaderNordic)
                 {
