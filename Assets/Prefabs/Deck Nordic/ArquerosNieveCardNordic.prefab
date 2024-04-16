@@ -579,6 +579,11 @@ MonoBehaviour:
   puntos: 0
   description: "Un grupo de arqueros contratados por el Sangre de Drag\xF3n, har\xEDan
     lo que fuese por el dinero."
+  viewPoints: 1
+  slotsM: Slots M
+  slotsR: Slots R
+  slotsS: Slots S
+  resaltar: {r: 0.6886792, g: 0.62319773, b: 0.33394444, a: 0.33333334}
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

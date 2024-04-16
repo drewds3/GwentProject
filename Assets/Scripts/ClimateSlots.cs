@@ -148,7 +148,7 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
                 item.transform.position = graveyard1.position;
                 item.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
-            else if(item.tag == "CartaJugada2")
+            else if(item.tag == "ClimaJugado2")
             {
                 item.transform.SetParent(graveyard2);
                 item.transform.position = graveyard2.position;

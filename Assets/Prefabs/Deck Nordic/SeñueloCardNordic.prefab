@@ -638,6 +638,11 @@ MonoBehaviour:
   description: "\xBFHay realmente vida despu\xE9s de la muerte o son solamente un
     mont\xF3n de huesos controlados por un mago? Efecto Se\xF1uelo: Sustituye una
     de tus cartas."
+  viewPoints: 1
+  slotsM: Slots M
+  slotsR: Slots R
+  slotsS: Slots S
+  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!1 &5560801594878855527
 GameObject:
   m_ObjectHideFlags: 0

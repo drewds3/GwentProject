@@ -580,6 +580,7 @@ MonoBehaviour:
   puntos: 0
   description: "Un antiguo y poderoso ritual que requiere del poder de varios hechiceros.
     Efecto: Al jugarse se elimina la carta m\xE1s d\xE9bil del rival."
+  viewPoints: 1
 --- !u!114 &8237943206178061701
 MonoBehaviour:
   m_ObjectHideFlags: 0

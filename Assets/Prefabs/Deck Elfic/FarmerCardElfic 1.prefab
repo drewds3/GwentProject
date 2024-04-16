@@ -580,6 +580,7 @@ MonoBehaviour:
   puntos: 0
   description: 'Se rumorea que encontrarse con uno de estos es mal presagio, que
     "atraen a las desgracias".  Efecto: Al jugarla se roba una carta.'
+  viewPoints: 1
 --- !u!114 &1128729304841533940
 MonoBehaviour:
   m_ObjectHideFlags: 0

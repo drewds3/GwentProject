@@ -503,6 +503,11 @@ MonoBehaviour:
   puntos: 0
   description: "El m\xEDtico Sangre de Drag\xF3n, un guerrero de formidable destreza,
     cuenta la leyenda que nunca pierde.  Efecto de l\xEDder: Gana en caso de empate."
+  viewPoints: 0
+  slotsM: Slots M
+  slotsR: Slots R
+  slotsS: Slots S
+  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!114 &7303623104260079449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,6 +521,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actived: 0
+  nextTurnPanel: {fileID: 0}
+  blockHand: {fileID: 0}
+  blockDeck: {fileID: 0}
+  passButtonBlock: {fileID: 0}
+  leaderBlock: {fileID: 0}
 --- !u!114 &-764132982759130789
 MonoBehaviour:
   m_ObjectHideFlags: 0

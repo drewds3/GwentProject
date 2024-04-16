@@ -578,6 +578,7 @@ MonoBehaviour:
   nameCard: Elfos guerreros
   puntos: 0
   description: Un grupo de elfos entrenados en el combate cuerpo a cuerpo.
+  viewPoints: 1
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

@@ -578,6 +578,11 @@ MonoBehaviour:
   nameCard: Orco
   puntos: 0
   description: "Un orco, esa es la descripci\xF3n"
+  viewPoints: 1
+  slotsM: Slots M
+  slotsR: Slots R
+  slotsS: Slots S
+  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

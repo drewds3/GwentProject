@@ -578,6 +578,11 @@ MonoBehaviour:
   nameCard: Catapulta
   puntos: 0
   description: A veces una buena catapulta te puede "catapultar" hasta la victoria.
+  viewPoints: 1
+  slotsM: Slots M
+  slotsR: Slots R
+  slotsS: Slots S
+  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

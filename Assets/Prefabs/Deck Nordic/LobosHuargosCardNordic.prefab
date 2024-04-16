@@ -580,6 +580,11 @@ MonoBehaviour:
   puntos: 0
   description: "Tr\xEDo de lobos huargos entrenados para matar.  Efecto: Al jugarse
     aumenta su poder por la cantidad de cartas similares en la fila"
+  viewPoints: 1
+  slotsM: Slots M
+  slotsR: Slots R
+  slotsS: Slots S
+  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!114 &4362636756186696116
 MonoBehaviour:
   m_ObjectHideFlags: 0

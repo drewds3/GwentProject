@@ -165,7 +165,12 @@ public class DropSlot : MonoBehaviour, IDropHandler
                 else increaseOn = true;
             }
             else increaseOn = true;
+        }
 
+        //Comprueba si ya se descartó la carta aumento para desactivar el booleano de incremento
+        if(increaseSlot.GetComponent<IncreaseSlots>().increase == false)
+        {
+            increaseOn = false;
         }
     }
 }

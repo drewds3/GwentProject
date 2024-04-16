@@ -97,7 +97,11 @@ MonoBehaviour:
   blockHand: {fileID: 0}
   blockDeck: {fileID: 0}
   passButtonBlock: {fileID: 0}
+  leaderBlock: {fileID: 0}
   passButton: {fileID: 0}
+  increaseSlot: {fileID: 0}
+  increaseOn: 0
+  hand: {fileID: 0}
 --- !u!1 &1198988325853235163
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +199,11 @@ MonoBehaviour:
   blockHand: {fileID: 0}
   blockDeck: {fileID: 0}
   passButtonBlock: {fileID: 0}
+  leaderBlock: {fileID: 0}
   passButton: {fileID: 0}
+  increaseSlot: {fileID: 0}
+  increaseOn: 0
+  hand: {fileID: 0}
 --- !u!1 &3140607576107870445
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +277,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ace24071ea4ebaf4cbdc2d0827e5905b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -291,7 +299,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86b9649b1230a24f90e94ef9498913c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puntosTotal: 0
+  typeRow: 
+  rowScore: 0
+  climate: {fileID: 0}
+  numberCards: 0
 --- !u!1 &5756509507906526243
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +400,11 @@ MonoBehaviour:
   blockHand: {fileID: 0}
   blockDeck: {fileID: 0}
   passButtonBlock: {fileID: 0}
+  leaderBlock: {fileID: 0}
   passButton: {fileID: 0}
+  increaseSlot: {fileID: 0}
+  increaseOn: 0
+  hand: {fileID: 0}
 --- !u!1 &5981167936488793463
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +502,11 @@ MonoBehaviour:
   blockHand: {fileID: 0}
   blockDeck: {fileID: 0}
   passButtonBlock: {fileID: 0}
+  leaderBlock: {fileID: 0}
   passButton: {fileID: 0}
+  increaseSlot: {fileID: 0}
+  increaseOn: 0
+  hand: {fileID: 0}
 --- !u!1 &8005664119134161439
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +604,11 @@ MonoBehaviour:
   blockHand: {fileID: 0}
   blockDeck: {fileID: 0}
   passButtonBlock: {fileID: 0}
+  leaderBlock: {fileID: 0}
   passButton: {fileID: 0}
+  increaseSlot: {fileID: 0}
+  increaseOn: 0
+  hand: {fileID: 0}
 --- !u!1 &8843740838399478395
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,4 +706,8 @@ MonoBehaviour:
   blockHand: {fileID: 0}
   blockDeck: {fileID: 0}
   passButtonBlock: {fileID: 0}
+  leaderBlock: {fileID: 0}
   passButton: {fileID: 0}
+  increaseSlot: {fileID: 0}
+  increaseOn: 0
+  hand: {fileID: 0}

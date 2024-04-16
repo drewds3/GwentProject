@@ -580,6 +580,11 @@ MonoBehaviour:
   puntos: 0
   description: "Capaces arqueros y ladrones, todo lo que lo rodea es un misterio. 
     Efecto: Al jugarse se elimina la carta m\xE1s d\xE9bil del rival."
+  viewPoints: 1
+  slotsM: Slots M
+  slotsR: Slots R
+  slotsS: Slots S
+  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!114 &4728069951486976342
 MonoBehaviour:
   m_ObjectHideFlags: 0

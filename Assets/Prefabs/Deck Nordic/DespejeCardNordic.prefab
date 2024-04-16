@@ -501,6 +501,11 @@ MonoBehaviour:
   puntos: 0
   description: "Los gritos de los Sangre de Drag\xF3n pueden despejar los cielos. 
     Efecto Despeje: Se elimina el clima de la casilla seleccionada."
+  viewPoints: 0
+  slotsM: Slots M
+  slotsR: Slots R
+  slotsS: Slots S
+  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

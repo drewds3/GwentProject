@@ -637,6 +637,7 @@ MonoBehaviour:
   puntos: 0
   description: "Un incre\xEDble corcel blanco con un cuerno. \xBFA qu\xE9 no es hermoso?
     Efecto Se\xF1uelo: Sustituye una de tus cartas para devolverla a la mano."
+  viewPoints: 1
 --- !u!1 &5560801594878855527
 GameObject:
   m_ObjectHideFlags: 0

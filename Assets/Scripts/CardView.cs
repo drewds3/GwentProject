@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class CardView : MonoBehaviour, IPointerClickHandler
+public class CardView : MonoBehaviour, IPointerEnterHandler
 {
      //Carta con el script
      public static GameObject card;
@@ -20,25 +20,39 @@ public class CardView : MonoBehaviour, IPointerClickHandler
      public string nameCard;
      public int puntos;
      public string description;
+     public bool viewPoints;
 
-     //Al hacerle click se muestra en el panel de visualización
-     public void OnPointerClick(PointerEventData eventData)
+     //Al pasar el cursor por encima se muestra en el panel de visualización
+     public void OnPointerEnter(PointerEventData eventData)
      {    
-         card = gameObject;
+         ViewCard();
+     }
 
-         GameObject.Find("CardViewPanel").GetComponent<Image>().sprite = card.GetComponent<Image>().sprite;
+    //Método para que al pasar el cursor por encima se muestre en el panel de visualización
+     public void ViewCard()
+     {
+        card = gameObject;
 
-         GameObject.Find("CVImagen").GetComponent<Image>().sprite = cardImage;
-         GameObject.Find("CVPuntosDePoder").GetComponent<Image>().sprite = puntosPoder;
-         GameObject.Find("CVTipoDeCarta").GetComponent<Image>().sprite = typeCard1;
-         GameObject.Find("CVTipoDeCarta2").GetComponent<Image>().sprite = typeCard2;
-         GameObject.Find("CVTipoDeCarta3").GetComponent<Image>().sprite = typeCard3;
-         GameObject.Find("CVFacción").GetComponent<Image>().sprite = faction;
+        GameObject.Find("CardViewPanel").GetComponent<Image>().sprite = card.GetComponent<Image>().sprite;
 
-         puntos = gameObject.GetComponent<Carta>().puntosPoder;
+        GameObject.Find("CVImagen").GetComponent<Image>().sprite = cardImage;
+        GameObject.Find("CVPuntosDePoder").GetComponent<Image>().sprite = puntosPoder;
+        GameObject.Find("CVTipoDeCarta").GetComponent<Image>().sprite = typeCard1;
+        GameObject.Find("CVTipoDeCarta2").GetComponent<Image>().sprite = typeCard2;
+        GameObject.Find("CVTipoDeCarta3").GetComponent<Image>().sprite = typeCard3;
+        GameObject.Find("CVFacción").GetComponent<Image>().sprite = faction;
 
-         GameObject.Find("CVPuntos").GetComponent<TMP_Text>().text = $"{puntos}";
-         GameObject.Find("CVNombre").GetComponent<TMP_Text>().text = nameCard;
-         GameObject.Find("CVDescripción").GetComponent<TMP_Text>().text = description;
+        if(viewPoints == true)
+        {
+            puntos = gameObject.GetComponent<Carta>().puntosPoder;
+            GameObject.Find("CVPuntos").GetComponent<TMP_Text>().text = $"{puntos}";
+        }
+        else
+        {
+            GameObject.Find("CVPuntos").GetComponent<TMP_Text>().text = "";
+        }
+
+        GameObject.Find("CVNombre").GetComponent<TMP_Text>().text = nameCard;
+        GameObject.Find("CVDescripción").GetComponent<TMP_Text>().text = description;
      }
 }

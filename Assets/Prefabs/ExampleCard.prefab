@@ -580,6 +580,7 @@ MonoBehaviour:
   nameCard: ExampleCard
   puntos: 0
   description: "Esta es una descripci\xF3n de ejemplo, hola mundo :)"
+  viewPoints: 0
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

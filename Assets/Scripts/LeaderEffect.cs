@@ -14,6 +14,16 @@ public class LeaderEffect : MonoBehaviour
     //Variable para el efecto de la carta lider del jugador 1
     public bool actived = false;
 
+     //Variables para el sistema de turnos
+    public GameObject nextTurnPanel;
+    public GameObject blockHand;
+    public GameObject blockDeck;
+    public GameObject passButtonBlock;
+    public GameObject leaderBlock;
+
+    //Variables para el sistema de rondas
+    private int count = 0;
+
     void Update()
     {   
         //Se actualiza que ronda es
@@ -23,6 +33,9 @@ public class LeaderEffect : MonoBehaviour
         {
             actived = false;
         }
+
+        //Se actualiza el contador de pase
+        count = GameObject.Find("PassButton").GetComponent<PassButton>().passCount;
     }
 
     //Mantiene un carta aleatoria en el campo entre cada ronda tras activar su efecto
@@ -41,6 +54,16 @@ public class LeaderEffect : MonoBehaviour
                 count2++;
 
                 Debug.Log("Efecto de líder elfo activado");
+
+                //Además pasa de turno si el otro jugador no ha pasado
+                if(count%2==0)
+                {
+                    nextTurnPanel.SetActive(!nextTurnPanel.activeSelf);
+                    blockHand.SetActive(!blockHand.activeSelf);
+                    blockDeck.SetActive(!blockDeck.activeSelf);
+                    passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                    leaderBlock.SetActive(true);
+                }
             }
             //Si no hay cartas de unidad no se activa
             catch(IndexOutOfRangeException ex)
@@ -67,6 +90,16 @@ public class LeaderEffect : MonoBehaviour
             count1++;
             
             Debug.Log("Efecto de líder nórdico activado");
+
+            //Además pasa de turno si el otro jugador no ha pasado
+            if(count%2==0)
+            {
+                nextTurnPanel.SetActive(!nextTurnPanel.activeSelf);
+                blockHand.SetActive(!blockHand.activeSelf);
+                blockDeck.SetActive(!blockDeck.activeSelf);
+                passButtonBlock.SetActive(!passButtonBlock.activeSelf);
+                leaderBlock.SetActive(true);
+            }
         }
         else
         {

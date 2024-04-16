@@ -580,6 +580,7 @@ MonoBehaviour:
   puntos: 0
   description: "No querr\xE1s ver enojar a un \xE1rbol, as\xED que m\xE1s te vale
     reciclar."
+  viewPoints: 1
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0
