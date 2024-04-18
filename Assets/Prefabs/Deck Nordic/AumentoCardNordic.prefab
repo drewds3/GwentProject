@@ -406,7 +406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -761, y: -191}
+  m_AnchoredPosition: {x: 1006.978, y: 116.96193}
   m_SizeDelta: {x: 28.863, y: 35.352}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4791996619338446984
@@ -503,10 +503,6 @@ MonoBehaviour:
     fuerza de sus aliados. Efecto Aumento: Incrementa el ataque de las cartas en
     la fila seleccionada en 2."
   viewPoints: 0
-  slotsM: Slots M
-  slotsR: Slots R
-  slotsS: Slots S
-  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

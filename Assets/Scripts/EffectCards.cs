@@ -134,7 +134,7 @@ public class EffectCards : MonoBehaviour
                         cartas[j].transform.SetParent(graveyardOwn);
                     }
                 }
-                else
+                else //Sino las manda al cementerio del adversario
                 {
                     graveyardRival = GameObject.Find(graveyardEnemy).transform;
 

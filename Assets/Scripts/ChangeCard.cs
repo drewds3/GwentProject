@@ -17,20 +17,21 @@ public class ChangeCard : MonoBehaviour, IDropHandler
         
         //Comprueba si hay una carta
         if(!item)
-        {
-                item = DragHandler.itemDragging;
-                item.transform.SetParent(transform);
-                item.transform.position = transform.position;
+        {       
+            //De no ser así, cambia la carta por otra
+            item = DragHandler.itemDragging;
+            item.transform.SetParent(transform);
+            item.transform.position = transform.position;
 
-                cardScript.OnClick();
+            cardScript.OnClick();
                 
-                cardScript.Swap();
+            cardScript.Swap();
         }
     }
 
     void Update()
     {
-        //Si se remueve la carta del slot, esta queda habilitada para poner otra
+        //Luego del cambio, se habilita la slot otra vez
         if (item != null && item.transform.parent != transform)
         {
             item = null;

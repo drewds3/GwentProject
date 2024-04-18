@@ -71,7 +71,7 @@ public class LeaderEffect : MonoBehaviour
                 Debug.Log("No hay cartas de unidades en el campo");
             }
         }
-        else
+        else //Solo se puede activar una vez
         {
             Debug.Log("Ya se usó una vez");
         }
@@ -101,7 +101,7 @@ public class LeaderEffect : MonoBehaviour
                 leaderBlock.SetActive(true);
             }
         }
-        else
+        else //Solo se puede activar una vez
         {
             Debug.Log("Ya se usó una vez");
         }

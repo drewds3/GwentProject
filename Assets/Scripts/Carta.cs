@@ -24,7 +24,7 @@ public class Carta : MonoBehaviour
     //Booleano de si tiene efecto o no
     public bool effect;
 
-    //Aumenta el poder por 2 si se activa un aumento o en n si se activa cierta habilidad
+    //Aumenta el poder por 2 si se activa un aumento o en n si tiene cierto efecto
     public void IncreasePower(int n)
     {
         puntosPoder *= n;

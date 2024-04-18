@@ -22,7 +22,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler
      public string description;
      public bool viewPoints;
 
-     //Al pasar el cursor por encima se muestra en el panel de visualización
+     //Al pasar el cursor por encima se llama al método
      public void OnPointerEnter(PointerEventData eventData)
      {    
          ViewCard();
@@ -32,7 +32,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler
      public void ViewCard()
      {
         card = gameObject;
-
+    
         GameObject.Find("CardViewPanel").GetComponent<Image>().sprite = card.GetComponent<Image>().sprite;
 
         GameObject.Find("CVImagen").GetComponent<Image>().sprite = cardImage;
@@ -41,7 +41,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler
         GameObject.Find("CVTipoDeCarta2").GetComponent<Image>().sprite = typeCard2;
         GameObject.Find("CVTipoDeCarta3").GetComponent<Image>().sprite = typeCard3;
         GameObject.Find("CVFacción").GetComponent<Image>().sprite = faction;
-
+    
         if(viewPoints == true)
         {
             puntos = gameObject.GetComponent<Carta>().puntosPoder;

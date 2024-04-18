@@ -10,7 +10,6 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
 
     //Variables para soltar la carta en las slots
     public GameObject DragParent;
-    public GameObject item;
 
     //Variables para el sistema de turnos
     public GameObject nextTurnPanel;
@@ -35,24 +34,6 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
     {
         //Se actualiza el contador de pase
         count = passButton.GetComponent<PassButton>().passCount;
-
-        /*Si el aumento está activo comprueba que haya pasado
-          por todos los slots de la fila que afecta para de-
-          sactivarlo*/
-        if(increase)
-        {
-            bool[] increases = new bool[6];
-
-            for(int i = 0; i < 6; i++)
-            {
-                increases[i] = slots[i].GetComponent<DropSlot>().increaseOn;
-            }
-
-            if(increases[0] && increases[1] && increases[2] && increases[3] && increases[4] && increases[5])
-            {
-                increase = false;
-            }
-        }
     }
 
     //Método para verificar si sueltas una carta en la casilla correcta y pasar de turno
@@ -62,9 +43,12 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
         
         //Comprueba si la carta soltada es válida
         if(cardScript && faction == cardScript.faction && cardScript.typeCard == "Increase")
-        {       
-            //Zona a la que afecta
-            increase = true;
+        {   
+            //Activa los métodos que incrementan en cada carta
+            for(int i = 0; i < 6; i++)
+            {
+                slots[i].GetComponent<DropSlot>().Increase();
+            }
 
             Debug.Log($"Fila {type} aumentada");
 

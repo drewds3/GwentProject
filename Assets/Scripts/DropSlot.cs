@@ -24,10 +24,6 @@ public class DropSlot : MonoBehaviour, IDropHandler
     private int count = 0;
     public GameObject passButton;
 
-    //Variables para el sistema de aumentos
-    public GameObject increaseSlot;
-    public bool increaseOn = false;
-
     //Variables para el sistema de señuelos
     public Transform hand;
 
@@ -81,7 +77,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
         //De lo contrario comprueba si la carta soltada es válida y no hay otra
         else if(cardScript && faction == cardScript.faction && !item && (type == cardScript.typeCard || type == cardScript.typeCard2 || type == cardScript.typeCard3))
         {
-                //Verifica si la carta tiene efecto que se deba activar en este momento
+                //De ser así, verifica si la carta tiene efecto que se deba activar en este momento
                 if(cardScript.effect == true)
                 {
                     EffectCards effects = DragHandler.itemDragging.GetComponent<EffectCards>();
@@ -92,7 +88,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
                     else if(effects.ewc == true)  effects.EliminateWeakerCard();
                 }
 
-                /* Si no es así, establece el objeto que se está arrastrando
+                /* Luego, establece el objeto que se está arrastrando
                 como el objeto de la slot y lo posiciona en la slot
                 */
                 item = DragHandler.itemDragging;
@@ -110,8 +106,6 @@ public class DropSlot : MonoBehaviour, IDropHandler
                     item.tag = "CartaJugada2";
                 }
                
-                Debug.Log("Carta colocada correctamente");
-
                 //Se le quita la movilidad a la carta
                 item.GetComponent<DragHandler>().enabled = false;
                 
@@ -123,6 +117,8 @@ public class DropSlot : MonoBehaviour, IDropHandler
                     if(effects.br == true)      effects.BandReinforcement();
                     else if(effects.dc == true) effects.DrawCard();
                 }
+
+                Debug.Log("Carta colocada correctamente");
 
                 //Además pasa de turno si el otro jugador no ha pasado
                 if(count%2==0)
@@ -148,10 +144,12 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
             Debug.Log("La carta ha sido removida");
         }
+    }
 
-        //Si se activa un aumento en la fila se duplica el poder de la carta en este slot si y solo si la carta es tipo Plata
-        if(increaseSlot.GetComponent<IncreaseSlots>().increase)
-        {
+    //Método que se llama al activarse un aumento en la fila
+    public void Increase()
+    {
+        //Se duplica el poder de la carta en este slot si y solo si tiene una carta y es de tipo Plata
             if(item != null)
             {
                 Carta cardScript = item.GetComponent<Carta>();
@@ -159,19 +157,9 @@ public class DropSlot : MonoBehaviour, IDropHandler
                 if(cardScript.typeCard4 == "Silver")
                 {
                     cardScript.IncreasePower(2);
-
-                    increaseOn = true;
                 }
-                else increaseOn = true;
             }
-            else increaseOn = true;
-        }
 
-        //Comprueba si ya se descartó la carta aumento para desactivar el booleano de incremento
-        if(increaseSlot.GetComponent<IncreaseSlots>().increase == false)
-        {
-            increaseOn = false;
-        }
     }
 }
 

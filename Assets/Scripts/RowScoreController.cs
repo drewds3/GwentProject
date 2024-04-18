@@ -30,10 +30,13 @@ public class RowScoreController : MonoBehaviour
 
     //Método para calcular la puntuación en la fila
     void TotalScoreRow()
-    {
+    {   
+        //El contador se inicia en 0
         rowScore = 0;
+
         Carta[] cartas = GetComponentsInChildren<Carta>();
 
+        //Se cuentan las cartas que hay para el efecto de limpiar fila
         numberCards = cartas.Length;
 
         //Verifica si algún clima afecta a dicha fila

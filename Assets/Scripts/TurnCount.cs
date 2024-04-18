@@ -10,12 +10,6 @@ public class TurnCount : MonoBehaviour
     public int roundCount1 = 1;
     public int roundCount2 = 1;
     public GameObject roundCounter;
-
-    void Update()
-    {
-       
-    }
-
     
     void OnEnable()
     {

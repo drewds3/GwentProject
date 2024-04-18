@@ -98,7 +98,7 @@ public class DrawCards : MonoBehaviour
     //Método que "dibuja" las cartas
     public void OnClick()
     {
-        //Si hay cartas dibuja la que está en el indice aleatorio
+        //Si hay cartas roba la que está en el indice aleatorio
         if(prefabs.Count==0)
         {
             Debug.LogError("Se acabaron las cartas chamacón");
@@ -155,8 +155,8 @@ public class DrawCards : MonoBehaviour
                 {
                     indice = Random.Range(0, prefabs.Count);
 
-                    Instantiate(prefabs[indice], graveyard);
-
+                    GameObject card = Instantiate(prefabs[indice], graveyard);
+        
                     prefabs.Remove(prefabs[indice]);
 
                     count++;

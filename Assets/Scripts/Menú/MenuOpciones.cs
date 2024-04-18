@@ -14,7 +14,7 @@ public class MenuOpciones : MonoBehaviour
         Screen.fullScreen = pantallaCompleta;
     }
 
-    //Opción de cambair el volumen
+    //Opción de cambiar el volumen
     public void CambiarVolumen(float volumen)
     {
         audioMixer.SetFloat("Volumen", volumen);

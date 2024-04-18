@@ -51,11 +51,6 @@ public class PassButton : MonoBehaviour
     public int winP2 = 0;
     public bool victory = false;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {   
         //Contador del jugador1
@@ -147,7 +142,7 @@ public class PassButton : MonoBehaviour
                 winner = 0;
             }
 
-            //Manda las cartas al cementerio
+            //Manda las cartas a sus respectivos cementerios y se les cambia el tag para que no sean afectadas por efectos
             GameObject[] cardsToGraveyard1 = GameObject.FindGameObjectsWithTag("CartaJugada1");
             GameObject[] cardsToGraveyard2 = GameObject.FindGameObjectsWithTag("CartaJugada2");
             GameObject[] cardsToGraveyard3 = GameObject.FindGameObjectsWithTag("ClimaJugado2");
