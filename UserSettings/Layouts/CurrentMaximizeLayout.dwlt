@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 26018
+  controlID: 94
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 26019
+  controlID: 95
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 26020
+  controlID: 96
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,9 +226,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 8c120000
+      m_SelectedIDs: 6c720000
       m_LastClickedID: 0
-      m_ExpandedIDs: 2cfbffff44660000b4660000fc66000038670000
+      m_ExpandedIDs: e8f7ffff2cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -887,13 +887,13 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "C:\\Datos\\Universidad\\1er A\xF1o\\1er Semestre\\Programaci\xF3n\\Proyectos
     Unity\\Gwent Dovah Edition - Project"
@@ -901,9 +901,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: b2710000
-    m_LastClickedID: 29106
-    m_ExpandedIDs: 00000000a8710000aa710000ac710000ae710000b0710000b2710000b4710000b6710000b8710000ba710000bc710000be710000cc71000000ca9a3bffffff7f
+    m_SelectedIDs: c4710000
+    m_LastClickedID: 29124
+    m_ExpandedIDs: 00000000a8710000aa710000ac710000ae710000b0710000b2710000b4710000b6710000b8710000ba710000bc710000be710000c471000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -931,7 +931,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a8710000aa710000ac710000ae710000b0710000b2710000b4710000b6710000b8710000ba710000bc710000be71000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000a8710000aa710000ac710000ae710000b0710000b2710000b4710000b6710000b8710000ba710000bc710000be710000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -956,8 +956,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 8c120000
-    m_LastClickedInstanceID: 4748
+    m_SelectedInstanceIDs: 6c720000
+    m_LastClickedInstanceID: 29292
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000c6650000987400005a690000fe650000a66b0000f8690000407d00000c690000f4690000908500008c8500005c6c0000526c000054850000708500004c85000090720000b67500000000000044820000486c0000488500004a6c00004c6c0000506c000068850000448500009c8500004e6c0000948500007885000040850000546c00008485000050850000b0850000da730000a26d00003e670000
     m_RenameOverlay:
