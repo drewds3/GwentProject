@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class Carta : MonoBehaviour
+public class Card : MonoBehaviour
 {
     //Nonbre de la carta
     public string cardName;

@@ -44,7 +44,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler
     
         if(viewPoints == true)
         {
-            puntos = gameObject.GetComponent<Carta>().puntosPoder;
+            puntos = gameObject.GetComponent<Card>().puntosPoder;
             GameObject.Find("CVPuntos").GetComponent<TMP_Text>().text = $"{puntos}";
         }
         else

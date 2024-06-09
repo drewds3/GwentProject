@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioController : MonoBehaviour
 {
     //Variables para el audio
-    AudioSource audio;
+    new AudioSource audio;
     public AudioClip clip1;
     public AudioClip clip2;
 

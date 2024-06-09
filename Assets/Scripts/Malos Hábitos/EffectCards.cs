@@ -41,12 +41,12 @@ public class EffectCards : MonoBehaviour
         //Luego se busca en ambos conjuntos el valor más alto de poder
         for(int i = 0; i < cardsRival.Length; i++)
         {
-            cardsPower[i] = cardsRival[i].GetComponent<Carta>().puntosPoder;
+            cardsPower[i] = cardsRival[i].GetComponent<Card>().puntosPoder;
         }
 
         for(int i = 0; i < cardsOwn.Length; i++)
         {
-            cardsPower[cardsRival.Length + i] = cardsOwn[i].GetComponent<Carta>().puntosPoder;
+            cardsPower[cardsRival.Length + i] = cardsOwn[i].GetComponent<Card>().puntosPoder;
         }
 
         int strongCard = 0;
@@ -117,7 +117,7 @@ public class EffectCards : MonoBehaviour
             if(min == rows[i].GetComponent<RowScoreController>().numberCards)
             {   
                 //Obtiene las cartas de la fila
-                Carta[] scriptCarta = rows[i].GetComponentsInChildren<Carta>();
+                Card[] scriptCarta = rows[i].GetComponentsInChildren<Card>();
                 GameObject[] cartas = new GameObject[scriptCarta.Length];
 
                 //Si la fila es suya manda las cartas a su cementerio
@@ -168,7 +168,7 @@ public class EffectCards : MonoBehaviour
         //Luego se busca el valor más bajo de poder
         for(int i = 0; i < cardsRival.Length; i++)
         {
-            cardsPower[i] = cardsRival[i].GetComponent<Carta>().puntosPoder;
+            cardsPower[i] = cardsRival[i].GetComponent<Card>().puntosPoder;
         }
 
         int weakerCard = 99;
@@ -205,21 +205,21 @@ public class EffectCards : MonoBehaviour
         slot = transform.parent.gameObject;
         row = slot.transform.parent.gameObject;
 
-        Carta[] scriptCarta = row.GetComponentsInChildren<Carta>();
+        Card[] scriptCarta = row.GetComponentsInChildren<Card>();
 
         int n = 0;
 
         //Se cuentan las cartas que sean iguales a esta
         for(int i = 0; i < scriptCarta.Length; i++)
         {
-            if(scriptCarta[i].cardName == gameObject.GetComponent<Carta>().cardName)
+            if(scriptCarta[i].cardName == gameObject.GetComponent<Card>().cardName)
             {
                 n++;
             }
         }
 
         //Luego se aumenta su poder la cantidad n veces
-        gameObject.GetComponent<Carta>().IncreasePower(n);
+        gameObject.GetComponent<Card>().IncreasePower(n);
     }
 
     //Roba una carta extra

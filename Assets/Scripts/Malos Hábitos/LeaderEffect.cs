@@ -66,7 +66,7 @@ public class LeaderEffect : MonoBehaviour
                 }
             }
             //Si no hay cartas de unidad no se activa
-            catch(IndexOutOfRangeException ex)
+            catch (IndexOutOfRangeException)
             {
                 Debug.Log("No hay cartas de unidades en el campo");
             }

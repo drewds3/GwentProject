@@ -39,7 +39,7 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
     //Método para verificar si sueltas una carta en la casilla correcta y pasar de turno
     public void OnDrop(PointerEventData eventData)
     {   
-        Carta cardScript = DragParent.GetComponentInChildren<Carta>();
+        Card cardScript = DragParent.GetComponentInChildren<Card>();
         
         //Comprueba si la carta soltada es válida
         if(cardScript && faction == cardScript.faction && cardScript.typeCard == "Increase")

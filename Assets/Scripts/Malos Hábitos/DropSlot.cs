@@ -30,10 +30,10 @@ public class DropSlot : MonoBehaviour, IDropHandler
     //Método para verificar si sueltas una carta en la casilla correcta y pasar de turno
     public void OnDrop(PointerEventData eventData)
     {   
-        Carta cardScript = DragParent.GetComponentInChildren<Carta>();
+        Card cardScript = DragParent.GetComponentInChildren<Card>();
         
         //Comprueba si la carta soltada es un señuelo válido y si hay una carta tipo Plata en el slot
-        if(cardScript.typeCard == "Lure" && item != null && cardScript && faction == cardScript.faction && item.GetComponent<Carta>().typeCard4 == "Silver")
+        if(cardScript.typeCard == "Lure" && item != null && cardScript && faction == cardScript.faction && item.GetComponent<Card>().typeCard4 == "Silver")
         {       
                 //Le activa el arrastre a la carta en la slot y la manda a la mano
                 item.GetComponent<DragHandler>().enabled = true;
@@ -152,7 +152,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
         //Se duplica el poder de la carta en este slot si y solo si tiene una carta y es de tipo Plata
             if(item != null)
             {
-                Carta cardScript = item.GetComponent<Carta>();
+                Card cardScript = item.GetComponent<Card>();
 
                 if(cardScript.typeCard4 == "Silver")
                 {
