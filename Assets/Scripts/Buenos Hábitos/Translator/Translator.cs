@@ -7,8 +7,7 @@ using System;
 public class Translator : MonoBehaviour
 {
     public GameObject card;
-    private readonly List<Card> cards;
-    private int currentCardIndex = 0;
+    public List<GameObject> cards = new();
 
     public void Mostrar()
     {
@@ -20,9 +19,17 @@ public class Translator : MonoBehaviour
 
         parser.Parse();
 
-        Card cardScript = card.GetComponent<Card>();
+        GameObject cardInstance = Instantiate(card);
 
-        cards.Add(cardScript);
+        Card cardScript = cardInstance.GetComponent<Card>();
+
+        parser.SetProperties(cardScript);
+
+        cards.Add(cardInstance);
+
+        DrawCards player1Deck = GameObject.FindGameObjectWithTag("Player1Deck").GetComponent<DrawCards>();
+
+        player1Deck.NewDeck();
 
         // foreach(Token token in tokens)
         // {

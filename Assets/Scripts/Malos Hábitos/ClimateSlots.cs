@@ -19,34 +19,12 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
     public GameObject DragParent;
     public GameObject item;
 
-    //Variables para el sistema de turnos
-    public GameObject nextTurnCartel1;
-    public GameObject nextTurnCartel2;
-    public GameObject blockHand1;
-    public GameObject blockDeck1;
-    public GameObject blockHand2;
-    public GameObject blockDeck2;
-    public GameObject leaderBlock1;
-    public GameObject leaderBlock2;
-    public GameObject passButtonBlock;
-    public int p1Turn;
-    public int p2Turn;
-
-    //Variables para el sistema de rondas
-    private int count = 0;
-    public GameObject passButton;
-
     //Variables para enviar el despeje al cementerio
     public Transform graveyard1;
     public Transform graveyard2;
 
     void Update()
     {
-        //Se actualiza el contador de pase
-        count = passButton.GetComponent<PassButton>().passCount;
-        p1Turn = passButton.GetComponent<PassButton>().player1Turn;
-        p2Turn = passButton.GetComponent<PassButton>().player2Turn;
-
         //Si se remueve la carta del slot, esta queda habilitada para poner otra
         if(item != null && item.transform.parent != transform)
         {
@@ -82,7 +60,7 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
             ser enviada a sus respectivos cementerios desde otro script*/
             if(cardScript.faction == "Dragon")
             {
-                item.tag = "CartaJugada1";
+                item.tag = "ClimaJugado1";
             }
             else if(cardScript.faction == "Raven")
             {
@@ -94,28 +72,12 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
             //Se le quita la movilidad a la carta
             item.GetComponent<DragHandler>().enabled = false;
 
+            TurnsBasedSystem turnsController = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>();
+
             //Además pasa de turno si el otro jugador no ha pasado
-            if(count%2==0)
+            if(turnsController.passCount%2==0)
             {
-                //En caso de que el turno sea del jugador 1, pasa al 2
-                if(p1Turn == p2Turn)
-                {
-                    blockHand1.SetActive(!blockHand1.activeSelf);
-                    blockDeck1.SetActive(!blockDeck1.activeSelf);
-                    nextTurnCartel1.SetActive(!nextTurnCartel1.activeSelf);
-                    passButtonBlock.SetActive(true);
-                    leaderBlock1.SetActive(true);
-                }
-                
-                //En caso de que el turno sea del jugador 2, pasa al 1
-                if(p1Turn != p2Turn)
-                {
-                    blockHand2.SetActive(!blockHand2.activeSelf);
-                    blockDeck2.SetActive(!blockDeck2.activeSelf);
-                    nextTurnCartel2.SetActive(!nextTurnCartel2.activeSelf);
-                    passButtonBlock.SetActive(true); 
-                    leaderBlock2.SetActive(true);
-                }   
+                turnsController.NextTurn();  
             }
 
             //Zona a la que afecta
@@ -155,39 +117,25 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
                 item.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
 
+            TurnsBasedSystem turnsController = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>();
+
             //Al ser usada se va al cementerio y pasa de turno
             if(DragHandler.startParent == GameObject.Find("Hand").transform)
             {
                 DragHandler.itemDragging.transform.SetParent(graveyard1);
                 DragHandler.itemDragging.transform.position = graveyard1.position;
-
-                //Si nadie se ha pasado cambia el turno
-                if(count%2==0)
-                {
-                    blockHand1.SetActive(!blockHand1.activeSelf);
-                    blockDeck1.SetActive(!blockDeck1.activeSelf);
-                    nextTurnCartel1.SetActive(!nextTurnCartel1.activeSelf);
-                    passButtonBlock.SetActive(true);
-                    leaderBlock1.SetActive(true);
-                }
             }
             else
             {
                 DragHandler.itemDragging.transform.SetParent(graveyard2);
                 DragHandler.itemDragging.transform.position = graveyard2.position;
+            }
 
-                //Si nadie se ha pasado cambia el turno
-                if(count%2==0)
-                {
-                    blockHand2.SetActive(!blockHand2.activeSelf);
-                    blockDeck2.SetActive(!blockDeck2.activeSelf);
-                    nextTurnCartel2.SetActive(!nextTurnCartel2.activeSelf);
-                    passButtonBlock.SetActive(true); 
-                    leaderBlock2.SetActive(true);
-                }
+            //Si nadie se ha pasado cambia el turno
+            if(turnsController.passCount%2==0)
+            {
+                turnsController.NextTurn();
             }
         }
     }
 }
-
-

@@ -1,12 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class DrawCards : MonoBehaviour
 {   
-    //Lista de cartas
-    public List<GameObject> prefabs = new List<GameObject>();
+    //Mazo predeterminado
+    public List<GameObject> deck = new();
     
     //Zona donde se "dibujan"
     public Transform cartasZone;
@@ -21,8 +19,7 @@ public class DrawCards : MonoBehaviour
     int round;
 
     //Turno actual
-    public int turnP1;
-    public int turnP2;
+    public int currentTurn;
 
     //Sistema de bloqueadores
     public GameObject blockRows1;
@@ -43,17 +40,16 @@ public class DrawCards : MonoBehaviour
     void Update()
     {   
         //Se actualiza la ronda, los turnos, si ya alguien ganó y si el jugador 2 ganó alguna ronda
-        round = GameObject.Find("PassButton").GetComponent<PassButton>().round;
-        turnP1 = GameObject.Find("PassButton").GetComponent<PassButton>().player1Turn;
-        turnP2 = GameObject.Find("PassButton").GetComponent<PassButton>().player2Turn;
-        roundWinner = GameObject.Find("PassButton").GetComponent<PassButton>().winner;
-        condicion3 = GameObject.Find("PassButton").GetComponent<PassButton>().victory;
+        round = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().round;
+        currentTurn = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().currentTurn;
+        roundWinner = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().winner;
+        condicion3 = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().victory;
         
         //Verifica quién fue el último que ganó
         if(roundWinner < 2)
         {
             //Se bloquean la fila del jugador 2 al inicio de la ronda ganada por el jugador 1 y la inicial
-            if(turnP1 == 1 && turnP2 == 0 && condicion1.activeSelf)
+            if(currentTurn == 1 && condicion1.activeSelf)
             {
                 blockRows2.SetActive(true);
             }
@@ -61,34 +57,28 @@ public class DrawCards : MonoBehaviour
         else
         {
             //Se bloquean la fila del jugador 1 al inicio de la ronda ganada por el jugador 2
-            if(turnP1 == 0 && turnP2 == 0 && condicion2.activeSelf)
+            if(currentTurn == 0 && condicion2.activeSelf)
             {
                 blockRows1.SetActive(true);
             }
         }
 
         //Desbloquea el botón si ya ha pasado 1 turno en ambos jugadores y alguno está jugando
-        if(turnP1 != 0 && turnP2 != 0 && !condicion2.activeSelf && !condicion1.activeSelf && !condicion3 && roundWinner != 2)
+        if(currentTurn > 1 && !condicion2.activeSelf && !condicion1.activeSelf && !condicion3 && roundWinner != 2)
         {
             blockPassButton.SetActive(false);
         }
-        else if(turnP1 != 0 && turnP2 != -1 && !condicion2.activeSelf && !condicion1.activeSelf && !condicion3 && roundWinner == 2)
+        else if(currentTurn > 0 && !condicion2.activeSelf && !condicion1.activeSelf && !condicion3 && roundWinner == 2)
         {
             blockPassButton.SetActive(false);
-        }
-
-        //Se desactiva la posibilidad de cambio
-        if((round == 1 && (turnP1 != 0 && turnP2 != 0)) || round > 1)
-        {
-            cardChangeSlot.SetActive(false);
         }
 
         //Hasta el segundo turno no se pueden activar las habilidades de líder
-        if((turnP1 == 0 || turnP2 == 0) && roundWinner < 2)
+        if((currentTurn < 2) && roundWinner < 2)
         {
             leaderBlock.SetActive(true);
         }
-        else if((turnP1 == 0 || turnP2 == -1) && roundWinner == 2)
+        else if((currentTurn < 1) && roundWinner == 2)
         {
             leaderBlock.SetActive(true);
         }
@@ -99,23 +89,23 @@ public class DrawCards : MonoBehaviour
     public void OnClick()
     {
         //Si hay cartas roba la que está en el indice aleatorio
-        if(prefabs.Count==0)
+        if(deck.Count==0)
         {
-            Debug.LogError("Se acabaron las cartas chamacón");
+            Debug.LogError("Se acabaron las cartas");
         }
         else
-        {   
+        {  
             //Comprueba en cuál ronda y turno están
-            if(round == 1 && (turnP1 == 0 || turnP2 == 0))
+            if(round == 1 && currentTurn < 2)
             {
                 //Si es el primer turno de la 1ra ronda roban 10 cartas
                 if(cartasZone.childCount<10)
                 {
-                    indice = Random.Range(0, prefabs.Count);
+                    indice = Random.Range(0, deck.Count);
 
-                    Instantiate(prefabs[indice], cartasZone);
+                    Instantiate(deck[indice], cartasZone);
 
-                    prefabs.Remove(prefabs[indice]);
+                    deck.Remove(deck[indice]);
                 }
                 else
                 {
@@ -135,16 +125,16 @@ public class DrawCards : MonoBehaviour
                 }
             }
             //Si estamos en la 2da o 3ra ronda y es el primer turno roban 2 cartas
-            else if(round > 1 && (turnP1 == 0 || (turnP2 == 0 && roundWinner < 2) || (turnP2 == -1 && roundWinner == 2)))
+            else if(round > 1 && ((currentTurn < 2 && roundWinner < 2) || (currentTurn < 1 && roundWinner == 2)))
             {
                 //Si tiene menos de 10 cartas, roba
                 if(cartasZone.childCount<10 && ((count<2 && round == 2) || (count<4 && round == 3)))
                 {
-                    indice = Random.Range(0, prefabs.Count);
+                    indice = Random.Range(0, deck.Count);
 
-                    Instantiate(prefabs[indice], cartasZone);
+                    Instantiate(deck[indice], cartasZone);
 
-                    prefabs.Remove(prefabs[indice]);
+                    deck.Remove(deck[indice]);
 
                     count++;
 
@@ -153,11 +143,11 @@ public class DrawCards : MonoBehaviour
                 //De no ser así las cartas robadas serán descartadas al cementerio
                 else if((count != 2 && round == 2) || (count !=4 && round == 3))
                 {
-                    indice = Random.Range(0, prefabs.Count);
+                    indice = Random.Range(0, deck.Count);
 
-                    GameObject card = Instantiate(prefabs[indice], graveyard);
+                    GameObject card = Instantiate(deck[indice], graveyard);
         
-                    prefabs.Remove(prefabs[indice]);
+                    deck.Remove(deck[indice]);
 
                     count++;
 
@@ -187,7 +177,7 @@ public class DrawCards : MonoBehaviour
     public void Swap()
     {
         //Se añade la carta al mazo
-        prefabs.Add(cardChangeSlot.GetComponent<ChangeCard>().item);
+        deck.Add(cardChangeSlot.GetComponent<ChangeCard>().item);
 
         //Se envía a un objeto auxiliar para que desaparezca de la escena
         cardChangeSlot.GetComponent<ChangeCard>().item.transform.SetParent(trash);
@@ -208,19 +198,32 @@ public class DrawCards : MonoBehaviour
         //Si en la mano hay menos de 10 cartas se roba
         if(cartasZone.childCount<10)
         {
-            indice = Random.Range(0, prefabs.Count);
+            indice = Random.Range(0, deck.Count);
 
-            Instantiate(prefabs[indice], cartasZone);
+            Instantiate(deck[indice], cartasZone);
 
-            prefabs.Remove(prefabs[indice]);
+            deck.Remove(deck[indice]);
         }
         else //Sino se descarta la carta robada
         {
-            indice = Random.Range(0, prefabs.Count);
+            indice = Random.Range(0, deck.Count);
 
-            Instantiate(prefabs[indice], graveyard);
+            Instantiate(deck[indice], graveyard);
 
-            prefabs.Remove(prefabs[indice]);
+            deck.Remove(deck[indice]);
+        }
+    }
+
+    //Método para crear el mazo personalizado
+    public void NewDeck()
+    {
+        deck.Clear();
+
+        Translator translator = GameObject.Find("Botón Confirmar").GetComponent<Translator>();
+
+        for(int i = 0; i < translator.cards.Count; i++)
+        {
+            deck.Add(translator.cards[i]);
         }
     }
 }

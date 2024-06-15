@@ -35,7 +35,9 @@ public class CardView : MonoBehaviour, IPointerEnterHandler
     
         GameObject.Find("CardViewPanel").GetComponent<Image>().sprite = card.GetComponent<Image>().sprite;
 
+        cardImage = transform.Find("Imagen").GetComponent<Image>().sprite;
         GameObject.Find("CVImagen").GetComponent<Image>().sprite = cardImage;
+        
         GameObject.Find("CVPuntosDePoder").GetComponent<Image>().sprite = puntosPoder;
         GameObject.Find("CVTipoDeCarta").GetComponent<Image>().sprite = typeCard1;
         GameObject.Find("CVTipoDeCarta2").GetComponent<Image>().sprite = typeCard2;

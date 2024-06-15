@@ -42,7 +42,7 @@ public class Parser
 
         foreach(Property property in properties)
         {
-            Debug.Log($"Propiedad: {property.Type}, Valor: {property.Value}");
+            Debug.Log($"Propiedad: {property.Type}, Valor: {property.ValueS}");
         }
     }
 
@@ -156,6 +156,8 @@ public class Parser
 
     private void Properties()
     {   
+        int count = 0;
+
         while(_currentToken._value == "Type" || _currentToken._value == "Name" || _currentToken._value == "Faction"
                                              || _currentToken._value == "Power" || _currentToken._value == "Range")
         {
@@ -163,31 +165,68 @@ public class Parser
 
             Next("Word");
             Next("Colon");
-            Next("QMark");
-            String(token._value, _currentToken._value);
-            Next("Comma");
+            if(token._value == "Power") ToProperty(token._value);
+            else
+            {
+                Next("QMark");
+                ToProperty(token._value, _currentToken._value);
+            } 
+
+            count++;
+
+            if(count < 5) Next("Comma");
+            //else if(count == 5) count = 0;
         }
     }
 
-    private void String(string type, string name)
+    private void ToProperty(string type, string value)
     {
         Next("Word");
         Next("QMark");
 
-        Property property = new(name, type);
+        Property property = new(type, value);
 
         properties.Add(property);
+    }
+
+    private void ToProperty(string type)
+    {
+        int value = Expr();
+
+        Property property = new(type, value);
+
+        properties.Add(property);
+    }
+
+    public void SetProperties(Card card)
+    {
+        for(int i = 0; i < properties.Count; i++)
+        {
+            if(properties[i].Type == "Type") card.typeCard = (string)properties[i].ValueS;
+            else if(properties[i].Type == "Name") card.cardName = (string)properties[i].ValueS;
+            else if(properties[i].Type == "Faction") card.faction = (string)properties[i].ValueS;
+            else if(properties[i].Type == "Power") card.puntosPoder = (int)properties[i].ValueI;
+            else if(properties[i].Type == "Range") card.typeCard2 = (string)properties[i].ValueS;
+        }
     }
 }
 
 class Property
 {
-    public readonly object Value;
     public readonly string Type;
-
-    public Property(object value, string type)
+    public readonly string ValueS;
+    public readonly int ValueI;
+    
+    public Property(string type, string value)
     {
-        Value = value;
         Type = type;
+        ValueS = value;
+    }
+
+    public Property(string type, int value)
+    {
+        Type = type;
+        ValueI = value;
+        ValueS = $"{value}";
     }
 }

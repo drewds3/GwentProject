@@ -34,9 +34,7 @@ public class ScoreText : MonoBehaviour
 
     void Update()
     {   
-        round = countRound.GetComponent<PassButton>().round;
-        winsP1 = countRound.GetComponent<PassButton>().winP1;
-        winsP2 = countRound.GetComponent<PassButton>().winP2;
+        round = countRound.GetComponent<TurnsBasedSystem>().round;
 
         //Se actualizan las puntuaciones a tiempo real
         ActualPlayerScore();

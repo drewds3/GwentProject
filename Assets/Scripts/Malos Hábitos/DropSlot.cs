@@ -13,24 +13,26 @@ public class DropSlot : MonoBehaviour, IDropHandler
     public GameObject DragParent;
     public GameObject item;
 
-    //Variables para el sistema de turnos
-    public GameObject nextTurnPanel;
-    public GameObject blockHand;
-    public GameObject blockDeck;
-    public GameObject passButtonBlock;
-    public GameObject leaderBlock;
-
-    //Variables para el sistema de rondas
-    private int count = 0;
-    public GameObject passButton;
-
     //Variables para el sistema de señuelos
     public Transform hand;
+
+    void Update()
+    {
+        //Si se remueve la carta del slot, esta queda habilitada para poner otra
+        if (item != null && item.transform.parent != transform)
+        {
+            item = null;
+
+            Debug.Log("La carta ha sido removida");
+        }
+    }
 
     //Método para verificar si sueltas una carta en la casilla correcta y pasar de turno
     public void OnDrop(PointerEventData eventData)
     {   
         Card cardScript = DragParent.GetComponentInChildren<Card>();
+
+        TurnsBasedSystem turnsController = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>();
         
         //Comprueba si la carta soltada es un señuelo válido y si hay una carta tipo Plata en el slot
         if(cardScript.typeCard == "Lure" && item != null && cardScript && faction == cardScript.faction && item.GetComponent<Card>().typeCard4 == "Silver")
@@ -41,6 +43,9 @@ public class DropSlot : MonoBehaviour, IDropHandler
                 item.transform.SetParent(hand);
                 item.transform.position = hand.position;
                 item.transform.rotation = Quaternion.Euler(0, 0, 0);
+                
+                //Se le otorga otro tag para que no se elimine al cementerio al finalizar la ronda
+                item.tag = "Carta";
 
                 //Establece como el objeto de la slot al señuelo
                 item = DragHandler.itemDragging;
@@ -65,13 +70,9 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
 
                 //Además pasa de turno si el otro jugador no ha pasado
-                if(count%2==0)
+                if(turnsController.passCount % 2 == 0)
                 {
-                    nextTurnPanel.SetActive(!nextTurnPanel.activeSelf);
-                    blockHand.SetActive(!blockHand.activeSelf);
-                    blockDeck.SetActive(!blockDeck.activeSelf);
-                    passButtonBlock.SetActive(!passButtonBlock.activeSelf);
-                    leaderBlock.SetActive(true);
+                   turnsController.NextTurn();
                 }
         }
         //De lo contrario comprueba si la carta soltada es válida y no hay otra
@@ -121,28 +122,10 @@ public class DropSlot : MonoBehaviour, IDropHandler
                 Debug.Log("Carta colocada correctamente");
 
                 //Además pasa de turno si el otro jugador no ha pasado
-                if(count%2==0)
+                if(turnsController.passCount % 2 == 0)
                 {
-                    nextTurnPanel.SetActive(!nextTurnPanel.activeSelf);
-                    blockHand.SetActive(!blockHand.activeSelf);
-                    blockDeck.SetActive(!blockDeck.activeSelf);
-                    passButtonBlock.SetActive(!passButtonBlock.activeSelf);
-                    leaderBlock.SetActive(true);
+                   turnsController.NextTurn();
                 }
-        }
-    }
-
-    void Update()
-    {
-        //Se actualiza el contador de pase
-        count = passButton.GetComponent<PassButton>().passCount;
-
-        //Si se remueve la carta del slot, esta queda habilitada para poner otra
-        if (item != null && item.transform.parent != transform)
-        {
-            item = null;
-
-            Debug.Log("La carta ha sido removida");
         }
     }
 
@@ -150,16 +133,14 @@ public class DropSlot : MonoBehaviour, IDropHandler
     public void Increase()
     {
         //Se duplica el poder de la carta en este slot si y solo si tiene una carta y es de tipo Plata
-            if(item != null)
+        if(item != null)
+        {
+            Card cardScript = item.GetComponent<Card>();
+
+            if(cardScript.typeCard4 == "Silver")
             {
-                Card cardScript = item.GetComponent<Card>();
-
-                if(cardScript.typeCard4 == "Silver")
-                {
-                    cardScript.IncreasePower(2);
-                }
+                cardScript.IncreasePower(2);
             }
-
+        }
     }
 }
-

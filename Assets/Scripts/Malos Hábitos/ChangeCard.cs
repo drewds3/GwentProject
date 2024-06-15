@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,6 +7,22 @@ public class ChangeCard : MonoBehaviour, IDropHandler
     public GameObject DragParent;
     public GameObject item;
     public GameObject deck;
+
+    //Turno en el que se desactiva la posibilidad de cambio
+    public int turnLimit;
+
+     void Update()
+    {
+        //Luego del cambio, se habilita la slot otra vez
+        if (item != null && item.transform.parent != transform)
+        {
+            item = null;
+
+            Debug.Log("La carta ha sido removida");
+        }
+
+        if(GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().currentTurn == turnLimit) gameObject.SetActive(false);
+    }
 
     //Método para cambiar la carta por otra al soltarla en el slot
     public void OnDrop(PointerEventData eventData)
@@ -26,17 +40,6 @@ public class ChangeCard : MonoBehaviour, IDropHandler
             cardScript.OnClick();
                 
             cardScript.Swap();
-        }
-    }
-
-    void Update()
-    {
-        //Luego del cambio, se habilita la slot otra vez
-        if (item != null && item.transform.parent != transform)
-        {
-            item = null;
-
-            Debug.Log("La carta ha sido removida");
         }
     }
 }

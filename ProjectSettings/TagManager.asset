@@ -17,6 +17,8 @@ TagManager:
   - Fila
   - FilaPlayer2
   - FilaPlayer1
+  - Player1Deck
+  - ClimaJugado1
   layers:
   - Default
   - TransparentFX
