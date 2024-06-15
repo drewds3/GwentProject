@@ -4,14 +4,16 @@ using System;
 
 public class Card : MonoBehaviour
 {
-    //Nonbre de la carta
+    //Nombre de la carta
     public string cardName;
     
-    //Sus puntos de poder
+    //Poder de la carta (si es que tiene)
     public int puntosPoder;
 
-    //Su tipo o tipos de carta
+    //Tipo (Oro, Plata, Clima...)
     public string typeCard;
+
+    //Rango
     public string typeCard2;
     public string typeCard3;
     public string typeCard4;

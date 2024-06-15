@@ -499,7 +499,7 @@ MonoBehaviour:
   typeCard1: {fileID: 21300000, guid: 3edc99c7fcfcc554db2ad89f6b64e853, type: 3}
   typeCard2: {fileID: 21300000, guid: cbce01e90adf4a5498cba66c07eebe4c, type: 3}
   typeCard3: {fileID: 21300000, guid: 72d4e7da424aaf0428485b34e30dc9d0, type: 3}
-  faction: {fileID: 21300000, guid: 7c352dc8dc67b9e46a53c8f4298c4ddd, type: 3}
+  faction: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   nameCard: ExampleCard
   puntos: 0
   description: "Esta es una descripci\xF3n de ejemplo, hola mundo :)"

@@ -96,11 +96,11 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\LeaderEffect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
-    <Compile Include="Assets\Scripts\Malos Hábitos\PassButton.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\ScoreText.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\DropSlot.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\GameLogic\Player.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\MenúInicial.cs" />
     <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\Parser.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -118,7 +118,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\EffectCards.cs" />
-    <Compile Include="Assets\Scripts\Buenos Hábitos\GameLogic\Player.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Cards\CardImages.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

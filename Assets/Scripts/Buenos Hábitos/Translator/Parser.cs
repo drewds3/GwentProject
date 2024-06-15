@@ -166,6 +166,21 @@ public class Parser
             Next("Word");
             Next("Colon");
             if(token._value == "Power") ToProperty(token._value);
+            else if(token._value == "Range")
+            {
+                Next("LSBracket");
+                Next("QMark");
+                ToProperty(token._value, _currentToken._value);
+
+                while(_currentToken._type == "Comma")
+                {
+                    Next("Comma");
+                    Next("QMark");
+                    ToProperty(token._value, _currentToken._value);
+                }
+
+                Next("RSBracket");
+            }
             else
             {
                 Next("QMark");
@@ -200,13 +215,34 @@ public class Parser
 
     public void SetProperties(Card card)
     {
+        int count = 0;
+
         for(int i = 0; i < properties.Count; i++)
         {
             if(properties[i].Type == "Type") card.typeCard = (string)properties[i].ValueS;
             else if(properties[i].Type == "Name") card.cardName = (string)properties[i].ValueS;
             else if(properties[i].Type == "Faction") card.faction = (string)properties[i].ValueS;
             else if(properties[i].Type == "Power") card.puntosPoder = (int)properties[i].ValueI;
-            else if(properties[i].Type == "Range") card.typeCard2 = (string)properties[i].ValueS;
+            else if(properties[i].Type == "Range")
+            {
+                if(properties[i].ValueS == "Melee" || properties[i].ValueS == "Ranged" || properties[i].ValueS == "Siege")
+                if(count==0)
+                {
+                    card.typeCard2 = (string)properties[i].ValueS;
+                    count++;
+                } 
+                else if(count==1)
+                {
+                    card.typeCard3 = (string)properties[i].ValueS;
+                    count++;
+                }
+                else
+                {
+                    card.typeCard4 = (string)properties[i].ValueS;
+                    count++;
+                }
+                else throw new Exception("Unvalid card range");
+            } 
         }
     }
 }

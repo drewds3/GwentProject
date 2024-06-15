@@ -6620,6 +6620,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874083066}
   m_CullTransparentMesh: 1
+--- !u!1 &884633219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 884633220}
+  - component: {fileID: 884633222}
+  - component: {fileID: 884633221}
+  m_Layer: 5
+  m_Name: CVTipoDeCarta4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &884633220
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884633219}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1006362300}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -176.48999, y: -35.094975}
+  m_SizeDelta: {x: 50.105, y: 50.13}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &884633221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884633219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &884633222
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884633219}
+  m_CullTransparentMesh: 1
 --- !u!1 &895017135
 GameObject:
   m_ObjectHideFlags: 0
@@ -7475,6 +7551,7 @@ GameObject:
   - component: {fileID: 1006362300}
   - component: {fileID: 1006362303}
   - component: {fileID: 1006362302}
+  - component: {fileID: 1006362304}
   m_Layer: 5
   m_Name: CardViewPanel
   m_TagString: Untagged
@@ -7501,6 +7578,7 @@ RectTransform:
   - {fileID: 1546367723}
   - {fileID: 993197925}
   - {fileID: 83396743}
+  - {fileID: 884633220}
   - {fileID: 1892062952}
   m_Father: {fileID: 1351741506}
   m_RootOrder: 0
@@ -7548,6 +7626,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006362299}
   m_CullTransparentMesh: 1
+--- !u!114 &1006362304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006362299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79917adc694ae54468f06ceb26595013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nullImage: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  powerZone: {fileID: 21300000, guid: 63696fb38bdd3bb45ba2839bd9eb1b44, type: 3}
+  climateSymbol: {fileID: 21300000, guid: 33382937f5253bd4c83aa80ba8f0dca6, type: 3}
+  increaseSymbol: {fileID: 21300000, guid: eb235970beea8a842bcec7307e4dd0a0, type: 3}
+  goldSymbol: {fileID: 21300000, guid: 54a045202c9204246bcd42822f05fcc6, type: 3}
+  leaderSymbol: {fileID: 21300000, guid: a47e6bac43762724697470392bcd1c6e, type: 3}
+  clearanceSymbol: {fileID: 21300000, guid: b59c16e709a49b4459b21961cf9dca29, type: 3}
+  lureSymbol: {fileID: 21300000, guid: 3f027a23e909b9d4984a54b59170ed92, type: 3}
+  meleeSymbol: {fileID: 21300000, guid: 3edc99c7fcfcc554db2ad89f6b64e853, type: 3}
+  rangedSymbol: {fileID: 21300000, guid: cbce01e90adf4a5498cba66c07eebe4c, type: 3}
+  siegeSymbol: {fileID: 21300000, guid: 72d4e7da424aaf0428485b34e30dc9d0, type: 3}
+  dragonFaction: {fileID: 21300000, guid: 3444effe648c4124eb84f794a87a5164, type: 3}
+  ravenFaction: {fileID: 21300000, guid: 7c352dc8dc67b9e46a53c8f4298c4ddd, type: 3}
 --- !u!1 &1024010114 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5981167936488793463, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
@@ -12946,7 +13049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1745969052
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14410,7 +14513,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1006362300}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
