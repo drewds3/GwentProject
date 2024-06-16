@@ -1,31 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 public class EffectCards : MonoBehaviour
 {
-    //Variables para efectos 1, 2 y 3
-    public Transform graveyardRival;
-    public Transform graveyardOwn;
-    public string graveyardEnemy;
-    public string graveyard;
-    public string tagRival;
-    public string tagOwn;
+    //Variables para los efectos
+    private Transform graveyardOwn;
+    private Transform graveyardRival;
+    private string tagRival;
+    private string tagOwn;
+    private string deckOwn;
+    
+    //Metodo para activar el efecto
+    public void ActiveEffect(int numEffect)
+    {
+        Player player1 = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().player1;
+        Player player2 = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().player2;
 
-    //Variables para efecto 4
-    GameObject slot;
-    GameObject row;
+        if(player1.Faction == gameObject.GetComponent<Card>().Faction)
+        {
+            graveyardOwn = player1.Graveyard;
+            graveyardRival = player2.Graveyard;
 
-    //Variable para efecto 5
-    public string deckOwn;
+            tagOwn = "CartaJugada1";
+            tagRival = "CartaJugada2";
 
-    //Efecto de la carta en cuestión
-    public bool esc;
-    public bool cr;
-    public bool ewc;
-    public bool br;
-    public bool dc;
+            deckOwn = "Deck";
+        }
+        else if(player2.Faction == gameObject.GetComponent<Card>().Faction)
+        {
+            graveyardOwn = player2.Graveyard;
+            graveyardRival = player1.Graveyard;
+
+            tagOwn = "CartaJugada2";
+            tagRival = "CartaJugada1";
+
+            deckOwn = "DeckEnemy";
+        }
+
+        if (numEffect == 1) EliminateStrongerCard();
+        else if(numEffect == 2) CleanRow();
+        else if(numEffect == 3) EliminateWeakerCard();
+        else if(numEffect == 4) BandReinforcement();
+        else if(numEffect == 5) DrawCard();
+    }
 
     //Efectos posibles: ---------------------------------------------------------------------------------------------------------------
 
@@ -41,12 +58,12 @@ public class EffectCards : MonoBehaviour
         //Luego se busca en ambos conjuntos el valor más alto de poder
         for(int i = 0; i < cardsRival.Length; i++)
         {
-            cardsPower[i] = cardsRival[i].GetComponent<Card>().puntosPoder;
+            cardsPower[i] = cardsRival[i].GetComponent<Card>().Power;
         }
 
         for(int i = 0; i < cardsOwn.Length; i++)
         {
-            cardsPower[cardsRival.Length + i] = cardsOwn[i].GetComponent<Card>().puntosPoder;
+            cardsPower[cardsRival.Length + i] = cardsOwn[i].GetComponent<Card>().Power;
         }
 
         int strongCard = 0;
@@ -67,8 +84,6 @@ public class EffectCards : MonoBehaviour
         {
             if(cardsPower[i] == strongCard && i < cardsRival.Length)
             {
-                graveyardRival = GameObject.Find(graveyardEnemy).transform;
-
                 cardsRival[i].tag = "CartaDescartada";
                 cardsRival[i].transform.position = graveyardRival.position;
                 cardsRival[i].transform.SetParent(graveyardRival);
@@ -80,8 +95,6 @@ public class EffectCards : MonoBehaviour
             }
             else if(cardsPower[i] == strongCard && i - cardsRival.Length < cardsOwn.Length)
             {
-                graveyardOwn = GameObject.Find(graveyard).transform;
-
                 cardsOwn[i - cardsRival.Length].tag = "CartaDescartada";
                 cardsOwn[i - cardsRival.Length].transform.position = graveyardOwn.position;
                 cardsOwn[i - cardsRival.Length].transform.SetParent(graveyardOwn);
@@ -121,10 +134,8 @@ public class EffectCards : MonoBehaviour
                 GameObject[] cartas = new GameObject[scriptCarta.Length];
 
                 //Si la fila es suya manda las cartas a su cementerio
-                if(scriptCarta[0].faction == "Raven")
+                if(scriptCarta[0].Faction == "Raven")
                 {
-                    graveyardOwn = GameObject.Find(graveyard).transform;
-
                     for(int j = 0; j < scriptCarta.Length; j++)
                     {
                         cartas[j] = scriptCarta[j].gameObject;
@@ -136,8 +147,6 @@ public class EffectCards : MonoBehaviour
                 }
                 else //Sino las manda al cementerio del adversario
                 {
-                    graveyardRival = GameObject.Find(graveyardEnemy).transform;
-
                     for(int j = 0; j < scriptCarta.Length; j++)
                     {
                         cartas[j] = scriptCarta[j].gameObject;
@@ -168,7 +177,7 @@ public class EffectCards : MonoBehaviour
         //Luego se busca el valor más bajo de poder
         for(int i = 0; i < cardsRival.Length; i++)
         {
-            cardsPower[i] = cardsRival[i].GetComponent<Card>().puntosPoder;
+            cardsPower[i] = cardsRival[i].GetComponent<Card>().Power;
         }
 
         int weakerCard = 99;
@@ -184,8 +193,6 @@ public class EffectCards : MonoBehaviour
         {
             if(cardsPower[i] == weakerCard)
             {
-                graveyardRival = GameObject.Find(graveyardEnemy).transform;
-
                 cardsRival[i].tag = "CartaDescartada";
                 cardsRival[i].transform.position = graveyardRival.position;
                 cardsRival[i].transform.SetParent(graveyardRival);
@@ -202,8 +209,8 @@ public class EffectCards : MonoBehaviour
       n veces la cantidad de cartas iguales a esta en la fila*/
     public void BandReinforcement()
     {
-        slot = transform.parent.gameObject;
-        row = slot.transform.parent.gameObject;
+        GameObject slot = transform.parent.gameObject;
+        GameObject row = slot.transform.parent.gameObject;
 
         Card[] scriptCarta = row.GetComponentsInChildren<Card>();
 
@@ -212,7 +219,7 @@ public class EffectCards : MonoBehaviour
         //Se cuentan las cartas que sean iguales a esta
         for(int i = 0; i < scriptCarta.Length; i++)
         {
-            if(scriptCarta[i].cardName == gameObject.GetComponent<Card>().cardName)
+            if(scriptCarta[i].Name == gameObject.GetComponent<Card>().Name)
             {
                 n++;
             }

@@ -471,14 +471,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Rezo Sagrado
-  puntosPoder: 0
-  typeCard: Increase
-  typeCard2: null
-  typeCard3: null
-  typeCard4: null
-  faction: Raven
-  effect: 0
+  Name: Rezo Sagrado
+  Type: Increase
+  Faction: Raven
+  Power: 0
+  Range1: null
+  Range2: null
+  Range3: null
+  NumEffect: 0
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,17 +491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: 63ca0c4f9d0b8d84ba34645105e6219f, type: 3}
-  puntosPoder: {fileID: 21300000, guid: eb235970beea8a842bcec7307e4dd0a0, type: 3}
-  typeCard1: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard2: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard3: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  faction: {fileID: 21300000, guid: 7c352dc8dc67b9e46a53c8f4298c4ddd, type: 3}
-  nameCard: Rezo Sagrado
-  puntos: 0
-  description: "Los hechizos de los elfos son poderosos pero sus rezos a\xFAn lo
-    son m\xE1s. Efecto Aumento: Incrementa el ataque de las cartas en la fila seleccionada
-    en 2."
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +558,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Los hechizos de los elfos son poderosos pero sus rezos a\xFAn lo son m\xE1s.\nEfecto
-    Aumento: Incrementa el ataque de las cartas en la fila seleccionada en 2"
+    Aumento: Bonificaci\xF3n por 2 a las cartas en la filas seleccionada"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

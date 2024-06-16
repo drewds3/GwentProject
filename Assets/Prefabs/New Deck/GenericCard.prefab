@@ -378,6 +378,7 @@ GameObject:
   - component: {fileID: 4791996619338446986}
   - component: {fileID: -8077461281738308923}
   - component: {fileID: -5262470235149670892}
+  - component: {fileID: 8373972447774742972}
   m_Layer: 3
   m_Name: GenericCard
   m_TagString: Carta
@@ -474,14 +475,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: ExampleCard
-  puntosPoder: 0
-  typeCard: M
-  typeCard2: R
-  typeCard3: S
-  typeCard4: Silver
-  faction: null
-  effect: 0
+  Name: ExampleCard
+  Type: null
+  Faction: null
+  Power: 0
+  Range1: null
+  Range2: null
+  Range3: null
+  NumEffect: 0
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,16 +495,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: 5ff0fb96268a6a24da0490046c7d23f1, type: 3}
-  puntosPoder: {fileID: 21300000, guid: 63696fb38bdd3bb45ba2839bd9eb1b44, type: 3}
-  typeCard1: {fileID: 21300000, guid: 3edc99c7fcfcc554db2ad89f6b64e853, type: 3}
-  typeCard2: {fileID: 21300000, guid: cbce01e90adf4a5498cba66c07eebe4c, type: 3}
-  typeCard3: {fileID: 21300000, guid: 72d4e7da424aaf0428485b34e30dc9d0, type: 3}
-  faction: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  nameCard: ExampleCard
-  puntos: 0
-  description: "Esta es una descripci\xF3n de ejemplo, hola mundo :)"
-  viewPoints: 0
+--- !u!114 &8373972447774742972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4791996619338446980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e929e42eb7dd6847905e55b0bdd9166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

@@ -550,14 +550,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Lobos Huargos
-  puntosPoder: 4
-  typeCard: M
-  typeCard2: null
-  typeCard3: null
-  typeCard4: Silver
-  faction: Dragon
-  effect: 1
+  Name: Lobos Huargos
+  Type: Silver
+  Faction: Dragon
+  Power: 4
+  Range1: Melee
+  Range2: null
+  Range3: null
+  NumEffect: 4
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,21 +570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: 9a4430984fd505c4ab6d6f1c4de5fc49, type: 3}
-  puntosPoder: {fileID: 21300000, guid: 63696fb38bdd3bb45ba2839bd9eb1b44, type: 3}
-  typeCard1: {fileID: 21300000, guid: 3edc99c7fcfcc554db2ad89f6b64e853, type: 3}
-  typeCard2: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard3: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  faction: {fileID: 21300000, guid: 3444effe648c4124eb84f794a87a5164, type: 3}
-  nameCard: Lobos Huargos
-  puntos: 0
-  description: "Tr\xEDo de lobos huargos entrenados para matar.  Efecto: Al jugarse
-    aumenta su poder por la cantidad de cartas similares en la fila"
-  viewPoints: 1
-  slotsM: Slots M
-  slotsR: Slots R
-  slotsS: Slots S
-  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!114 &4362636756186696116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,18 +582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e929e42eb7dd6847905e55b0bdd9166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graveyardRival: {fileID: 0}
-  graveyardOwn: {fileID: 0}
-  graveyardEnemy: 
-  graveyard: 
-  tagRival: 
-  tagOwn: 
-  deckOwn: 
-  esc: 0
-  cr: 0
-  ewc: 0
-  br: 1
-  dc: 0
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

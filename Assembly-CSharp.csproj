@@ -63,10 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
-    <Compile Include="Assets\Scripts\Malos Hábitos\CardView.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Cards\CardView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\CodeEditor.cs" />
-    <Compile Include="Assets\Scripts\Malos Hábitos\Card.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Cards\Card.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\DrawCards.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
@@ -78,6 +78,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\Buenos Hábitos\GameLogic\TurnsBasedSystem.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Cards\CardImages.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\ChangeCard.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
@@ -117,8 +118,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\Malos Hábitos\EffectCards.cs" />
-    <Compile Include="Assets\Scripts\Buenos Hábitos\Cards\CardImages.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Cards\EffectCards.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

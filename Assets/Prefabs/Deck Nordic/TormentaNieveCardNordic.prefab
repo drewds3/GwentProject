@@ -471,14 +471,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Tormenta de Nieve
-  puntosPoder: 0
-  typeCard: Climate
-  typeCard2: null
-  typeCard3: null
-  typeCard4: null
-  faction: Dragon
-  effect: 0
+  Name: Tormenta de Nieve
+  Type: Climate
+  Faction: Dragon
+  Power: 0
+  Range1: null
+  Range2: null
+  Range3: null
+  NumEffect: 0
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,21 +491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: f4de4ce7acf67294a86232c70a1a965c, type: 3}
-  puntosPoder: {fileID: 21300000, guid: 33382937f5253bd4c83aa80ba8f0dca6, type: 3}
-  typeCard1: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard2: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard3: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  faction: {fileID: 21300000, guid: 3444effe648c4124eb84f794a87a5164, type: 3}
-  nameCard: Tormenta de Nieve
-  puntos: 0
-  description: "El invierno se acerca ;)  Efecto Clima: Se reduce el ataque de las
-    unidades de plata a la mitad mientras est\xE9 activo en la fila seleccionada."
-  viewPoints: 0
-  slotsM: Slots M
-  slotsR: Slots R
-  slotsS: Slots S
-  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,7 +557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "El invierno se acerca ;)\n\nEfecto Clima: Se reduce el ataque de las unidades
+  m_text: "El invierno se acerca ;)\nEfecto Clima: Se reduce el ataque de las unidades
     de plata a la mitad mientras est\xE9 activo en la fila seleccionada."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

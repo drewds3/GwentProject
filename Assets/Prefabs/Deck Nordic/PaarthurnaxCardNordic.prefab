@@ -295,7 +295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ExampleCard
+  m_text: Paarthurnax
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -628,14 +628,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Paarthurnax
-  puntosPoder: 12
-  typeCard: M
-  typeCard2: R
-  typeCard3: null
-  typeCard4: Gold
-  faction: Dragon
-  effect: 1
+  Name: Paarthurnax
+  Type: Gold
+  Faction: Dragon
+  Power: 12
+  Range1: Melee
+  Range2: Ranged
+  Range3: null
+  NumEffect: 1
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,21 +648,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: 7a0f71a3a630b20489e4750500cc2938, type: 3}
-  puntosPoder: {fileID: 21300000, guid: 63696fb38bdd3bb45ba2839bd9eb1b44, type: 3}
-  typeCard1: {fileID: 21300000, guid: 54a045202c9204246bcd42822f05fcc6, type: 3}
-  typeCard2: {fileID: 21300000, guid: 3edc99c7fcfcc554db2ad89f6b64e853, type: 3}
-  typeCard3: {fileID: 21300000, guid: cbce01e90adf4a5498cba66c07eebe4c, type: 3}
-  faction: {fileID: 21300000, guid: 3444effe648c4124eb84f794a87a5164, type: 3}
-  nameCard: Paarthurnax
-  puntos: 0
-  description: "Un antiguo y poderoso drag\xF3n que descansa en \"la garganta del
-    mundo\".  Efecto: Elimina la carta m\xE1s poderosa del campo."
-  viewPoints: 1
-  slotsM: Slots M
-  slotsR: Slots R
-  slotsS: Slots S
-  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!114 &7896823836390537184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,18 +660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e929e42eb7dd6847905e55b0bdd9166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graveyardRival: {fileID: 0}
-  graveyardOwn: {fileID: 0}
-  graveyardEnemy: GraveyardEnemy
-  graveyard: Graveyard
-  tagRival: CartaJugada2
-  tagOwn: CartaJugada1
-  deckOwn: 
-  esc: 1
-  cr: 0
-  ewc: 0
-  br: 0
-  dc: 0
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

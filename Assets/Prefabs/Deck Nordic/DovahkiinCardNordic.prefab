@@ -473,14 +473,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Dovahkiin
-  puntosPoder: 0
-  typeCard: "L\xEDder"
-  typeCard2: null
-  typeCard3: null
-  typeCard4: null
-  faction: Dragon
-  effect: 0
+  Name: Dovahkiin
+  Type: Leader
+  Faction: Dragon
+  Power: 0
+  Range1: null
+  Range2: null
+  Range3: null
+  NumEffect: 0
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,21 +493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: eb91dd0c06db4a544a088f8fdb5570e1, type: 3}
-  puntosPoder: {fileID: 21300000, guid: a47e6bac43762724697470392bcd1c6e, type: 3}
-  typeCard1: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard2: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard3: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  faction: {fileID: 21300000, guid: 3444effe648c4124eb84f794a87a5164, type: 3}
-  nameCard: Dovahkiin
-  puntos: 0
-  description: "El m\xEDtico Sangre de Drag\xF3n, un guerrero de formidable destreza,
-    cuenta la leyenda que nunca pierde.  Efecto de l\xEDder: Gana en caso de empate."
-  viewPoints: 0
-  slotsM: Slots M
-  slotsR: Slots R
-  slotsS: Slots S
-  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!114 &7303623104260079449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,11 +506,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actived: 0
-  nextTurnPanel: {fileID: 0}
-  blockHand: {fileID: 0}
-  blockDeck: {fileID: 0}
-  passButtonBlock: {fileID: 0}
-  leaderBlock: {fileID: 0}
 --- !u!114 &-764132982759130789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,8 +601,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "El m\xEDtico Sangre de Drag\xF3n, un guerrero de formidable destreza,
-    cuenta la leyenda que nunca pierde.\n\nEfecto de l\xEDder: Gana en caso de empate."
+  m_text: "El m\xEDtico Sangre de Drag\xF3ns, cuenta la leyenda que nunca pierde.\nEfecto
+    de l\xEDder: Gana en caso de empate."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

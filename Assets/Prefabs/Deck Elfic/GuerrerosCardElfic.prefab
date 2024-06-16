@@ -549,14 +549,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Elfos guerreros
-  puntosPoder: 5
-  typeCard: M
-  typeCard2: null
-  typeCard3: null
-  typeCard4: Silver
-  faction: Raven
-  effect: 0
+  Name: Elfos guerreros
+  Type: Silver
+  Faction: Raven
+  Power: 5
+  Range1: Melee
+  Range2: null
+  Range3: null
+  NumEffect: 0
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,16 +569,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: 4f6142085ff6f5446ac4c1e1617753ec, type: 3}
-  puntosPoder: {fileID: 21300000, guid: 63696fb38bdd3bb45ba2839bd9eb1b44, type: 3}
-  typeCard1: {fileID: 21300000, guid: 3edc99c7fcfcc554db2ad89f6b64e853, type: 3}
-  typeCard2: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard3: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  faction: {fileID: 21300000, guid: 7c352dc8dc67b9e46a53c8f4298c4ddd, type: 3}
-  nameCard: Elfos guerreros
-  puntos: 0
-  description: Un grupo de elfos entrenados en el combate cuerpo a cuerpo.
-  viewPoints: 1
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

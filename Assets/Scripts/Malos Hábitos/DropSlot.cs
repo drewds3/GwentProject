@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -35,7 +33,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
         TurnsBasedSystem turnsController = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>();
         
         //Comprueba si la carta soltada es un señuelo válido y si hay una carta tipo Plata en el slot
-        if(cardScript.typeCard == "Lure" && item != null && cardScript && faction == cardScript.faction && item.GetComponent<Card>().typeCard4 == "Silver")
+        if(cardScript.Type == "Lure" && item != null && cardScript && faction == cardScript.Faction && item.GetComponent<Card>().Type == "Silver")
         {       
                 //Le activa el arrastre a la carta en la slot y la manda a la mano
                 item.GetComponent<DragHandler>().enabled = true;
@@ -57,11 +55,11 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
                 /*Se le otorga un tag dependiendo de su facción para luego
                 ser enviada a sus respectivos cementerios desde otro script*/
-                if(cardScript.faction == "Dragon")
+                if(cardScript.Faction == "Dragon")
                 {
                     item.tag = "CartaJugada1";
                 }
-                else if(cardScript.faction == "Raven")
+                else if(cardScript.Faction == "Raven")
                 {
                     item.tag = "CartaJugada2";
                 }
@@ -76,17 +74,15 @@ public class DropSlot : MonoBehaviour, IDropHandler
                 }
         }
         //De lo contrario comprueba si la carta soltada es válida y no hay otra
-        else if(cardScript && faction == cardScript.faction && !item && (type == cardScript.typeCard || type == cardScript.typeCard2 || type == cardScript.typeCard3))
+        else if(cardScript && faction == cardScript.Faction && !item && (type == cardScript.Range1 || type == cardScript.Range2 || type == cardScript.Range3))
         {
                 //De ser así, verifica si la carta tiene efecto que se deba activar en este momento
-                if(cardScript.effect == true)
+                if(cardScript.NumEffect < 4 && cardScript.NumEffect != 0)
                 {
                     EffectCards effects = DragHandler.itemDragging.GetComponent<EffectCards>();
 
                     //De ser así, activa el efecto en cuestión
-                    if(effects.esc == true)       effects.EliminateStrongerCard();
-                    else if(effects.cr == true)   effects.CleanRow();
-                    else if(effects.ewc == true)  effects.EliminateWeakerCard();
+                    effects.ActiveEffect(cardScript.NumEffect);
                 }
 
                 /* Luego, establece el objeto que se está arrastrando
@@ -98,11 +94,11 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
                 /*Se le otorga un tag dependiendo de su facción para luego
                 ser enviada a sus respectivos cementerios desde otro script*/
-                if(cardScript.faction == "Dragon")
+                if(cardScript.Faction == "Dragon")
                 {
                     item.tag = "CartaJugada1";
                 }
-                else if(cardScript.faction == "Raven")
+                else if(cardScript.Faction == "Raven")
                 {
                     item.tag = "CartaJugada2";
                 }
@@ -111,12 +107,12 @@ public class DropSlot : MonoBehaviour, IDropHandler
                 item.GetComponent<DragHandler>().enabled = false;
                 
                 //Verifica si hay algún efecto que se deba activar en este momento
-                if(cardScript.effect == true)
-                {   
+                if(cardScript.NumEffect > 3)
+                {
                     EffectCards effects = DragHandler.itemDragging.GetComponent<EffectCards>();
 
-                    if(effects.br == true)      effects.BandReinforcement();
-                    else if(effects.dc == true) effects.DrawCard();
+                    //De ser así, activa el efecto en cuestión
+                    effects.ActiveEffect(cardScript.NumEffect);
                 }
 
                 Debug.Log("Carta colocada correctamente");
@@ -137,7 +133,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
         {
             Card cardScript = item.GetComponent<Card>();
 
-            if(cardScript.typeCard4 == "Silver")
+            if(cardScript.Type == "Silver")
             {
                 cardScript.IncreasePower(2);
             }

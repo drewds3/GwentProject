@@ -550,14 +550,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Treant
-  puntosPoder: 8
-  typeCard: M
-  typeCard2: S
-  typeCard3: null
-  typeCard4: Silver
-  faction: Raven
-  effect: 0
+  Name: Treant
+  Type: Silver
+  Faction: Raven
+  Power: 8
+  Range1: Melee
+  Range2: Siege
+  Range3: null
+  NumEffect: 0
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,17 +570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: 168c95fb26942f0409765f0494ffe0e2, type: 3}
-  puntosPoder: {fileID: 21300000, guid: 63696fb38bdd3bb45ba2839bd9eb1b44, type: 3}
-  typeCard1: {fileID: 21300000, guid: 3edc99c7fcfcc554db2ad89f6b64e853, type: 3}
-  typeCard2: {fileID: 21300000, guid: 72d4e7da424aaf0428485b34e30dc9d0, type: 3}
-  typeCard3: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  faction: {fileID: 21300000, guid: 7c352dc8dc67b9e46a53c8f4298c4ddd, type: 3}
-  nameCard: Treant
-  puntos: 0
-  description: "No querr\xE1s ver enojar a un \xE1rbol, as\xED que m\xE1s te vale
-    reciclar."
-  viewPoints: 1
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

@@ -550,14 +550,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Farmer
-  puntosPoder: 2
-  typeCard: M
-  typeCard2: null
-  typeCard3: null
-  typeCard4: Silver
-  faction: Raven
-  effect: 1
+  Name: Farmer
+  Type: Silver
+  Faction: Raven
+  Power: 2
+  Range1: Melee
+  Range2: null
+  Range3: null
+  NumEffect: 5
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,17 +570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: ff4ac972a30e0e642bfc7e651805277e, type: 3}
-  puntosPoder: {fileID: 21300000, guid: 63696fb38bdd3bb45ba2839bd9eb1b44, type: 3}
-  typeCard1: {fileID: 21300000, guid: 3edc99c7fcfcc554db2ad89f6b64e853, type: 3}
-  typeCard2: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard3: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  faction: {fileID: 21300000, guid: 7c352dc8dc67b9e46a53c8f4298c4ddd, type: 3}
-  nameCard: Farmer
-  puntos: 0
-  description: 'Se rumorea que encontrarse con uno de estos es mal presagio, que
-    "atraen a las desgracias".  Efecto: Al jugarla se roba una carta.'
-  viewPoints: 1
 --- !u!114 &1128729304841533940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,18 +582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e929e42eb7dd6847905e55b0bdd9166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graveyardRival: {fileID: 0}
-  graveyardOwn: {fileID: 0}
-  graveyardEnemy: 
-  graveyard: 
-  tagRival: 
-  tagOwn: 
-  deckOwn: DeckEnemy
-  esc: 0
-  cr: 0
-  ewc: 0
-  br: 0
-  dc: 1
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +650,6 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Se rumorea que encontrarse con uno de estos es mal presagio, que "atraen
     a las desgracias".
-
 
     Efecto: Al jugarla se roba una carta.'
   m_isRightToLeft: 0

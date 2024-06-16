@@ -23,7 +23,7 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
         Card cardScript = DragParent.GetComponentInChildren<Card>();
         
         //Comprueba si la carta soltada es válida
-        if(cardScript && faction == cardScript.faction && cardScript.typeCard == "Increase")
+        if(cardScript && faction == cardScript.Faction && cardScript.Type == "Increase")
         {   
             //Activa los métodos que incrementan en cada carta
             for(int i = 0; i < 6; i++)

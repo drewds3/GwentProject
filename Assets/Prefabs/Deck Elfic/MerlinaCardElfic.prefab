@@ -628,14 +628,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Merlina
-  puntosPoder: 11
-  typeCard: M
-  typeCard2: R
-  typeCard3: null
-  typeCard4: Gold
-  faction: Raven
-  effect: 1
+  Name: Merlina
+  Type: Gold
+  Faction: Raven
+  Power: 11
+  Range1: Melee
+  Range2: Ranged
+  Range3: null
+  NumEffect: 2
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,17 +648,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: d3b996f39bfb8f245a33f0cc63e87460, type: 3}
-  puntosPoder: {fileID: 21300000, guid: 63696fb38bdd3bb45ba2839bd9eb1b44, type: 3}
-  typeCard1: {fileID: 21300000, guid: 54a045202c9204246bcd42822f05fcc6, type: 3}
-  typeCard2: {fileID: 21300000, guid: 3edc99c7fcfcc554db2ad89f6b64e853, type: 3}
-  typeCard3: {fileID: 21300000, guid: cbce01e90adf4a5498cba66c07eebe4c, type: 3}
-  faction: {fileID: 21300000, guid: 7c352dc8dc67b9e46a53c8f4298c4ddd, type: 3}
-  nameCard: Merlina
-  puntos: 0
-  description: 'Una poderosa caballera elfa entrenada desde la infancia en todo tipo
-    de destrezas. Efecto: Al jugarse se limpia la fila con menos cartas del campo.'
-  viewPoints: 1
 --- !u!114 &8237943206178061701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,18 +660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e929e42eb7dd6847905e55b0bdd9166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graveyardRival: {fileID: 0}
-  graveyardOwn: {fileID: 0}
-  graveyardEnemy: Graveyard
-  graveyard: GraveyardEnemy
-  tagRival: CartaJugada1
-  tagOwn: CartaJugada2
-  deckOwn: 
-  esc: 0
-  cr: 1
-  ewc: 0
-  br: 0
-  dc: 0
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

@@ -273,8 +273,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -408,8 +408,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -796,8 +796,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1017,8 +1017,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1152,8 +1152,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1669,8 +1669,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2109,8 +2109,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2830,8 +2830,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3590,8 +3590,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3725,8 +3725,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3815,7 +3815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -3867,7 +3867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -3915,7 +3915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -3975,7 +3975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -4119,7 +4119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -4167,7 +4167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -4582,8 +4582,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4717,8 +4717,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5566,8 +5566,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5839,8 +5839,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6417,8 +6417,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6552,8 +6552,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7829,8 +7829,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7964,8 +7964,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -8228,7 +8228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -8272,7 +8272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -8316,7 +8316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -8368,7 +8368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -8496,7 +8496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -8540,7 +8540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -8924,8 +8924,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9287,8 +9287,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9422,8 +9422,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9638,8 +9638,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9901,8 +9901,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10320,8 +10320,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10474,8 +10474,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4289909742
+  m_fontColor: {r: 0.9339623, g: 0.82552165, b: 0.6995906, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11081,8 +11081,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11166,7 +11166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -11210,7 +11210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -11254,7 +11254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -11306,7 +11306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -11434,7 +11434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -11478,7 +11478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -11798,8 +11798,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -12101,7 +12101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -12153,7 +12153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -12201,7 +12201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -12261,7 +12261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -12405,7 +12405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -12453,7 +12453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: R
+      value: Ranged
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -12539,7 +12539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1598331571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12888,8 +12888,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13049,7 +13049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1745969052
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13291,8 +13291,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14627,8 +14627,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -15156,8 +15156,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -15604,7 +15604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -15648,7 +15648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -15692,7 +15692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -15744,7 +15744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -15872,7 +15872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -15916,7 +15916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: type
-      value: S
+      value: Siege
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
       propertyPath: blockDeck
@@ -16047,8 +16047,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281407879
+  m_fontColor: {r: 0.5294118, g: 0.09803922, b: 0.19215687, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17501,7 +17501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -17565,7 +17565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -17613,7 +17613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -17685,7 +17685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -17865,7 +17865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck
@@ -17925,7 +17925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: type
-      value: M
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: blockDeck

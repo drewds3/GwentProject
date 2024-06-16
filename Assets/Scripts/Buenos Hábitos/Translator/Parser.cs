@@ -219,26 +219,26 @@ public class Parser
 
         for(int i = 0; i < properties.Count; i++)
         {
-            if(properties[i].Type == "Type") card.typeCard = (string)properties[i].ValueS;
-            else if(properties[i].Type == "Name") card.cardName = (string)properties[i].ValueS;
-            else if(properties[i].Type == "Faction") card.faction = (string)properties[i].ValueS;
-            else if(properties[i].Type == "Power") card.puntosPoder = (int)properties[i].ValueI;
+            if(properties[i].Type == "Type") card.Type = (string)properties[i].ValueS;
+            else if(properties[i].Type == "Name") card.Name = (string)properties[i].ValueS;
+            else if(properties[i].Type == "Faction") card.Faction = (string)properties[i].ValueS;
+            else if(properties[i].Type == "Power") card.Power = (int)properties[i].ValueI;
             else if(properties[i].Type == "Range")
             {
                 if(properties[i].ValueS == "Melee" || properties[i].ValueS == "Ranged" || properties[i].ValueS == "Siege")
                 if(count==0)
                 {
-                    card.typeCard2 = (string)properties[i].ValueS;
+                    card.Range1 = (string)properties[i].ValueS;
                     count++;
                 } 
                 else if(count==1)
                 {
-                    card.typeCard3 = (string)properties[i].ValueS;
+                    card.Range2 = (string)properties[i].ValueS;
                     count++;
                 }
                 else
                 {
-                    card.typeCard4 = (string)properties[i].ValueS;
+                    card.Range3 = (string)properties[i].ValueS;
                     count++;
                 }
                 else throw new Exception("Unvalid card range");

@@ -551,14 +551,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: ExampleCard
-  puntosPoder: 8
-  typeCard: M
-  typeCard2: R
-  typeCard3: S
-  typeCard4: Silver
-  faction: Dragon
-  effect: 0
+  Name: ExampleCard
+  Type: Silver
+  Faction: Raven
+  Power: 10
+  Range1: Melee
+  Range2: Ranged
+  Range3: Siege
+  NumEffect: 0
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,16 +571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: 5ff0fb96268a6a24da0490046c7d23f1, type: 3}
-  puntosPoder: {fileID: 21300000, guid: 63696fb38bdd3bb45ba2839bd9eb1b44, type: 3}
-  typeCard1: {fileID: 21300000, guid: 3edc99c7fcfcc554db2ad89f6b64e853, type: 3}
-  typeCard2: {fileID: 21300000, guid: cbce01e90adf4a5498cba66c07eebe4c, type: 3}
-  typeCard3: {fileID: 21300000, guid: 72d4e7da424aaf0428485b34e30dc9d0, type: 3}
-  faction: {fileID: 21300000, guid: 7c352dc8dc67b9e46a53c8f4298c4ddd, type: 3}
-  nameCard: ExampleCard
-  puntos: 0
-  description: "Esta es una descripci\xF3n de ejemplo, hola mundo :)"
-  viewPoints: 0
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

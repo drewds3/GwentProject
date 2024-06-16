@@ -45,7 +45,7 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
         Card cardScript = DragParent.GetComponentInChildren<Card>();
         
         //Comprueba si la carta soltada es válida y no hay otra carta
-        if(!item && type == cardScript.typeCard)
+        if(!item && type == cardScript.Type)
         {
             /* Si no es así, establece el objeto que se está arrastrando
             como el objeto de la slot y lo posiciona en la slot
@@ -58,11 +58,11 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
 
             /*Se le otorga un tag dependiendo de su facción para luego
             ser enviada a sus respectivos cementerios desde otro script*/
-            if(cardScript.faction == "Dragon")
+            if(cardScript.Faction == "Dragon")
             {
                 item.tag = "ClimaJugado1";
             }
-            else if(cardScript.faction == "Raven")
+            else if(cardScript.Faction == "Raven")
             {
                 item.tag = "ClimaJugado2";
             }
@@ -102,9 +102,9 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
                 
         }
         //Si se usa el despeje se elimina el clima
-        else if(cardScript.typeCard == "Clearance" && item != null)
+        else if(cardScript.Type == "Clearance" && item != null)
         {
-            if(item.tag == "CartaJugada1")
+            if(item.tag == "ClimaJugado1")
             {
                 item.transform.SetParent(graveyard1);
                 item.transform.position = graveyard1.position;

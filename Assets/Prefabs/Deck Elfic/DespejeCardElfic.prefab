@@ -471,14 +471,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Hechizo de despeje de cielos
-  puntosPoder: 0
-  typeCard: Clearance
-  typeCard2: null
-  typeCard3: null
-  typeCard4: null
-  faction: Raven
-  effect: 0
+  Name: Hechizo de despeje de cielos
+  Type: Clearance
+  Faction: Raven
+  Power: 0
+  Range1: null
+  Range2: null
+  Range3: null
+  NumEffect: 0
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,16 +491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: dd7c1b6de762bd4458c29ef4297e079e, type: 3}
-  puntosPoder: {fileID: 21300000, guid: b59c16e709a49b4459b21961cf9dca29, type: 3}
-  typeCard1: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard2: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard3: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  faction: {fileID: 21300000, guid: 7c352dc8dc67b9e46a53c8f4298c4ddd, type: 3}
-  nameCard: Hechizo de despeje de cielos
-  puntos: 0
-  description: 'Los elfos cuentan con numerosos hechizos, entre ellos, uno para despejar
-    los cielos.  Efecto Despeje: Se elimina el clima de la casilla seleccionada.'
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +559,6 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Los elfos cuentan con numerosos hechizos, entre ellos, uno para despejar
     los cielos.
-
 
     Efecto Despeje: Se elimina el clima de la casilla seleccionada'
   m_isRightToLeft: 0

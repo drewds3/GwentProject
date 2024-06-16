@@ -550,14 +550,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Troll de la Escarcha
-  puntosPoder: 9
-  typeCard: M
-  typeCard2: S
-  typeCard3: null
-  typeCard4: Silver
-  faction: Dragon
-  effect: 0
+  Name: Troll de la Escarcha
+  Type: Silver
+  Faction: Dragon
+  Power: 9
+  Range1: Melee
+  Range2: Siege
+  Range3: null
+  NumEffect: 0
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,21 +570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: 825441d8ff8b0d447b51c9be10dd9976, type: 3}
-  puntosPoder: {fileID: 21300000, guid: 63696fb38bdd3bb45ba2839bd9eb1b44, type: 3}
-  typeCard1: {fileID: 21300000, guid: 3edc99c7fcfcc554db2ad89f6b64e853, type: 3}
-  typeCard2: {fileID: 21300000, guid: 72d4e7da424aaf0428485b34e30dc9d0, type: 3}
-  typeCard3: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  faction: {fileID: 21300000, guid: 3444effe648c4124eb84f794a87a5164, type: 3}
-  nameCard: Troll de la Escarcha
-  puntos: 0
-  description: Un troll muy poderoso que puede atacar tanto de cerca como de lejos
-    lanzando grandes rocas.
-  viewPoints: 1
-  slotsM: Slots M
-  slotsR: Slots R
-  slotsS: Slots S
-  resaltar: {r: 0.6901961, g: 0.62352943, b: 0.33333334, a: 0.33333334}
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

@@ -607,14 +607,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Huesitos
-  puntosPoder: 0
-  typeCard: Lure
-  typeCard2: null
-  typeCard3: null
-  typeCard4: null
-  faction: Dragon
-  effect: 0
+  Name: Huesitos
+  Type: Lure
+  Faction: Dragon
+  Power: 0
+  Range1: null
+  Range2: null
+  Range3: null
+  NumEffect: 0
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,18 +627,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55849272a8754ef4c8fcb5c914cf5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 21300000, guid: 84bf82029bb61e646989dec9892365bd, type: 3}
-  puntosPoder: {fileID: 21300000, guid: 63696fb38bdd3bb45ba2839bd9eb1b44, type: 3}
-  typeCard1: {fileID: 21300000, guid: 3f027a23e909b9d4984a54b59170ed92, type: 3}
-  typeCard2: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  typeCard3: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  faction: {fileID: 21300000, guid: 3444effe648c4124eb84f794a87a5164, type: 3}
-  nameCard: Huesitos
-  puntos: 0
-  description: "\xBFHay realmente vida despu\xE9s de la muerte o son solamente un
-    mont\xF3n de huesos controlados por un mago? Efecto Se\xF1uelo: Sustituye una
-    de tus cartas."
-  viewPoints: 1
 --- !u!1 &5560801594878855527
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,8 +770,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xBFHay realmente vida despu\xE9s de la muerte o son solamente un mont\xF3n
-    de huesos controlados por un mago?\nEfecto Se\xF1uelo: Sustituye una de tus cartas."
+  m_text: "\xBFHay realmente vida despu\xE9s de la muerte o es algo m\xE1s?\nEfecto
+    Se\xF1uelo: Sustituye una de tus cartas."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

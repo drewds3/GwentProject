@@ -34,32 +34,32 @@ public class RowScoreController : MonoBehaviour
         //El contador se inicia en 0
         rowScore = 0;
 
-        Card[] cartas = GetComponentsInChildren<Card>();
+        Card[] cards = GetComponentsInChildren<Card>();
 
         //Se cuentan las cartas que hay para el efecto de limpiar fila
-        numberCards = cartas.Length;
+        numberCards = cards.Length;
 
         //Verifica si algún clima afecta a dicha fila
         if((typeRow == "M" && M) || (typeRow == "R" && R) || (typeRow == "S" && S))
         {
-            foreach (Card carta in cartas)
+            foreach (Card card in cards)
             {
                 //Si la carta es de oro se mantiene su poder
-                if(carta.typeCard4 == "Gold")
+                if(card.Type == "Gold")
                 {
-                    rowScore += carta.puntosPoder;
+                    rowScore += card.Power;
                 }
                 else //De lo contrario se divide su poder a la mitad
                 {
-                    rowScore += carta.puntosPoder/2;
+                    rowScore += card.Power/2;
                 }
             }
         }
         else //De lo contrario se procede con normalidad
         {
-            foreach (Card carta in cartas)
+            foreach (Card card in cards)
             {
-                rowScore += carta.puntosPoder;
+                rowScore += card.Power;
             }
         }
     }
