@@ -1749,6 +1749,7 @@ GameObject:
   - component: {fileID: 295962775}
   - component: {fileID: 295962774}
   - component: {fileID: 295962776}
+  - component: {fileID: 295962777}
   m_Layer: 0
   m_Name: Tablero
   m_TagString: Untagged
@@ -1865,6 +1866,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTurn: 0
   passCount: 0
+  passButtonBlock: {fileID: 1245587387}
+  nextRoundCartel1: {fileID: 895017135}
+  nextRoundCartel2: {fileID: 2083549843}
+  lastRoundCartel1: {fileID: 839817642}
+  lastRoundCartel2: {fileID: 819577901}
+  tiedGameCartel: {fileID: 613374549}
+  victoryCartel1: {fileID: 1338164007}
+  victoryCartel2: {fileID: 42708463}
+  round: 1
+  winner: 0
+  victory: 0
+--- !u!114 &295962777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295962772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc5f17e6dbaed748a28252f50ec49f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   hand1: {fileID: 354660558}
   dekc1: {fileID: 1859545884}
   graveyard1: {fileID: 1925983234}
@@ -1879,17 +1903,6 @@ MonoBehaviour:
   deckBlock2: {fileID: 198495706}
   nextTurnCartel2: {fileID: 1868300497}
   blockLeader2: {fileID: 1026436908}
-  passButtonBlock: {fileID: 1245587387}
-  nextRoundCartel1: {fileID: 895017135}
-  nextRoundCartel2: {fileID: 2083549843}
-  lastRoundCartel1: {fileID: 839817642}
-  lastRoundCartel2: {fileID: 819577901}
-  tiedGameCartel: {fileID: 613374549}
-  victoryCartel1: {fileID: 1338164007}
-  victoryCartel2: {fileID: 42708463}
-  round: 1
-  winner: 0
-  victory: 0
 --- !u!1 &299673865
 GameObject:
   m_ObjectHideFlags: 0
@@ -3519,7 +3532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088e9c5b69ace0a4696df4054d3f61d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DragParent: {fileID: 621710137}
   item: {fileID: 0}
   deck: {fileID: 1859545884}
   turnLimit: 1
@@ -3842,6 +3854,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 477130326}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
       objectReference: {fileID: 522286931}
@@ -3894,6 +3910,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 477130326}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
       objectReference: {fileID: 522286931}
@@ -3941,6 +3961,10 @@ PrefabInstance:
       propertyPath: increaseSlot
       value: 
       objectReference: {fileID: 477130326}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
@@ -4001,6 +4025,10 @@ PrefabInstance:
       propertyPath: increaseSlot
       value: 
       objectReference: {fileID: 477130326}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
@@ -4146,6 +4174,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 477130326}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
       objectReference: {fileID: 522286931}
@@ -4193,6 +4225,10 @@ PrefabInstance:
       propertyPath: increaseSlot
       value: 
       objectReference: {fileID: 477130326}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
@@ -4383,7 +4419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc08b8c3de40134786c8aadc311ac03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 4791996619338446980, guid: 4153cf4ff9bd5764d963bd5fb74a208c, type: 3}
+  unitCard: {fileID: 4791996619338446980, guid: 4153cf4ff9bd5764d963bd5fb74a208c, type: 3}
+  leaderCard: {fileID: 4791996619338446980, guid: e315a4f6bf239c944a8fbb198f5e183f, type: 3}
   cards: []
 --- !u!114 &619398169
 MonoBehaviour:
@@ -5005,28 +5042,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5803616033525854797, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
   m_PrefabInstance: {fileID: 1987299907}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &676735035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 676735030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8a6395ac8e54b847811b9355b164a17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: Neutral
-  type: Climate
-  type2: M
-  afectM: 0
-  afectR: 0
-  afectS: 0
-  DragParent: {fileID: 621710137}
-  item: {fileID: 0}
-  graveyard1: {fileID: 1925983234}
-  graveyard2: {fileID: 272323980}
 --- !u!224 &682620447 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5053184580943425231, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
@@ -7064,6 +7079,7 @@ MonoBehaviour:
   - {fileID: 4791996619338446980, guid: a4e3c8d94ec12ce48bf3b591c3e5fa30, type: 3}
   - {fileID: 4791996619338446980, guid: f71ff6ff13cc3684190b72bc8aebeca7, type: 3}
   - {fileID: 4791996619338446980, guid: f71ff6ff13cc3684190b72bc8aebeca7, type: 3}
+  - {fileID: 4791996619338446980, guid: b3797d751d663514fa70fdd3fd8d158e, type: 3}
   cartasZone: {fileID: 1715024022}
   graveyard: {fileID: 272323980}
   currentTurn: 0
@@ -7255,8 +7271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ad6615ac3de1949ae3f9ca6433247b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip1: {fileID: 8300000, guid: 30a33e626f6484c4080f0b1280d601cb, type: 3}
+  clip1: {fileID: 8300000, guid: 264e4a56de63fb44e9e72d6d7455f770, type: 3}
   clip2: {fileID: 8300000, guid: ebc7e799b50d5324fa17ad1eb04b9072, type: 3}
+  clip3: {fileID: 8300000, guid: 4371c9d76fdfce943bb208a249a17a45, type: 3}
 --- !u!1 &973800087 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3140607576107870445, guid: 38b640bd51577954f86bb3ca98f0b6e0, type: 3}
@@ -7651,6 +7668,7 @@ MonoBehaviour:
   siegeSymbol: {fileID: 21300000, guid: 72d4e7da424aaf0428485b34e30dc9d0, type: 3}
   dragonFaction: {fileID: 21300000, guid: 3444effe648c4124eb84f794a87a5164, type: 3}
   ravenFaction: {fileID: 21300000, guid: 7c352dc8dc67b9e46a53c8f4298c4ddd, type: 3}
+  neutralFaction: {fileID: 21300000, guid: ed7bd614a19e11c46895ef9ab1177bc6, type: 3}
 --- !u!1 &1024010114 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5981167936488793463, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
@@ -8083,7 +8101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088e9c5b69ace0a4696df4054d3f61d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DragParent: {fileID: 621710137}
   item: {fileID: 0}
   deck: {fileID: 927935859}
   turnLimit: 2
@@ -10753,28 +10770,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 613489892738503058, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
   m_PrefabInstance: {fileID: 1987299907}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1391273944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391273939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8a6395ac8e54b847811b9355b164a17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: Neutral
-  type: Climate
-  type2: S
-  afectM: 0
-  afectR: 0
-  afectS: 0
-  DragParent: {fileID: 621710137}
-  item: {fileID: 0}
-  graveyard1: {fileID: 1925983234}
-  graveyard2: {fileID: 272323980}
 --- !u!1 &1435246912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7782063296276882689, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
@@ -12128,6 +12123,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1127129836}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
       objectReference: {fileID: 522286931}
@@ -12180,6 +12179,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1127129836}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
       objectReference: {fileID: 522286931}
@@ -12227,6 +12230,10 @@ PrefabInstance:
       propertyPath: increaseSlot
       value: 
       objectReference: {fileID: 1127129836}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
@@ -12287,6 +12294,10 @@ PrefabInstance:
       propertyPath: increaseSlot
       value: 
       objectReference: {fileID: 1127129836}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
@@ -12432,6 +12443,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1127129836}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
       objectReference: {fileID: 522286931}
@@ -12479,6 +12494,10 @@ PrefabInstance:
       propertyPath: increaseSlot
       value: 
       objectReference: {fileID: 1127129836}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
@@ -13123,28 +13142,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5413683841216082750, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
   m_PrefabInstance: {fileID: 1987299907}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1753229148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753229143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8a6395ac8e54b847811b9355b164a17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: Neutral
-  type: Climate
-  type2: R
-  afectM: 0
-  afectR: 0
-  afectS: 0
-  DragParent: {fileID: 621710137}
-  item: {fileID: 0}
-  graveyard1: {fileID: 1925983234}
-  graveyard2: {fileID: 272323980}
 --- !u!1 &1767154611
 GameObject:
   m_ObjectHideFlags: 0
@@ -14014,6 +14011,7 @@ MonoBehaviour:
   - {fileID: 4791996619338446980, guid: c3dfcc73dba12d14e9e3f899fe0a4fe4, type: 3}
   - {fileID: 4791996619338446980, guid: c31fe4da161e4224f8f4afa14872c7ca, type: 3}
   - {fileID: 4791996619338446980, guid: c31fe4da161e4224f8f4afa14872c7ca, type: 3}
+  - {fileID: 4791996619338446980, guid: b3797d751d663514fa70fdd3fd8d158e, type: 3}
   cartasZone: {fileID: 354660559}
   graveyard: {fileID: 1925983234}
   currentTurn: 0
@@ -14436,6 +14434,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 973232129}
+        m_TargetAssemblyTypeName: AudioController, Assembly-CSharp
+        m_MethodName: StartGameAudio
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15331,7 +15341,7 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1466073063929595996, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+    - target: {fileID: 2099258083987116316, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
@@ -15431,26 +15441,23 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6828528415801482864, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+      propertyPath: DragParent
+      value: 
+      objectReference: {fileID: 621710137}
     - target: {fileID: 6949734809058260408, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7996617753087534700, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
-      propertyPath: DragParent
-      value: 
-      objectReference: {fileID: 621710137}
     - target: {fileID: 8076995587903921160, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
       propertyPath: m_Name
       value: Slots Clima
       objectReference: {fileID: 0}
-    - target: {fileID: 9177579427756746036, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+    - target: {fileID: 8840036271134899688, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
       propertyPath: DragParent
       value: 
       objectReference: {fileID: 621710137}
-    m_RemovedComponents:
-    - {fileID: 7996617753087534700, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
-    - {fileID: 1466073063929595996, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
-    - {fileID: 9177579427756746036, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7dee4e62d57464bb99b735d3d318b7, type: 3}
 --- !u!1 &1997340627
 GameObject:
@@ -17112,6 +17119,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 758291706}
     - target: {fileID: 1404147862951257175, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404147862951257175, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
       propertyPath: nextTurnPanel
       value: 
       objectReference: {fileID: 522286931}
@@ -17380,6 +17391,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 758291706}
     - target: {fileID: 7900823508536230257, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900823508536230257, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
       propertyPath: nextTurnPanel
       value: 
       objectReference: {fileID: 522286931}
@@ -17447,6 +17462,10 @@ PrefabInstance:
       propertyPath: leaderBlock
       value: 
       objectReference: {fileID: 758291706}
+    - target: {fileID: 8133380042218587501, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8133380042218587501, guid: 3e318ae6858077449b13111cb7777d2f, type: 3}
       propertyPath: nextTurnPanel
       value: 
@@ -17528,6 +17547,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1435246912}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
       objectReference: {fileID: 522286931}
@@ -17592,6 +17615,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1435246912}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
       objectReference: {fileID: 522286931}
@@ -17639,6 +17666,10 @@ PrefabInstance:
       propertyPath: increaseSlot
       value: 
       objectReference: {fileID: 1435246912}
+    - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
@@ -17711,6 +17742,10 @@ PrefabInstance:
       propertyPath: increaseSlot
       value: 
       objectReference: {fileID: 1435246912}
+    - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
@@ -17892,6 +17927,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1435246912}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 
       objectReference: {fileID: 522286931}
@@ -17951,6 +17990,10 @@ PrefabInstance:
       propertyPath: increaseSlot
       value: 
       objectReference: {fileID: 1435246912}
+    - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
+      propertyPath: isPlayer1Slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: nextTurnPanel
       value: 

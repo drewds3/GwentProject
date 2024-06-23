@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7457692987177085783}
   - component: {fileID: 1073306811378404858}
   - component: {fileID: 6824372280916515730}
-  - component: {fileID: 7996617753087534700}
+  - component: {fileID: 6828528415801482864}
   m_Layer: 0
   m_Name: Slot (2)
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7996617753087534700
+--- !u!114 &6828528415801482864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,18 +86,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 613489892738503058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
+  m_Script: {fileID: 11500000, guid: b8a6395ac8e54b847811b9355b164a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faction: 
-  type: 
+  type: S
+  afectM: 0
+  afectR: 0
+  afectS: 0
   DragParent: {fileID: 0}
   item: {fileID: 0}
-  nextTurnPanel: {fileID: 0}
-  blockHand: {fileID: 0}
-  blockDeck: {fileID: 0}
-  passButtonBlock: {fileID: 0}
-  passButton: {fileID: 0}
 --- !u!1 &5413683841216082750
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +106,7 @@ GameObject:
   - component: {fileID: 392216545596392255}
   - component: {fileID: 8686072950957510417}
   - component: {fileID: 755083167110019334}
-  - component: {fileID: 1466073063929595996}
+  - component: {fileID: 2099258083987116316}
   m_Layer: 0
   m_Name: Slot (1)
   m_TagString: Untagged
@@ -175,7 +172,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1466073063929595996
+--- !u!114 &2099258083987116316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,18 +181,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5413683841216082750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
+  m_Script: {fileID: 11500000, guid: b8a6395ac8e54b847811b9355b164a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faction: 
-  type: 
+  type: R
+  afectM: 0
+  afectR: 0
+  afectS: 0
   DragParent: {fileID: 0}
   item: {fileID: 0}
-  nextTurnPanel: {fileID: 0}
-  blockHand: {fileID: 0}
-  blockDeck: {fileID: 0}
-  passButtonBlock: {fileID: 0}
-  passButton: {fileID: 0}
 --- !u!1 &5803616033525854797
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +201,7 @@ GameObject:
   - component: {fileID: 1779372528239288813}
   - component: {fileID: 8247459837845706225}
   - component: {fileID: 6949734809058260408}
-  - component: {fileID: 9177579427756746036}
+  - component: {fileID: 8840036271134899688}
   m_Layer: 0
   m_Name: Slot
   m_TagString: Untagged
@@ -273,7 +267,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9177579427756746036
+--- !u!114 &8840036271134899688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,18 +276,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5803616033525854797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5144de9a8ce624a992e0f0494774b3, type: 3}
+  m_Script: {fileID: 11500000, guid: b8a6395ac8e54b847811b9355b164a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faction: 
-  type: 
+  type: M
+  afectM: 0
+  afectR: 0
+  afectS: 0
   DragParent: {fileID: 0}
   item: {fileID: 0}
-  nextTurnPanel: {fileID: 0}
-  blockHand: {fileID: 0}
-  blockDeck: {fileID: 0}
-  passButtonBlock: {fileID: 0}
-  passButton: {fileID: 0}
 --- !u!1 &8076995587903921160
 GameObject:
   m_ObjectHideFlags: 0

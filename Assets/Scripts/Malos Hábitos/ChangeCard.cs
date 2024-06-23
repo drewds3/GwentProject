@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 public class ChangeCard : MonoBehaviour, IDropHandler
 {
     //Variables para soltar la carta en las slots
-    public GameObject DragParent;
     public GameObject item;
     public GameObject deck;
 
@@ -43,4 +42,3 @@ public class ChangeCard : MonoBehaviour, IDropHandler
         }
     }
 }
-

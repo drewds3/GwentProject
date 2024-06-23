@@ -14,11 +14,10 @@ public class Player
     public GameObject blockDeck;
     public GameObject nextTurnCartel;
     public GameObject blockLeader;
-    public GameObject passButtonBlock;
 
     //Constructor de la clase
     public Player(GameObject hand, GameObject deck, Transform graveyard, string faction, GameObject blockHand, 
-                  GameObject blockDeck, GameObject nextTurnCartel, GameObject blockLeader, GameObject passButtonBlock)
+                  GameObject blockDeck, GameObject nextTurnCartel, GameObject blockLeader)
     {
         Hand = hand;
         Deck = deck;
@@ -28,7 +27,6 @@ public class Player
         this.blockDeck = blockDeck;
         this.nextTurnCartel = nextTurnCartel;
         this.blockLeader = blockLeader;
-        this.passButtonBlock = passButtonBlock;
     }
 
     //Método para evitar que un jugador juegue en el turno del adversario al finalizar su turno
@@ -38,6 +36,11 @@ public class Player
         blockDeck.SetActive(!blockDeck.activeSelf);
         nextTurnCartel.SetActive(!nextTurnCartel.activeSelf);
         blockLeader.SetActive(true);
-        passButtonBlock.SetActive(true);
+    }
+
+    //Método para cambiar la facción
+    public void SetFaction(string faction)
+    {
+        Faction = faction;
     }
 }

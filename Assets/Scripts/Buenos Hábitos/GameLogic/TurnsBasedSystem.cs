@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static SetPlayers;
 
 public class TurnsBasedSystem : MonoBehaviour
 {
@@ -9,27 +8,6 @@ public class TurnsBasedSystem : MonoBehaviour
 
     //Veces que han pasado los jugadores
     public int passCount = 0;
-
-    //Jugadores
-    public Player player1;
-    public Player player2;
-
-    //Propiedades de los jugadores
-    public GameObject hand1;
-    public GameObject dekc1;
-    public Transform graveyard1;
-    public GameObject handBlock1;
-    public GameObject deckBlock1;
-    public GameObject nextTurnCartel1;
-    public GameObject blockLeader1;
-
-    public GameObject hand2;
-    public GameObject dekc2;
-    public Transform graveyard2;
-    public GameObject handBlock2;
-    public GameObject deckBlock2;
-    public GameObject nextTurnCartel2;
-    public GameObject blockLeader2;
 
     public GameObject passButtonBlock;
 
@@ -44,16 +22,6 @@ public class TurnsBasedSystem : MonoBehaviour
     public int round = 1;
     public int winner = 0;
     public bool victory;
- 
-    void Awake()
-    {
-        //Se le otorgan las propiedades a los jugadores
-        Player playerX = new(hand1, dekc1, graveyard1, "Dragon", handBlock1, deckBlock1, nextTurnCartel1, blockLeader1, passButtonBlock);
-        player1 = playerX;
-
-        Player playerY = new(hand2, dekc2, graveyard2, "Raven", handBlock2, deckBlock2, nextTurnCartel2, blockLeader2, passButtonBlock);
-        player2 = playerY;
-    }
     
     //Método para cambiar de turno
     public void NextTurn()
@@ -67,6 +35,7 @@ public class TurnsBasedSystem : MonoBehaviour
         {
             player2.EndTurn();
         }
+        passButtonBlock.SetActive(true);
         currentTurn++;
     }
 
@@ -75,13 +44,13 @@ public class TurnsBasedSystem : MonoBehaviour
         //Prepara el escenario para la siguiente ronda
         passButtonBlock.SetActive(true);
 
-        handBlock1.SetActive(true);
-        deckBlock1.SetActive(true);
-        blockLeader1.SetActive(true);
+        player1.blockHand.SetActive(true);
+        player1.blockDeck.SetActive(true);
+        player1.blockLeader.SetActive(true);
 
-        handBlock2.SetActive(true);
-        deckBlock2.SetActive(true);
-        blockLeader2.SetActive(true);
+        player2.blockHand.SetActive(true);
+        player2.blockDeck.SetActive(true);
+        player2.blockLeader.SetActive(true);
     }
 
     //Método para controlar el pase

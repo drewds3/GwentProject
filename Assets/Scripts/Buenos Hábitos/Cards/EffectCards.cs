@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using static SetPlayers;
 
 public class EffectCards : MonoBehaviour
 {
@@ -13,9 +14,6 @@ public class EffectCards : MonoBehaviour
     //Metodo para activar el efecto
     public void ActiveEffect(int numEffect)
     {
-        Player player1 = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().player1;
-        Player player2 = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().player2;
-
         if(player1.Faction == gameObject.GetComponent<Card>().Faction)
         {
             graveyardOwn = player1.Graveyard;

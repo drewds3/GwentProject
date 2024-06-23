@@ -22,4 +22,5 @@ public class CardImages : MonoBehaviour
     //Facción
     public Sprite dragonFaction;
     public Sprite ravenFaction;
+    public Sprite neutralFaction;
 }

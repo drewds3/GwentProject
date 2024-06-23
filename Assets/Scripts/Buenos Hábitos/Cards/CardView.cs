@@ -97,6 +97,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler
         //Se le asigna la facción
         if(card.Faction == "Dragon") GameObject.Find("CVFacción").GetComponent<Image>().sprite = data.dragonFaction;
         else if(card.Faction == "Raven") GameObject.Find("CVFacción").GetComponent<Image>().sprite = data.ravenFaction;
+        else if(card.Faction == "Neutral") GameObject.Find("CVFacción").GetComponent<Image>().sprite = data.neutralFaction;
         else GameObject.Find("CVFacción").GetComponent<Image>().sprite = data.nullImage;
     
         //Comprueba si es necesario mostrar el poder de la carta

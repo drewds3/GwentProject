@@ -90,7 +90,7 @@
     <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\Translator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\MenuPausa.cs" />
-    <Compile Include="Assets\Scripts\Malos Hábitos\ClimateSlots.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Field\ClimateSlots.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\RowScoreController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
@@ -100,14 +100,14 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\ScoreText.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
-    <Compile Include="Assets\Scripts\Malos Hábitos\DropSlot.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Field\DropSlot.cs" />
     <Compile Include="Assets\Scripts\Buenos Hábitos\GameLogic\Player.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\MenúInicial.cs" />
     <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\Parser.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
-    <Compile Include="Assets\Scripts\Malos Hábitos\IncreaseSlots.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Field\IncreaseSlots.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\MenuOpciones.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\AudioController.cs" />
@@ -119,6 +119,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\Buenos Hábitos\Cards\EffectCards.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\GameLogic\SetPlayers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
