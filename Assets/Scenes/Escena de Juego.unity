@@ -4379,6 +4379,7 @@ GameObject:
   - component: {fileID: 619398170}
   - component: {fileID: 619398169}
   - component: {fileID: 619398168}
+  - component: {fileID: 619398172}
   m_Layer: 5
   m_Name: "Bot\xF3n Confirmar"
   m_TagString: Untagged
@@ -4419,8 +4420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc08b8c3de40134786c8aadc311ac03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitCard: {fileID: 4791996619338446980, guid: 4153cf4ff9bd5764d963bd5fb74a208c, type: 3}
-  leaderCard: {fileID: 4791996619338446980, guid: e315a4f6bf239c944a8fbb198f5e183f, type: 3}
   cards: []
 --- !u!114 &619398169
 MonoBehaviour:
@@ -4516,6 +4515,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619398166}
   m_CullTransparentMesh: 1
+--- !u!114 &619398172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619398166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0e253222c954545a53d6107f189a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 4791996619338446980, guid: 4153cf4ff9bd5764d963bd5fb74a208c, type: 3}
+  leaderCard: {fileID: 4791996619338446980, guid: e315a4f6bf239c944a8fbb198f5e183f, type: 3}
 --- !u!1 &621710137
 GameObject:
   m_ObjectHideFlags: 0

@@ -109,8 +109,9 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\Buenos Hábitos\Field\IncreaseSlots.cs" />
     <Compile Include="Assets\Scripts\Malos Hábitos\MenuOpciones.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\GameLogic\SetPlayers.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
-    <Compile Include="Assets\Scripts\Malos Hábitos\AudioController.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Audio\AudioController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\Lexer.cs" />
@@ -119,7 +120,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\Buenos Hábitos\Cards\EffectCards.cs" />
-    <Compile Include="Assets\Scripts\Buenos Hábitos\GameLogic\SetPlayers.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\CardCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

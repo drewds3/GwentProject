@@ -6,7 +6,7 @@ using System;
 //Clase encargada de realizar el análisis sintáctico
 public class Parser
 {
-    //Constructor de la clase con sus respectivas variables
+    //Constructor de la clase con sus respectivos campos
     private readonly List<Token> _tokens;
     private int _currentTokenIndex;
     private Token _currentToken;
@@ -23,27 +23,36 @@ public class Parser
     //Método principal
     public void Parse()
     {
+        //Comprueba si el primer token es correcto
         if(_currentToken._type == "Word")
         {
-            if(_currentToken._value == "effect")
+            //De ser así y mientras sea "effect"...
+            while(_currentToken._type == "effect")
             {
                 throw new SystemException("No has implementado nada aún");
             }
-            else if(_currentToken._value == "card")
+            //Al concluir, si le sigue "card" creará la carta, de lo contrario lanzará una excepción
+            if(_currentToken._value != "card") throw new Exception($"To the declaration of effects should be followed by the declaration of at least one card");
+            while(_currentToken._value == "card")
             {
                 Next("Word");
                 Next("LCBracket");
                 Properties();
                 Next("RCBracket");
-            }
-            else throw new SystemException($"Syntax error in: {_currentToken._position}");
-        }
-        else throw new SystemException($"Syntax error in: {_currentToken._position}");
+                CardCreator cardCreator = GameObject.Find("Botón Confirmar").GetComponent<CardCreator>();
+                cardCreator.Create(properties);
 
-        foreach(Property property in properties)
-        {
-            Debug.Log($"Propiedad: {property.Type}, Valor: {property.ValueS}");
+                Debug.Log("Carta creada con las siguientes propiedades:");
+                foreach(Property property in properties)
+                {
+                    Debug.Log($"Propiedad: {property.Type}, Valor: {property.ValueS}");
+                }
+                
+                properties.Clear();
+            }
+            if(_currentToken._type != "Fin") throw new Exception($"Syntax error in: {_currentToken._position}");  
         }
+        else throw new Exception($"Syntax error in: {_currentToken._position}");
     }
 
     //Método para cambiar al siguiente token
@@ -226,42 +235,6 @@ public class Parser
         properties.Add(property);
     }
 
-    //Método para agregarle las propiedades a la carta nueva
-    public void SetProperties(Card card)
-    {
-        int count = 0;
-
-        for(int i = 0; i < properties.Count; i++)
-        {
-            //Se le otorga en dependencia del tipo de la propiedad
-            if(properties[i].Type == "Type") card.Type = (string)properties[i].ValueS;
-            else if(properties[i].Type == "Name") card.Name = (string)properties[i].ValueS;
-            else if(properties[i].Type == "Faction") card.Faction = (string)properties[i].ValueS;
-            else if(properties[i].Type == "Power") card.Power = (int)properties[i].ValueI;
-            else if(properties[i].Type == "Range")
-            {
-                //En el caso del rango se comprueba que sea uno de los establecidos y lanza una excepción de no serlo
-                if(properties[i].ValueS == "Melee" || properties[i].ValueS == "Ranged" || properties[i].ValueS == "Siege")
-                if(count==0)
-                {
-                    card.Range1 = (string)properties[i].ValueS;
-                    count++;
-                } 
-                else if(count==1)
-                {
-                    card.Range2 = (string)properties[i].ValueS;
-                    count++;
-                }
-                else
-                {
-                    card.Range3 = (string)properties[i].ValueS;
-                    count++;
-                }
-                else throw new Exception("Unvalid card range");
-            } 
-        }
-    }
-
     //Método para comprobar que las propiedades de las carta sean correctas
     public void CheckProperties()
     {
@@ -296,21 +269,10 @@ public class Parser
         || (!isSpecialCard && (!hasType || !hasFaction || !hasName || !hasPower || !hasRange)))
         throw new Exception("Misstatement of card properties");
     }
-
-    public string WhichTypeCardIS()
-    {
-        foreach(Property property in properties)
-        {
-            if(property.Type == "Type" && (property.ValueS == "Gold" || property.ValueS == "Silver")) return "Unit";
-            else if(property.Type == "Type" && property.ValueS == "Leader") return "Leader";
-            else return "Other";
-        }
-        throw new Exception("This card has no type");
-    }
 }
 
 //Clase propiedad
-class Property
+public class Property
 {
     public readonly string Type;
     public readonly string ValueS;
