@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class CodeEditor : MonoBehaviour
 {
@@ -28,4 +26,3 @@ public class CodeEditor : MonoBehaviour
         }
     }
 }
-

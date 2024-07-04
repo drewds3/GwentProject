@@ -41,13 +41,13 @@ public class Lexer
         while (_position < _input.Length)
         {
             //Verifica si hay espacios en blanco y salta a la siguiente posición
-            if (char.IsWhiteSpace(_input[_position]))
+            if(char.IsWhiteSpace(_input[_position]))
             {
                 _position++;
                 continue;
             }
             //Verifica si es una cadena de números y almacena el token
-            else if (char.IsDigit(_input[_position]))
+            else if(char.IsDigit(_input[_position]))
             {
                 string number = "";
                 while (_position < _input.Length && char.IsDigit(_input[_position]))
@@ -59,7 +59,7 @@ public class Lexer
                 tokens.Add(new Token("Number", number, _position - 1));
             }
             //Verifica si es una palabra
-            else if (char.IsLetter(_input[_position]))
+            else if(char.IsLetter(_input[_position]))
             {
                 string word = "";
                 while (_position < _input.Length && (char.IsLetterOrDigit(_input[_position]) || _input[_position] == '_'))
@@ -70,7 +70,13 @@ public class Lexer
                 tokens.Add(new Token("Word", word, _position - 1));
             }
             //Verifica si es un símbolo
-            else if   (_input[_position] == ':')
+            else if(_input[_position] == '.')
+            {
+                _position++;
+
+                tokens.Add(new Token("Point", ".", _position));
+            }
+            else if(_input[_position] == ':')
             {
                 _position++;
 
@@ -154,6 +160,25 @@ public class Lexer
                 
                 tokens.Add(new Token("QMark", ""+'"', _position));
             }
+            else if(_input[_position] == '=')
+            {
+                _position++;
+                
+                tokens.Add(new Token("Equal", "=", _position));
+            }
+            else if(_input[_position] == '<')
+            {
+                _position++;
+                
+                tokens.Add(new Token("Smaller", "<", _position));
+            }
+            else if(_input[_position] == '>')
+            {
+                _position++;
+                
+                tokens.Add(new Token("Greater", ">", _position));
+            }
+            else throw new Exception($"Unvalid token in {_position}");
         }
 
         //Devuelve la lista de tokens

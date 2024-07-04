@@ -11,18 +11,14 @@ public class Translator : MonoBehaviour
     {
         //Primero que todo se obtienen los tokens
         Lexer lexer = new(CodeEditor.inputField.text);
-
         var tokens = lexer.Tokenize();
 
-        //Luego estos se parsean
+        //Luego estos se parsean creándose así las cartas
         Parser parser = new(tokens);
-
-        //Se crean las cartas
         parser.Parse();
 
-        //Y se añaden al deck
+        //Y se añaden al deck si fueron bien declaradas
         DrawCards player1Deck = GameObject.FindGameObjectWithTag("Player1Deck").GetComponent<DrawCards>();
-
         player1Deck.NewDeck();
     }
 }

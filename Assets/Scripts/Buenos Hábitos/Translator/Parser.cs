@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 //Clase encargada de realizar el análisis sintáctico
 public class Parser
@@ -26,10 +28,368 @@ public class Parser
         //Comprueba si el primer token es correcto
         if(_currentToken._type == "Word")
         {
-            //De ser así y mientras sea "effect"...
-            while(_currentToken._type == "effect")
+            //De ser así y mientras sea "effect" se crearan los efectos correspondientes
+            while(_currentToken._value == "effect")
             {
-                throw new SystemException("No has implementado nada aún");
+                Next("Word");
+                Next("LCBracket");
+
+                //Se recoge el nombre del efecto
+                if(_currentToken._value == "Name") Next("Word");
+                else throw new Exception("You have not declared the name of the effect correctly");    
+                Next("Colon");
+                Next("QMark");
+                string nameEffect = _currentToken._value;
+                Next("Word");
+                Next("QMark");
+                Next("Comma");
+
+                //Se recogen los parámetros si es que tiene
+                LinkedList<Param> parameters = new();
+                if(_currentToken._value == "Params")
+                {
+                    Next("Word");
+                    Next("Colon");
+                    Next("LCBracket");
+
+                    while(true)
+                    {
+                        string name = _currentToken._value;
+                        Next("Word");
+                        Next("Colon");
+                        string type;
+                        
+                        if(_currentToken._value == "Number" || _currentToken._value == "Bool" || _currentToken._value == "String") type = _currentToken._value;
+                        else throw new Exception("This type of parameter does not exist");
+                        
+                        Next("Word");
+                        
+                        Param param = new(name, type);
+                        parameters.AddLast(param);
+
+                        if(_currentToken._type == "Comma") Next("Comma");
+                        else break;
+                    }
+                    Next("RCBracket");
+                    Next("Comma");
+                }
+
+                if(parameters.Count != 0)
+                {
+                    Debug.Log("Parámetros del efecto:");
+                    foreach(Param param in parameters)
+                    {
+                        Debug.Log($"Parámetro: {param.Name}, Tipo: {param.Type}");
+                    }
+                }
+                else Debug.Log("El efecto no tiene parámetros");
+
+                //Prosigue con la acción del efecto
+                if(_currentToken._value == "Action") Next("Word");
+                else throw new Exception("You have not declared the action of the effect correctly");
+                
+                //Se recogen los parámetros "targets" y "context"
+                Next("Colon");
+                Next("LParen");
+                string targets = _currentToken._value;
+                Next("Word");
+                Next("Comma");
+                string context = _currentToken._value;
+                Next("Word");
+                Next("RParen");
+                Next("Equal");
+                Next("Greater");
+                Next("LCBracket");
+
+                //Cuerpo del método (acción del efecto en sí)
+                //Se procede a recolectar las instrucciones en las siguiente lista
+                List<Instruction> instructions = new();
+
+                //Se añaden como variables los parámetros "targets" y "context"
+                List<Variable> variables = new() {{new Variable(targets, "List<Card>")}, {new Variable(context, "Context")}};
+                
+                InstructionsRecolector();
+                
+                //Aún falta código :(
+                throw new Exception("No has implementado nada aún");
+
+                //--------------------------------------------Métodos-del-Método----------------------------------------------------------
+                //Método que recoge las varibles y llamadas a métodos
+                void InstructionsRecolector()
+                {   
+                    //Se añaden instrucciones hasta que el token actual sea una llave de cierre
+                    if(_currentToken._type != "RCBracket")
+                    {
+                        //Si es una declaración de una variable se añade si está correctamente declarada
+                        if(_currentToken._type == "Word" && Enum.IsDefined(typeof(KeyWords), _currentToken._value)) throw new Exception($"You shouldn't use \"{_currentToken._value}\" like that");
+                        else if(!IsVariable() && _currentToken._type == "Word")
+                        {
+                            string name = _currentToken._value;
+                            Next("Word");
+                            Next("Equal");
+                            if(IsVariable()) variables.Add(new Variable(name, WichTypeIs("Semicolon")));
+                            else if(_currentToken._type == "Number")
+                            {
+                                Variable number = new(name, "Number") {Value = Expr()};
+                                variables.Add(number);
+                            }
+
+                            //Si se llega al final de la instrucción se recoge la siguiente de haberla declarado correctamente
+                            if(_currentToken._type == "Semicolon")
+                            {
+                                Next("Semicolon");
+                                Debug.Log("Variable declarada correctamente");
+                                InstructionsRecolector();
+                            }
+                            else throw new Exception("Semicolon was expected");
+                        }
+                        else if(IsVariable()) //Si es una variable se espera que llame a un método
+                        {
+                            //Se recoge la instrucción de ser correcta
+                            if(!CheckMethodCall()) throw new Exception("Bad method call");
+                            
+                            //Si se llega al final de la instrucción se recoge la siguiente de haberla
+                            if(_currentToken._type == "Semicolon")
+                            {
+                                Next("Semicolon");
+                                Debug.Log("Llamada a método correcta");
+                                InstructionsRecolector();
+                            }
+                            else throw new Exception("Semicolon was expected");
+                        }
+                        else throw new Exception("An instruction was expected");
+                    }
+                    else
+                    {
+                        Next("RCBracket");
+                        Next("RCBracket");
+                        Debug.Log("Efecto recogido correctamente");
+                    }
+                }
+
+                //Método para comprobar si es una variable
+                bool IsVariable()
+                {
+                    if(_currentToken._type == "Word" && Enum.IsDefined(typeof(KeyWords), _currentToken._value)) return false;
+                    else
+                    {
+                        foreach(Variable variable in variables)
+                        {
+                            if(variable.Name == _currentToken._value) return true;
+                        }
+                        return false;
+                    }
+                }
+                
+                //Método que recoge la instrucción de llamada a un método mientras que verifica que sea correcta
+                bool CheckMethodCall()
+                {
+                    //Comprueba si es una variable
+                    if(IsVariable())
+                    {
+                        foreach(Variable variable in variables)
+                        {
+                            if(variable.Name == _currentToken._value)
+                            {
+                                if(variable.Type == "Context")
+                                {
+                                    Next("Word");
+                                    if(_currentToken._type == "Point") Next("Point");
+                                    else return false;
+                                    if(_currentToken._type == "Word" && Enum.IsDefined(typeof(ContextMethods), _currentToken._value)) return CheckMethodCall();
+                                    else return false;
+                                }
+                                else if(variable.Type == "List<Card>")
+                                {
+                                    Next("Word");
+                                    if(_currentToken._type == "Point") Next("Point");
+                                    else return false;
+                                    if(_currentToken._type == "Word" && Enum.IsDefined(typeof(CardListMethods), _currentToken._value)) return CheckMethodCall();
+                                    else return false;
+                                }
+                                else return false;
+                            }
+                        }
+                        return false;
+                    }
+                    //De lo contrario comprueba que sea un método válido
+                    else if(_currentToken._type == "Word" && Enum.IsDefined(typeof(ContextMethods), _currentToken._value))
+                    {
+                        if(_currentToken._type == "Word" && Enum.IsDefined(typeof(SyntacticSugarContext), _currentToken._value))
+                        {
+                            Next("Word");
+                            Next("Point");
+                            if(_currentToken._type == "Word" && Enum.IsDefined(typeof(CardListMethods), _currentToken._value)) return CheckMethodCall();
+                            else return false;
+                        }
+                        else
+                        {
+                            Next("Word");
+                            Next("LParen");
+
+                            bool correct = false;
+            
+                            foreach(Variable variable in variables)
+                            {
+                                if(variable.Name == _currentToken._value && WichTypeIs("RParen") == "Player") correct = true;
+                            }
+
+                            if(correct) Next("RParen");
+                            else return false;
+
+                            Next("Point");
+                            
+                            if(_currentToken._type == "Word" && Enum.IsDefined(typeof(CardListMethods), _currentToken._value)) return CheckMethodCall();
+                            else return false;
+                        }
+                    }
+                    else if(_currentToken._type == "Word" && Enum.IsDefined(typeof(CardListMethods), _currentToken._value))
+                    {
+                        if(_currentToken._value == "Shuffle")
+                        {
+                            Next("Word");
+                            Next("LParen");
+                            Next("RParen");
+                            if(_currentToken._type == "Semicolon") return true;
+                            else return false;
+                        }
+                        else
+                        {
+                            Next("Word");
+                            Next("LParen");
+
+                            if(WichTypeIs("RParen") == "Card")
+                            {
+                                Next("RParen");
+                                if(_currentToken._type == "Semicolon") return true;
+                                else return false;
+                            }
+                            else return false;  
+                        }
+                    }
+                    else return false;
+                }
+
+                //Método que devuelve el tipo de una variable y verifica que esté bien declarada
+                string WichTypeIs(string finalToken)
+                {
+                    //Si es una palabra...
+                    if(_currentToken._type == "Word")
+                    {
+                        //Comprueba si es una variable
+                        foreach(Variable variable in variables)
+                        {
+                            if(variable.Name == _currentToken._value)
+                            {
+                                //De ser así verifica el tipo de la variable
+                                if(variable.Type == "Context")
+                                {
+                                    Next("Word");
+                                    if(_currentToken._type == finalToken) return "Context";
+                                    else if(_currentToken._type == "Point")
+                                    {
+                                        Next("Point");
+                                        if(_currentToken._type == "Word" && Enum.IsDefined(typeof(ContextPropertiesAndMethods), _currentToken._value)) return WichTypeIs("Semicolon");
+                                        else throw new Exception("Uknown method or property of context");
+                                    } 
+                                }
+                                else if(variable.Type == "List<Card>")
+                                {
+                                    Next("Word");
+                                    if(_currentToken._type == finalToken) return "List<Card>";
+                                    else if(_currentToken._type == "Point")
+                                    {
+                                        Next("Point");
+                                        if(_currentToken._type == "Word" && Enum.IsDefined(typeof(CardListProperties), _currentToken._value)) return WichTypeIs("Semicolon");
+                                        else throw new Exception("Uknown method or property of context");
+                                    } 
+                                }
+                                else if(variable.Type == "Card")
+                                {
+                                    Next("Word");
+                                    if(_currentToken._type == finalToken) return "Card";
+                                    else if(_currentToken._type == "Point")
+                                    {
+                                        Next("Point");
+                                        if(_currentToken._type == "Word" && Enum.IsDefined(typeof(CardProperties), _currentToken._value)) return WichTypeIs("Semicolon");
+                                        else throw new Exception("Uknown method or property of context");
+                                    } 
+                                }
+                                else if(variable.Type == "Player")
+                                {
+                                    Next("Word");
+                                    if(_currentToken._type == finalToken) return "Player";
+                                    else throw new Exception("Uknown method or property of context"); 
+                                }
+                            } 
+                        }
+                        
+                        //Comprueba si es un método y devuelve su tipo de serlo
+                        if(Enum.IsDefined(typeof(ContextPropertiesAndMethods), _currentToken._value))
+                        {
+                            if(_currentToken._value == "TriggerPlayer")
+                            {
+                                Next("Word");
+                                return "Player";
+                            } 
+                            else if(Enum.IsDefined(typeof(SyntacticSugarContext), _currentToken._value))
+                            {
+                                Next("Word");
+                                if(_currentToken._type == finalToken) return "List<Card>";
+                                else if(_currentToken._type == "Point")
+                                {
+                                    Next("Point");
+                                    return WichTypeIs("Semicolon");
+                                }
+                                else throw new Exception("Expected semicolon or method call");
+                            } 
+                            else
+                            {
+                                Next("Word");
+                                Next("LParen");
+
+                                if(WichTypeIs("RParen") == "Player") Next("RParen");
+                                else throw new Exception("A parameter of type player was expected");
+
+                                if(_currentToken._type == finalToken) return "List<Card>";
+                                else if(_currentToken._type == "Point")
+                                {
+                                    Next("Point");
+                                    if(_currentToken._type == "Word" && Enum.IsDefined(typeof(CardListProperties), _currentToken._value)) return WichTypeIs("Semicolon");
+                                    else throw new Exception("Uknown method or property of context");
+                                }
+                                else throw new Exception("Expected semicolon or method call");
+                            }
+                        }
+                        else if(Enum.IsDefined(typeof(CardProperties), _currentToken._value))
+                        {
+                            Next("Word");
+                            return "Player";
+                        } 
+                        else if(Enum.IsDefined(typeof(CardListProperties), _currentToken._value))
+                        {
+                            if(_currentToken._value == "Pop")
+                            {
+                                Next("Word");
+                                Next("LParen");
+                                Next("RParen");
+                                if(_currentToken._type == finalToken) return "Card";
+                                else if(_currentToken._type == "Point")
+                                {
+                                    Next("Point");
+
+                                    if(Enum.IsDefined(typeof(CardProperties), _currentToken._value)) return WichTypeIs("Semicolon");
+                                    else throw new Exception("Expected a method that returned some value");
+                                }
+                                else throw new Exception("Expected semicolon or method call");
+                            } 
+                            else if(_currentToken._value == "Find") return "List<Card>";
+                            else throw new Exception("Expected a method that returned some value");
+                        }
+                        else throw new Exception("A variable or method was expected");
+                   }
+                   else throw new Exception("A variable or method was expected");
+                }
             }
             //Al concluir, si le sigue "card" creará la carta, de lo contrario lanzará una excepción
             if(_currentToken._value != "card") throw new Exception($"To the declaration of effects should be followed by the declaration of at least one card");
@@ -268,27 +628,5 @@ public class Parser
         if((isSpecialCard && (!hasType || !hasFaction || !hasName || hasPower || hasRange))
         || (!isSpecialCard && (!hasType || !hasFaction || !hasName || !hasPower || !hasRange)))
         throw new Exception("Misstatement of card properties");
-    }
-}
-
-//Clase propiedad
-public class Property
-{
-    public readonly string Type;
-    public readonly string ValueS;
-    public readonly int ValueI;
-    
-    //Dos constructores, la segunda es para el caso particular del "Power" y la primera para el resto
-    public Property(string type, string value)
-    {
-        Type = type;
-        ValueS = value;
-    }
-
-    public Property(string type, int value)
-    {
-        Type = type;
-        ValueI = value;
-        ValueS = $"{value}";
     }
 }

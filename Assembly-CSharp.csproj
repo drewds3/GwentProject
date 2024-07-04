@@ -74,6 +74,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\Complementos del Parser\CardCreator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
@@ -120,7 +121,12 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\Buenos Hábitos\Cards\EffectCards.cs" />
-    <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\CardCreator.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\Complementos del Parser\Property.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\Complementos del Parser\Param.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\Complementos del Parser\Variable.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\Complementos del Parser\Instruction.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\Complementos del Parser\Keywords.cs" />
+    <Compile Include="Assets\Scripts\Buenos Hábitos\Translator\Complementos del Parser\Dictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
