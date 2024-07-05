@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System;
 
 //Clase token para los objetos de tipo "Token"

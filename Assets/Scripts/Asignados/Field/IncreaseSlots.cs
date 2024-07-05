@@ -61,6 +61,9 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
                 turnsController.NextTurn();
             }
 
+            if(DragHandler.startParent == GameObject.Find("Hand").transform) DragHandler.itemDragging.tag = "CartaDescartada1";
+            else DragHandler.itemDragging.tag = "CartaDescartada2";
+                
             //Al ser usada se va al cementerio y pasa de turno
             DragHandler.itemDragging.transform.SetParent(graveyard);
             DragHandler.itemDragging.transform.position = graveyard.position;

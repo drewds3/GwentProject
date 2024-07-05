@@ -102,7 +102,7 @@ public class TurnsBasedSystem : MonoBehaviour
 
             foreach(GameObject objeto in cardsToGraveyard1)
             {
-                objeto.tag = "CartaDescartada";
+                objeto.tag = "CartaDescartada1";
                 objeto.transform.position = player1.Graveyard.position;
                 objeto.transform.SetParent(player1.Graveyard);
                 objeto.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -110,7 +110,7 @@ public class TurnsBasedSystem : MonoBehaviour
 
             foreach(GameObject objeto in cardsToGraveyard2)
             {
-                objeto.tag = "CartaDescartada";
+                objeto.tag = "CartaDescartada2";
                 objeto.transform.position = player2.Graveyard.position;
                 objeto.transform.SetParent(player2.Graveyard);
                 objeto.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -118,7 +118,7 @@ public class TurnsBasedSystem : MonoBehaviour
 
             foreach(GameObject objeto in cardsToGraveyard3)
             {
-                objeto.tag = "CartaDescartada";
+                objeto.tag = "CartaDescartada1";
                 objeto.transform.position = player1.Graveyard.position;
                 objeto.transform.SetParent(player1.Graveyard);
                 objeto.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -126,7 +126,7 @@ public class TurnsBasedSystem : MonoBehaviour
 
             foreach(GameObject objeto in cardsToGraveyard4)
             {
-                objeto.tag = "CartaDescartada";
+                objeto.tag = "CartaDescartada2";
                 objeto.transform.position = player2.Graveyard.position;
                 objeto.transform.SetParent(player2.Graveyard);
                 objeto.transform.rotation = Quaternion.Euler(0, 0, 0);

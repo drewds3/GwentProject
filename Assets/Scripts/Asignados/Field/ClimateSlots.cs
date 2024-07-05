@@ -97,12 +97,14 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
         {
             if(item.tag == "ClimaJugado1")
             {
+                item.tag = "CartaDescartada1";
                 item.transform.SetParent(player1.Graveyard);
                 item.transform.position = player1.Graveyard.position;
                 item.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             else if(item.tag == "ClimaJugado2")
             {
+                item.tag = "CartaDescartada2";
                 item.transform.SetParent(player2.Graveyard);
                 item.transform.position = player2.Graveyard.position;
                 item.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -113,11 +115,13 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
             //Al ser usada se va al cementerio y pasa de turno
             if(DragHandler.startParent == GameObject.Find("Hand").transform)
             {
+                DragHandler.itemDragging.tag = "CartaDescartada1";
                 DragHandler.itemDragging.transform.SetParent(player1.Graveyard);
                 DragHandler.itemDragging.transform.position = player1.Graveyard.position;
             }
             else
             {
+                DragHandler.itemDragging.tag = "CartaDescartada2";
                 DragHandler.itemDragging.transform.SetParent(player2.Graveyard);
                 DragHandler.itemDragging.transform.position = player2.Graveyard.position;
             }

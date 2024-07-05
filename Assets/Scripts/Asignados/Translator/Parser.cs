@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Unity.VisualScripting;
-using UnityEngine.UIElements;
+using System.Linq;
 
 //Clase encargada de realizar el análisis sintáctico
 public class Parser
@@ -13,6 +11,8 @@ public class Parser
     private int _currentTokenIndex;
     private Token _currentToken;
     private List<Property> properties; //Esto es para añadirlo a la carta
+    private Instruction CurrentInstruction =new();
+    private List<Effect> effects = new();
 
     public Parser(List<Token> tokens)
     {
@@ -103,15 +103,24 @@ public class Parser
 
                 //Cuerpo del método (acción del efecto en sí)
                 //Se procede a recolectar las instrucciones en las siguiente lista
-                List<Instruction> instructions = new();
+                LinkedList<Instruction> instructions = new();
 
                 //Se añaden como variables los parámetros "targets" y "context"
                 List<Variable> variables = new() {{new Variable(targets, "List<Card>")}, {new Variable(context, "Context")}};
                 
+                int count = 0;
+
                 InstructionsRecolector();
+
+                //Se muestran en consola las instrucciones recogidas
+                foreach(Instruction instruction in instructions)
+                {
+                    instruction.Debug();
+                }
                 
-                //Aún falta código :(
-                throw new Exception("No has implementado nada aún");
+                //Se crea (por fin) el efecto
+                effects.Add(new Effect(nameEffect, instructions));
+                Debug.Log("Efecto creado con éxito");
 
                 //--------------------------------------------Métodos-del-Método----------------------------------------------------------
                 //Método que recoge las varibles y llamadas a métodos
@@ -124,9 +133,13 @@ public class Parser
                         if(_currentToken._type == "Word" && Enum.IsDefined(typeof(KeyWords), _currentToken._value)) throw new Exception($"You shouldn't use \"{_currentToken._value}\" like that");
                         else if(!IsVariable() && _currentToken._type == "Word")
                         {
+                            //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
+                            instructions.AddLast(new Instruction());
+                            CurrentInstruction = instructions.Last();
+
                             string name = _currentToken._value;
-                            Next("Word");
-                            Next("Equal");
+                            NextAndSave("Word");
+                            NextAndSave("Equal");
                             if(IsVariable()) variables.Add(new Variable(name, WichTypeIs("Semicolon")));
                             else if(_currentToken._type == "Number")
                             {
@@ -138,13 +151,17 @@ public class Parser
                             if(_currentToken._type == "Semicolon")
                             {
                                 Next("Semicolon");
-                                Debug.Log("Variable declarada correctamente");
+                                Debug.Log($"Instrucción {++count} recogida correctamente: \"Variable\"");
                                 InstructionsRecolector();
                             }
                             else throw new Exception("Semicolon was expected");
                         }
                         else if(IsVariable()) //Si es una variable se espera que llame a un método
                         {
+                            //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
+                            instructions.AddLast(new Instruction());
+                            CurrentInstruction = instructions.Last();
+
                             //Se recoge la instrucción de ser correcta
                             if(!CheckMethodCall()) throw new Exception("Bad method call");
                             
@@ -152,7 +169,7 @@ public class Parser
                             if(_currentToken._type == "Semicolon")
                             {
                                 Next("Semicolon");
-                                Debug.Log("Llamada a método correcta");
+                                Debug.Log($"Instrucción {++count} recogida correctamente: \"Método\"");
                                 InstructionsRecolector();
                             }
                             else throw new Exception("Semicolon was expected");
@@ -163,8 +180,15 @@ public class Parser
                     {
                         Next("RCBracket");
                         Next("RCBracket");
-                        Debug.Log("Efecto recogido correctamente");
+                        Debug.Log("Instrucciones recogidas correctamente");
                     }
+                }
+
+                //Método para cambiar al siguiente token y guardarlo como parte de la instrucción
+                void NextAndSave(string type)
+                {
+                    CurrentInstruction.Add(_currentToken._value);
+                    Next(type);
                 }
 
                 //Método para comprobar si es una variable
@@ -193,7 +217,7 @@ public class Parser
                             {
                                 if(variable.Type == "Context")
                                 {
-                                    Next("Word");
+                                    NextAndSave("Word");
                                     if(_currentToken._type == "Point") Next("Point");
                                     else return false;
                                     if(_currentToken._type == "Word" && Enum.IsDefined(typeof(ContextMethods), _currentToken._value)) return CheckMethodCall();
@@ -201,7 +225,7 @@ public class Parser
                                 }
                                 else if(variable.Type == "List<Card>")
                                 {
-                                    Next("Word");
+                                    NextAndSave("Word");
                                     if(_currentToken._type == "Point") Next("Point");
                                     else return false;
                                     if(_currentToken._type == "Word" && Enum.IsDefined(typeof(CardListMethods), _currentToken._value)) return CheckMethodCall();
@@ -217,14 +241,14 @@ public class Parser
                     {
                         if(_currentToken._type == "Word" && Enum.IsDefined(typeof(SyntacticSugarContext), _currentToken._value))
                         {
-                            Next("Word");
+                            NextAndSave("Word");
                             Next("Point");
                             if(_currentToken._type == "Word" && Enum.IsDefined(typeof(CardListMethods), _currentToken._value)) return CheckMethodCall();
                             else return false;
                         }
                         else
                         {
-                            Next("Word");
+                            NextAndSave("Word");
                             Next("LParen");
 
                             bool correct = false;
@@ -247,7 +271,7 @@ public class Parser
                     {
                         if(_currentToken._value == "Shuffle")
                         {
-                            Next("Word");
+                            NextAndSave("Word");
                             Next("LParen");
                             Next("RParen");
                             if(_currentToken._type == "Semicolon") return true;
@@ -255,7 +279,7 @@ public class Parser
                         }
                         else
                         {
-                            Next("Word");
+                            NextAndSave("Word");
                             Next("LParen");
 
                             if(WichTypeIs("RParen") == "Card")
@@ -284,7 +308,7 @@ public class Parser
                                 //De ser así verifica el tipo de la variable
                                 if(variable.Type == "Context")
                                 {
-                                    Next("Word");
+                                    NextAndSave("Word");
                                     if(_currentToken._type == finalToken) return "Context";
                                     else if(_currentToken._type == "Point")
                                     {
@@ -295,7 +319,7 @@ public class Parser
                                 }
                                 else if(variable.Type == "List<Card>")
                                 {
-                                    Next("Word");
+                                    NextAndSave("Word");
                                     if(_currentToken._type == finalToken) return "List<Card>";
                                     else if(_currentToken._type == "Point")
                                     {
@@ -306,7 +330,7 @@ public class Parser
                                 }
                                 else if(variable.Type == "Card")
                                 {
-                                    Next("Word");
+                                    NextAndSave("Word");
                                     if(_currentToken._type == finalToken) return "Card";
                                     else if(_currentToken._type == "Point")
                                     {
@@ -317,7 +341,7 @@ public class Parser
                                 }
                                 else if(variable.Type == "Player")
                                 {
-                                    Next("Word");
+                                    NextAndSave("Word");
                                     if(_currentToken._type == finalToken) return "Player";
                                     else throw new Exception("Uknown method or property of context"); 
                                 }
@@ -329,12 +353,12 @@ public class Parser
                         {
                             if(_currentToken._value == "TriggerPlayer")
                             {
-                                Next("Word");
+                                NextAndSave("Word");
                                 return "Player";
                             } 
                             else if(Enum.IsDefined(typeof(SyntacticSugarContext), _currentToken._value))
                             {
-                                Next("Word");
+                                NextAndSave("Word");
                                 if(_currentToken._type == finalToken) return "List<Card>";
                                 else if(_currentToken._type == "Point")
                                 {
@@ -345,7 +369,7 @@ public class Parser
                             } 
                             else
                             {
-                                Next("Word");
+                                NextAndSave("Word");
                                 Next("LParen");
 
                                 if(WichTypeIs("RParen") == "Player") Next("RParen");
@@ -363,14 +387,14 @@ public class Parser
                         }
                         else if(Enum.IsDefined(typeof(CardProperties), _currentToken._value))
                         {
-                            Next("Word");
+                            NextAndSave("Word");
                             return "Player";
                         } 
                         else if(Enum.IsDefined(typeof(CardListProperties), _currentToken._value))
                         {
                             if(_currentToken._value == "Pop")
                             {
-                                Next("Word");
+                                NextAndSave("Word");
                                 Next("LParen");
                                 Next("RParen");
                                 if(_currentToken._type == finalToken) return "Card";
@@ -392,7 +416,7 @@ public class Parser
                 }
             }
             //Al concluir, si le sigue "card" creará la carta, de lo contrario lanzará una excepción
-            if(_currentToken._value != "card") throw new Exception($"To the declaration of effects should be followed by the declaration of at least one card");
+            if(_currentToken._value != "card" && _currentToken._type != "Fin") throw new Exception($"To the declaration of effects should be followed by the declaration of at least one card");
             while(_currentToken._value == "card")
             {
                 Next("Word");

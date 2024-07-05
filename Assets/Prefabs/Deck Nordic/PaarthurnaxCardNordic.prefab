@@ -726,7 +726,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Un antiguo y poderoso drag\xF3n que descansa en \"la garganta del mundo\"\n\nEfecto:
+  m_text: "Un antiguo y poderoso drag\xF3n que descansa en \"la garganta del mundo\"\nEfecto:
     Elimina la carta m\xE1s poderosa del campo"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

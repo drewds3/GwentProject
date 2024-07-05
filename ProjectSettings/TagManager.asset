@@ -10,7 +10,6 @@ TagManager:
   - LeaderCard
   - CartaJugada1
   - CartaJugada2
-  - CartaDescartada
   - CartaSalvada
   - ClimaJugado2
   - ClimaNoJugado2
@@ -19,6 +18,8 @@ TagManager:
   - FilaPlayer1
   - Player1Deck
   - ClimaJugado1
+  - CartaDescartada1
+  - CartaDescartada2
   layers:
   - Default
   - TransparentFX

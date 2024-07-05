@@ -601,7 +601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "El m\xEDtico Sangre de Drag\xF3ns, cuenta la leyenda que nunca pierde.\nEfecto
+  m_text: "El m\xEDtico Sangre de Drag\xF3n, cuenta la leyenda que nunca pierde.\nEfecto
     de l\xEDder: Gana en caso de empate."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

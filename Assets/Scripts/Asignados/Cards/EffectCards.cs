@@ -5,8 +5,8 @@ using static SetPlayers;
 public class EffectCards : MonoBehaviour
 {
     //Variables para los efectos
-    private Transform graveyardOwn;
-    private Transform graveyardRival;
+    private Player playerTrigger;
+    private Player playerRival;
     private string tagRival;
     private string tagOwn;
     private string deckOwn;
@@ -16,8 +16,8 @@ public class EffectCards : MonoBehaviour
     {
         if(player1.Faction == gameObject.GetComponent<Card>().Faction)
         {
-            graveyardOwn = player1.Graveyard;
-            graveyardRival = player2.Graveyard;
+            playerTrigger = player1;
+            playerRival = player2;
 
             tagOwn = "CartaJugada1";
             tagRival = "CartaJugada2";
@@ -26,8 +26,8 @@ public class EffectCards : MonoBehaviour
         }
         else if(player2.Faction == gameObject.GetComponent<Card>().Faction)
         {
-            graveyardOwn = player2.Graveyard;
-            graveyardRival = player1.Graveyard;
+            playerTrigger = player2;
+            playerRival = player1;
 
             tagOwn = "CartaJugada2";
             tagRival = "CartaJugada1";
@@ -40,6 +40,7 @@ public class EffectCards : MonoBehaviour
         else if(numEffect == 3) EliminateWeakerCard();
         else if(numEffect == 4) BandReinforcement();
         else if(numEffect == 5) DrawCard();
+        else if(numEffect == 6) Resucite();
     }
 
     //Efectos posibles: ---------------------------------------------------------------------------------------------------------------
@@ -82,9 +83,9 @@ public class EffectCards : MonoBehaviour
         {
             if(cardsPower[i] == strongCard && i < cardsRival.Length)
             {
-                cardsRival[i].tag = "CartaDescartada";
-                cardsRival[i].transform.position = graveyardRival.position;
-                cardsRival[i].transform.SetParent(graveyardRival);
+                cardsRival[i].tag = "CartaDescartada2";
+                cardsRival[i].transform.position = playerRival.Graveyard.position;
+                cardsRival[i].transform.SetParent(playerRival.Graveyard);
 
                 Debug.Log("Efecto de carta jugada activado");
 
@@ -93,9 +94,9 @@ public class EffectCards : MonoBehaviour
             }
             else if(cardsPower[i] == strongCard && i - cardsRival.Length < cardsOwn.Length)
             {
-                cardsOwn[i - cardsRival.Length].tag = "CartaDescartada";
-                cardsOwn[i - cardsRival.Length].transform.position = graveyardOwn.position;
-                cardsOwn[i - cardsRival.Length].transform.SetParent(graveyardOwn);
+                cardsOwn[i - cardsRival.Length].tag = "CartaDescartada1";
+                cardsOwn[i - cardsRival.Length].transform.position = playerTrigger.Graveyard.position;
+                cardsOwn[i - cardsRival.Length].transform.SetParent(playerTrigger.Graveyard);
 
                 Debug.Log("Efecto de carta jugada activado");
 
@@ -138,9 +139,9 @@ public class EffectCards : MonoBehaviour
                     {
                         cartas[j] = scriptCarta[j].gameObject;
 
-                        cartas[j].tag = "CartaDescartada";
-                        cartas[j].transform.position = graveyardOwn.position;
-                        cartas[j].transform.SetParent(graveyardOwn);
+                        cartas[j].tag = "CartaDescartada2";
+                        cartas[j].transform.position = playerTrigger.Graveyard.position;
+                        cartas[j].transform.SetParent(playerTrigger.Graveyard);
                     }
                 }
                 else //Sino las manda al cementerio del adversario
@@ -149,9 +150,9 @@ public class EffectCards : MonoBehaviour
                     {
                         cartas[j] = scriptCarta[j].gameObject;
 
-                        cartas[j].tag = "CartaDescartada";
-                        cartas[j].transform.position = graveyardRival.position;
-                        cartas[j].transform.SetParent(graveyardRival);
+                        cartas[j].tag = "CartaDescartada1";
+                        cartas[j].transform.position = playerRival.Graveyard.position;
+                        cartas[j].transform.SetParent(playerRival.Graveyard);
                     }
                 }
 
@@ -191,9 +192,11 @@ public class EffectCards : MonoBehaviour
         {
             if(cardsPower[i] == weakerCard)
             {
-                cardsRival[i].tag = "CartaDescartada";
-                cardsRival[i].transform.position = graveyardRival.position;
-                cardsRival[i].transform.SetParent(graveyardRival);
+                if(DragHandler.startParent == GameObject.Find("Hand").transform) cardsRival[i].tag = "CartaDescartada1";
+                else cardsRival[i].tag = "CartaDescartada2";
+                
+                cardsRival[i].transform.position = playerRival.Graveyard.position;
+                cardsRival[i].transform.SetParent(playerRival.Graveyard);
 
                 Debug.Log("Efecto de carta jugada activado");
 
@@ -225,11 +228,51 @@ public class EffectCards : MonoBehaviour
 
         //Luego se aumenta su poder la cantidad n veces
         gameObject.GetComponent<Card>().IncreasePower(n);
+
+        Debug.Log("Efecto de carta jugada activado");
     }
 
     //Roba una carta extra
     public void DrawCard()
     {
         GameObject.Find(deckOwn).GetComponent<DrawCards>().DrawCard();
+        Debug.Log("Efecto de carta jugada activado");
+    }
+
+    //Trae de vuelta una carta a la mano del invocante desde cualquier cementerio
+    public void Resucite()
+    {
+        //Se recogen todas las cartas mandadas a ambos cementerios
+        GameObject[] descartedCards1 = GameObject.FindGameObjectsWithTag("CartaDescartada1");
+        GameObject[] descartedCards2 = GameObject.FindGameObjectsWithTag("CartaDescartada2");
+
+        //Se elige el índice de manera aleatoria
+        int index = UnityEngine.Random.Range(0, descartedCards1.Length + descartedCards2.Length-1);
+
+        GameObject resucitedCard;
+
+        //Se encuentra dicha carta
+        if(index >= 0 && index < descartedCards1.Length) resucitedCard = descartedCards1[index];
+        else resucitedCard = descartedCards2[index - descartedCards1.Length];
+
+        //Por último se manda a la mano del jugador que activó el efecto realizándose los cambios necesarios
+        resucitedCard.tag = "Carta";
+
+        if(DragHandler.startParent == GameObject.Find("Hand").transform)
+        {
+            resucitedCard.transform.SetParent(GameObject.Find("Hand").transform);
+            resucitedCard.transform.position = GameObject.Find("Hand").transform.position;
+            resucitedCard.GetComponent<Card>().Faction = player1.Faction;
+            resucitedCard.GetComponent<DragHandler>().enabled = true;
+            Debug.Log("Efecto de carta jugada activado");
+        }
+        else
+        {
+            resucitedCard.transform.SetParent(GameObject.Find("HandEnemy").transform);
+            resucitedCard.transform.position = GameObject.Find("HandEnemy").transform.position;
+            resucitedCard.GetComponent<Card>().Faction = player2.Faction;
+            resucitedCard.GetComponent<DragHandler>().enabled = true;
+            Debug.Log("Efecto de carta jugada activado");
+        }
     }
 }

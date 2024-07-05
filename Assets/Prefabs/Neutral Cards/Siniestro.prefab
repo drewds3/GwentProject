@@ -557,7 +557,7 @@ MonoBehaviour:
   Range1: Melee
   Range2: null
   Range3: null
-  NumEffect: 0
+  NumEffect: 6
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,7 +649,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Un misterioso ser surgido de qui\xE9n sabe d\xF3nde...\nEfecto: Trae de
-    vuelta a la mano una carta de plata desde el cementerio del invocante. (No implementado)"
+    vuelta a la mano del invocante una carta de plata desde cualquier cementerio."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
