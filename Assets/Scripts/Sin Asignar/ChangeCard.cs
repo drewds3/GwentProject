@@ -20,7 +20,8 @@ public class ChangeCard : MonoBehaviour, IDropHandler
             Debug.Log("La carta ha sido removida");
         }
 
-        if(GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().currentTurn == turnLimit) gameObject.SetActive(false);
+        if(GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().currentTurn == turnLimit
+           || GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().round > 1) gameObject.SetActive(false);
     }
 
     //Método para cambiar la carta por otra al soltarla en el slot

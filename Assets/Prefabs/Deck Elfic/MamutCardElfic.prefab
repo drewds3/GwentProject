@@ -219,7 +219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Arquero Jinete
+  m_text: Mamut furioso
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cbce01e90adf4a5498cba66c07eebe4c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72d4e7da424aaf0428485b34e30dc9d0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -430,7 +430,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8699a8ba64a325548a9c1cf48532e2b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45852191d777d2b489a3ff018c3db1a6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: -8077461281738308923}
   - component: {fileID: -5262470235149670892}
   m_Layer: 3
-  m_Name: JineteCardElfic
+  m_Name: MamutCardElfic
   m_TagString: Carta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -549,11 +549,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Arquero Jinete
+  Name: Mamut furioso
   Type: Silver
   Faction: Raven
-  Power: 4
-  Range1: Ranged
+  Power: 6
+  Range1: Siege
   Range2: null
   Range3: null
   NumEffect: 0
@@ -635,8 +635,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xBFQu\xE9 es mejor que un unicornio?  \xA1As\xED es!, un unicornio con
-    un jinete arquero."
+  m_text: "Los mamuts son criaturas pac\xEDficas pero a menudo los elfos usan sus
+    habilidades para relacionarse con ellos y hacerlos atacar a sus enemigos."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -771,7 +771,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4
+  m_text: 6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

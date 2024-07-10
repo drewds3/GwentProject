@@ -1,3 +1,30 @@
+public enum TokenType
+{
+    Number,
+    Word,
+    Keyword,
+    Point,
+    Colon,
+    Semicolon,
+    Comma,
+    LParen,
+    RParen,
+    LCBracket,
+    RCBracket,
+    LSBracket,
+    RSBracket,
+    Plus,
+    Minus,
+    Multi,
+    Division,
+    QMark,
+    String,
+    Equal,
+    Smaller,
+    Greater,
+    Fin
+}
+
 enum KeyWords
 {
     effect,
@@ -21,7 +48,22 @@ enum KeyWords
     Pop,
     Remove,
     Shuffle,
-    Add
+    Add,
+    Number,
+    String,
+    Bool,
+    card,
+    Type,
+    Faction,
+    Power,
+    Range,
+    OnActivation,
+    Effect,
+    Selector,
+    Source,
+    Single,
+    Predicate,
+    PostAction
 }
 
 enum ContextPropertiesAndMethods
@@ -79,4 +121,15 @@ enum CardListMethods
     Remove,
     Shuffle,
     Add
+}
+
+public enum Source
+{
+    hand,
+    otherHand,
+    deck,
+    otherDeck,
+    field,
+    otherField,
+    parent
 }

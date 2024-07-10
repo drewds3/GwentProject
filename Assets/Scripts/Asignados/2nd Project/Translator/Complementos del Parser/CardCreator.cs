@@ -10,6 +10,9 @@ public class CardCreator : MonoBehaviour
     public GameObject card;
     public GameObject leaderCard;
 
+    //Carta que se está creando
+    private GameObject CardInstance;
+
     //Booleanos
     private bool isFactionNew = false; //Comprueba si ya se le asignó una facción nueva al jugador 1
     private bool isLeaderCreated = false; //Comprueba si ya existe un líder
@@ -17,22 +20,19 @@ public class CardCreator : MonoBehaviour
     //Método principal de la clase
     public void Create(List<Property> properties)
     {
-        //Se comprueba de qué tipo es la carta y se instancia
-        GameObject cardInstance;
-
         if(WhichTypeCardIS(properties) == "Leader")
         {
             if(isLeaderCreated) throw new Exception("You have already assigned a new leader and there can only be one");
-            cardInstance = LeaderInstance();
+            CardInstance = LeaderInstance();
             isLeaderCreated = true;
         }
         else
         {
-            cardInstance = Instantiate(card);
+            CardInstance = Instantiate(card);
         } 
 
         //Se le añaden las características deseadas a la carta
-        Card cardScript = cardInstance.GetComponent<Card>();
+        Card cardScript = CardInstance.GetComponent<Card>();
 
         SetProperties(cardScript, properties);
 
@@ -45,7 +45,7 @@ public class CardCreator : MonoBehaviour
         //Si ya se estableció la nueva facción se comprueba que las cartas sigan perteneciendo a la misma o sean neutrales
         else if(isFactionNew && cardScript.Faction != "Neutral" && cardScript.Faction != player1.Faction)
         {
-            Destroy(cardInstance);
+            Destroy(CardInstance);
             throw new Exception("Cards must belong to the same faction or be neutral");
         }
         
@@ -54,9 +54,15 @@ public class CardCreator : MonoBehaviour
         {
             Translator translator = GameObject.Find("Botón Confirmar").GetComponent<Translator>();
 
-            translator.cards.Add(cardInstance);
+            translator.cards.Add(CardInstance);
         }
     }
+
+     public void Create(List<Property> properties, List<Effect> effects)
+     {
+        Create(properties);
+        CardInstance.GetComponent<NewCard>().Effects = effects;
+     }
 
     //Método para agregarle las propiedades a la carta nueva
     public void SetProperties(Card card, List<Property> properties)
@@ -97,14 +103,9 @@ public class CardCreator : MonoBehaviour
     //Método para instanciar y cambiar de líder
     private GameObject LeaderInstance()
     {
-        //Se instacia
-        GameObject cardInstance = Instantiate(leaderCard);
+        //Se instacia en la posición correcta y se elimina al líder anterior
+        GameObject cardInstance = Instantiate(leaderCard, GameObject.Find("LeaderPosition").transform);
 
-        //Se lleva a la posición en el tablero y se elimina al líder anterior
-        cardInstance.transform.position = GameObject.Find("DovahkiinCardNordic").transform.position;
-        cardInstance.transform.SetParent(GameObject.Find("Tablero").transform);
-        cardInstance.transform.rotation = Quaternion.Euler(0, 0, +90);
-        cardInstance.transform.SetSiblingIndex(1);
         Destroy(GameObject.Find("DovahkiinCardNordic"));
 
         //Se cambia el trigger del bloqueador de la carta líder

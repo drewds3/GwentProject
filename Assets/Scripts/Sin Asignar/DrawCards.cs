@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static SetPlayers;
 
 public class DrawCards : MonoBehaviour
 {   
@@ -146,6 +147,9 @@ public class DrawCards : MonoBehaviour
                     indice = Random.Range(0, deck.Count);
 
                     GameObject card = Instantiate(deck[indice], graveyard);
+
+                    if(gameObject == player1.Deck) card.tag = "CartaDescartada1";
+                    else if(gameObject == player2.Deck) card.tag = "CartaDescartada2";
         
                     deck.Remove(deck[indice]);
 
@@ -208,7 +212,10 @@ public class DrawCards : MonoBehaviour
         {
             indice = Random.Range(0, deck.Count);
 
-            Instantiate(deck[indice], graveyard);
+            GameObject card = Instantiate(deck[indice], graveyard);
+
+            if(gameObject == player1.Deck) card.tag = "CartaDescartada1";
+            else if(gameObject == player2.Deck) card.tag = "CartaDescartada2";
 
             deck.Remove(deck[indice]);
         }

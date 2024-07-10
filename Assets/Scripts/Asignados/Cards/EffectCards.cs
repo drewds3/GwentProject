@@ -250,29 +250,38 @@ public class EffectCards : MonoBehaviour
         int index = UnityEngine.Random.Range(0, descartedCards1.Length + descartedCards2.Length-1);
 
         GameObject resucitedCard;
-
-        //Se encuentra dicha carta
-        if(index >= 0 && index < descartedCards1.Length) resucitedCard = descartedCards1[index];
-        else resucitedCard = descartedCards2[index - descartedCards1.Length];
-
-        //Por último se manda a la mano del jugador que activó el efecto realizándose los cambios necesarios
-        resucitedCard.tag = "Carta";
-
-        if(DragHandler.startParent == GameObject.Find("Hand").transform)
+ 
+        try
         {
-            resucitedCard.transform.SetParent(GameObject.Find("Hand").transform);
-            resucitedCard.transform.position = GameObject.Find("Hand").transform.position;
-            resucitedCard.GetComponent<Card>().Faction = player1.Faction;
-            resucitedCard.GetComponent<DragHandler>().enabled = true;
-            Debug.Log("Efecto de carta jugada activado");
+            //Se encuentra dicha carta
+            if(index >= 0 && index < descartedCards1.Length) resucitedCard = descartedCards1[index];
+            else resucitedCard = descartedCards2[index - descartedCards1.Length];
+        
+            //Por último se manda a la mano del jugador que activó el efecto realizándose los cambios necesarios
+            resucitedCard.tag = "Carta";
+
+            if(DragHandler.startParent == GameObject.Find("Hand").transform)
+            {
+                resucitedCard.transform.SetParent(GameObject.Find("Hand").transform);
+                resucitedCard.transform.position = GameObject.Find("Hand").transform.position;
+                resucitedCard.GetComponent<Card>().Faction = player1.Faction;
+                resucitedCard.GetComponent<Card>().Name += " (Resucitado)";
+                resucitedCard.GetComponent<DragHandler>().enabled = true;
+                Debug.Log("Efecto de carta jugada activado");
+            }
+            else
+            {
+                resucitedCard.transform.SetParent(GameObject.Find("HandEnemy").transform);
+                resucitedCard.transform.position = GameObject.Find("HandEnemy").transform.position;
+                resucitedCard.GetComponent<Card>().Faction = player2.Faction;
+                resucitedCard.GetComponent<Card>().Name += " (Resucitado)";
+                resucitedCard.GetComponent<DragHandler>().enabled = true;
+                Debug.Log("Efecto de carta jugada activado");
+            }
         }
-        else
+        catch // Si no hay cartas en el cementerio pues no hace :(
         {
-            resucitedCard.transform.SetParent(GameObject.Find("HandEnemy").transform);
-            resucitedCard.transform.position = GameObject.Find("HandEnemy").transform.position;
-            resucitedCard.GetComponent<Card>().Faction = player2.Faction;
-            resucitedCard.GetComponent<DragHandler>().enabled = true;
-            Debug.Log("Efecto de carta jugada activado");
+            Debug.Log("No se pudo activar el efecto");
         }
     }
 }
