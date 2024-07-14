@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: -5262470235149670892}
   - component: {fileID: 1128729304841533940}
   m_Layer: 3
-  m_Name: FarmerCardElfic 1
+  m_Name: FarmerCardElfic
   m_TagString: Carta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

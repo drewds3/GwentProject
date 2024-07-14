@@ -375,10 +375,10 @@ GameObject:
   - component: {fileID: 4791996619338446987}
   - component: {fileID: 4791996619338446984}
   - component: {fileID: 4791996619338446985}
+  - component: {fileID: 5831066273536689627}
   - component: {fileID: 4791996619338446986}
   - component: {fileID: -5262470235149670892}
   - component: {fileID: 8373972447774742972}
-  - component: {fileID: 5831066273536689627}
   m_Layer: 3
   m_Name: GenericCard
   m_TagString: Carta
@@ -451,6 +451,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5831066273536689627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4791996619338446980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baffe79850475c24c8c5fa72fb236247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ExampleCard
+  Type: null
+  Faction: null
+  Power: 0
+  Range1: null
+  Range2: null
+  Range3: null
+  NumEffect: 0
 --- !u!114 &4791996619338446986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,26 +507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e929e42eb7dd6847905e55b0bdd9166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5831066273536689627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4791996619338446980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baffe79850475c24c8c5fa72fb236247, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: ExampleCard
-  Type: null
-  Faction: null
-  Power: 0
-  Range1: null
-  Range2: null
-  Range3: null
-  NumEffect: 0
 --- !u!1 &6021522398497822238
 GameObject:
   m_ObjectHideFlags: 0

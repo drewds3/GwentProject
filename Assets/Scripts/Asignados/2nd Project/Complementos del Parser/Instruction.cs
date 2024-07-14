@@ -1,14 +1,11 @@
+using System;
 using System.Collections.Generic;
 
 //Clase Instrucción
-public class Instruction
+public class Instruction : ICloneable
 {
     //Lista de palabras clave
-    private List<string> KeyWords = new();
-
-    //Variables a pasar como parámetro (si es que tienen)
-    public Instruction AssociatedVariable1;
-    public Instruction AssociatedVariable2;
+    public List<string> KeyWords = new();
 
     //Método para añadir palabras clave a la instrucción
     public void Add(string KeyWord)
@@ -24,5 +21,17 @@ public class Instruction
     {
         string debugList = string.Join(", ", KeyWords.ToArray());
         UnityEngine.Debug.Log("Esta instrucción tiene las siguientes palabras clave: " + debugList);
+    }
+
+    public object Clone()
+    {
+        Instruction instruction = new();
+
+        foreach(string word in KeyWords)
+        {
+            instruction.Add((string)word.Clone());
+        }
+
+        return instruction;
     }
 }

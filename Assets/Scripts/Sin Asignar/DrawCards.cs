@@ -102,7 +102,7 @@ public class DrawCards : MonoBehaviour
                 //Si es el primer turno de la 1ra ronda roban 10 cartas
                 if(cartasZone.childCount<10)
                 {
-                    indice = Random.Range(0, deck.Count);
+                    indice = Random.Range(0, deck.Count); 
 
                     Instantiate(deck[indice], cartasZone);
 

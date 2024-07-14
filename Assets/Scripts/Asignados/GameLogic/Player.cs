@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 //Clase Jugador
@@ -8,6 +10,23 @@ public class Player
     public GameObject Deck {get;set;}
     public Transform Graveyard {get;set;}
     public string Faction {get;set;}
+
+    //Lista de las cartas en la mano del jugador
+    public List<GameObject> CardsInHand
+    {
+        get
+        {
+            List<Card> cardsTransforms = Hand.GetComponentsInChildren<Card>().ToList();
+            List<GameObject> cards = new();
+
+            for(int i = 0; i < cardsTransforms.Count; i++)
+            {
+                cards.Add(cardsTransforms[i].gameObject);
+            }
+
+            return cards;
+        }
+    }
 
     //Variables para simular el pase del jugador
     public GameObject blockHand;

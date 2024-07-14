@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: -764132982759130789}
   m_Layer: 3
   m_Name: AnastarianCardElfic
-  m_TagString: Carta
+  m_TagString: "CartaL\xEDder2"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

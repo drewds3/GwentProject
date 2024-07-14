@@ -7,7 +7,8 @@ public class Translator : MonoBehaviour
     //Lista de cartas creadas
     public List<GameObject> cards = new();
 
-    public void Mostrar()
+    //Método principal del segundo proyecto
+    public void Translate()
     {
         //Primero que todo se obtienen los tokens
         Lexer lexer = new(CodeEditor.inputField.text);

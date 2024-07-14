@@ -7,7 +7,6 @@ TagManager:
   - DragParent
   - ZonaDePuntaje
   - Carta
-  - LeaderCard
   - CartaJugada1
   - CartaJugada2
   - CartaSalvada
@@ -20,6 +19,8 @@ TagManager:
   - ClimaJugado1
   - CartaDescartada1
   - CartaDescartada2
+  - "CartaL\xEDder1"
+  - "CartaL\xEDder2"
   layers:
   - Default
   - TransparentFX

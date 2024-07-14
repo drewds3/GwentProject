@@ -108,9 +108,10 @@ public class Parser
 
                 //Cuerpo del método (acción del efecto en sí)
                 //Se procede a recolectar las instrucciones en las siguiente lista
-                LinkedList<Instruction> instructions = new();
+                List<Instruction> instructions = new();
 
                 //Se añaden como variables los parámetros "targets" y "context"
+
                 variables.AddLast(new Variable(targets, "List<Card>"));
                 variables.AddLast(new Variable(context, "Context")); 
                 
@@ -125,8 +126,8 @@ public class Parser
                 }
                 
                 //Se crea (por fin) el efecto
-                if(parameters != null) Effects.Add(new Effect(nameEffect, instructions, parameters));
-                else Effects.Add(new Effect(nameEffect, instructions));
+                if(parameters != null) Effects.Add(new Effect(nameEffect, targets, instructions, variables, parameters));
+                else Effects.Add(new Effect(nameEffect, targets, instructions, variables));
                 
                 Debug.Log("Efecto creado con éxito");
 
@@ -142,7 +143,7 @@ public class Parser
                         else if(!IsVariable() && CurrentToken.Type == TokenType.Word)
                         {
                             //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
-                            instructions.AddLast(new Instruction());
+                            instructions.Add(new Instruction());
                             CurrentInstruction = instructions.Last();
 
                             string name = CurrentToken.Value;
@@ -167,7 +168,7 @@ public class Parser
                         else if(IsVariable()) //Si es una variable se espera que llame a un método
                         {
                             //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
-                            instructions.AddLast(new Instruction());
+                            instructions.Add(new Instruction());
                             CurrentInstruction = instructions.Last();
 
                             //Se recoge la instrucción de ser correcta
@@ -467,7 +468,7 @@ public class Parser
     }
 
     //Método para cambiar al siguiente token
-     private void Next(TokenType tokenType)
+    private void Next(TokenType tokenType)
     {
         if (CurrentToken.Type == tokenType)
         {
@@ -730,6 +731,7 @@ public class Parser
 
             Next(TokenType.RCBracket);
         }
+        else if(!isSyntacticSugarOn) Next(TokenType.RCBracket);
 
         //Luego sigue el Selector
         Next(TokenType.Comma);
@@ -768,7 +770,7 @@ public class Parser
         {
             if(effect.Name == CurrentToken.Value)
             {
-                return effect.Clone();
+                return (Effect)effect.Clone();
             }
         }
 
@@ -825,8 +827,8 @@ public class Parser
         Next(TokenType.Colon);
         Next(TokenType.QMark);
 
-        if(Enum.IsDefined(typeof(Source), CurrentToken.Value) || CurrentToken.Value != "parent") effect.Targets = CurrentToken.Value;
-        else if(CurrentToken.Value == "parent" && effectParent != null) effect.Targets = effectParent.Targets;
+        if(Enum.IsDefined(typeof(Source), CurrentToken.Value) || CurrentToken.Value != "parent") effect.SourceTargets = CurrentToken.Value;
+        else if(CurrentToken.Value == "parent" && effectParent != null) effect.SourceTargets= effectParent.SourceTargets;
         else throw new Exception("Invalid card filter");
 
         Next(TokenType.Word);
@@ -867,7 +869,7 @@ public class Parser
     private void PostAction(Effect effectParent)
     {
         if(CurrentToken.Value == KeyWords.PostAction.ToString()) Next(TokenType.Keyword);
-        else throw new Exception("PosAction expected");
+        else throw new Exception("PostAction expected");
 
         Next(TokenType.Colon);
         Next(TokenType.LCBracket);

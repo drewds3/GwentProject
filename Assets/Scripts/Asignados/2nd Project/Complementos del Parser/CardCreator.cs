@@ -61,7 +61,7 @@ public class CardCreator : MonoBehaviour
      public void Create(List<Property> properties, List<Effect> effects)
      {
         Create(properties);
-        CardInstance.GetComponent<NewCard>().Effects = effects;
+        foreach(Effect effect in effects) CardInstance.GetComponent<NewCard>().Effects.Add((Effect)effect.Clone());
      }
 
     //Método para agregarle las propiedades a la carta nueva

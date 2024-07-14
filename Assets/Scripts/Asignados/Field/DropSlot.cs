@@ -97,6 +97,16 @@ public class DropSlot : MonoBehaviour, IDropHandler
                     effects.ActiveEffect(cardScript.NumEffect);
                 }
 
+                NewCard newCard = DragParent.GetComponentInChildren<NewCard>();
+
+                if(newCard != null && newCard.Effects.Count!= 0)
+                {
+                    for(int i = 0; i < newCard.Effects.Count; i++) 
+                    {
+                        newCard.Effects[i].Activate();
+                    }
+                }
+
                 /* Luego, establece el objeto que se está arrastrando
                 como el objeto de la slot y lo posiciona en la slot
                 */
