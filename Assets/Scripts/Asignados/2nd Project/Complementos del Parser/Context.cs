@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static SetPlayers;
 using System.Linq;
+using static TurnsBasedSystem;
 
 public class Context : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Context : MonoBehaviour
     public static Player TriggerPlayer
     {get
         {
-            if(GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().currentTurn%2==0)
+            if(currentTurn % 2 == 0)
             {
                 return player1;
             }
@@ -20,7 +21,7 @@ public class Context : MonoBehaviour
     public static Player OtherPlayer
     {get
         {
-            if(GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().currentTurn%2!=0)
+            if(currentTurn % 2 != 0)
             {
                 return player1;
             }
@@ -34,10 +35,9 @@ public class Context : MonoBehaviour
         get
         {   
             //Se crea la lista y se le unen las cartas en los mazos
-            List<GameObject> board = GameObject.FindObjectsOfType<Card>().Select(card => card.gameObject).ToList();
-            board.AddRange(GameObject.Find("Deck").GetComponent<DrawCards>().deck);
-            board.AddRange(GameObject.Find("DeckEnemy").GetComponent<DrawCards>().deck);
-
+            List<GameObject> board = GameObject.FindGameObjectsWithTag("CartaJugada1").ToList();
+            board.AddRange(GameObject.FindGameObjectsWithTag("CartaJugada2"));
+            
             return board;
         }
     }
@@ -76,7 +76,7 @@ public class Context : MonoBehaviour
     //Devuelve una lista de las cartas en el mazo del jugador en cuestión
     public static List<GameObject> DeckOfPlayer(Player player)
     {
-        if(player == player1) return player1.Deck.GetComponent<DrawCards>().deck;
-        else return player2.Deck.GetComponent<DrawCards>().deck;
+        if(player == player1) return player1.Deck.GetComponent<Deck>().deck;
+        else return player2.Deck.GetComponent<Deck>().deck;
     }
 }

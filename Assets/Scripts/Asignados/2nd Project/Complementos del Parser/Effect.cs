@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static Context;
+using static SetPlayers;
 
 //Efecto de las cartas
 public class Effect : ICloneable
@@ -154,6 +155,15 @@ public class Effect : ICloneable
                 else if(SourceTargets == "otherDeck") variable.Value = DeckOfPlayer(OtherPlayer);
                 else if(SourceTargets == "field") variable.Value = FieldOfPlayer(TriggerPlayer);
                 else if(SourceTargets == "otherField") variable.Value = FieldOfPlayer(OtherPlayer);
+                else if(SourceTargets == "void") variable.Value = new List<GameObject>();
+
+                if(Single) 
+                {
+                    List<GameObject> cards = (List<GameObject>)variable.Value;
+                    List<GameObject> cards2 = new(){cards[0]};
+                    variable.Value = cards2;
+                }
+                
                 return;
             }
         }
@@ -222,28 +232,28 @@ public class Effect : ICloneable
                 {
                     Next();
                     listReturn = HandOfPlayer;
-                    player = PlayerParam();
+                    player = (Player)Parameter();
                     cards = listReturn(player);
                 } 
                 else if(CurrentKeyWord == "FieldOfPlayer")
                 {
                     Next();
                     listReturn = FieldOfPlayer;
-                    player = PlayerParam();
+                    player = (Player)Parameter();
                     cards = listReturn(player);
                 } 
                 else if(CurrentKeyWord == "GraveyardOfPlayer")
                 {
                     Next();
                     listReturn = GraveyardOfPlayer;
-                    player = PlayerParam();
+                    player = (Player)Parameter();
                     cards = listReturn(player);
                 }
                 else if(CurrentKeyWord == "DeckOfPlayer")
                 {
                     Next();
                     listReturn = DeckOfPlayer;
-                    player = PlayerParam();
+                    player = (Player)Parameter();
                     cards = listReturn(player);
                 }
                 else if(CurrentKeyWord == "Hand")
@@ -322,12 +332,13 @@ public class Effect : ICloneable
 
                 GameObject card = (GameObject)SetVariableValue(nameVariable).Value;
 
-                throw new NotImplementedException();
+                if(card.GetComponent<Card>().Owner == "Player1") return player1;
+                else if(card.GetComponent<Card>().Owner == "Player2") return player2;
             }
 
             throw new NotImplementedException();
         }
-        else // if(VariableType() == "Player")
+        else if(VariableType() == "Player")
         {
             string nameVariable = CurrentKeyWord;
 
@@ -335,6 +346,7 @@ public class Effect : ICloneable
             
             return SetVariableValue(nameVariable).Value;
         } 
+        else throw new Exception();
     }
 
     private string VariableType()
@@ -347,26 +359,6 @@ public class Effect : ICloneable
             }
         }
         return null;
-    }
-
-    private Player PlayerParam()
-    {
-        foreach(Variable variable in Variables)
-        {
-            if(variable.Name == CurrentKeyWord && variable.Type == "Context")
-            {
-                Next();
-                Next();
-                return TriggerPlayer;
-            }
-            else if(variable.Name == CurrentKeyWord && variable.Type == "Player")
-            {
-                Next();
-                return (Player)variable.Value;                    
-            }
-        }
-
-        throw new Exception();
     }
 
     private Variable SetVariableValue(string name)
@@ -406,28 +398,28 @@ public class Effect : ICloneable
         {
             Next();
             listReturn = HandOfPlayer;
-            player = PlayerParam();
+            player = (Player)Parameter();
             cards = listReturn(player);
         } 
         else if(CurrentKeyWord == "FieldOfPlayer")
         {
             Next();
             listReturn = FieldOfPlayer;
-            player = PlayerParam();
+            player = (Player)Parameter();
             cards = listReturn(player);
         } 
         else if(CurrentKeyWord == "GraveyardOfPlayer")
         {
             Next();
             listReturn = GraveyardOfPlayer;
-            player = PlayerParam();
+            player = (Player)Parameter();
             cards = listReturn(player);
         }
         else if(CurrentKeyWord == "DeckOfPlayer")
         {
             Next();
             listReturn = DeckOfPlayer;
-            player = PlayerParam();
+            player = (Player)Parameter();
             cards = listReturn(player);
         }
         else if(CurrentKeyWord == "Hand")

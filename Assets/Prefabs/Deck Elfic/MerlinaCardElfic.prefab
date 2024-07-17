@@ -636,6 +636,7 @@ MonoBehaviour:
   Range2: Ranged
   Range3: null
   NumEffect: 2
+  Owner: 
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0

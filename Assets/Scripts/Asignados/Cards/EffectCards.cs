@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using static SetPlayers;
+using System.Collections.Generic;
+using System.Linq;
 
 public class EffectCards : MonoBehaviour
 {
@@ -235,7 +237,7 @@ public class EffectCards : MonoBehaviour
     //Roba una carta extra
     public void DrawCard()
     {
-        GameObject.Find(deckOwn).GetComponent<DrawCards>().DrawCard();
+        GameObject.Find(deckOwn).GetComponent<Deck>().DrawCard();
         Debug.Log("Efecto de carta jugada activado");
     }
 
@@ -246,16 +248,24 @@ public class EffectCards : MonoBehaviour
         GameObject[] descartedCards1 = GameObject.FindGameObjectsWithTag("CartaDescartada1");
         GameObject[] descartedCards2 = GameObject.FindGameObjectsWithTag("CartaDescartada2");
 
+        //Se filtran las cartas que sean del tipo Unidad de Plata
+        List<GameObject> cards = new();
+
+        for(int i = 0; i < descartedCards1.Length; i++)
+        if(descartedCards1[i].GetComponent<Card>().Type == "Silver") cards.Add(descartedCards1[i]);
+
+        for(int i = 0; i < descartedCards2.Length; i++)
+        if(descartedCards2[i].GetComponent<Card>().Type == "Silver") cards.Add(descartedCards2[i]);
+
         //Se elige el índice de manera aleatoria
-        int index = UnityEngine.Random.Range(0, descartedCards1.Length + descartedCards2.Length-1);
+        int index = UnityEngine.Random.Range(0, cards.Count);
 
         GameObject resucitedCard;
  
         try
         {
             //Se encuentra dicha carta
-            if(index >= 0 && index < descartedCards1.Length) resucitedCard = descartedCards1[index];
-            else resucitedCard = descartedCards2[index - descartedCards1.Length];
+            resucitedCard = cards[index];
         
             //Por último se manda a la mano del jugador que activó el efecto realizándose los cambios necesarios
             resucitedCard.tag = "Carta";

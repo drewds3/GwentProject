@@ -471,6 +471,8 @@ MonoBehaviour:
   Range2: null
   Range3: null
   NumEffect: 0
+  Owner: Player1
+  count: 0
 --- !u!114 &4791996619338446986
 MonoBehaviour:
   m_ObjectHideFlags: 0

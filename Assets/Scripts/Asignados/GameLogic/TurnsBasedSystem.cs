@@ -4,7 +4,7 @@ using static SetPlayers;
 public class TurnsBasedSystem : MonoBehaviour
 {
     //Turno actual, par le toca al jugador 1, y impar al jugador 2
-    public int currentTurn = 0;
+    public static int currentTurn = 0;
 
     //Veces que han pasado los jugadores
     public int passCount = 0;
@@ -19,9 +19,9 @@ public class TurnsBasedSystem : MonoBehaviour
     public GameObject tiedGameCartel;
     public GameObject victoryCartel1;
     public GameObject victoryCartel2;
-    public int round = 1;
-    public int winner = 0;
-    public bool victory;
+    public static int round = 1;
+    public static int winner = 0;
+    public static bool victory;
     
     //Método para cambiar de turno
     public void NextTurn()
@@ -83,6 +83,8 @@ public class TurnsBasedSystem : MonoBehaviour
                 if(GameObject.Find("DovahkiinCardNordic").GetComponent<LeaderEffect>().actived)
                 {
                     counterScore.winsP1++;
+                    
+                    GameObject.Find("DovahkiinCardNordic").GetComponent<LeaderEffect>().actived = false;
 
                 }
                 else

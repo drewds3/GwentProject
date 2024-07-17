@@ -451,7 +451,9 @@ public class Parser
 
                 //Luego, se crea (por fin) la carta
                 CardCreator cardCreator = GameObject.Find("Botón Confirmar").GetComponent<CardCreator>();
-                cardCreator.Create(properties, CardEffects);
+                if(!IsCardWithEffectCorrect() && CardEffects.Count == 0) cardCreator.Create(properties);
+                else if(IsCardWithEffectCorrect()) cardCreator.Create(properties, CardEffects);
+                else throw new Exception("This card cannot have effects");
 
                 Debug.Log("Carta creada con las siguientes propiedades:");
                 foreach(Property property in properties)
@@ -611,7 +613,6 @@ public class Parser
                 if(token.Value == "Type" && CurrentToken.Value != "Gold" && CurrentToken.Value != "Silver")
                 {
                     isSpecialCard = true;
-                    Debug.Log("Es especiallll");
                 } 
                 ToProperty(token.Value, CurrentToken.Value);
             } 
@@ -619,7 +620,6 @@ public class Parser
             count++;
 
             if((count < 3 && isSpecialCard) || (count < 5 && !isSpecialCard)) Next(TokenType.Comma);
-            //else if(count == 5) count = 0;
         }
 
         //Luego de recoger todas las propiedades declaradas se verifica si son correctas
@@ -672,7 +672,11 @@ public class Parser
             }
             else if(property.Type == "Name") hasName = true;
             else if(property.Type == "Faction") hasFaction = true;
-            else if(property.Type == "Power") hasPower = true;
+            else if(property.Type == "Power")
+            {
+                if(property.ValueI < 0) throw new Exception("Power cannot be negative");
+                else hasPower = true;
+            } 
             else if(property.Type == "Range") hasRange = true;
         }
 
@@ -733,20 +737,28 @@ public class Parser
         }
         else if(!isSyntacticSugarOn) Next(TokenType.RCBracket);
 
-        //Luego sigue el Selector
-        Next(TokenType.Comma);
+        //Luego comprueba si sigue un Selector
+        if(CurrentToken.Type == TokenType.Comma)
+        {
+            Next(TokenType.Comma);
 
-        if(CurrentToken.Value == "Selector") Next(TokenType.Keyword);
-        else throw new Exception("Selector expected");
-
-        Selector(null, effect);
-
-        //Si hay PostAction procede en consecuencia
+            if(CurrentToken.Value == "Selector")
+            {
+                Next(TokenType.Keyword);
+                Selector(null, effect);
+            } 
+            //De no tener un Selector se le otorga void al Source para que en ejecución los targets sean una lista vacía
+            else effect.SourceTargets = "void"; 
+        }
+        
+        //Comprueba si hay PostAction y procede en consecuencia
         if(CurrentToken.Type == TokenType.Comma)
         {
             Next(TokenType.Comma);
             PostAction(effect);
         }
+        else if(CurrentToken.Value == KeyWords.PostAction.ToString() && effect.SourceTargets == "void") PostAction(effect);
+        else effect.SourceTargets ??= "void";
 
         Next(TokenType.RCBracket);
 
@@ -926,4 +938,12 @@ public class Parser
 
         Debug.Log("Efecto posterior correcto");
     }
+
+    private bool IsCardWithEffectCorrect()
+    {
+        foreach(Property property in properties)
+        if(property.ValueS == "Silver" || property.ValueS == "Gold" || property.ValueS == "Leader") return true;
+                    
+        return false;
+    }               
 }

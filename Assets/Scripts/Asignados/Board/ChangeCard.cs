@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static TurnsBasedSystem;
 
 public class ChangeCard : MonoBehaviour, IDropHandler
 {
@@ -20,14 +21,13 @@ public class ChangeCard : MonoBehaviour, IDropHandler
             Debug.Log("La carta ha sido removida");
         }
 
-        if(GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().currentTurn == turnLimit
-           || GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().round > 1) gameObject.SetActive(false);
+        if(currentTurn == turnLimit || round > 1) gameObject.SetActive(false);
     }
 
     //Método para cambiar la carta por otra al soltarla en el slot
     public void OnDrop(PointerEventData eventData)
     {  
-        DrawCards cardScript = deck.GetComponent<DrawCards>();
+        Deck playerDeck = deck.GetComponent<Deck>();
         
         //Comprueba si hay una carta
         if(!item)
@@ -37,9 +37,9 @@ public class ChangeCard : MonoBehaviour, IDropHandler
             item.transform.SetParent(transform);
             item.transform.position = transform.position;
 
-            cardScript.OnClick();
+            playerDeck.OnClick();
                 
-            cardScript.Swap();
+            playerDeck.Swap();
         }
     }
 }

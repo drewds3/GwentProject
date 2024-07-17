@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static TurnsBasedSystem;
 
 public class ScoreText : MonoBehaviour
 {
@@ -21,7 +22,6 @@ public class ScoreText : MonoBehaviour
     public GameObject RowS2;
 
     //Variables para visualizar la ronda actual y quién ha ganado cada una
-    public int round;
     public GameObject countRound;
     public int winsP1 = 0;
     public int winsP2 = 0;
@@ -34,8 +34,6 @@ public class ScoreText : MonoBehaviour
 
     void Update()
     {   
-        round = countRound.GetComponent<TurnsBasedSystem>().round;
-
         //Se actualizan las puntuaciones a tiempo real
         ActualPlayerScore();
         ActualScore();

@@ -5,22 +5,9 @@ public class LeaderEffect : MonoBehaviour
 {   
     //Variables para evitar que se usen efectos más de una vez
     int count = 0;
-    int round1;
-    int round2;
 
     //Variable para el efecto de la carta lider del jugador 1
     public bool actived = false;
-
-    void Update()
-    {   
-        //Se actualiza que ronda es
-        round1 = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>().round;
-
-        if(round1 != round2)
-        {
-            actived = false;
-        }
-    }
 
     //Mantiene un carta aleatoria en el campo entre cada ronda tras activar su efecto
     public void AnastarianKingEffect()
@@ -65,8 +52,6 @@ public class LeaderEffect : MonoBehaviour
     {
         if(count < 1)
         {
-            round2 = round1;
-
             actived = true;
 
             count++;

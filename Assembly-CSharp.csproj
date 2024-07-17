@@ -68,7 +68,7 @@
     <Compile Include="Assets\Scripts\Asignados\2nd Project\CodeEditor.cs" />
     <Compile Include="Assets\Scripts\Asignados\Cards\NewCard.cs" />
     <Compile Include="Assets\Scripts\Asignados\Cards\Card.cs" />
-    <Compile Include="Assets\Scripts\Sin Asignar\DrawCards.cs" />
+    <Compile Include="Assets\Scripts\Asignados\Board\Deck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Scripts\Asignados\2nd Project\Complementos del Parser\Property.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
@@ -84,9 +84,9 @@
     <Compile Include="Assets\Scripts\Asignados\GameLogic\TurnsBasedSystem.cs" />
     <Compile Include="Assets\Scripts\Asignados\Cards\CardImages.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Sin Asignar\ChangeCard.cs" />
+    <Compile Include="Assets\Scripts\Asignados\Board\ChangeCard.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
-    <Compile Include="Assets\Scripts\Sin Asignar\DragHandler.cs" />
+    <Compile Include="Assets\Scripts\Asignados\Cards\DragHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
@@ -96,25 +96,25 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\Sin Asignar\MenuPausa.cs" />
     <Compile Include="Assets\Scripts\Asignados\2nd Project\Complementos del Parser\Context.cs" />
-    <Compile Include="Assets\Scripts\Asignados\Field\ClimateSlots.cs" />
+    <Compile Include="Assets\Scripts\Asignados\Board\ClimateSlots.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\Sin Asignar\RowScoreController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
-    <Compile Include="Assets\Scripts\Sin Asignar\LeaderEffect.cs" />
+    <Compile Include="Assets\Scripts\Asignados\Cards\LeaderEffect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Sin Asignar\ScoreText.cs" />
     <Compile Include="Assets\Scripts\Asignados\2nd Project\Complementos del Parser\Instruction.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
-    <Compile Include="Assets\Scripts\Asignados\Field\DropSlot.cs" />
+    <Compile Include="Assets\Scripts\Asignados\Board\DropSlot.cs" />
     <Compile Include="Assets\Scripts\Asignados\GameLogic\Player.cs" />
     <Compile Include="Assets\Scripts\Sin Asignar\MenúInicial.cs" />
     <Compile Include="Assets\Scripts\Asignados\2nd Project\Parser.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
-    <Compile Include="Assets\Scripts\Asignados\Field\IncreaseSlots.cs" />
+    <Compile Include="Assets\Scripts\Asignados\Board\IncreaseSlots.cs" />
     <Compile Include="Assets\Scripts\Sin Asignar\MenuOpciones.cs" />
     <Compile Include="Assets\Scripts\Asignados\GameLogic\SetPlayers.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
@@ -128,6 +128,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\Asignados\Cards\EffectCards.cs" />
+    <Compile Include="Assets\Scripts\Asignados\GameLogic\BoardControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

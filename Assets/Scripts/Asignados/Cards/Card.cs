@@ -1,4 +1,7 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using static SetPlayers;
 
 public class Card : MonoBehaviour
 {
@@ -27,4 +30,7 @@ public class Card : MonoBehaviour
 
     //Número del efecto a activar
     public int NumEffect;
+
+    //Dueño de la carta
+    public string Owner;
 }

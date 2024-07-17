@@ -1750,6 +1750,7 @@ GameObject:
   - component: {fileID: 295962774}
   - component: {fileID: 295962776}
   - component: {fileID: 295962777}
+  - component: {fileID: 295962778}
   m_Layer: 0
   m_Name: Tablero
   m_TagString: Untagged
@@ -1865,7 +1866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69266ba68f3d5e14085ecef56ccc27c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTurn: 0
   passCount: 0
   passButtonBlock: {fileID: 1245587387}
   nextRoundCartel1: {fileID: 895017135}
@@ -1875,9 +1875,6 @@ MonoBehaviour:
   tiedGameCartel: {fileID: 613374549}
   victoryCartel1: {fileID: 1338164007}
   victoryCartel2: {fileID: 42708463}
-  round: 1
-  winner: 0
-  victory: 0
 --- !u!114 &295962777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1904,6 +1901,25 @@ MonoBehaviour:
   deckBlock2: {fileID: 198495706}
   nextTurnCartel2: {fileID: 1868300497}
   blockLeader2: {fileID: 1026436908}
+--- !u!114 &295962778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295962772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9a6b928e87886488c9d1787c3699ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  condicion1: {fileID: 522286931}
+  condicion2: {fileID: 1868300497}
+  rowsBlock1: {fileID: 1444082444}
+  rowsBlock2: {fileID: 1968981280}
+  passButtonBlock: {fileID: 1245587387}
+  leaderBlock1: {fileID: 758291706}
+  leaderBlock2: {fileID: 1026436908}
 --- !u!1 &299673865
 GameObject:
   m_ObjectHideFlags: 0
@@ -3821,7 +3837,7 @@ PrefabInstance:
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -3877,7 +3893,7 @@ PrefabInstance:
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -3929,7 +3945,7 @@ PrefabInstance:
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -3993,7 +4009,7 @@ PrefabInstance:
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -4141,7 +4157,7 @@ PrefabInstance:
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -4193,7 +4209,7 @@ PrefabInstance:
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -7094,18 +7110,15 @@ MonoBehaviour:
   - {fileID: 4791996619338446980, guid: f71ff6ff13cc3684190b72bc8aebeca7, type: 3}
   - {fileID: 4791996619338446980, guid: f71ff6ff13cc3684190b72bc8aebeca7, type: 3}
   - {fileID: 4791996619338446980, guid: b3797d751d663514fa70fdd3fd8d158e, type: 3}
-  cartasZone: {fileID: 1715024022}
+  hand: {fileID: 1715024022}
   graveyard: {fileID: 272323980}
-  currentTurn: 0
   blockRows1: {fileID: 1444082444}
   blockRows2: {fileID: 1968981280}
   blockPassButton: {fileID: 1245587387}
-  condicion1: {fileID: 522286931}
-  condicion2: {fileID: 1868300497}
-  leaderBlock: {fileID: 1026436908}
   count: 0
   cardChangeSlot: {fileID: 1070362981}
   trash: {fileID: 344286159}
+  owner: Player2
 --- !u!114 &927935863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10593,7 +10606,6 @@ MonoBehaviour:
   RowM2: {fileID: 1657661618}
   RowR2: {fileID: 2105993950}
   RowS2: {fileID: 973800087}
-  round: 0
   countRound: {fileID: 295962772}
   winsP1: 0
   winsP2: 0
@@ -12204,7 +12216,7 @@ PrefabInstance:
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -12260,7 +12272,7 @@ PrefabInstance:
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -12312,7 +12324,7 @@ PrefabInstance:
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -12376,7 +12388,7 @@ PrefabInstance:
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -12524,7 +12536,7 @@ PrefabInstance:
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -12576,7 +12588,7 @@ PrefabInstance:
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -14127,18 +14139,15 @@ MonoBehaviour:
   - {fileID: 4791996619338446980, guid: c31fe4da161e4224f8f4afa14872c7ca, type: 3}
   - {fileID: 4791996619338446980, guid: c31fe4da161e4224f8f4afa14872c7ca, type: 3}
   - {fileID: 4791996619338446980, guid: b3797d751d663514fa70fdd3fd8d158e, type: 3}
-  cartasZone: {fileID: 1452381836}
+  hand: {fileID: 1452381836}
   graveyard: {fileID: 1925983234}
-  currentTurn: 0
   blockRows1: {fileID: 1444082444}
   blockRows2: {fileID: 1968981280}
   blockPassButton: {fileID: 1245587387}
-  condicion1: {fileID: 522286931}
-  condicion2: {fileID: 1868300497}
-  leaderBlock: {fileID: 758291706}
   count: 0
   cardChangeSlot: {fileID: 543964491}
   trash: {fileID: 344286159}
+  owner: Player1
 --- !u!1001 &1859668414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17659,7 +17668,7 @@ PrefabInstance:
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 203123366609695196, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -17727,7 +17736,7 @@ PrefabInstance:
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 904246592702877872, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -17779,7 +17788,7 @@ PrefabInstance:
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 2657021111991652817, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -17855,7 +17864,7 @@ PrefabInstance:
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 3853775303561908873, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -18039,7 +18048,7 @@ PrefabInstance:
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 5754022447081635001, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 
@@ -18103,7 +18112,7 @@ PrefabInstance:
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: hand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1452381836}
     - target: {fileID: 7152181744665523621, guid: c8d2ff805d3aa0a4897b9ea72dfe36ac, type: 3}
       propertyPath: item
       value: 

@@ -19,7 +19,7 @@ public class Translator : MonoBehaviour
         parser.Parse();
 
         //Y se añaden al deck si fueron bien declaradas
-        DrawCards player1Deck = GameObject.FindGameObjectWithTag("Player1Deck").GetComponent<DrawCards>();
+        Deck player1Deck = GameObject.FindGameObjectWithTag("Player1Deck").GetComponent<Deck>();
         player1Deck.NewDeck();
     }
 }
