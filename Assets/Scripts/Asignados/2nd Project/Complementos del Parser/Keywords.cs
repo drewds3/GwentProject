@@ -17,11 +17,18 @@ public enum TokenType
     Minus,
     Multi,
     Division,
+    Increase,
     QMark,
     String,
+    Asign,
     Equal,
+    NotEqual,
     Smaller,
     Greater,
+    SmallerOrEqual,
+    GreaterOrEqual,
+    Or,
+    And,
     Fin
 }
 
@@ -132,4 +139,16 @@ public enum Source
     field,
     otherField,
     parent
+}
+
+public enum Booleans
+{
+    Equal,
+    NotEqual,
+    Smaller,
+    Greater,
+    SmallerOrEqual,
+    GreaterOrEqual,
+    Or,
+    And
 }

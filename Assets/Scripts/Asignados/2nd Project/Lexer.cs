@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System;
+using System.Diagnostics;
+using UnityEngine;
+using System.Threading;
 
 //Clase token para los objetos de tipo "Token"
 public class Token
@@ -135,7 +138,13 @@ public class Lexer
             {
                 Position++;
 
-                tokens.Add(new Token(TokenType.Plus, "+", Position));
+                if(Input[Position] == '+')
+                {
+                    Position++;
+                    
+                    tokens.Add(new Token(TokenType.Increase, "++", Position));
+                } 
+                else tokens.Add(new Token(TokenType.Plus, "+", Position));
             }
             else if(Input[Position] == '-')
             {
@@ -165,19 +174,69 @@ public class Lexer
             {
                 Position++;
                 
-                tokens.Add(new Token(TokenType.Equal, "=", Position));
+                if(Input[Position] == '=')
+                {
+                    Position++;
+                    tokens.Add(new Token(TokenType.Equal, "==", Position));
+                } 
+                else tokens.Add(new Token(TokenType.Asign, "=", Position));
+            }
+            else if(Input[Position] == '!')
+            {
+                Position++;
+                
+                if(Input[Position] == '=')
+                {
+                    Position++;
+                    tokens.Add(new Token(TokenType.NotEqual, "!=", Position));
+                }
+                else throw new Exception($"Unvalid token in {Position}");
             }
             else if(Input[Position] == '<')
             {
                 Position++;
                 
-                tokens.Add(new Token(TokenType.Smaller, "<", Position));
+                if(Input[Position] == '=') 
+                {
+                   Position++; 
+                   tokens.Add(new Token(TokenType.SmallerOrEqual, "<=", Position));
+                }
+                
+                else tokens.Add(new Token(TokenType.Smaller, "<", Position));
             }
             else if(Input[Position] == '>')
             {
                 Position++;
                 
-                tokens.Add(new Token(TokenType.Greater, ">", Position));
+                if(Input[Position] == '=')
+                {
+                    Position++;
+                    tokens.Add(new Token(TokenType.GreaterOrEqual, ">=", Position));
+                }
+
+                else tokens.Add(new Token(TokenType.Greater, ">", Position));
+            }
+            else if(Input[Position] == '|')
+            {
+                Position++;
+            
+                if(Input[Position] == '|')
+                {
+                    Position++;
+                    tokens.Add(new Token(TokenType.Or, "||", Position));
+                }
+                else throw new Exception($"Unvalid token in {Position}");
+            }
+            else if(Input[Position] == '&')
+            {
+                Position++;
+                
+                if(Input[Position] == '&')
+                {
+                    Position++;
+                    tokens.Add(new Token(TokenType.And, "&&", Position));
+                }       
+                else throw new Exception($"Unvalid token in {Position}");
             }
             else throw new Exception($"Unvalid token in {Position}");
         }

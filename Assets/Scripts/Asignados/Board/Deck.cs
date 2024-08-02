@@ -1,12 +1,18 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static SetPlayers;
 using static TurnsBasedSystem;
+using Random = UnityEngine.Random;
 
 public class Deck : MonoBehaviour
 {   
     //Mazo predeterminado
     public List<GameObject> deck = new();
+
+    //
+    delegate void Draw();
+    Draw draw;
     
     //Zona donde se instancian
     public Transform hand;
@@ -31,6 +37,11 @@ public class Deck : MonoBehaviour
     //Dueño del mazo
     public string owner;
 
+    void Start()
+    {
+        draw = DrawCard;
+    }
+
     //Método que "dibuja" las cartas
     public void OnClick()
     {
@@ -47,7 +58,7 @@ public class Deck : MonoBehaviour
                 //Si es el primer turno de la 1ra ronda roban 10 cartas
                 if(hand.childCount < 10)
                 {
-                    DrawCard();
+                    draw();
                 }
                 else
                 {
@@ -72,7 +83,7 @@ public class Deck : MonoBehaviour
                 //Si tiene menos de 10 cartas, roba
                 if(hand.childCount<10 && ((count<2 && round == 2) || (count<4 && round == 3)))
                 {
-                    DrawCard();
+                    draw();
                     count++;
                 }
                 //De no ser así las cartas robadas serán descartadas al cementerio
@@ -168,6 +179,42 @@ public class Deck : MonoBehaviour
         for(int i = 0; i < translator.cards.Count; i++)
         {
             deck.Add(translator.cards[i]);
+        }
+
+        draw = DrawCard2;
+    }
+
+    //Al activarse el respectivo efecto de carta se roba una carta extra
+    public void DrawCard2()
+    {
+        //Si hay menos de 10 cartas se roba una
+        if(hand.childCount < 10)
+        {
+            index = Random.Range(0, deck.Count);
+
+            GameObject card = deck[index];
+
+            card.transform.position = hand.position;
+            card.transform.SetParent(hand);
+            card.GetComponent<Card>().Owner = owner;
+
+            deck.Remove(deck[index]);
+        }
+        else //De lo contrario se descarta al cementerio
+        {
+            index = Random.Range(0, deck.Count);
+
+            GameObject card = deck[index];
+
+            card.transform.position = graveyard.position;
+            card.transform.SetParent(graveyard);
+
+            if(gameObject == player1.Deck) card.tag = "CartaDescartada1";
+            else if(gameObject == player2.Deck) card.tag = "CartaDescartada2";
+
+            card.GetComponent<Card>().Owner = owner;
+        
+            deck.Remove(deck[index]);
         }
     }
 }

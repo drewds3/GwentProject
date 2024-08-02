@@ -24,7 +24,7 @@ public class Effect : ICloneable
     public bool Single {get;set;}
 
     //Variables
-    private LinkedList<Variable> Variables;
+    public LinkedList<Variable> Variables;
 
     //Instrucciones a ejecutar por el efecto
     private List<Instruction> Instructions;
@@ -118,17 +118,43 @@ public class Effect : ICloneable
 
         CurrentInstruction.Debug();
 
-        //Si el segundo string es un "igual" entonces es una declaración
-        if(CurrentInstruction.KeyWords[1] == "=")
+        // Si el segundo string es un "igual" entonces es una declaración
+        if(CurrentInstruction.KeyWords[1] == "=") 
         {
             foreach(Variable variable in Variables)
             {
-                if(variable.Name == CurrentKeyWord)
+                if(variable.Name == CurrentKeyWord && variable.Value is int)
+                {
+                    Next();
+                    Next();
+                    variable.Value = Expr();
+                    break;
+                }
+                else if(variable.Name == CurrentKeyWord && variable.Value is bool)
+                {
+                    Next();
+                    Next();
+                    variable.Value = BooleanExpression();
+                    break;
+                }
+                else if(variable.Name == CurrentKeyWord)
                 {
                     variable.Value = Declaration();
                     break;
                 }
             }
+        }
+        else if(CurrentKeyWord == "for")
+        {
+            ForIntruction();
+        }
+        else if(CurrentKeyWord == "while")
+        {
+            WhileInstruction();
+        }
+        else if(CurrentKeyWord == "++" || IsNumericVariable())
+        {
+            Increase();
         }
         else //De lo contrario es una llamada a un método
         {
@@ -335,7 +361,7 @@ public class Effect : ICloneable
                 if(card.GetComponent<Card>().Owner == "Player1") return player1;
                 else if(card.GetComponent<Card>().Owner == "Player2") return player2;
             }
-
+            
             throw new NotImplementedException();
         }
         else if(VariableType() == "Player")
@@ -381,6 +407,229 @@ public class Effect : ICloneable
                 break;
             } 
         } 
+    }
+
+    public bool IsNumericVariable()
+    {
+        foreach(Variable variable in Variables)
+        if(variable.Name == CurrentKeyWord && variable.Value is int)
+        return true;
+        
+        return false;
+    }
+
+    private void Increase()
+    {
+        if(CurrentKeyWord == "++") Next();
+
+        foreach(Variable variable in Variables)
+        {
+            if(variable.Name == CurrentKeyWord)
+            {
+                Debug.Log(CurrentKeyWord + " loca");
+                int temp = (int)variable.Value;
+                temp++;
+                variable.Value = temp;
+
+                Next();
+                if(CurrentKeyWord == "++") Next();
+                Debug.Log(CurrentKeyWord + " loca2");
+                return;
+            } 
+        } 
+        throw new Exception();
+    }
+
+    private void ForIntruction()
+    {
+        Next();
+        string nameCard = CurrentKeyWord;
+        Next();
+        List<GameObject> cards = (List<GameObject>)SetVariableValue(CurrentKeyWord).Value;
+        Next();
+
+        Instruction startInstruction = CurrentInstruction;
+        int startInstructionIndex = CurrentInstructionIndex;
+
+        int count = cards.Count - 1;
+
+        foreach(GameObject card in cards)
+        {
+            Variable variable = SetVariableValue(nameCard);
+            variable.Value = card;
+
+            FinishFor(count--);
+        }
+
+        while(CurrentKeyWord != "ForFinal") Next();
+
+        Next();
+
+        //Método para que se cumpla el ciclo
+        void FinishFor(int count)
+        {
+            Debug.Log("Instruccion del for iniciada");
+
+            CurrentInstruction.Debug();
+
+            //Si el segundo string es un "igual" entonces es una declaración
+            if(CurrentInstruction.KeyWords[1] == "=")
+            {
+                foreach(Variable variable in Variables)
+                {
+                    if(variable.Name == CurrentKeyWord && variable.Value is int)
+                    {
+                        Next();
+                        Next();  
+                        variable.Value = Expr();
+                        break;
+                    }
+                    else if(variable.Name == CurrentKeyWord && variable.Value is bool)
+                    {
+                        Next();
+                        Next();
+                        variable.Value = BooleanExpression();
+                        break;
+                    }
+                    else if(variable.Name == CurrentKeyWord)
+                    {
+                        variable.Value = Declaration();
+                        break;
+                    }
+                }
+            }
+            else if(CurrentKeyWord == "for")
+            {
+                ForIntruction();
+            }
+            else if(CurrentKeyWord == "while")
+            {
+                WhileInstruction();
+            }
+             else if(CurrentKeyWord == "++" || IsNumericVariable())
+            {
+                Increase();
+            }
+            else //De lo contrario es una llamada a un método
+            {
+                MethodCall();
+            }
+
+            //Si no ha concluido el ciclo, entonces lee la siguiente instrucción del mismo
+            if(CurrentKeyWord != "ForFinal")
+            {
+                FinishFor(count);
+            }
+            else if(CurrentKeyWord == "ForFinal" && count > 0) // De lo contrario vuelve a empezar el ciclo si aún quedan cartas por iterar
+            {
+                CurrentInstruction = startInstruction;
+                CurrentInstructionIndex = startInstructionIndex;
+                CurrentKeyWord = startInstruction.KeyWords[0];
+            }
+        }
+    }
+    
+    private void WhileInstruction()
+    {
+        Next();
+
+        Instruction startInstruction = CurrentInstruction;
+        int startInstructionIndex = CurrentInstructionIndex;
+
+        bool argument = BooleanExpressionWhile();
+
+        if(!argument)
+        {
+            while(CurrentKeyWord != "WhileFinal")
+            {
+                Next();
+            }
+            Next();
+        }  
+
+        while(argument)
+        {
+            FinishWhile();
+
+            if(!BooleanExpressionWhile())
+            {
+                argument = false;
+
+                while(CurrentKeyWord != "WhileFinal")
+                {
+                    Next();
+                }
+                Next();
+            }  
+        }
+
+        //Método para que se cumpla el ciclo
+        void FinishWhile()
+        {
+            Debug.Log("Instruccion del while iniciada");
+
+            CurrentInstruction.Debug();
+
+            //Si el segundo string es un "igual" entonces es una declaración
+            if(CurrentInstruction.KeyWords[1] == "=")
+            {
+                foreach(Variable variable in Variables)
+                {
+                    if(variable.Name == CurrentKeyWord && variable.Value is int)
+                    {
+                        Next();
+                        Next();
+                        variable.Value = Expr();
+                        break;
+                    }
+                    else if(variable.Name == CurrentKeyWord && variable.Value is bool)
+                    {
+                        Next();
+                        Next();
+                        variable.Value = BooleanExpression();
+                        break;
+                    }
+                    else if(variable.Name == CurrentKeyWord)
+                    {
+                        variable.Value = Declaration();
+                        break;
+                    }
+                }
+            }
+            else if(CurrentKeyWord == "for")
+            {
+                ForIntruction();
+            }
+            else if(CurrentKeyWord == "while")
+            {
+                WhileInstruction();
+            }
+            else if(CurrentKeyWord == "++" || IsNumericVariable())
+            {
+                Debug.Log(CurrentKeyWord + " mirenemeee");
+                Increase();
+            }
+            else //De lo contrario es una llamada a un método
+            {
+                MethodCall();
+            }
+
+            //Lee la siguiente instrucción del mismo hasta que concluya
+            if(CurrentKeyWord != "WhileFinal")
+            {
+                FinishWhile();
+            }
+        }
+
+        bool BooleanExpressionWhile()
+        {
+            CurrentInstruction = startInstruction;
+            CurrentInstructionIndex = startInstructionIndex;
+            CurrentKeyWord = startInstruction.KeyWords[1];
+            CurrentKeyWordIndex = 1;
+
+            return BooleanExpression();
+        }
     }
 
     private void Context()
@@ -465,12 +714,12 @@ public class Effect : ICloneable
         else if(CurrentKeyWord == "SendBottom")
         {
             Next();
-            cards.Insert(0, (GameObject)Declaration());
+            cards.Insert(0, (GameObject)Parameter());
         }
         else if(CurrentKeyWord == "Remove")
         {
             Next();
-            cards.Remove((GameObject)Declaration());
+            cards.Remove((GameObject)Parameter());
         }
         else if(CurrentKeyWord == "Shuffle")
         {
@@ -488,5 +737,331 @@ public class Effect : ICloneable
                 (cards[n], cards[k]) = (cards[k], cards[n]);
             }
         }
+    }
+
+    //--------------------------------------Booleanos-----------------------------------------------------------------------------------
+    bool BooleanExpression()
+        {
+            //Resultado que se mostrará
+            var result = ParseOrExpression();
+            
+            return result;
+        }
+
+        //Para parsear el "or"
+        bool ParseOrExpression()
+        {
+            var result = ParseAndExpression();
+
+            while (CurrentKeyWord == "||")
+            {
+                Next();
+                var result2 = ParseAndExpression();
+                result = result || result2;
+            }
+            return result;
+        }
+
+    //Para parsear el "and"
+    bool ParseAndExpression()
+    {
+        var result = ParseRelationalExpression();
+
+        while (CurrentKeyWord == "&&")
+        {
+            Next();
+            var result2 = ParseRelationalExpression();
+            result = result && result2;
+        }
+        return result;
+    }
+
+    //Para parsear operadores de relaciones
+    bool ParseRelationalExpression()
+    {
+        var left = ParsePrimaryExpression();
+       
+        while (CurrentKeyWord == "<" || CurrentKeyWord == ">" || CurrentKeyWord == "<=" 
+            || CurrentKeyWord == ">=" || CurrentKeyWord == "==" || CurrentKeyWord == "!=")
+        {
+            int leftValue = Convert.ToInt32(left);
+            int rightValue;
+           
+            if (CurrentKeyWord == "<")
+            {
+                Next();
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue < rightValue;
+            }
+            else if (CurrentKeyWord == ">" )
+            {
+                Next();
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue > rightValue;
+            }
+            else if (CurrentKeyWord == "<=")
+            {
+                Next();
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue <= rightValue;
+            }
+            else if (CurrentKeyWord == ">=")
+            {
+                Next();
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue >= rightValue;
+            }
+            else if (CurrentKeyWord == "==")
+            {
+                Next();
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue == rightValue;
+            }
+            else if (CurrentKeyWord == "!=")
+            {
+                Next();
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue != rightValue;
+            }
+        }
+        return (bool)left;
+    }
+
+    //Para parsear booleanos, números y paréntesis
+    object ParsePrimaryExpression()
+    {
+        if (CurrentKeyWord == "true")
+        {
+            Next();
+            return true;
+        }
+        else if (CurrentKeyWord == "false")
+        {
+            Next();
+            return false;
+        }
+        else if (int.TryParse(CurrentKeyWord, out int value))
+        {
+            Next();
+
+            return value;
+        }
+        else if(CurrentKeyWord == "++")
+        {
+            Next();
+
+            foreach(Variable variable in Variables)
+            {
+                if(variable.Name == CurrentKeyWord)
+                {
+                    Next();
+                    int numberTemp = (int)variable.Value;
+                    numberTemp++;
+                    variable.Value = numberTemp;
+                    return numberTemp;
+                }
+            }
+            
+            throw new Exception();
+        }
+        else if (CurrentKeyWord == "(")
+        {
+            Next();
+            bool result = ParseOrExpression();
+            Next();
+            return result;
+        }
+        else if(char.IsLetter(CurrentKeyWord[0]))
+        {
+            foreach(Variable variable in Variables)
+            {
+                if(variable.Name == CurrentKeyWord && variable.Value is int value2)
+                {
+                    Next();
+
+                    if(CurrentKeyWord == "++")
+                    {       
+                        Next();
+                        int numberTemp = (int)variable.Value;
+                        numberTemp++;
+                        value2 = (int)variable.Value;
+                        variable.Value = numberTemp;
+                     }
+                    
+                    return value2;
+                }
+                else if(variable.Name == CurrentKeyWord && variable.Value is bool value3)
+                {
+                    Next();
+                    return value3;
+                }
+            }
+
+            throw new Exception("Is not a correct variable");
+        }
+        else
+        {
+            throw new Exception("Invalid boolean expression");
+        }
+    }
+
+    //----------------------------------------------------Numéricos------------------------------------------------------------------------
+    //Método para procesar números
+    private int Factor()
+    {
+        string keyWord = CurrentKeyWord;
+
+        /*Si el keyWord es correcto pasa al siguiente
+         y devuelve el valor del número o expresión entre paréntesis*/
+        if(int.TryParse(CurrentKeyWord, out int value))
+        {
+            int result = value;
+
+            Next();
+
+            keyWord = CurrentKeyWord;
+
+            while(keyWord == "(")
+            {
+                Next();
+                result *= Expr();
+                Next();
+
+                keyWord = CurrentKeyWord;
+            }
+            return result;
+        }
+        else if(keyWord == "(")
+        {
+            Next();
+            int result = Expr();
+            Next();
+
+            keyWord = CurrentKeyWord;
+
+            while(keyWord == "(")
+            {
+                Next();
+                result *= Expr();
+                Next();
+
+                keyWord = CurrentKeyWord;
+            }
+            return result;
+        }
+        else if(char.IsLetter(CurrentKeyWord[0]))
+        {
+            foreach(Variable variable in Variables)
+            {
+                if(variable.Name == CurrentKeyWord && variable.Value is int value2)
+                {
+                    int result = value2;
+
+                    Next();
+
+                    if(CurrentKeyWord == "++")
+                    {
+                        int temp = (int)variable.Value;
+                        temp++;
+                        variable.Value = temp;
+                        Next();
+                    }
+
+                    keyWord = CurrentKeyWord;
+
+                    while(keyWord == "(")
+                    {
+                        Next();
+                        result *= Expr();
+                        Next();
+
+                        keyWord = CurrentKeyWord;
+                    }
+                    return result;
+                }   
+            }
+            throw new Exception("This word is not a variable with a \"int value\"");
+        }
+        else if(CurrentKeyWord == "++")
+        {
+            Next();
+
+            foreach(Variable variable in Variables)
+            {
+                if(variable.Name == CurrentKeyWord && variable.Value is int value2)
+                {
+                    value2++;
+                    variable.Value = value2;
+
+                    int result = value2;   
+
+                    Next();
+
+                    keyWord = CurrentKeyWord;
+
+                    while(keyWord == "(")
+                    {
+                        Next();
+                        result *= Expr();
+                        Next();
+
+                        keyWord = CurrentKeyWord;
+                    }
+                    return result;
+                }   
+            }
+            throw new Exception("This word is not a variable with a \"int value\"");
+        }
+        else throw new Exception($"Unexpected keyWord: {keyWord}");
+    }
+
+    //Método para procesar multiplicaciones y divisiones
+    private int Term()
+    {
+        int result = Factor();
+
+        /*Mientras que el keyWord actual sea una multiplicación o división
+          se avanza al siguiente y se realiza la operación en cuestión*/
+        while(CurrentKeyWord == "*" || CurrentKeyWord == "/")
+        {
+            string keyWord = CurrentKeyWord;
+
+            if(keyWord == "*")
+            {
+                Next();
+                result *= Factor();
+            }
+            else if(keyWord == "/")
+            {
+                Next();
+                result /= Factor();
+            }
+        }
+        return result;
+    }
+
+    //Método para procesar sumas y restas
+    private int Expr()
+    {
+        int result = Term();
+
+        /*Mientras que el keyWord actual sea una suma o resta
+          se avanza al siguiente y se realiza la operación en cuestión*/
+        while(CurrentKeyWord == "+" || CurrentKeyWord == "-")
+        {
+            string keyWord = CurrentKeyWord;
+
+            if(keyWord == "+")
+            {
+                Next();
+                result += Term();
+            }
+            else if(keyWord == "-")
+            {
+                Next();
+                result -= Term();
+            }
+        }
+        return result;
     }
 }

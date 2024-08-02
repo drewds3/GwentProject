@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Asignados\Cards\NewCard.cs" />
     <Compile Include="Assets\Scripts\Asignados\Cards\Card.cs" />
     <Compile Include="Assets\Scripts\Asignados\Board\Deck.cs" />
+    <Compile Include="Assets\Scripts\Asignados\GameLogic\BoardControl.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Scripts\Asignados\2nd Project\Complementos del Parser\Property.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
@@ -128,7 +129,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\Asignados\Cards\EffectCards.cs" />
-    <Compile Include="Assets\Scripts\Asignados\GameLogic\BoardControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

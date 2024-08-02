@@ -28,7 +28,7 @@ public class CardCreator : MonoBehaviour
         }
         else
         {
-            CardInstance = Instantiate(card);
+            CardInstance = Instantiate(card, GameObject.Find("NewDeck").transform);
         } 
 
         //Se le añaden las características deseadas a la carta

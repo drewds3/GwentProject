@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 //Clase Instrucción
-public class Instruction : ICloneable
+public class Instruction : IAction
 {
     //Lista de palabras clave
     public List<string> KeyWords = new();
@@ -23,6 +23,7 @@ public class Instruction : ICloneable
         UnityEngine.Debug.Log("Esta instrucción tiene las siguientes palabras clave: " + debugList);
     }
 
+    //Método para clonar el objeto
     public object Clone()
     {
         Instruction instruction = new();
@@ -33,5 +34,18 @@ public class Instruction : ICloneable
         }
 
         return instruction;
+    }
+}
+
+public interface IAction : ICloneable
+{
+
+}
+
+public class For : IAction
+{
+    public object Clone()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -10,9 +10,10 @@ public class Parser
     private int CurrentTokenIndex; //Índice del token actual
     private Token CurrentToken; //Token actual
     private List<Property> properties; //Propiedades que se añadiran a la carta actual
-    private Instruction CurrentInstruction =new();
+    private Instruction CurrentInstruction = new(); //Instrucción actual
     private List<Effect> Effects = new(); //Lista de todos los efectos declarados
     private List<Effect> CardEffects = new(); //Efectos que se añadirán a la carta actual
+    private LinkedList<Variable> CurrentVariables = new(); //
 
     //Constructor de la clase
     public Parser(List<Token> tokens)
@@ -49,6 +50,7 @@ public class Parser
                 (la lista de variables es solo para comprobar que esté declarado todo correctamente)*/
                 LinkedList<Variable> parameters = new();
                 LinkedList<Variable> variables = new();
+                LinkedList<Variable> variables2 = new(); //Para comprobar semánticamente los ciclos
 
                 if(CurrentToken.Value == "Params")
                 {
@@ -62,15 +64,31 @@ public class Parser
                         Next(TokenType.Word);
                         Next(TokenType.Colon);
                         string type;
+                        object value;
                         
-                        if(CurrentToken.Value == "Number" || CurrentToken.Value == "Bool" || CurrentToken.Value == "String") type = CurrentToken.Value;
+                        if(CurrentToken.Value == "Number")
+                        {
+                            type = CurrentToken.Value;
+                            value = 0;
+                        } 
+                        else if(CurrentToken.Value == "Bool")
+                        {
+                            type = CurrentToken.Value;
+                            value = false;
+                        } 
+                        else if(CurrentToken.Value == "String")
+                        {
+                            type = CurrentToken.Value;
+                            value = "";
+                        } 
                         else throw new Exception("This type of parameter does not exist");
                         
                         Next(TokenType.Keyword);
                         
-                        Variable param = new(name, type);
+                        Variable param = new(name, type){Value = value};
                         parameters.AddLast(param);
                         variables.AddLast(param);
+                        variables2.AddLast(param);
 
                         if(CurrentToken.Type == TokenType.Comma) Next(TokenType.Comma);
                         else break;
@@ -102,7 +120,7 @@ public class Parser
                 string context = CurrentToken.Value;
                 Next(TokenType.Word);
                 Next(TokenType.RParen);
-                Next(TokenType.Equal);
+                Next(TokenType.Asign);
                 Next(TokenType.Greater);
                 Next(TokenType.LCBracket);
 
@@ -114,10 +132,13 @@ public class Parser
 
                 variables.AddLast(new Variable(targets, "List<Card>"));
                 variables.AddLast(new Variable(context, "Context")); 
+
+                variables2.AddLast(new Variable(targets, "List<Card>"));
+                variables2.AddLast(new Variable(context, "Context")); 
                 
                 int count = 0;
 
-                InstructionsRecolector();
+                ActionRecolector();
 
                 //Se muestran en consola las instrucciones recogidas
                 foreach(Instruction instruction in instructions)
@@ -126,13 +147,25 @@ public class Parser
                 }
                 
                 //Se crea (por fin) el efecto
-                if(parameters != null) Effects.Add(new Effect(nameEffect, targets, instructions, variables, parameters));
-                else Effects.Add(new Effect(nameEffect, targets, instructions, variables));
+                if(parameters != null) Effects.Add(new Effect(nameEffect, targets, instructions, variables2, parameters));
+                else Effects.Add(new Effect(nameEffect, targets, instructions, variables2));
                 
                 Debug.Log("Efecto creado con éxito");
 
                 //--------------------------------------------Métodos-del-Método----------------------------------------------------------
                 //Método que recoge las varibles y llamadas a métodos
+                
+                void ActionRecolector()
+                {
+                    InstructionsRecolector();
+
+                    Next(TokenType.RCBracket);
+                    Next(TokenType.RCBracket);
+
+                    Debug.Log("Action recolectado correctamente");
+                }
+                
+                
                 void InstructionsRecolector()
                 {   
                     //Se añaden instrucciones hasta que el token actual sea una llave de cierre
@@ -140,7 +173,132 @@ public class Parser
                     {
                         //Si es una declaración de una variable se añade si está correctamente declarada
                         if(Enum.IsDefined(typeof(KeyWords), CurrentToken.Value)) throw new Exception($"You shouldn't use \"{CurrentToken.Value}\" like that");
-                        else if(!IsVariable() && CurrentToken.Type == TokenType.Word)
+                        else if(CurrentToken.Value == "for")
+                        {
+                            //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
+                            instructions.Add(new Instruction());
+                            CurrentInstruction = instructions.Last();
+
+                            //Se guardan las variables declaradas fuera del "for"
+                            List<Variable> variablesFor = new();
+
+                            foreach(Variable variable in variables)
+                            {
+                                variablesFor.Add(variable);
+                            }
+
+                            NextAndSave(TokenType.Word);
+
+                            //Se guarda la variable nueva
+                            variables.AddLast(new Variable(CurrentToken.Value, "Card"));
+                            variables2.AddLast(new Variable(CurrentToken.Value, "Card"));
+                            NextAndSave(TokenType.Word);
+
+                            if(CurrentToken.Value != "in") throw new Exception("\"in\" keyword expected");
+                            Next(TokenType.Word);
+
+                            //Se guarda la lista de cartas a iterar
+                            if(!IsCardList()) throw new Exception("There can only be lists of cards");
+                            NextAndSave(TokenType.Word);
+
+                            Next(TokenType.LCBracket);
+                            
+                            //Se recogen las instrucciones dentro del for
+                            InstructionsRecolector();
+
+                            //Se eliminan las variables declaradas dentro del "for" para que no se puedan usar desde fuera
+                            variables.Clear();
+
+                            foreach(Variable variable in variablesFor)
+                            {
+                                variables.AddLast(variable);
+                            }
+
+                            Next(TokenType.RCBracket);
+                            Next(TokenType.Semicolon);
+
+                            //Se indica el final del "for"
+                            instructions.Add(new Instruction());
+                            CurrentInstruction = instructions.Last();
+                            CurrentInstruction.Add("ForFinal");
+
+                            Debug.Log($"Instrucción {++count} recogida correctamente: \"for\"");
+                            InstructionsRecolector();
+                        }
+                        else if(CurrentToken.Value == "while")
+                        {
+                            //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
+                            instructions.Add(new Instruction());
+                            CurrentInstruction = instructions.Last();
+
+                            //Se guardan las variables declaradas fuera del "while"
+                            List<Variable> variablesWhile = new();
+
+                            foreach(Variable variable in variables)
+                            {
+                                variablesWhile.Add(variable);
+                            }
+
+                            NextAndSave(TokenType.Word);
+
+                            Next(TokenType.LParen);
+
+                            dNext = NextAndSave;
+                            ParseBooleanExpression();
+
+                            Next(TokenType.RParen);
+
+                            Next(TokenType.LCBracket);
+
+                            //Se recogen las instrucciones dentro del while
+                            InstructionsRecolector();
+
+                            Next(TokenType.RCBracket);
+                            Next(TokenType.Semicolon);
+
+                            //Se eliminan las variables declaradas dentro del "while" para que no se puedan usar desde fuera
+                            variables.Clear();
+
+                            foreach(Variable variable in variablesWhile)
+                            {
+                                variables.AddLast(variable);
+                            }
+
+                            //Se indica el final del "while"
+                            instructions.Add(new Instruction());
+                            CurrentInstruction = instructions.Last();
+                            CurrentInstruction.Add("WhileFinal");
+
+                            Debug.Log($"Instrucción {++count} recogida correctamente: \"while\"");
+                            InstructionsRecolector();
+                        }
+                        else if(IsNumericVariable() || CurrentToken.Type == TokenType.Increase) //Incremento de variable numérica
+                        {
+                            //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
+                            instructions.Add(new Instruction());
+                            CurrentInstruction = instructions.Last();
+
+                            if(CurrentToken.Type == TokenType.Word)
+                            {
+                                NextAndSave(TokenType.Word);
+                                NextAndSave(TokenType.Increase);
+                            }
+                            else
+                            {
+                                NextAndSave(TokenType.Increase);
+                                NextAndSave(TokenType.Word);
+                            }
+
+                            //Si se llega al final de la instrucción se recoge la siguiente de haberla
+                            if(CurrentToken.Type == TokenType.Semicolon)
+                            {
+                                Next(TokenType.Semicolon);
+                                Debug.Log($"Instrucción {++count} recogida correctamente: \"Incremento\"");
+                                InstructionsRecolector();
+                            }
+                            else throw new Exception("Semicolon was expected");
+                        }
+                        else if(!IsVariable() && CurrentToken.Type == TokenType.Word) //Declaración de variable
                         {
                             //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
                             instructions.Add(new Instruction());
@@ -148,12 +306,34 @@ public class Parser
 
                             string name = CurrentToken.Value;
                             NextAndSave(TokenType.Word);
-                            NextAndSave(TokenType.Equal);
-                            if(IsVariable()) variables.AddLast(new Variable(name, WichTypeIs(TokenType.Semicolon)));
-                            else if(CurrentToken.Type == TokenType.Number)
+                            NextAndSave(TokenType.Asign);
+
+                            if(IsVariable())
                             {
+                                Variable variable = new(name, WichTypeIs(TokenType.Semicolon));
+                                
+                                variables.AddLast(variable);
+                                variables2.AddLast(variable);
+                            } 
+                            else if(IsBoolean())
+                            {
+                                CurrentVariables = variables;
+
+                                dNext = Next;
+                                Variable boolean = new(name, "Bool") {Value = ParseBooleanExpression()};
+                                
+                                variables.AddLast(boolean);
+                                variables2.AddLast(boolean);
+                            }
+                            else //Entonces es una declaración de un número
+                            {
+                                CurrentVariables = variables;
+
+                                dNext = NextAndSave;
                                 Variable number = new(name, "Number") {Value = Expr()};
+                                
                                 variables.AddLast(number);
+                                variables2.AddLast(number);
                             }
 
                             //Si se llega al final de la instrucción se recoge la siguiente de haberla declarado correctamente
@@ -185,12 +365,6 @@ public class Parser
                         }
                         else throw new Exception("An instruction was expected");
                     }
-                    else
-                    {
-                        Next(TokenType.RCBracket);
-                        Next(TokenType.RCBracket);
-                        Debug.Log("Instrucciones recogidas correctamente");
-                    }
                 }
 
                 //Método para cambiar al siguiente token y guardarlo como parte de la instrucción
@@ -208,10 +382,33 @@ public class Parser
                     {
                         foreach(Variable variable in variables)
                         {
-                            if(variable.Name == CurrentToken.Value) return true;
+                            if(variable.Name == CurrentToken.Value && variable.Type != "Number" && variable.Type != "Bool") return true;
                         }
                         return false;
                     }
+                }
+
+                bool IsNumericVariable()
+                {
+                    if(Enum.IsDefined(typeof(KeyWords), CurrentToken.Value)) return false;
+                    else
+                    {
+                        foreach(Variable variable in variables)
+                        {
+                            if(variable.Name == CurrentToken.Value && variable.Type == "Number") return true;
+                        }
+                        return false;
+                    }
+                }
+
+                //Método para comprobar si es una variable
+                bool IsCardList()
+                {
+                    foreach(Variable variable in variables)
+                    {
+                        if(variable.Name == CurrentToken.Value && variable.Type == "List<Card>") return true;
+                    }
+                    return false;
                 }
                 
                 //Método que recoge la instrucción de llamada a un método mientras que verifica que sea correcta
@@ -494,15 +691,15 @@ public class Parser
         {
             int result = int.Parse(token.Value);
 
-            Next(TokenType.Number);
+            dNext(TokenType.Number);
 
             token = CurrentToken;
 
             while(token.Type == TokenType.LParen)
             {
-                Next(TokenType.LParen);
+                dNext(TokenType.LParen);
                 result *= Expr();
-                Next(TokenType.RParen);
+                dNext(TokenType.RParen);
 
                 token = CurrentToken;
             }
@@ -510,23 +707,77 @@ public class Parser
         }
         else if(token.Type == TokenType.LParen)
         {
-            Next(TokenType.LParen);
+            dNext(TokenType.LParen);
             int result = Expr();
-            Next(TokenType.RParen);
+            dNext(TokenType.RParen);
 
             token = CurrentToken;
 
             while(token.Type == TokenType.LParen)
             {
-                Next(TokenType.LParen);
+                dNext(TokenType.LParen);
                 result *= Expr();
-                Next(TokenType.RParen);
+                dNext(TokenType.RParen);
 
                 token = CurrentToken;
             }
             return result;
         }
-        throw new ArithmeticException($"Unexpected token: {token.Type}");
+        else if(CurrentToken.Type == TokenType.Word)
+        {
+            foreach(Variable variable in CurrentVariables)
+            {
+                if(variable.Name == CurrentToken.Value && variable.Value is int value)
+                {
+                    int result = value;
+
+                    dNext(TokenType.Word);
+
+                    if(CurrentToken.Type == TokenType.Increase) dNext(TokenType.Increase);
+
+                    token = CurrentToken;
+
+                    while(token.Type == TokenType.LParen)
+                    {
+                        dNext(TokenType.LParen);
+                        result *= Expr();
+                        dNext(TokenType.RParen);
+
+                        token = CurrentToken;
+                    }
+                    return result;
+                }   
+            }
+            throw new Exception("This word is not a variable with a \"int value\"");
+        }
+        else if(CurrentToken.Type == TokenType.Increase)
+        {
+            dNext(TokenType.Increase);
+
+            foreach(Variable variable in CurrentVariables)
+            {
+                if(variable.Name == CurrentToken.Value && variable.Value is int value)
+                {
+                    int result = value;
+
+                    dNext(TokenType.Word);
+
+                    token = CurrentToken;
+
+                    while(token.Type == TokenType.LParen)
+                    {
+                        dNext(TokenType.LParen);
+                        result *= Expr();
+                        dNext(TokenType.RParen);
+
+                        token = CurrentToken;
+                    }
+                    return result;
+                }   
+            }
+            throw new Exception("This word is not a variable with a \"int value\"");
+        }
+        else throw new Exception($"Unexpected token: {token.Type}");
     }
 
     //Método para procesar multiplicaciones y divisiones
@@ -541,12 +792,12 @@ public class Parser
             Token token = CurrentToken;
             if (token.Type == TokenType.Multi)
             {
-                Next(TokenType.Multi);
+                dNext(TokenType.Multi);
                 result *= Factor();
             }
             else if (token.Type == TokenType.Division)
             {
-                Next(TokenType.Division);
+                dNext(TokenType.Division);
                 result /= Factor();
             }
         }
@@ -565,12 +816,12 @@ public class Parser
             Token token = CurrentToken;
             if (token.Type == TokenType.Plus)
             {
-                Next(TokenType.Plus);
+                dNext(TokenType.Plus);
                 result += Term();
             }
             else if (token.Type == TokenType.Minus)
             {
-                Next(TokenType.Minus);
+                dNext(TokenType.Minus);
                 result -= Term();
             }
         }
@@ -640,6 +891,7 @@ public class Parser
     //Sobrecarga del método anterior en el caso de que la propiedad sea el "Power"
     private void ToProperty(string type)
     {
+        dNext = Next;
         int value = Expr();
 
         Property property = new(type, value);
@@ -796,30 +1048,40 @@ public class Parser
         foreach(Variable param in effect.Params)
         {
             if(param.Name == CurrentToken.Value)
-            {
-                Next(TokenType.Word);
-                Next(TokenType.Colon);
-                if(param.Type == "Number") param.Value = Expr();
-                else if(param.Type == "Bool") throw new NotImplementedException();
-                else if(param.Type == "String")
+            { 
+                foreach(Variable variable in effect.Variables)
                 {
-                    Next(TokenType.QMark);
-                    param.Value = CurrentToken;
-                    Next(TokenType.Word);
-                    Next(TokenType.QMark);
-                }
-                else throw new Exception("Invalid parameter type");
+                    if(variable.Name == param.Name)
+                    {
+                        Next(TokenType.Word);
+                        Next(TokenType.Colon);
+                        if(param.Type == "Number") variable.Value = Expr();
+                        else if(param.Type == "Bool")
+                        {
+                            dNext = Next;
+                            variable.Value = ParseBooleanExpression();
+                        } 
+                        else if(param.Type == "String")
+                        {
+                            Next(TokenType.QMark);
+                            variable.Value = CurrentToken;
+                            Next(TokenType.Word);
+                            Next(TokenType.QMark);
+                        }
+                        else throw new Exception("Invalid parameter type");
 
-                count++;
+                        count++;
 
-                if(CurrentToken.Type == TokenType.Comma)
-                {
-                    Next(TokenType.Comma);
-                    SetParams(effect, ref count);
-                }
+                        if(CurrentToken.Type == TokenType.Comma)
+                        {
+                            Next(TokenType.Comma);
+                            SetParams(effect, ref count);
+                        }
 
-                isCorrectParam = true;
-                break;
+                        isCorrectParam = true;
+                        break;
+                    }
+                }   
             }
         }
 
@@ -945,5 +1207,206 @@ public class Parser
         if(property.ValueS == "Silver" || property.ValueS == "Gold" || property.ValueS == "Leader") return true;
                     
         return false;
-    }               
-}
+    }   
+
+    private bool IsBoolean()
+    {
+        int startTokenIndex = CurrentTokenIndex;
+        Token startToken = CurrentToken;
+
+        while(CurrentToken.Type != TokenType.Semicolon && CurrentToken.Type != TokenType.Fin)
+        {
+            if(Enum.IsDefined(typeof(Booleans), CurrentToken.Type.ToString()) || CurrentToken.Value == "true" || CurrentToken.Value == "false")
+            {
+                CurrentTokenIndex = startTokenIndex;
+                CurrentToken = startToken;
+                return true;
+            }
+            
+
+            foreach(Variable variable in CurrentVariables)
+            {
+                if(variable.Name == CurrentToken.Value && variable.Value is bool)
+                {
+                    CurrentTokenIndex = startTokenIndex;
+                    CurrentToken = startToken;
+                    return true;
+                }
+               
+            }
+
+            TokenType forceNext = CurrentToken.Type;
+            Next(forceNext);
+        }
+
+        CurrentTokenIndex = startTokenIndex;
+        CurrentToken = startToken;
+        return false;
+    }
+
+    //-------------------------------------------Booleanos--------------------------------------------------------------------------------
+    private delegate void DNext(TokenType tokenType);
+    DNext dNext;
+    
+    //Método principal
+    public bool ParseBooleanExpression()
+    {
+        //Resultado que se mostrará
+        var result = ParseOrExpression();
+        
+        //Se comprueba si se llega al final
+        if(CurrentToken.Type != TokenType.RCBracket && CurrentToken.Type != TokenType.Comma 
+           && CurrentToken.Type != TokenType.RParen && CurrentToken.Type != TokenType.Semicolon)
+        throw new Exception("Invalid boolean expression");
+        
+        return result;
+    }
+
+    //Para parsear el "or"
+    private bool ParseOrExpression()
+    {
+        var result = ParseAndExpression();
+
+        while (CurrentToken.Type == TokenType.Or)
+        {
+            dNext(TokenType.Or);
+            var result2 = ParseAndExpression();
+            result = result || result2;
+        }
+        return result;
+    }
+
+    //Para parsear el "and"
+    private bool ParseAndExpression()
+    {
+        var result = ParseRelationalExpression();
+
+        while (CurrentToken.Type == TokenType.And)
+        {
+            dNext(TokenType.And);
+            var result2 = ParseRelationalExpression();
+            result = result && result2;
+        }
+        return result;
+    }
+
+    //Para parsear operadores de relaciones
+    private bool ParseRelationalExpression()
+    {
+        var left = ParsePrimaryExpression();
+       
+        while (CurrentToken.Type == TokenType.Smaller || CurrentToken.Type == TokenType.Greater ||
+               CurrentToken.Type == TokenType.SmallerOrEqual || CurrentToken.Type == TokenType.GreaterOrEqual
+               || CurrentToken.Type == TokenType.Equal || CurrentToken.Type == TokenType.NotEqual)
+        {
+            int leftValue = Convert.ToInt32(left);
+            int rightValue;
+           
+            if (CurrentToken.Type == TokenType.Smaller)
+            {
+                dNext(TokenType.Smaller);
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue < rightValue;
+            }
+            else if (CurrentToken.Type == TokenType.Greater)
+            {
+                dNext(TokenType.Greater);
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue > rightValue;
+            }
+            else if (CurrentToken.Type == TokenType.SmallerOrEqual)
+            {
+                dNext(TokenType.SmallerOrEqual);
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue <= rightValue;
+            }
+            else if (CurrentToken.Type == TokenType.GreaterOrEqual)
+            {
+                dNext(TokenType.GreaterOrEqual);
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue >= rightValue;
+            }
+            else if (CurrentToken.Type == TokenType.Equal)
+            {
+                dNext(TokenType.Equal);
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue == rightValue;
+            }
+            else if (CurrentToken.Type == TokenType.NotEqual)
+            {
+                dNext(TokenType.NotEqual);
+                rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                left = leftValue != rightValue;
+            }
+        }
+        return (bool)left;
+    }
+
+    //Para parsear booleanos, números y paréntesis
+    private object ParsePrimaryExpression()
+    {
+        if (CurrentToken.Value == "true")
+        {
+            dNext(TokenType.Word);
+            return true;
+        }
+        else if (CurrentToken.Value == "false")
+        {
+            dNext(TokenType.Word);
+            return false;
+        }
+        else if (CurrentToken.Type == TokenType.Number)
+        {
+            int value = int.Parse(CurrentToken.Value);
+            dNext(TokenType.Number);
+            return value;
+        }
+        else if (CurrentToken.Type == TokenType.LParen)
+        {
+            dNext(TokenType.LParen);
+            bool result = ParseOrExpression();
+            dNext(TokenType.RParen);
+            return result;
+        }
+        else if(CurrentToken.Type == TokenType.Word)
+        {
+            foreach(Variable variable in CurrentVariables)
+            {
+                if(variable.Name == CurrentToken.Value && variable.Value is int value)
+                {
+                    dNext(TokenType.Word);
+                    
+                    if(CurrentToken.Type == TokenType.Increase) dNext(TokenType.Increase);
+
+                    return value;
+                }
+                else if(variable.Name == CurrentToken.Value && variable.Value is bool value2)
+                {
+                    dNext(TokenType.Word);
+                    return value2;
+                }
+            }
+
+            throw new Exception("Is not a correct variable");
+        }
+        else if(CurrentToken.Type == TokenType.Increase)
+        {
+            dNext(TokenType.Increase);
+
+            foreach(Variable variable in CurrentVariables)
+            {
+                if(variable.Name == CurrentToken.Value && variable.Value is int value)
+                {
+                    dNext(TokenType.Word);
+                    return value;
+                }
+            }
+
+            throw new Exception("Is not a correct variable");
+        }
+        else
+        {
+            throw new Exception("Invalid boolean expression");
+        }
+    }
+}            
