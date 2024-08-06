@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 
 //Clase Instrucción
-public class Instruction : IAction
+public class Instruction
 {
     //Lista de palabras clave
     public List<string> KeyWords = new();
@@ -34,18 +33,5 @@ public class Instruction : IAction
         }
 
         return instruction;
-    }
-}
-
-public interface IAction : ICloneable
-{
-
-}
-
-public class For : IAction
-{
-    public object Clone()
-    {
-        throw new NotImplementedException();
     }
 }

@@ -238,6 +238,12 @@ public class Lexer
                 }       
                 else throw new Exception($"Unvalid token in {Position}");
             }
+            else if(Input[Position] == '^')
+            {
+                Position++;
+        
+                tokens.Add(new Token(TokenType.XOR, "^", Position));
+            }
             else throw new Exception($"Unvalid token in {Position}");
         }
 

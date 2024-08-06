@@ -149,6 +149,8 @@ public class Parser
                 //Se crea (por fin) el efecto
                 if(parameters != null) Effects.Add(new Effect(nameEffect, targets, instructions, variables2, parameters));
                 else Effects.Add(new Effect(nameEffect, targets, instructions, variables2));
+
+                CurrentVariables.Clear();
                 
                 Debug.Log("Efecto creado con éxito");
 
@@ -157,7 +159,7 @@ public class Parser
                 
                 void ActionRecolector()
                 {
-                    InstructionsRecolector();
+                    InstructionsCollector(false);
 
                     Next(TokenType.RCBracket);
                     Next(TokenType.RCBracket);
@@ -166,7 +168,7 @@ public class Parser
                 }
                 
                 
-                void InstructionsRecolector()
+                void InstructionsCollector(bool OneInstruction)
                 {   
                     //Se añaden instrucciones hasta que el token actual sea una llave de cierre
                     if(CurrentToken.Type != TokenType.RCBracket)
@@ -201,10 +203,17 @@ public class Parser
                             if(!IsCardList()) throw new Exception("There can only be lists of cards");
                             NextAndSave(TokenType.Word);
 
-                            Next(TokenType.LCBracket);
+                            bool isOneInstruction;
+
+                            if(CurrentToken.Type == TokenType.LCBracket)
+                            {
+                                Next(TokenType.LCBracket);
+                                isOneInstruction = false;
+                            } 
+                            else isOneInstruction = true;
                             
                             //Se recogen las instrucciones dentro del for
-                            InstructionsRecolector();
+                            InstructionsCollector(isOneInstruction);
 
                             //Se eliminan las variables declaradas dentro del "for" para que no se puedan usar desde fuera
                             variables.Clear();
@@ -214,8 +223,11 @@ public class Parser
                                 variables.AddLast(variable);
                             }
 
-                            Next(TokenType.RCBracket);
-                            Next(TokenType.Semicolon);
+                            if(!isOneInstruction) 
+                            {
+                                Next(TokenType.RCBracket);
+                                Next(TokenType.Semicolon);
+                            }
 
                             //Se indica el final del "for"
                             instructions.Add(new Instruction());
@@ -223,7 +235,7 @@ public class Parser
                             CurrentInstruction.Add("ForFinal");
 
                             Debug.Log($"Instrucción {++count} recogida correctamente: \"for\"");
-                            InstructionsRecolector();
+                            if(!OneInstruction) InstructionsCollector(false);
                         }
                         else if(CurrentToken.Value == "while")
                         {
@@ -248,13 +260,23 @@ public class Parser
 
                             Next(TokenType.RParen);
 
-                            Next(TokenType.LCBracket);
+                            bool isOneInstruction;
+
+                            if(CurrentToken.Type == TokenType.LCBracket)
+                            {
+                                Next(TokenType.LCBracket);
+                                isOneInstruction = false;
+                            } 
+                            else isOneInstruction = true;
 
                             //Se recogen las instrucciones dentro del while
-                            InstructionsRecolector();
+                            InstructionsCollector(isOneInstruction);
 
-                            Next(TokenType.RCBracket);
-                            Next(TokenType.Semicolon);
+                            if(!isOneInstruction)
+                            {
+                                Next(TokenType.RCBracket);
+                                Next(TokenType.Semicolon);
+                            }
 
                             //Se eliminan las variables declaradas dentro del "while" para que no se puedan usar desde fuera
                             variables.Clear();
@@ -270,7 +292,7 @@ public class Parser
                             CurrentInstruction.Add("WhileFinal");
 
                             Debug.Log($"Instrucción {++count} recogida correctamente: \"while\"");
-                            InstructionsRecolector();
+                            if(!OneInstruction) InstructionsCollector(false);
                         }
                         else if(IsNumericVariable() || CurrentToken.Type == TokenType.Increase) //Incremento de variable numérica
                         {
@@ -294,7 +316,7 @@ public class Parser
                             {
                                 Next(TokenType.Semicolon);
                                 Debug.Log($"Instrucción {++count} recogida correctamente: \"Incremento\"");
-                                InstructionsRecolector();
+                                if(!OneInstruction) InstructionsCollector(false);
                             }
                             else throw new Exception("Semicolon was expected");
                         }
@@ -341,7 +363,7 @@ public class Parser
                             {
                                 Next(TokenType.Semicolon);
                                 Debug.Log($"Instrucción {++count} recogida correctamente: \"Variable\"");
-                                InstructionsRecolector();
+                                if(!OneInstruction) InstructionsCollector(false);
                             }
                             else throw new Exception("Semicolon was expected");
                         }
@@ -359,7 +381,7 @@ public class Parser
                             {
                                 Next(TokenType.Semicolon);
                                 Debug.Log($"Instrucción {++count} recogida correctamente: \"Método\"");
-                                InstructionsRecolector();
+                                if(!OneInstruction) InstructionsCollector(false);
                             }
                             else throw new Exception("Semicolon was expected");
                         }
@@ -458,7 +480,7 @@ public class Parser
                             Next(TokenType.LParen);
 
                             bool correct = false;
-            
+         
                             foreach(Variable variable in variables)
                             {
                                 if(variable.Name == CurrentToken.Value && WichTypeIs(TokenType.RParen) == "Player") correct = true;
@@ -483,7 +505,7 @@ public class Parser
                             if(CurrentToken.Type == TokenType.Semicolon) return true;
                             else return false;
                         }
-                        else
+                        else if(CurrentToken.Value == "Add" || CurrentToken.Value == "Push" || CurrentToken.Value == "SendBottom" || CurrentToken.Value == "Remove")
                         {
                             NextAndSave(TokenType.Keyword);
                             Next(TokenType.LParen);
@@ -496,6 +518,20 @@ public class Parser
                             }
                             else return false;  
                         }
+                        else if(CurrentToken.Value == "Find")
+                        {
+                            NextAndSave(TokenType.Keyword);
+                            Next(TokenType.LParen);
+                            dNext = NextAndSave;
+                            Predicate(variables2);
+                            Next(TokenType.RParen);
+                            
+                            Next(TokenType.Point);
+
+                            if(Enum.IsDefined(typeof(CardListMethods), CurrentToken.Value)) return CheckMethodCall();
+                            else return false;
+                        }
+                        throw new Exception("This method is not valid");
                     }
                     else return false;
                 }
@@ -615,7 +651,23 @@ public class Parser
                                 }
                                 else throw new Exception("Expected semicolon or method call");
                             } 
-                            else if(CurrentToken.Value == "Find") return "List<Card>";
+                            else if(CurrentToken.Value == "Find")
+                            {
+                                NextAndSave(TokenType.Keyword);
+                                Next(TokenType.LParen);
+                                dNext = NextAndSave;
+                                Predicate(variables2);
+                                Next(TokenType.RParen);
+                                if(CurrentToken.Type == finalToken) return "List<Card>";
+                                else if(CurrentToken.Type == TokenType.Point)
+                                {
+                                    Next(TokenType.Point);
+
+                                    if(Enum.IsDefined(typeof(CardListProperties), CurrentToken.Value)) return WichTypeIs(TokenType.Semicolon);
+                                    else throw new Exception("Expected a method that returned some value");
+                                }
+                                else throw new Exception("Expected semicolon or method call");
+                            } 
                             else throw new Exception("Expected a method that returned some value");
                         }
                         else throw new Exception("A variable or method was expected");
@@ -693,6 +745,13 @@ public class Parser
 
             dNext(TokenType.Number);
 
+            if(CurrentToken.Type == TokenType.XOR)
+            {
+                dNext(TokenType.XOR);
+
+                result ^= Factor(); 
+            }
+
             token = CurrentToken;
 
             while(token.Type == TokenType.LParen)
@@ -710,6 +769,13 @@ public class Parser
             dNext(TokenType.LParen);
             int result = Expr();
             dNext(TokenType.RParen);
+            
+            if(CurrentToken.Type == TokenType.XOR)
+            {
+                dNext(TokenType.XOR);
+
+                result ^= Factor(); 
+            }
 
             token = CurrentToken;
 
@@ -734,6 +800,13 @@ public class Parser
                     dNext(TokenType.Word);
 
                     if(CurrentToken.Type == TokenType.Increase) dNext(TokenType.Increase);
+
+                    if(CurrentToken.Type == TokenType.XOR)
+                    {
+                        dNext(TokenType.XOR);
+
+                        result ^= Factor(); 
+                    }
 
                     token = CurrentToken;
 
@@ -761,6 +834,13 @@ public class Parser
                     int result = value;
 
                     dNext(TokenType.Word);
+                    
+                    if(CurrentToken.Type == TokenType.XOR)
+                    {
+                        dNext(TokenType.XOR);
+
+                        result ^= Factor(); 
+                    }
 
                     token = CurrentToken;
 
@@ -1131,12 +1211,50 @@ public class Parser
         Next(TokenType.Comma);
 
         //Predicate
-        if(CurrentToken.Value == "Predicate") Next(TokenType.Keyword);
+        if(CurrentToken.Value == "Predicate")
+        {   
+            Next(TokenType.Keyword);
+            Next(TokenType.Colon);
+
+            dNext = NextAndSavePredicate;
+            Predicate(effect.Variables);
+        } 
         else throw new Exception("Predicate expected");
 
-        Next(TokenType.Colon);
-        Next(TokenType.Word); //No está implementado de momento
         Next(TokenType.RCBracket);
+
+        //Método para cambiar al siguiente token y guardarlo como parte de la instrucción del "predicate"
+        void NextAndSavePredicate(TokenType type)
+        {
+            effect.Predicate.Add(CurrentToken.Value);
+            Next(type);
+        }
+    }
+
+    private void Predicate(LinkedList<Variable> variables)
+    {
+        Next(TokenType.LParen);
+
+        foreach(Variable variable in CurrentVariables)
+        if(variable.Name == CurrentToken.Value) 
+        throw new Exception("You cannot use this variable in this context");
+        
+        if(CurrentToken.Type == TokenType.Word || CurrentToken.Value == "card") 
+        {
+            CurrentVariables.AddLast(new Variable(CurrentToken.Value, "Card"));
+            variables?.AddLast(new Variable(CurrentToken.Value, "Card"));
+
+            if(CurrentToken.Value == "card") dNext(TokenType.Keyword);
+            else dNext(TokenType.Word);
+        }
+        else throw new Exception("A variable was expected here");
+
+        Next(TokenType.RParen);
+
+        Next(TokenType.Asign);
+        Next(TokenType.Greater);
+
+        ParseBooleanExpression();
     }
 
     //Método para el PostAction

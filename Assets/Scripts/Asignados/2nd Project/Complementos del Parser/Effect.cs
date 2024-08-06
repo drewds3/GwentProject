@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Context;
 using static SetPlayers;
@@ -14,7 +15,7 @@ public class Effect : ICloneable
     //Parámetros de la carta (si es que tiene)
     public LinkedList<Variable> Params;
 
-    //
+    //Nombre de la variable "targets"
     private string TargetsName;
 
     //Targets que se buscaran
@@ -22,6 +23,9 @@ public class Effect : ICloneable
 
     //Single
     public bool Single {get;set;}
+
+    //Predicate del Selector
+    public Instruction Predicate = new();
 
     //Variables
     public LinkedList<Variable> Variables;
@@ -72,7 +76,8 @@ public class Effect : ICloneable
         {
             SourceTargets = SourceTargets,
             Single = Single,
-            PostEffect = PostEffect
+            PostEffect = PostEffect,
+            Predicate = (Instruction)Predicate.Clone()
         };
 
         List<Instruction> instructions = new();
@@ -189,7 +194,35 @@ public class Effect : ICloneable
                     List<GameObject> cards2 = new(){cards[0]};
                     variable.Value = cards2;
                 }
+
+                Predicate.Debug();
+                CurrentInstruction = Predicate;
+                CurrentKeyWord = CurrentInstruction.KeyWords[0]; 
+                Variable variable2 = SetVariableValue(CurrentKeyWord);
+                Next();
+
+                List<GameObject> cards3 = new();
+                foreach(GameObject card in (List<GameObject>)variable.Value)
+                cards3.Add(card);
+
+                foreach(GameObject card in (List<GameObject>)variable.Value)
+                {
+                    variable2.Value = card;
+                    
+                    bool casa = BooleanExpression();
+
+                    if(!casa) cards3.Remove(card);
+
+                    CurrentInstruction = Predicate;
+                    CurrentKeyWord = CurrentInstruction.KeyWords[1];
+                }
                 
+                variable.Value = cards3;
+
+                CurrentInstruction = Instructions[0];
+                CurrentKeyWord = CurrentInstruction.KeyWords[0];
+                CurrentInstructionIndex = 0;
+
                 return;
             }
         }
@@ -311,7 +344,66 @@ public class Effect : ICloneable
                     cards = listReturn(player);
                 }
 
-                if(CurrentKeyWordIndex == 0) return cards;
+                while(CurrentKeyWord == "Pop" || CurrentKeyWord == "Find" || CurrentKeyWordIndex == 0)
+                {
+                    if(CurrentKeyWordIndex == 0) return cards;
+                    else if(CurrentKeyWord == "Pop")
+                    {
+                        Next();
+                        GameObject card = cards.Last();
+                        cards.Remove(card);
+                        return card;
+                    }
+                    else if(CurrentKeyWord == "Find")
+                    {
+                        Next();
+                        Variable variable = SetVariableValue(CurrentKeyWord);
+                        Next();
+            
+                        Instruction startInstruction = CurrentInstruction;
+                        int startInstructionIndex = CurrentInstructionIndex;
+                        string startKeyWord = CurrentKeyWord;
+                        int startKeyWordIndex = CurrentKeyWordIndex; 
+                    
+
+                        List<GameObject> cards2 = new();
+                        foreach(GameObject card in cards)
+                        cards2.Add(card);
+
+                        foreach(GameObject card in cards)
+                        {
+                            CurrentInstruction = startInstruction;
+                            CurrentInstructionIndex = startInstructionIndex;
+                            CurrentKeyWord = startKeyWord;
+                            CurrentKeyWordIndex = startKeyWordIndex;
+
+                            variable.Value = card;
+                                
+                            bool casa = BooleanExpression();
+
+                            if(!casa) cards2.Remove(card);
+                        }
+                            
+                        cards = cards2;
+
+                        if(CurrentKeyWord != "Pop" && CurrentKeyWord != "Find") return cards;
+                    }      
+                    else throw new Exception();    
+                }
+                throw new Exception();
+            }
+        }
+        else if(VariableType() == "List<Card>")
+        {
+            string nameVariable = CurrentKeyWord;
+
+            List<GameObject> cards = (List<GameObject>)SetVariableValue(CurrentKeyWord).Value;
+
+            Next();
+
+            while(CurrentKeyWord == "Pop" || CurrentKeyWord == "Find" || CurrentKeyWordIndex == 0)
+            {
+                if(CurrentKeyWordIndex == 0) return SetVariableValue(nameVariable).Value;
                 else if(CurrentKeyWord == "Pop")
                 {
                     Next();
@@ -319,31 +411,43 @@ public class Effect : ICloneable
                     cards.Remove(card);
                     return card;
                 }
-                else //if(CurrentKeyWord == "Find")
+                else if(CurrentKeyWord == "Find")
                 {
-                    throw new NotImplementedException();
-                }          
-            }
-        }
-        else if(VariableType() == "List<Card>")
-        {
-            string nameVariable = CurrentKeyWord;
+                    Next();
+                    Variable variable = SetVariableValue(CurrentKeyWord);
+                    Next();
+        
+                    Instruction startInstruction = CurrentInstruction;
+                    int startInstructionIndex = CurrentInstructionIndex;
+                    string startKeyWord = CurrentKeyWord;
+                    int startKeyWordIndex = CurrentKeyWordIndex; 
+                
 
-            Next();
+                    List<GameObject> cards2 = new();
+                    foreach(GameObject card in cards)
+                    cards2.Add(card);
 
-            if(CurrentKeyWordIndex == 0) return SetVariableValue(nameVariable).Value;
-            else if(CurrentKeyWord == "Pop")
-            {
-                Next();
-                List<GameObject> cards = (List<GameObject>)SetVariableValue(nameVariable).Value;
-                GameObject card = cards.Last();
-                cards.Remove(card);
-                return card;
+                    foreach(GameObject card in cards)
+                    {
+                        CurrentInstruction = startInstruction;
+                        CurrentInstructionIndex = startInstructionIndex;
+                        CurrentKeyWord = startKeyWord;
+                        CurrentKeyWordIndex = startKeyWordIndex;
+
+                        variable.Value = card;
+                            
+                        bool casa = BooleanExpression();
+
+                        if(!casa) cards2.Remove(card);
+                    }
+                        
+                    cards = cards2;
+
+                    if(CurrentKeyWord != "Pop" && CurrentKeyWord != "Find") return cards;
+                } 
+                else throw new Exception();  
             }
-            else //if(CurrentKeyWord == "Find")
-            {
-                throw new NotImplementedException();
-            }   
+            throw new Exception(); 
         }
         else if(VariableType() == "Card")
         {
@@ -426,14 +530,12 @@ public class Effect : ICloneable
         {
             if(variable.Name == CurrentKeyWord)
             {
-                Debug.Log(CurrentKeyWord + " loca");
                 int temp = (int)variable.Value;
                 temp++;
                 variable.Value = temp;
 
                 Next();
                 if(CurrentKeyWord == "++") Next();
-                Debug.Log(CurrentKeyWord + " loca2");
                 return;
             } 
         } 
@@ -606,7 +708,6 @@ public class Effect : ICloneable
             }
             else if(CurrentKeyWord == "++" || IsNumericVariable())
             {
-                Debug.Log(CurrentKeyWord + " mirenemeee");
                 Increase();
             }
             else //De lo contrario es una llamada a un método
@@ -736,6 +837,39 @@ public class Effect : ICloneable
                 int k = random.Next(n+1);
                 (cards[n], cards[k]) = (cards[k], cards[n]);
             }
+        }
+        else if(CurrentKeyWord == "Find")
+        {
+            Next();
+            Variable variable = SetVariableValue(CurrentKeyWord);
+            Next();
+    
+            Instruction startInstruction = CurrentInstruction;
+            int startInstructionIndex = CurrentInstructionIndex;
+            string startKeyWord = CurrentKeyWord;
+            int startKeyWordIndex = CurrentKeyWordIndex; 
+            
+
+            List<GameObject> cards2 = new();
+            foreach(GameObject card in cards)
+            cards2.Add(card);
+
+            foreach(GameObject card in cards)
+            {
+                CurrentInstruction = startInstruction;
+                CurrentInstructionIndex = startInstructionIndex;
+                CurrentKeyWord = startKeyWord;
+                CurrentKeyWordIndex = startKeyWordIndex;
+
+                variable.Value = card;
+                    
+                bool casa = BooleanExpression();
+
+                if(!casa) cards2.Remove(card);
+            }
+                
+            cards = cards2;
+            CardList(cards);
         }
     }
 
@@ -919,6 +1053,13 @@ public class Effect : ICloneable
 
             Next();
 
+            if(CurrentKeyWord == "^")
+            {
+                Next();
+
+                result ^= Factor(); 
+            }
+
             keyWord = CurrentKeyWord;
 
             while(keyWord == "(")
@@ -936,6 +1077,13 @@ public class Effect : ICloneable
             Next();
             int result = Expr();
             Next();
+
+            if(CurrentKeyWord == "^")
+            {
+                Next();
+
+                result ^= Factor(); 
+            }
 
             keyWord = CurrentKeyWord;
 
@@ -967,6 +1115,13 @@ public class Effect : ICloneable
                         Next();
                     }
 
+                    if(CurrentKeyWord == "^")
+                    {
+                        Next();
+
+                        result ^= Factor(); 
+                    }
+
                     keyWord = CurrentKeyWord;
 
                     while(keyWord == "(")
@@ -996,6 +1151,13 @@ public class Effect : ICloneable
                     int result = value2;   
 
                     Next();
+
+                    if(CurrentKeyWord == "^")
+                    {
+                        Next();
+
+                        result ^= Factor(); 
+                    }
 
                     keyWord = CurrentKeyWord;
 

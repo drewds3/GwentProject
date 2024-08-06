@@ -29,6 +29,7 @@ public enum TokenType
     GreaterOrEqual,
     Or,
     And,
+    XOR,
     Fin
 }
 
@@ -90,7 +91,11 @@ enum ContextPropertiesAndMethods
 enum CardProperties
 {
     Owner,
-    //Power
+    Power,
+    Range,
+    Faction,
+    Type,
+    Name
 }
 
 enum CardListProperties
@@ -127,7 +132,8 @@ enum CardListMethods
     SendBottom,
     Remove,
     Shuffle,
-    Add
+    Add,
+    Find
 }
 
 public enum Source
