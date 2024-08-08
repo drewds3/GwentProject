@@ -30,6 +30,8 @@ public enum TokenType
     Or,
     And,
     XOR,
+    At,
+    DoubleAt,
     Fin
 }
 

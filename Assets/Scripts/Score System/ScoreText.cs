@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using static TurnsBasedSystem;
@@ -22,7 +20,6 @@ public class ScoreText : MonoBehaviour
     public GameObject RowS2;
 
     //Variables para visualizar la ronda actual y quién ha ganado cada una
-    public GameObject countRound;
     public int winsP1 = 0;
     public int winsP2 = 0;
 

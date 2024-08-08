@@ -132,14 +132,23 @@ public class Effect : ICloneable
                 {
                     Next();
                     Next();
-                    variable.Value = Expr();
+                    variable.Value = NumericExpression();
                     break;
                 }
                 else if(variable.Name == CurrentKeyWord && variable.Value is bool)
                 {
                     Next();
                     Next();
-                    variable.Value = BooleanExpression();
+                    bool domelo = BooleanExpression();
+                        variable.Value = domelo;
+                        Debug.Log(domelo + " herexeax");
+                    break;
+                }
+                else if(variable.Name == CurrentKeyWord && variable.Value is string)
+                {
+                    Next();
+                    Next();
+                    variable.Value = StringExpression();
                     break;
                 }
                 else if(variable.Name == CurrentKeyWord)
@@ -199,6 +208,7 @@ public class Effect : ICloneable
                 CurrentInstruction = Predicate;
                 CurrentKeyWord = CurrentInstruction.KeyWords[0]; 
                 Variable variable2 = SetVariableValue(CurrentKeyWord);
+                
                 Next();
 
                 List<GameObject> cards3 = new();
@@ -208,20 +218,22 @@ public class Effect : ICloneable
                 foreach(GameObject card in (List<GameObject>)variable.Value)
                 {
                     variable2.Value = card;
-                    
+                    //Debug.Log(CurrentKeyWord + " " + CurrentInstruction.KeyWords[CurrentKeyWordIndex+1] + " " + CurrentInstruction.KeyWords[CurrentKeyWordIndex+2]);
                     bool casa = BooleanExpression();
 
                     if(!casa) cards3.Remove(card);
 
                     CurrentInstruction = Predicate;
                     CurrentKeyWord = CurrentInstruction.KeyWords[1];
-                }
+                    CurrentKeyWordIndex = 1;
+                } 
                 
                 variable.Value = cards3;
 
                 CurrentInstruction = Instructions[0];
                 CurrentKeyWord = CurrentInstruction.KeyWords[0];
                 CurrentInstructionIndex = 0;
+                CurrentKeyWordIndex = 0;
 
                 return;
             }
@@ -465,8 +477,8 @@ public class Effect : ICloneable
                 if(card.GetComponent<Card>().Owner == "Player1") return player1;
                 else if(card.GetComponent<Card>().Owner == "Player2") return player2;
             }
-            
-            throw new NotImplementedException();
+
+            throw new Exception();
         }
         else if(VariableType() == "Player")
         {
@@ -583,7 +595,7 @@ public class Effect : ICloneable
                     {
                         Next();
                         Next();  
-                        variable.Value = Expr();
+                        variable.Value = NumericExpression();
                         break;
                     }
                     else if(variable.Name == CurrentKeyWord && variable.Value is bool)
@@ -591,6 +603,13 @@ public class Effect : ICloneable
                         Next();
                         Next();
                         variable.Value = BooleanExpression();
+                        break;
+                    }
+                    else if(variable.Name == CurrentKeyWord && variable.Value is string)
+                    {
+                        Next();
+                        Next();
+                        variable.Value = StringExpression();
                         break;
                     }
                     else if(variable.Name == CurrentKeyWord)
@@ -681,7 +700,7 @@ public class Effect : ICloneable
                     {
                         Next();
                         Next();
-                        variable.Value = Expr();
+                        variable.Value = NumericExpression();
                         break;
                     }
                     else if(variable.Name == CurrentKeyWord && variable.Value is bool)
@@ -689,6 +708,13 @@ public class Effect : ICloneable
                         Next();
                         Next();
                         variable.Value = BooleanExpression();
+                        break;
+                    }
+                    else if(variable.Name == CurrentKeyWord && variable.Value is string)
+                    {
+                        Next();
+                        Next();
+                        variable.Value = StringExpression();
                         break;
                     }
                     else if(variable.Name == CurrentKeyWord)
@@ -918,44 +944,85 @@ public class Effect : ICloneable
         while (CurrentKeyWord == "<" || CurrentKeyWord == ">" || CurrentKeyWord == "<=" 
             || CurrentKeyWord == ">=" || CurrentKeyWord == "==" || CurrentKeyWord == "!=")
         {
-            int leftValue = Convert.ToInt32(left);
-            int rightValue;
-           
             if (CurrentKeyWord == "<")
             {
                 Next();
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue < rightValue;
+                
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue < rightValue;
+                }
+                else throw new Exception("This operation only can be use on int and bool");
             }
-            else if (CurrentKeyWord == ">" )
+            else if (CurrentKeyWord == ">")
             {
                 Next();
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue > rightValue;
+
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue > rightValue;
+                } 
+                else throw new Exception("This operation only can be use on int and bool");
             }
             else if (CurrentKeyWord == "<=")
             {
                 Next();
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue <= rightValue;
+               
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue <= rightValue;
+                } 
+                else throw new Exception("This operation only can be use on int and bool");
             }
             else if (CurrentKeyWord == ">=")
             {
                 Next();
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue >= rightValue;
+                
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue >= rightValue;
+                } 
+                else throw new Exception("This operation only can be use on int and bool");
             }
             else if (CurrentKeyWord == "==")
             {
                 Next();
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue == rightValue;
+                
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue == rightValue;
+                } 
+                else if(left is string value)
+                {
+                    string rightValue = StringExpression();
+                    left = value == rightValue;
+                }
             }
             else if (CurrentKeyWord == "!=")
             {
                 Next();
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue != rightValue;
+                
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue != rightValue;
+                } 
+                else if(left is string value)
+                {
+                    string rightValue = StringExpression();
+                    left = value != rightValue;
+                }
             }
         }
         return (bool)left;
@@ -1029,17 +1096,32 @@ public class Effect : ICloneable
                     Next();
                     return value3;
                 }
+                else if(variable.Name == CurrentKeyWord && variable.Value is string value4) return StringExpression();
+                else if(variable.Name == CurrentKeyWord && variable.Type == "Card" 
+                && (CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Power"))
+                {
+                    Next();
+                    Next();
+
+                    GameObject card = (GameObject)variable.Value;
+
+                    return card.GetComponent<Card>().Power;
+                }
+                else if(variable.Name == CurrentKeyWord && variable.Type == "Card" 
+                && (CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Name" 
+                || CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Type"
+                || CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Range" 
+                || CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Faction"))
+                return StringExpression();    
             }
 
             throw new Exception("Is not a correct variable");
         }
-        else
-        {
-            throw new Exception("Invalid boolean expression");
-        }
+        else if(CurrentKeyWord == "\"") return StringExpression();
+        else throw new Exception("Invalid boolean expression");
     }
 
-    //----------------------------------------------------Numéricos------------------------------------------------------------------------
+    //----------------------------------------------------Números------------------------------------------------------------------------
     //Método para procesar números
     private int Factor()
     {
@@ -1048,7 +1130,7 @@ public class Effect : ICloneable
         /*Si el keyWord es correcto pasa al siguiente
          y devuelve el valor del número o expresión entre paréntesis*/
         if(int.TryParse(CurrentKeyWord, out int value))
-        {
+        {Debug.Log(CurrentKeyWord + " nueor");
             int result = value;
 
             Next();
@@ -1065,7 +1147,7 @@ public class Effect : ICloneable
             while(keyWord == "(")
             {
                 Next();
-                result *= Expr();
+                result *= NumericExpression();
                 Next();
 
                 keyWord = CurrentKeyWord;
@@ -1075,7 +1157,7 @@ public class Effect : ICloneable
         else if(keyWord == "(")
         {
             Next();
-            int result = Expr();
+            int result = NumericExpression();
             Next();
 
             if(CurrentKeyWord == "^")
@@ -1090,7 +1172,7 @@ public class Effect : ICloneable
             while(keyWord == "(")
             {
                 Next();
-                result *= Expr();
+                result *= NumericExpression();
                 Next();
 
                 keyWord = CurrentKeyWord;
@@ -1104,7 +1186,7 @@ public class Effect : ICloneable
                 if(variable.Name == CurrentKeyWord && variable.Value is int value2)
                 {
                     int result = value2;
-
+                        Debug.Log(CurrentKeyWord + " saa11");
                     Next();
 
                     if(CurrentKeyWord == "++")
@@ -1127,13 +1209,41 @@ public class Effect : ICloneable
                     while(keyWord == "(")
                     {
                         Next();
-                        result *= Expr();
+                        result *= NumericExpression();
                         Next();
 
                         keyWord = CurrentKeyWord;
                     }
                     return result;
-                }   
+                }  
+                else if(variable.Name == CurrentKeyWord && variable.Type == "Card" && CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Power")
+                {
+                    GameObject card = (GameObject)variable.Value;
+                    
+                    int result = card.GetComponent<Card>().Power;
+
+                    Next();
+                    Next();
+
+                    if(CurrentKeyWord == "^")
+                    {
+                        Next();
+
+                        result ^= Factor(); 
+                    }
+
+                    keyWord = CurrentKeyWord;
+
+                    while(keyWord == "(")
+                    {
+                        Next();
+                        result *= NumericExpression();
+                        Next();
+
+                        keyWord = CurrentKeyWord;
+                    }
+                    return result;
+                } 
             }
             throw new Exception("This word is not a variable with a \"int value\"");
         }
@@ -1164,7 +1274,7 @@ public class Effect : ICloneable
                     while(keyWord == "(")
                     {
                         Next();
-                        result *= Expr();
+                        result *= NumericExpression();
                         Next();
 
                         keyWord = CurrentKeyWord;
@@ -1203,7 +1313,7 @@ public class Effect : ICloneable
     }
 
     //Método para procesar sumas y restas
-    private int Expr()
+    private int NumericExpression()
     {
         int result = Term();
 
@@ -1214,7 +1324,7 @@ public class Effect : ICloneable
             string keyWord = CurrentKeyWord;
 
             if(keyWord == "+")
-            {
+            {Debug.Log(CurrentKeyWord + " sa22");
                 Next();
                 result += Term();
             }
@@ -1226,4 +1336,74 @@ public class Effect : ICloneable
         }
         return result;
     }
+
+    //-------------------------------------------String--------------------------------------------------------------------------------
+      private string StringExpression()
+      { 
+        string result = null;
+
+        if(CurrentKeyWord == "\"")
+        {
+            Next();
+            result = "";
+            result += CurrentKeyWord;
+            Next();
+            Next();
+        }
+        else if(char.IsLetter(CurrentKeyWord[0]))
+        {
+            bool IsCorrect = false;
+
+            foreach(Variable variable in Variables)
+            {
+                if(variable.Name == CurrentKeyWord && variable.Value is string value)
+                {
+                    result = "";
+                    result += value;
+                    Next();
+                    IsCorrect = true;
+                }
+                else if(variable.Name == CurrentKeyWord && variable.Type == "Card" 
+                        && (CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Name"
+                        || CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Type" 
+                        || CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Range" 
+                        || CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Faction"))
+                {
+                    GameObject card = (GameObject)variable.Value;
+                    
+                    Next();
+                    
+                    if(CurrentKeyWord == "Name") result = card.GetComponent<Card>().Name;
+                    else if(CurrentKeyWord == "Type") result = card.GetComponent<Card>().Type;
+                    else if(CurrentKeyWord == "Faction") result = card.GetComponent<Card>().Faction;
+                    else if(CurrentKeyWord == "Range")
+                    {
+                        result = "";
+
+                        if(card.GetComponent<Card>().Range1 != "null") result += card.GetComponent<Card>().Range1;
+                        if(card.GetComponent<Card>().Range2 != "null") result += ", " + card.GetComponent<Card>().Range2;
+                        if(card.GetComponent<Card>().Range3 != "null") result += ", " + card.GetComponent<Card>().Range3;
+                   } 
+                    
+                    Next();
+                    IsCorrect = true;
+                }
+            }
+            
+            if(!IsCorrect) throw new Exception("This word is not a correct variable");
+        }
+
+        if(CurrentKeyWord == "@")
+        {
+            Next();
+            result += StringExpression(); 
+        }
+        else if(CurrentKeyWord == "@@")
+        {
+            Next();
+            result += " " + StringExpression(); 
+        }
+
+        return result;
+      }
 }

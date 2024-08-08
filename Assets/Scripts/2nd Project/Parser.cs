@@ -40,10 +40,8 @@ public class Parser
                 if(CurrentToken.Value == "Name") Next(TokenType.Keyword);
                 else throw new Exception("You have not declared the name of the effect correctly");    
                 Next(TokenType.Colon);
-                Next(TokenType.QMark);
-                string nameEffect = CurrentToken.Value;
-                Next(TokenType.Word);
-                Next(TokenType.QMark);
+                dNext = Next;
+                string nameEffect = ParseString();
                 Next(TokenType.Comma);
 
                 /*Se recogen los parámetros si es que tiene 
@@ -300,16 +298,23 @@ public class Parser
                             instructions.Add(new Instruction());
                             CurrentInstruction = instructions.Last();
 
-                            if(CurrentToken.Type == TokenType.Word)
+                            bool IsCorrect = false;
+
+                            foreach(Variable variable in variables)
+                            if((variable.Name == CurrentToken.Value && variable.Type == "Number")
+                               || (variable.Name == Tokens[CurrentTokenIndex + 1].Value && variable.Type == "Number")) IsCorrect = true;
+
+                            if(CurrentToken.Type == TokenType.Word && IsCorrect)
                             {
                                 NextAndSave(TokenType.Word);
                                 NextAndSave(TokenType.Increase);
                             }
-                            else
+                            else if(IsCorrect)
                             {
                                 NextAndSave(TokenType.Increase);
                                 NextAndSave(TokenType.Word);
                             }
+                            else throw new Exception("Can be only increased numeric variables");
 
                             //Si se llega al final de la instrucción se recoge la siguiente de haberla
                             if(CurrentToken.Type == TokenType.Semicolon)
@@ -337,15 +342,25 @@ public class Parser
                                 variables.AddLast(variable);
                                 variables2.AddLast(variable);
                             } 
-                            else if(IsBoolean())
+                            else if(IsBoolean()) //Declaración de una variable tipo bool
                             {
                                 CurrentVariables = variables;
 
-                                dNext = Next;
+                                dNext = NextAndSave;
                                 Variable boolean = new(name, "Bool") {Value = ParseBooleanExpression()};
-                                
+
                                 variables.AddLast(boolean);
                                 variables2.AddLast(boolean);
+                            }
+                            else if(CurrentToken.Type == TokenType.QMark || IsString()) //Declaración de una variable tipo string
+                            {
+                                CurrentVariables = variables;
+
+                                dNext = NextAndSave;
+                                Variable variable = new(name, "String") {Value = ParseString()};
+
+                                variables.AddLast(variable);
+                                variables2.AddLast(variable);
                             }
                             else //Entonces es una declaración de un número
                             {
@@ -404,7 +419,9 @@ public class Parser
                     {
                         foreach(Variable variable in variables)
                         {
-                            if(variable.Name == CurrentToken.Value && variable.Type != "Number" && variable.Type != "Bool") return true;
+                            if(variable.Name == CurrentToken.Value && ((variable.Type != "Number" 
+                            && variable.Type != "Bool" && variable.Type != "String" && variable.Type != "Card")
+                            || (variable.Type == "Card" && Tokens[CurrentTokenIndex + 2].Value == "Owner"))) return true;
                         }
                         return false;
                     }
@@ -418,10 +435,30 @@ public class Parser
                         foreach(Variable variable in variables)
                         {
                             if(variable.Name == CurrentToken.Value && variable.Type == "Number") return true;
+                            else if(variable.Name == CurrentToken.Value && variable.Type == "Card" 
+                                    && Tokens[CurrentTokenIndex + 2].Value == "Power") return true;
                         }
                         return false;
                     }
                 }
+
+                bool IsString()
+                {
+                    if(Enum.IsDefined(typeof(KeyWords), CurrentToken.Value)) return false;
+                    else
+                    {
+                        foreach(Variable variable in variables)
+                        {
+                            if(variable.Name == CurrentToken.Value && variable.Type == "String") return true;
+                            else if(variable.Name == CurrentToken.Value && variable.Type == "Card" 
+                                    && (Tokens[CurrentTokenIndex + 2].Value == "Name" || Tokens[CurrentTokenIndex + 2].Value == "Type"
+                                    || Tokens[CurrentTokenIndex + 2].Value == "Range" || Tokens[CurrentTokenIndex + 2].Value == "Faction"))
+                                    return true;
+                        }
+                        return false;
+                    }
+                }
+
 
                 //Método para comprobar si es una variable
                 bool IsCardList()
@@ -631,8 +668,10 @@ public class Parser
                         }
                         else if(Enum.IsDefined(typeof(CardProperties), CurrentToken.Value))
                         {
+                            Token token = CurrentToken;
                             NextAndSave(TokenType.Keyword);
-                            return "Player";
+                            if(token.Value == "Owner") return "Player";
+                            else throw new Exception("Incorrect property of card");
                         } 
                         else if(Enum.IsDefined(typeof(CardListProperties), CurrentToken.Value))
                         {
@@ -819,7 +858,37 @@ public class Parser
                         token = CurrentToken;
                     }
                     return result;
-                }   
+                }
+                else if(variable.Name == CurrentToken.Value && variable.Type == "Card" && Tokens[CurrentTokenIndex + 2].Value == "Power")
+                {
+                    dNext(TokenType.Word);
+                    Next(TokenType.Point);
+                    dNext(TokenType.Keyword);
+
+                    int result = 0;
+
+                    if(CurrentToken.Type == TokenType.Increase) throw new Exception("Properties cannot be increased");
+
+                    if(CurrentToken.Type == TokenType.XOR)
+                    {
+                        dNext(TokenType.XOR);
+
+                        result ^= Factor(); 
+                    }
+
+                    token = CurrentToken;
+
+                    while(token.Type == TokenType.LParen)
+                    {
+                        dNext(TokenType.LParen);
+                        result *= Expr();
+                        dNext(TokenType.RParen);
+
+                        token = CurrentToken;
+                    }
+
+                    return result;
+                }  
             }
             throw new Exception("This word is not a variable with a \"int value\"");
         }
@@ -853,7 +922,9 @@ public class Parser
                         token = CurrentToken;
                     }
                     return result;
-                }   
+                }
+                else if(variable.Name == CurrentToken.Value && variable.Type == "Card" && Tokens[CurrentTokenIndex + 2].Value == "Power")
+                throw new Exception("Properties cannot be increased");
             }
             throw new Exception("This word is not a variable with a \"int value\"");
         }
@@ -922,30 +993,32 @@ public class Parser
 
             Next(TokenType.Keyword);
             Next(TokenType.Colon);
+            dNext = Next;
             if(token.Value == "Power") ToProperty(token.Value);
             else if(token.Value == "Range")
             {
                 Next(TokenType.LSBracket);
-                Next(TokenType.QMark);
-                ToProperty(token.Value, CurrentToken.Value);
+                
+                ToProperty(token.Value, ParseString());
 
                 while(CurrentToken.Type == TokenType.Comma)
                 {
                     Next(TokenType.Comma);
-                    Next(TokenType.QMark);
-                    ToProperty(token.Value, CurrentToken.Value);
+                   
+                    ToProperty(token.Value, ParseString());
                 }
 
                 Next(TokenType.RSBracket);
             }
             else
             {   
-                Next(TokenType.QMark);
-                if(token.Value == "Type" && CurrentToken.Value != "Gold" && CurrentToken.Value != "Silver")
+                string type = ParseString();
+
+                if(token.Value == "Type" && type != "Gold" && type != "Silver")
                 {
                     isSpecialCard = true;
                 } 
-                ToProperty(token.Value, CurrentToken.Value);
+                ToProperty(token.Value, type);
             } 
 
             count++;
@@ -960,9 +1033,6 @@ public class Parser
     //Método para añadir la propiedad de la carta a una lista con todas las propiedades de la misma
     private void ToProperty(string type, string value)
     {
-        Next(TokenType.Word);
-        Next(TokenType.QMark);
-
         Property property = new(type, value);
 
         properties.Add(property);
@@ -1033,10 +1103,8 @@ public class Parser
 
         if(CurrentToken.Type == TokenType.QMark)
         {
-            Next(TokenType.QMark);
-            effect = FindEffect();
-            Next(TokenType.Word);
-            Next(TokenType.QMark);
+            effect = FindEffect(ParseString());
+
             isSyntacticSugarOn = true;
         }
         else if(CurrentToken.Type == TokenType.LCBracket)
@@ -1046,10 +1114,7 @@ public class Parser
             else throw new Exception("Effect name expected");
             Next(TokenType.Colon);
 
-            Next(TokenType.QMark);
-            effect = FindEffect();
-            Next(TokenType.Word);
-            Next(TokenType.QMark);
+            effect = FindEffect(ParseString());
         }
         else throw new Exception("Effect name expected");
 
@@ -1108,11 +1173,11 @@ public class Parser
     }
 
     //Método para buscar el efecto y devolverlo
-    private Effect FindEffect()
+    private Effect FindEffect(string name)
     {
         foreach(Effect effect in Effects)
         {
-            if(effect.Name == CurrentToken.Value)
+            if(effect.Name == name)
             {
                 return (Effect)effect.Clone();
             }
@@ -1142,11 +1207,8 @@ public class Parser
                             variable.Value = ParseBooleanExpression();
                         } 
                         else if(param.Type == "String")
-                        {
-                            Next(TokenType.QMark);
-                            variable.Value = CurrentToken;
-                            Next(TokenType.Word);
-                            Next(TokenType.QMark);
+                        {                     
+                            variable.Value = ParseString();
                         }
                         else throw new Exception("Invalid parameter type");
 
@@ -1179,14 +1241,12 @@ public class Parser
         else throw new Exception("Source expected");
 
         Next(TokenType.Colon);
-        Next(TokenType.QMark);
+        
+        string source = ParseString();
 
-        if(Enum.IsDefined(typeof(Source), CurrentToken.Value) || CurrentToken.Value != "parent") effect.SourceTargets = CurrentToken.Value;
-        else if(CurrentToken.Value == "parent" && effectParent != null) effect.SourceTargets= effectParent.SourceTargets;
+        if(Enum.IsDefined(typeof(Source), source) || source != "parent") effect.SourceTargets = source;
+        else if(source == "parent" && effectParent != null) effect.SourceTargets = effectParent.SourceTargets;
         else throw new Exception("Invalid card filter");
-
-        Next(TokenType.Word);
-        Next(TokenType.QMark);
 
         Next(TokenType.Comma);
         
@@ -1239,13 +1299,12 @@ public class Parser
         if(variable.Name == CurrentToken.Value) 
         throw new Exception("You cannot use this variable in this context");
         
-        if(CurrentToken.Type == TokenType.Word || CurrentToken.Value == "card") 
+        if(CurrentToken.Type == TokenType.Word) 
         {
             CurrentVariables.AddLast(new Variable(CurrentToken.Value, "Card"));
             variables?.AddLast(new Variable(CurrentToken.Value, "Card"));
 
-            if(CurrentToken.Value == "card") dNext(TokenType.Keyword);
-            else dNext(TokenType.Word);
+            dNext(TokenType.Word);
         }
         else throw new Exception("A variable was expected here");
 
@@ -1272,10 +1331,7 @@ public class Parser
         Next(TokenType.Colon);
 
         //Se busca si el efecto existe
-        Next(TokenType.QMark);
-        Effect effect = FindEffect();
-        Next(TokenType.Word);
-        Next(TokenType.QMark);
+        Effect effect = FindEffect(ParseString());
 
         //De ser así se comprueba si tiene parámetros y de tenerlos se le otorgan los valores
         if(effect.Params.Count != 0)
@@ -1417,44 +1473,85 @@ public class Parser
                CurrentToken.Type == TokenType.SmallerOrEqual || CurrentToken.Type == TokenType.GreaterOrEqual
                || CurrentToken.Type == TokenType.Equal || CurrentToken.Type == TokenType.NotEqual)
         {
-            int leftValue = Convert.ToInt32(left);
-            int rightValue;
-           
             if (CurrentToken.Type == TokenType.Smaller)
             {
                 dNext(TokenType.Smaller);
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue < rightValue;
+                
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue < rightValue;
+                }
+                else throw new Exception("This operation only can be use on int and bool");
             }
             else if (CurrentToken.Type == TokenType.Greater)
             {
                 dNext(TokenType.Greater);
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue > rightValue;
+
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue > rightValue;
+                } 
+                else throw new Exception("This operation only can be use on int and bool");
             }
             else if (CurrentToken.Type == TokenType.SmallerOrEqual)
             {
                 dNext(TokenType.SmallerOrEqual);
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue <= rightValue;
+               
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue <= rightValue;
+                } 
+                else throw new Exception("This operation only can be use on int and bool");
             }
             else if (CurrentToken.Type == TokenType.GreaterOrEqual)
             {
                 dNext(TokenType.GreaterOrEqual);
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue >= rightValue;
+                
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue >= rightValue;
+                } 
+                else throw new Exception("This operation only can be use on int and bool");
             }
             else if (CurrentToken.Type == TokenType.Equal)
             {
                 dNext(TokenType.Equal);
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue == rightValue;
+                
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue == rightValue;
+                } 
+                else if(left is string value)
+                {
+                    string rightValue = ParseString();
+                    left = value == rightValue;
+                }
             }
             else if (CurrentToken.Type == TokenType.NotEqual)
             {
                 dNext(TokenType.NotEqual);
-                rightValue = Convert.ToInt32(ParsePrimaryExpression());
-                left = leftValue != rightValue;
+                
+                if(left is int or bool)
+                {
+                    int leftValue = Convert.ToInt32(left);
+                    int rightValue = Convert.ToInt32(ParsePrimaryExpression());
+                    left = leftValue != rightValue;
+                } 
+                else if(left is string value)
+                {
+                    string rightValue = ParseString();
+                    left = value != rightValue;
+                }
             }
         }
         return (bool)left;
@@ -1503,6 +1600,21 @@ public class Parser
                     dNext(TokenType.Word);
                     return value2;
                 }
+                else if(variable.Name == CurrentToken.Value && variable.Value is string value3) return ParseString();
+                else if(variable.Name == CurrentToken.Value && variable.Type == "Card" && (Tokens[CurrentTokenIndex + 2].Value == "Power"))
+                {
+                    dNext(TokenType.Word);
+                    Next(TokenType.Point);
+                    dNext(TokenType.Keyword);
+
+                    return 0;
+                }
+                else if(variable.Name == CurrentToken.Value && variable.Type == "Card" 
+                && (Tokens[CurrentTokenIndex + 2].Value == "Name" || Tokens[CurrentTokenIndex + 2].Value == "Type"
+                || Tokens[CurrentTokenIndex + 2].Value == "Range" || Tokens[CurrentTokenIndex + 2].Value == "Faction"))
+                {
+                    return ParseString();
+                }
             }
 
             throw new Exception("Is not a correct variable");
@@ -1522,9 +1634,62 @@ public class Parser
 
             throw new Exception("Is not a correct variable");
         }
-        else
-        {
-            throw new Exception("Invalid boolean expression");
-        }
+        else if(CurrentToken.Value == "\"") return ParseString();
+        else throw new Exception("Invalid boolean expression");
     }
+
+      //-------------------------------------------String--------------------------------------------------------------------------------
+      private string ParseString()
+      { 
+        string result = null;
+
+        if(CurrentToken.Type == TokenType.QMark)
+        {
+            dNext(TokenType.QMark);
+            result = "";
+            result += CurrentToken.Value;
+            dNext(TokenType.String);
+            dNext(TokenType.QMark);
+        }
+        else if(CurrentToken.Type == TokenType.Word)
+        {
+            bool IsCorrect = false;
+
+            foreach(Variable variable in CurrentVariables)
+            {
+                if(variable.Name == CurrentToken.Value && variable.Value is string value)
+                {
+                    result = "";
+                    result += value;
+                    dNext(TokenType.Word);
+                    IsCorrect = true;
+                }
+                else if(variable.Name == CurrentToken.Value && variable.Type == "Card" && (Tokens[CurrentTokenIndex + 2].Value == "Name"
+                        || Tokens[CurrentTokenIndex + 2].Value == "Type" || Tokens[CurrentTokenIndex + 2].Value == "Range" 
+                        || Tokens[CurrentTokenIndex + 2].Value == "Faction"))
+                {
+                    result = "";
+                    dNext(TokenType.Word);
+                    Next(TokenType.Point);
+                    dNext(TokenType.Keyword);
+                    IsCorrect = true;
+                }
+            }
+            
+            if(!IsCorrect) throw new Exception("This word is not a correct variable");
+        }
+
+        if(CurrentToken.Type == TokenType.At)
+        {
+            dNext(TokenType.At);
+            result += ParseString(); 
+        }
+        else if(CurrentToken.Type == TokenType.DoubleAt)
+        {
+            dNext(TokenType.DoubleAt);
+            result += " " + ParseString(); 
+        }
+
+        return result;
+      }
 }            
