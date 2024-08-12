@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using static Context;
 using static SetPlayers;
@@ -139,9 +138,7 @@ public class Effect : ICloneable
                 {
                     Next();
                     Next();
-                    bool domelo = BooleanExpression();
-                        variable.Value = domelo;
-                        Debug.Log(domelo + " herexeax");
+                    variable.Value = BooleanExpression();
                     break;
                 }
                 else if(variable.Name == CurrentKeyWord && variable.Value is string)
@@ -166,9 +163,9 @@ public class Effect : ICloneable
         {
             WhileInstruction();
         }
-        else if(CurrentKeyWord == "++" || IsNumericVariable())
+        else if(CurrentKeyWord == "++" || IsNumericVariable() || IsNumericProperty())
         {
-            Increase();
+            IncreaseAndComposedOperations();
         }
         else //De lo contrario es una llamada a un método
         {
@@ -218,7 +215,7 @@ public class Effect : ICloneable
                 foreach(GameObject card in (List<GameObject>)variable.Value)
                 {
                     variable2.Value = card;
-                    //Debug.Log(CurrentKeyWord + " " + CurrentInstruction.KeyWords[CurrentKeyWordIndex+1] + " " + CurrentInstruction.KeyWords[CurrentKeyWordIndex+2]);
+                    
                     bool casa = BooleanExpression();
 
                     if(!casa) cards3.Remove(card);
@@ -356,7 +353,7 @@ public class Effect : ICloneable
                     cards = listReturn(player);
                 }
 
-                while(CurrentKeyWord == "Pop" || CurrentKeyWord == "Find" || CurrentKeyWordIndex == 0)
+                while(CurrentKeyWord == "Pop" || CurrentKeyWord == "Find" || CurrentKeyWordIndex == 0 || CurrentKeyWord == "[")
                 {
                     if(CurrentKeyWordIndex == 0) return cards;
                     else if(CurrentKeyWord == "Pop")
@@ -364,6 +361,13 @@ public class Effect : ICloneable
                         Next();
                         GameObject card = cards.Last();
                         cards.Remove(card);
+                        return card;
+                    }
+                    else if(CurrentKeyWord == "[")
+                    {
+                        Next();
+                        GameObject card = cards[NumericExpression()];
+                        Next();
                         return card;
                     }
                     else if(CurrentKeyWord == "Find")
@@ -398,7 +402,7 @@ public class Effect : ICloneable
                             
                         cards = cards2;
 
-                        if(CurrentKeyWord != "Pop" && CurrentKeyWord != "Find") return cards;
+                        if(CurrentKeyWord != "Pop" && CurrentKeyWord != "Find" && CurrentKeyWord != "[") return cards;
                     }      
                     else throw new Exception();    
                 }
@@ -413,7 +417,7 @@ public class Effect : ICloneable
 
             Next();
 
-            while(CurrentKeyWord == "Pop" || CurrentKeyWord == "Find" || CurrentKeyWordIndex == 0)
+            while(CurrentKeyWord == "Pop" || CurrentKeyWord == "Find" || CurrentKeyWordIndex == 0 || CurrentKeyWord == "[")
             {
                 if(CurrentKeyWordIndex == 0) return SetVariableValue(nameVariable).Value;
                 else if(CurrentKeyWord == "Pop")
@@ -421,6 +425,13 @@ public class Effect : ICloneable
                     Next();
                     GameObject card = cards.Last();
                     cards.Remove(card);
+                    return card;
+                }
+                else if(CurrentKeyWord == "[")
+                {
+                    Next();
+                    GameObject card = cards[NumericExpression()];
+                    Next();
                     return card;
                 }
                 else if(CurrentKeyWord == "Find")
@@ -455,7 +466,7 @@ public class Effect : ICloneable
                         
                     cards = cards2;
 
-                    if(CurrentKeyWord != "Pop" && CurrentKeyWord != "Find") return cards;
+                    if(CurrentKeyWord != "Pop" && CurrentKeyWord != "Find" && CurrentKeyWord != "[") return cards;
                 } 
                 else throw new Exception();  
             }
@@ -534,24 +545,120 @@ public class Effect : ICloneable
         return false;
     }
 
-    private void Increase()
+    public bool IsNumericProperty()
     {
-        if(CurrentKeyWord == "++") Next();
-
         foreach(Variable variable in Variables)
-        {
-            if(variable.Name == CurrentKeyWord)
-            {
-                int temp = (int)variable.Value;
-                temp++;
-                variable.Value = temp;
+        if(variable.Name == CurrentKeyWord && variable.Type == "Card"
+        && CurrentInstruction.KeyWords[CurrentKeyWordIndex+1] == "Power")
+        return true;
+        
+        return false;
+    }
 
-                Next();
-                if(CurrentKeyWord == "++") Next();
-                return;
+    private void IncreaseAndComposedOperations()
+    {
+        if(CurrentKeyWord != "++")
+        {
+            string variableName = CurrentKeyWord;
+            int newValue = 0;
+
+            foreach(Variable variable in Variables)
+            {
+                if(variable.Name == CurrentKeyWord && variable.Value is int value)
+                {
+                    newValue = value;
+
+                    Next();
+                    break;
+                } 
+                else if(variable.Name == CurrentKeyWord && variable.Type == "Card" 
+                && CurrentInstruction.KeyWords[CurrentKeyWordIndex+1] == "Power")
+                {   
+                    GameObject card = (GameObject)variable.Value;
+                    newValue = card.GetComponent<Card>().Power;
+
+                    Next();
+                    Next();
+                    break;
+                }
             } 
-        } 
-        throw new Exception();
+
+            if(CurrentKeyWord == "+=")
+            {
+                Next();
+                newValue += NumericExpression();
+            }
+            else if(CurrentKeyWord == "-=")
+            {
+                Next();
+                newValue -= NumericExpression();
+            }
+            else if(CurrentKeyWord == "/=")
+            {
+                Next();
+                newValue /= NumericExpression();
+            }
+            else if(CurrentKeyWord == "*=")
+            {
+                Next();
+                newValue *= NumericExpression();
+            }
+            else if(CurrentKeyWord == "^=")
+            {
+                Next();
+                newValue ^= NumericExpression();
+            }
+            else if(CurrentKeyWord == "++")
+            {
+                Next();
+                newValue++;
+            }
+
+            foreach(Variable variable in Variables)
+            {
+                if(variable.Name == variableName && variable.Value is int value1)
+                {
+                    variable.Value = newValue;
+                    break;
+                } 
+                else if(variable.Name == variableName && variable.Type == "Card")
+                {   
+                    GameObject card = (GameObject)variable.Value;
+
+                    card.GetComponent<Card>().Power = newValue;
+
+                    break;
+                }
+            }
+        }
+        else
+        {
+            Next();
+
+            foreach(Variable variable in Variables)
+            {
+                if(variable.Name == CurrentKeyWord && variable.Value is int value)
+                {
+                    int temp = value;
+                    temp++;
+                    variable.Value = temp;
+
+                    Next();
+                    return;
+                } 
+                else if(variable.Name == CurrentKeyWord && variable.Type == "Card" 
+                && CurrentInstruction.KeyWords[CurrentKeyWordIndex+1] == "Power")
+                {
+                    GameObject card = (GameObject)variable.Value;
+                    card.GetComponent<Card>().Power++;
+                    
+                    Next();
+                    Next();
+                    return;
+                }
+            } 
+            throw new Exception();
+        }
     }
 
     private void ForIntruction()
@@ -627,9 +734,9 @@ public class Effect : ICloneable
             {
                 WhileInstruction();
             }
-             else if(CurrentKeyWord == "++" || IsNumericVariable())
+             else if(CurrentKeyWord == "++" || IsNumericVariable() || IsNumericProperty())
             {
-                Increase();
+                IncreaseAndComposedOperations();
             }
             else //De lo contrario es una llamada a un método
             {
@@ -732,9 +839,9 @@ public class Effect : ICloneable
             {
                 WhileInstruction();
             }
-            else if(CurrentKeyWord == "++" || IsNumericVariable())
+            else if(CurrentKeyWord == "++" || IsNumericVariable() || IsNumericProperty())
             {
-                Increase();
+                IncreaseAndComposedOperations();
             }
             else //De lo contrario es una llamada a un método
             {
@@ -1130,7 +1237,7 @@ public class Effect : ICloneable
         /*Si el keyWord es correcto pasa al siguiente
          y devuelve el valor del número o expresión entre paréntesis*/
         if(int.TryParse(CurrentKeyWord, out int value))
-        {Debug.Log(CurrentKeyWord + " nueor");
+        {
             int result = value;
 
             Next();
@@ -1186,7 +1293,7 @@ public class Effect : ICloneable
                 if(variable.Name == CurrentKeyWord && variable.Value is int value2)
                 {
                     int result = value2;
-                        Debug.Log(CurrentKeyWord + " saa11");
+                        
                     Next();
 
                     if(CurrentKeyWord == "++")
@@ -1324,7 +1431,7 @@ public class Effect : ICloneable
             string keyWord = CurrentKeyWord;
 
             if(keyWord == "+")
-            {Debug.Log(CurrentKeyWord + " sa22");
+            {
                 Next();
                 result += Term();
             }

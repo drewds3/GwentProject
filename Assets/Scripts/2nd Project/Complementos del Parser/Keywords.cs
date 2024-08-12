@@ -32,6 +32,11 @@ public enum TokenType
     XOR,
     At,
     DoubleAt,
+    PlusCom,
+    MinusCom,
+    MultiCom,
+    DivisionCom,
+    XORCom,
     Fin
 }
 
@@ -62,7 +67,7 @@ enum KeyWords
     Number,
     String,
     Bool,
-    card,
+    //card,
     Type,
     Faction,
     Power,
@@ -159,4 +164,13 @@ public enum Booleans
     GreaterOrEqual,
     Or,
     And
+}
+
+public enum CompositeOperators
+{
+    PlusCom,
+    MinusCom,
+    MultiCom,
+    DivisionCom,
+    XORCom
 }

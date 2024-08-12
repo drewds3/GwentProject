@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 //Clase encargada de realizar el análisis sintáctico
 public class Parser
@@ -292,29 +293,76 @@ public class Parser
                             Debug.Log($"Instrucción {++count} recogida correctamente: \"while\"");
                             if(!OneInstruction) InstructionsCollector(false);
                         }
-                        else if(IsNumericVariable() || CurrentToken.Type == TokenType.Increase) //Incremento de variable numérica
+                        else if(IsNumericVariable() || IsNumericProperty()) //Incremento u operación compuesta
                         {
                             //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
                             instructions.Add(new Instruction());
                             CurrentInstruction = instructions.Last();
 
-                            bool IsCorrect = false;
-
-                            foreach(Variable variable in variables)
-                            if((variable.Name == CurrentToken.Value && variable.Type == "Number")
-                               || (variable.Name == Tokens[CurrentTokenIndex + 1].Value && variable.Type == "Number")) IsCorrect = true;
-
-                            if(CurrentToken.Type == TokenType.Word && IsCorrect)
+                            if(IsNumericProperty())
                             {
                                 NextAndSave(TokenType.Word);
-                                NextAndSave(TokenType.Increase);
+                                Next(TokenType.Point);
+                                NextAndSave(TokenType.Keyword);
                             }
-                            else if(IsCorrect)
+                            else if(CurrentToken.Type == TokenType.Word) NextAndSave(TokenType.Word);
+
+                            if(CurrentToken.Type == TokenType.PlusCom)
                             {
-                                NextAndSave(TokenType.Increase);
-                                NextAndSave(TokenType.Word);
+                                NextAndSave(TokenType.PlusCom);
+                                dNext = NextAndSave;
+                                Expr();
+                            } 
+                            else if(CurrentToken.Type == TokenType.MinusCom)
+                            {
+                                NextAndSave(TokenType.MinusCom);
+                                dNext = NextAndSave;
+                                Expr();
+                            } 
+                            else if(CurrentToken.Type == TokenType.MultiCom)
+                            {
+                                NextAndSave(TokenType.MultiCom);
+                                dNext = NextAndSave;
+                                Expr();
+                            } 
+                            else if(CurrentToken.Type == TokenType.DivisionCom)
+                            {
+                                NextAndSave(TokenType.DivisionCom);
+                                dNext = NextAndSave;
+                                Expr();
+                            } 
+                            else if(CurrentToken.Type == TokenType.XORCom)
+                            {
+                                NextAndSave(TokenType.XORCom);
+                                dNext = NextAndSave;
+                                Expr();
+                            } 
+                            else if(CurrentToken.Type == TokenType.Increase) NextAndSave(TokenType.Increase);
+
+                            //Si se llega al final de la instrucción se recoge la siguiente de haberla
+                            if(CurrentToken.Type == TokenType.Semicolon)
+                            {
+                                Next(TokenType.Semicolon);
+                                Debug.Log($"Instrucción {++count} recogida correctamente: \"Incremento u Operación compuesta\"");
+                                if(!OneInstruction) InstructionsCollector(false);
                             }
-                            else throw new Exception("Can be only increased numeric variables");
+                            else throw new Exception("Semicolon was expected");
+                        }
+                        else if(CurrentToken.Type == TokenType.Increase) //Incremento
+                        {
+                            //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
+                            instructions.Add(new Instruction());
+                            CurrentInstruction = instructions.Last();
+
+                            NextAndSave(TokenType.Increase);
+
+                            if(IsNumericProperty())
+                            {
+                                NextAndSave(TokenType.Word);
+                                Next(TokenType.Point);
+                                NextAndSave(TokenType.Keyword);
+                            }
+                            else if(CurrentToken.Type == TokenType.Word) NextAndSave(TokenType.Word);
 
                             //Si se llega al final de la instrucción se recoge la siguiente de haberla
                             if(CurrentToken.Type == TokenType.Semicolon)
@@ -337,6 +385,8 @@ public class Parser
 
                             if(IsVariable())
                             {
+                                CurrentVariables = variables;
+                                
                                 Variable variable = new(name, WichTypeIs(TokenType.Semicolon));
                                 
                                 variables.AddLast(variable);
@@ -435,8 +485,20 @@ public class Parser
                         foreach(Variable variable in variables)
                         {
                             if(variable.Name == CurrentToken.Value && variable.Type == "Number") return true;
-                            else if(variable.Name == CurrentToken.Value && variable.Type == "Card" 
-                                    && Tokens[CurrentTokenIndex + 2].Value == "Power") return true;
+                        }
+                        return false;
+                    }
+                }
+
+                bool IsNumericProperty()
+                {
+                    if(Enum.IsDefined(typeof(KeyWords), CurrentToken.Value)) return false;
+                    else
+                    {
+                        foreach(Variable variable in variables)
+                        {
+                            if(variable.Name == CurrentToken.Value && variable.Type == "Card" 
+                               && Tokens[CurrentTokenIndex + 2].Value == "Power") return true;
                         }
                         return false;
                     }
@@ -591,7 +653,7 @@ public class Parser
                                     else if(CurrentToken.Type == TokenType.Point)
                                     {
                                         Next(TokenType.Point);
-                                        if(Enum.IsDefined(typeof(ContextPropertiesAndMethods), CurrentToken.Value)) return WichTypeIs(TokenType.Semicolon);
+                                        if(Enum.IsDefined(typeof(ContextPropertiesAndMethods), CurrentToken.Value)) return WichTypeIs(finalToken);
                                         else throw new Exception("Uknown method or property of context");
                                     } 
                                 }
@@ -602,9 +664,24 @@ public class Parser
                                     else if(CurrentToken.Type == TokenType.Point)
                                     {
                                         Next(TokenType.Point);
-                                        if(Enum.IsDefined(typeof(CardListProperties), CurrentToken.Value)) return WichTypeIs(TokenType.Semicolon);
+                                        if(Enum.IsDefined(typeof(CardListProperties), CurrentToken.Value)) return WichTypeIs(finalToken);
                                         else throw new Exception("Uknown method or property of context");
-                                    } 
+                                    }
+                                    else if(CurrentToken.Type == TokenType.LSBracket)
+                                    {
+                                        NextAndSave(TokenType.LSBracket);
+                                        dNext = NextAndSave;
+                                        Expr();
+                                        NextAndSave(TokenType.RSBracket);
+                                        if(CurrentToken.Type == finalToken) return "Card";
+                                        else if(CurrentToken.Type == TokenType.Point)
+                                        {
+                                            Next(TokenType.Point);
+                                            if(Enum.IsDefined(typeof(CardProperties), CurrentToken.Value)) return WichTypeIs(finalToken);
+                                            else throw new Exception("Uknown method or property of context");
+                                        }
+                                        else throw new Exception("Error to declarate a variable");
+                                    }
                                 }
                                 else if(variable.Type == "Card")
                                 {
@@ -613,7 +690,7 @@ public class Parser
                                     else if(CurrentToken.Type == TokenType.Point)
                                     {
                                         Next(TokenType.Point);
-                                        if(Enum.IsDefined(typeof(CardProperties), CurrentToken.Value)) return WichTypeIs(TokenType.Semicolon);
+                                        if(Enum.IsDefined(typeof(CardProperties), CurrentToken.Value)) return WichTypeIs(finalToken);
                                         else throw new Exception("Uknown method or property of context");
                                     } 
                                 }
@@ -644,7 +721,22 @@ public class Parser
                                 else if(CurrentToken.Type == TokenType.Point)
                                 {
                                     Next(TokenType.Point);
-                                    return WichTypeIs(TokenType.Semicolon);
+                                    return WichTypeIs(finalToken);
+                                }
+                                else if(CurrentToken.Type == TokenType.LSBracket)
+                                {
+                                    NextAndSave(TokenType.LSBracket);
+                                    dNext = NextAndSave;
+                                    Expr();
+                                    NextAndSave(TokenType.RSBracket);
+                                    if(CurrentToken.Type == finalToken) return "Card";
+                                    else if(CurrentToken.Type == TokenType.Point)
+                                    {
+                                        Next(TokenType.Point);
+                                        if(Enum.IsDefined(typeof(CardProperties), CurrentToken.Value)) return WichTypeIs(finalToken);
+                                        else throw new Exception("Uknown method or property of context");
+                                    }
+                                    else throw new Exception("Error to declarate a variable");
                                 }
                                 else throw new Exception("Expected semicolon or method call");
                             } 
@@ -660,9 +752,24 @@ public class Parser
                                 else if(CurrentToken.Type == TokenType.Point)
                                 {
                                     Next(TokenType.Point);
-                                    if(Enum.IsDefined(typeof(CardListProperties), CurrentToken.Value)) return WichTypeIs(TokenType.Semicolon);
+                                    if(Enum.IsDefined(typeof(CardListProperties), CurrentToken.Value)) return WichTypeIs(finalToken);
                                     else throw new Exception("Uknown method or property of context");
                                 }
+                                else if(CurrentToken.Type == TokenType.LSBracket)
+                                {
+                                    NextAndSave(TokenType.LSBracket);
+                                    dNext = NextAndSave;
+                                    Expr();
+                                    NextAndSave(TokenType.RSBracket);
+                                    if(CurrentToken.Type == finalToken) return "Card";
+                                    else if(CurrentToken.Type == TokenType.Point)
+                                    {
+                                        Next(TokenType.Point);
+                                        if(Enum.IsDefined(typeof(CardProperties), CurrentToken.Value)) return WichTypeIs(finalToken);
+                                        else throw new Exception("Uknown method or property of context");
+                                    }
+                                    else throw new Exception("Error to declarate a variable");
+                                    }
                                 else throw new Exception("Expected semicolon or method call");
                             }
                         }
@@ -685,7 +792,7 @@ public class Parser
                                 {
                                     Next(TokenType.Point);
 
-                                    if(Enum.IsDefined(typeof(CardProperties), CurrentToken.Value)) return WichTypeIs(TokenType.Semicolon);
+                                    if(Enum.IsDefined(typeof(CardProperties), CurrentToken.Value)) return WichTypeIs(finalToken);
                                     else throw new Exception("Expected a method that returned some value");
                                 }
                                 else throw new Exception("Expected semicolon or method call");
@@ -702,8 +809,23 @@ public class Parser
                                 {
                                     Next(TokenType.Point);
 
-                                    if(Enum.IsDefined(typeof(CardListProperties), CurrentToken.Value)) return WichTypeIs(TokenType.Semicolon);
+                                    if(Enum.IsDefined(typeof(CardListProperties), CurrentToken.Value)) return WichTypeIs(finalToken);
                                     else throw new Exception("Expected a method that returned some value");
+                                }
+                                else if(CurrentToken.Type == TokenType.LSBracket)
+                                {
+                                    NextAndSave(TokenType.LSBracket);
+                                    dNext = NextAndSave;
+                                    Expr();
+                                    NextAndSave(TokenType.RSBracket);
+                                    if(CurrentToken.Type == finalToken) return "Card";
+                                    else if(CurrentToken.Type == TokenType.Point)
+                                    {
+                                        Next(TokenType.Point);
+                                        if(Enum.IsDefined(typeof(CardProperties), CurrentToken.Value)) return WichTypeIs(finalToken);
+                                        else throw new Exception("Uknown method or property of context");
+                                    }
+                                    else throw new Exception("Error to declarate a variable");
                                 }
                                 else throw new Exception("Expected semicolon or method call");
                             } 
@@ -719,7 +841,7 @@ public class Parser
             while(CurrentToken.Value == "card")
             {
                 //Se recogen las propiedades
-                Next(TokenType.Keyword);
+                Next(TokenType.Word);
                 Next(TokenType.LCBracket);
                 Properties(); 
                 
@@ -1638,9 +1760,9 @@ public class Parser
         else throw new Exception("Invalid boolean expression");
     }
 
-      //-------------------------------------------String--------------------------------------------------------------------------------
-      private string ParseString()
-      { 
+    //-------------------------------------------String--------------------------------------------------------------------------------
+    private string ParseString()
+    { 
         string result = null;
 
         if(CurrentToken.Type == TokenType.QMark)
@@ -1691,5 +1813,5 @@ public class Parser
         }
 
         return result;
-      }
+    }
 }            

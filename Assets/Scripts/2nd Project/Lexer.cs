@@ -1,8 +1,5 @@
 using System.Collections.Generic;
 using System;
-using System.Diagnostics;
-using UnityEngine;
-using System.Threading;
 
 //Clase token para los objetos de tipo "Token"
 public class Token
@@ -147,25 +144,49 @@ public class Lexer
                     
                     tokens.Add(new Token(TokenType.Increase, "++", Position - 1));
                 } 
+                else if(Input[Position] == '=')
+                {
+                    Position++;
+                    
+                    tokens.Add(new Token(TokenType.PlusCom, "+=", Position - 1));
+                } 
                 else tokens.Add(new Token(TokenType.Plus, "+", Position - 1));
             }
             else if(Input[Position] == '-')
             {
                 Position++;
 
-                tokens.Add(new Token(TokenType.Minus, "-", Position - 1));
+                if(Input[Position] == '=')
+                {
+                    Position++;
+                    
+                    tokens.Add(new Token(TokenType.MinusCom, "-=", Position - 1));
+                } 
+                else tokens.Add(new Token(TokenType.Minus, "-", Position - 1));
             }
             else if(Input[Position] == '*')
             {
                 Position++;
 
-                tokens.Add(new Token(TokenType.Multi, "*", Position - 1));
+                if(Input[Position] == '=')
+                {
+                    Position++;
+                    
+                    tokens.Add(new Token(TokenType.MultiCom, "*=", Position - 1));
+                } 
+                else tokens.Add(new Token(TokenType.Multi, "*", Position - 1));
             }
             else if(Input[Position] == '/')
             {
                 Position++;
 
-                tokens.Add(new Token(TokenType.Division, "/", Position - 1));
+                if(Input[Position] == '=')
+                {
+                    Position++;
+                    
+                    tokens.Add(new Token(TokenType.DivisionCom, "/=", Position - 1));
+                } 
+                else tokens.Add(new Token(TokenType.Division, "/", Position - 1));
             }
             else if(Input[Position] == '"')
             {
@@ -262,7 +283,13 @@ public class Lexer
             {
                 Position++;
         
-                tokens.Add(new Token(TokenType.XOR, "^", Position - 1));
+                if(Input[Position] == '=')
+                {
+                    Position++;
+                    
+                    tokens.Add(new Token(TokenType.XORCom, "^=", Position - 1));
+                } 
+                else tokens.Add(new Token(TokenType.XOR, "^", Position - 1));
             }
             else if(Input[Position] == '@')
             {
