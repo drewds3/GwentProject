@@ -88,56 +88,67 @@ public class DropSlot : MonoBehaviour, IDropHandler
         //De lo contrario comprueba si la carta soltada es válida y no hay otra
         else if((cardScript && faction == cardScript.Faction || isP1Neutral || isP2Neutral) && !item && (type == cardScript.Range1 || type == cardScript.Range2 || type == cardScript.Range3))
         {
-                //De ser así, verifica si la carta tiene efecto que se deba activar en este momento
-                if(cardScript.NumEffect < 4 && cardScript.NumEffect != 0)
-                {
-                    EffectCards effects = DragHandler.itemDragging.GetComponent<EffectCards>();
+            //De ser así, verifica si la carta tiene efecto que se deba activar en este momento
+            if(cardScript.NumEffect < 4 && cardScript.NumEffect != 0)
+            {
+                EffectCards effects = DragHandler.itemDragging.GetComponent<EffectCards>();
 
-                    //De ser así, activa el efecto en cuestión
-                    effects.ActiveEffect(cardScript.NumEffect);
-                }
+                //De ser así, activa el efecto en cuestión
+                effects.ActiveEffect(cardScript.NumEffect);
+            }
 
+            //Se activa el efecto creado a través del DSL de tener
+            try
+            {
                 NewCard newCard = DragParent.GetComponentInChildren<NewCard>();
 
                 if(newCard != null) newCard.Activate();
+            }
+            /*Al declararse a través de un DSL y activarse en tiempo de juego pueden
+              producirse diversos errores comunes al ejecutarse dicho efecto*/
+            catch 
+            {
+                Debug.LogError("Se produjo un error al intentar activar el efecto");
+            }
+            
 
-                /* Luego, establece el objeto que se está arrastrando
-                como el objeto de la slot y lo posiciona en la slot
-                */
-                item = DragHandler.itemDragging;
-                item.transform.SetParent(transform);
-                item.transform.position = transform.position;
+            /* Luego, establece el objeto que se está arrastrando
+            como el objeto de la slot y lo posiciona en la slot
+            */
+            item = DragHandler.itemDragging;
+            item.transform.SetParent(transform);
+            item.transform.position = transform.position;
 
-                /*Se le otorga un tag dependiendo de su facción para luego
-                ser enviada a sus respectivos cementerios desde otro script*/
-                if(cardScript.Faction == player1.Faction || isP1Neutral)
-                {
-                    item.tag = "CartaJugada1";
-                }
-                else if(cardScript.Faction == player2.Faction || isP2Neutral)
-                {
-                    item.tag = "CartaJugada2";
-                }
+            /*Se le otorga un tag dependiendo de su facción para luego
+            ser enviada a sus respectivos cementerios desde otro script*/
+            if(cardScript.Faction == player1.Faction || isP1Neutral)
+            {
+                item.tag = "CartaJugada1";
+            }
+            else if(cardScript.Faction == player2.Faction || isP2Neutral)
+            {
+                item.tag = "CartaJugada2";
+            }
                
-                //Se le quita la movilidad a la carta
-                item.GetComponent<DragHandler>().enabled = false;
+            //Se le quita la movilidad a la carta
+            item.GetComponent<DragHandler>().enabled = false;
                 
-                //Verifica si hay algún efecto que se deba activar en este momento
-                if(cardScript.NumEffect > 3)
-                {
-                    EffectCards effects = DragHandler.itemDragging.GetComponent<EffectCards>();
+            //Verifica si hay algún efecto que se deba activar en este momento
+            if(cardScript.NumEffect > 3)
+            {
+                EffectCards effects = DragHandler.itemDragging.GetComponent<EffectCards>();
 
-                    //De ser así, activa el efecto en cuestión
-                    effects.ActiveEffect(cardScript.NumEffect);
-                }
+                //De ser así, activa el efecto en cuestión
+                effects.ActiveEffect(cardScript.NumEffect);
+            }
 
-                Debug.Log("Carta colocada correctamente");
+            Debug.Log("Carta colocada correctamente");
 
-                //Además pasa de turno si el otro jugador no ha pasado
-                if(turnsController.passCount % 2 == 0)
-                {
-                   turnsController.NextTurn();
-                }
+            //Además pasa de turno si el otro jugador no ha pasado
+            if(turnsController.passCount % 2 == 0)
+            {
+                turnsController.NextTurn();
+            }
         }
     }
 

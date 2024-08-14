@@ -37,6 +37,8 @@ public class Context : MonoBehaviour
             //Se crea la lista y se le unen las cartas en los mazos
             List<GameObject> board = GameObject.FindGameObjectsWithTag("CartaJugada1").ToList();
             board.AddRange(GameObject.FindGameObjectsWithTag("CartaJugada2"));
+            board.AddRange(GameObject.FindGameObjectsWithTag("ClimaJugado1"));
+            board.AddRange(GameObject.FindGameObjectsWithTag("ClimaJugado2"));
             
             return board;
         }

@@ -112,6 +112,8 @@ public class Effect : ICloneable
     //Método para activar el efecto
     public void Activate()
     {   
+        Debug.Log($"Inicio de ejecución del efecto: \"{Name}\"");
+        
         Source();
         FinishInstruction();
     }
@@ -194,45 +196,49 @@ public class Effect : ICloneable
                 else if(SourceTargets == "otherField") variable.Value = FieldOfPlayer(OtherPlayer);
                 else if(SourceTargets == "void") variable.Value = new List<GameObject>();
 
-                if(Single) 
+                if(SourceTargets != "void")
                 {
-                    List<GameObject> cards = (List<GameObject>)variable.Value;
-                    List<GameObject> cards2 = new(){cards[0]};
-                    variable.Value = cards2;
-                }
+                    if(Single) 
+                    {
+                        List<GameObject> cards = (List<GameObject>)variable.Value;
+                        List<GameObject> cards2 = new(){cards[0]};
+                        variable.Value = cards2;
+                    }
 
-                Predicate.Debug();
-                CurrentInstruction = Predicate;
-                CurrentKeyWord = CurrentInstruction.KeyWords[0]; 
-                Variable variable2 = SetVariableValue(CurrentKeyWord);
-                
-                Next();
-
-                List<GameObject> cards3 = new();
-                foreach(GameObject card in (List<GameObject>)variable.Value)
-                cards3.Add(card);
-
-                foreach(GameObject card in (List<GameObject>)variable.Value)
-                {
-                    variable2.Value = card;
-                    
-                    bool casa = BooleanExpression();
-
-                    if(!casa) cards3.Remove(card);
-
+                    Predicate.Debug();
                     CurrentInstruction = Predicate;
-                    CurrentKeyWord = CurrentInstruction.KeyWords[1];
-                    CurrentKeyWordIndex = 1;
+                    CurrentKeyWord = CurrentInstruction.KeyWords[0]; 
+                    Variable variable2 = SetVariableValue(CurrentKeyWord);
+                    
+                    Next();
+
+                    List<GameObject> cards3 = new();
+                    foreach(GameObject card in (List<GameObject>)variable.Value)
+                    cards3.Add(card);
+
+                    foreach(GameObject card in (List<GameObject>)variable.Value)
+                    {
+                        variable2.Value = card;
+                        
+                        bool casa = BooleanExpression();
+
+                        if(!casa) cards3.Remove(card);
+
+                        CurrentInstruction = Predicate;
+                        CurrentKeyWord = CurrentInstruction.KeyWords[1];
+                        CurrentKeyWordIndex = 1;
+                    } 
+                    
+                    variable.Value = cards3;
+
+                    CurrentInstruction = Instructions[0];
+                    CurrentKeyWord = CurrentInstruction.KeyWords[0];
+                    CurrentInstructionIndex = 0;
+                    CurrentKeyWordIndex = 0;
+
+                    return;
                 } 
-                
-                variable.Value = cards3;
-
-                CurrentInstruction = Instructions[0];
-                CurrentKeyWord = CurrentInstruction.KeyWords[0];
-                CurrentInstructionIndex = 0;
-                CurrentKeyWordIndex = 0;
-
-                return;
+                else return;
             }
         }
 
@@ -625,7 +631,9 @@ public class Effect : ICloneable
                 {   
                     GameObject card = (GameObject)variable.Value;
 
+                    if(card.GetComponent<Card>().Type == "Silver" || card.GetComponent<Card>().Type == "Gold") 
                     card.GetComponent<Card>().Power = newValue;
+                    else Debug.Log("No se puede modificar el valor del poder de cartas especiales");
 
                     break;
                 }
@@ -650,7 +658,9 @@ public class Effect : ICloneable
                 && CurrentInstruction.KeyWords[CurrentKeyWordIndex+1] == "Power")
                 {
                     GameObject card = (GameObject)variable.Value;
+                    if(card.GetComponent<Card>().Type == "Silver" || card.GetComponent<Card>().Type == "Gold") 
                     card.GetComponent<Card>().Power++;
+                    else Debug.Log("No se puede modificar el valor del poder de cartas especiales");
                     
                     Next();
                     Next();
@@ -940,20 +950,137 @@ public class Effect : ICloneable
 
     private void CardList(List<GameObject> cards)
     {
-        if(CurrentKeyWord == "Push" || CurrentKeyWord == "Add")
+        if(CurrentKeyWord == "Push" || CurrentKeyWord == "Add" || CurrentKeyWord == "SendBottom")
         {
+            string function = CurrentKeyWord;
+
             Next();
-            cards.Add((GameObject)Parameter());
-        }
-        else if(CurrentKeyWord == "SendBottom")
-        {
-            Next();
-            cards.Insert(0, (GameObject)Parameter());
+
+            //Se recoge la carta a la que se hace referencia
+            GameObject card = (GameObject)Parameter();
+            
+            // Si se añade a la mano o cementerio de algún jugador se procede algo diferente
+            if(cards.SequenceEqual(HandOfPlayer(player1)))
+            {
+                //Se instancia en la mano
+                GameObject cardCopy = MonoBehaviour.Instantiate(card, player1.Hand.transform);
+                NewCard properties = cardCopy.GetComponent<NewCard>();
+
+                //Se añaden los efectos porque se suelen perder al ser por referencia
+                foreach(Effect effect in card.GetComponent<NewCard>().Effects)
+                properties.Effects.Add((Effect)effect.Clone());
+
+                //Se cambia el dueño y el tag, y la facción de ser necesario
+                if(properties.Faction != "Neutral") properties.Faction = player1.Faction;
+
+                properties.Owner = "Player1";
+                cardCopy.tag = "Carta";
+
+                //Se activa el componente de arrastre
+                cardCopy.GetComponent<DragHandler>().enabled = true;
+            }
+            if(cards.SequenceEqual(HandOfPlayer(player2)))
+            {
+                //Se instancia en la mano
+                GameObject cardCopy = MonoBehaviour.Instantiate(card, player2.Hand.transform);
+                NewCard properties = cardCopy.GetComponent<NewCard>();
+
+                //Se añaden los efectos porque se suelen perder al ser por referencia
+                foreach(Effect effect in card.GetComponent<NewCard>().Effects)
+                properties.Effects.Add((Effect)effect.Clone());
+
+                //Se cambia el dueño y el tag, y la facción de ser necesario
+                if(properties.Faction != "Neutral") properties.Faction = player2.Faction;
+
+                properties.Owner = "Player2";
+                cardCopy.tag = "Carta";
+
+                //Se activa el componente de arrastre
+                cardCopy.GetComponent<DragHandler>().enabled = true;
+            }
+            else if(cards.SequenceEqual(GraveyardOfPlayer(player1)))
+            {
+                //Se instancia en el cementerio
+                GameObject cardCopy = MonoBehaviour.Instantiate(card, player1.Graveyard.transform);
+                NewCard properties = cardCopy.GetComponent<NewCard>();
+
+                //Se añaden los efectos porque se suelen perder al ser por referencia
+                foreach(Effect effect in card.GetComponent<NewCard>().Effects)
+                properties.Effects.Add((Effect)effect.Clone());
+
+                //Se cambia el dueño y el tag, y la facción de ser necesario
+                if(properties.Faction != "Neutral") properties.Faction = player1.Faction;
+
+                properties.Owner = "Player1";
+                cardCopy.tag = "CartaDescartada1";
+
+                //Se activa el componente de arrastre
+                cardCopy.GetComponent<DragHandler>().enabled = false;
+            }
+            else if(cards.SequenceEqual(GraveyardOfPlayer(player2)))
+            {
+                //Se instancia en el cementerio
+                GameObject cardCopy = MonoBehaviour.Instantiate(card, player2.Graveyard.transform);
+                NewCard properties = cardCopy.GetComponent<NewCard>();
+
+                //Se añaden los efectos porque se suelen perder al ser por referencia
+                foreach(Effect effect in card.GetComponent<NewCard>().Effects)
+                properties.Effects.Add((Effect)effect.Clone());
+
+                //Se cambia el dueño y el tag, y la facción de ser necesario
+                if(properties.Faction != "Neutral") properties.Faction = player2.Faction;
+
+                properties.Owner = "Player2";
+                cardCopy.tag = "CartaDescartada2";
+
+                //Se activa el componente de arrastre
+                cardCopy.GetComponent<DragHandler>().enabled = false;
+            }
+            else if(cards.SequenceEqual(DeckOfPlayer(player1)))
+            {
+                card = MonoBehaviour.Instantiate(card, GameObject.Find("NewDeck").transform);
+                Card properties = card.GetComponent<Card>();
+
+                //Se cambia el dueño y el tag, y la facción de ser necesario
+                if(properties.Faction != "Neutral") properties.Faction = player1.Faction;
+
+                properties.Owner = "Player1";
+                card.tag = "Carta";
+            }
+            else if(cards.SequenceEqual(DeckOfPlayer(player2)))
+            {
+                card = MonoBehaviour.Instantiate(card);
+                Card properties = card.GetComponent<Card>();
+
+                //Se cambia el dueño y el tag, y la facción de ser necesario
+                if(properties.Faction != "Neutral") properties.Faction = player2.Faction;
+
+                properties.Owner = "Player2";
+                card.tag = "Carta";
+            }
+            else if(cards.SequenceEqual(Board) || cards.SequenceEqual(FieldOfPlayer(player1)) || cards.SequenceEqual(FieldOfPlayer(player2)))
+            Debug.Log("Al tablero y campos solo se le pueden colocar cartas manualmente");
+
+            //Finalmente se le añade la carta a la lista
+            if(function != "SendBottom") cards.Add(card);
+            else cards.Insert(0, card);
         }
         else if(CurrentKeyWord == "Remove")
         {
             Next();
-            cards.Remove((GameObject)Parameter());
+
+            GameObject card = (GameObject)Parameter();
+            
+            if(cards.SequenceEqual(Board) || cards.SequenceEqual(FieldOfPlayer(player1)) || cards.SequenceEqual(FieldOfPlayer(player2)) 
+            || cards.SequenceEqual(GraveyardOfPlayer(player1)) || cards.SequenceEqual(GraveyardOfPlayer(player2))
+            || cards.SequenceEqual(HandOfPlayer(player1)) || cards.SequenceEqual(HandOfPlayer(player2)))
+            {
+                card.transform.position = GameObject.Find("DeleteCards").transform.position;
+                card.transform.SetParent(GameObject.Find("DeleteCards").transform);
+                card.tag = "Carta";
+            }
+
+            cards.Remove(card);
         }
         else if(CurrentKeyWord == "Shuffle")
         {
@@ -1331,6 +1458,16 @@ public class Effect : ICloneable
 
                     Next();
                     Next();
+
+                    if(CurrentKeyWord == "++")
+                    {
+                        if(card.GetComponent<Card>().Type == "Silver" || card.GetComponent<Card>().Type == "Gold") 
+                        card.GetComponent<Card>().Power++;
+                        else Debug.Log("No se puede modificar el valor del poder de cartas especiales");
+                        
+                        Next();
+                    }
+
 
                     if(CurrentKeyWord == "^")
                     {
