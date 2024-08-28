@@ -65,6 +65,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\Cards\CardView.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
+    <Compile Include="Assets\Scripts\Others\HUDhelp.cs" />
     <Compile Include="Assets\Scripts\2nd Project\CodeEditor.cs" />
     <Compile Include="Assets\Scripts\Cards\NewCard.cs" />
     <Compile Include="Assets\Scripts\Cards\Card.cs" />

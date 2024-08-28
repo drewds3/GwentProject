@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using static SetPlayers;
 
@@ -37,6 +38,9 @@ public class TurnsBasedSystem : MonoBehaviour
         }
         passButtonBlock.SetActive(true);
         currentTurn++;
+
+        TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+        text.text = "(...)";
     }
 
     public void EndRound()
@@ -51,6 +55,9 @@ public class TurnsBasedSystem : MonoBehaviour
         player2.blockHand.SetActive(true);
         player2.blockDeck.SetActive(true);
         player2.blockLeader.SetActive(true);
+
+        TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+        text.text = "Ronda terminada";
     }
 
     //Método para controlar el pase
@@ -186,6 +193,9 @@ public class TurnsBasedSystem : MonoBehaviour
 
                 EndRound();
                 tiedGameCartel.SetActive(true);
+
+                TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+                text.text = "There is no winner :(";
             }
             else if(counterScore.winsP1 == 2)
             {
@@ -194,6 +204,9 @@ public class TurnsBasedSystem : MonoBehaviour
 
                 EndRound();
                 victoryCartel1.SetActive(true);
+
+                TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+                text.text = "We have a winner!";
             }
             else
             {
@@ -202,6 +215,9 @@ public class TurnsBasedSystem : MonoBehaviour
 
                 EndRound();
                 victoryCartel2.SetActive(true);
+
+                TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+                text.text = "We have a winner!";
             }
         }
     }   

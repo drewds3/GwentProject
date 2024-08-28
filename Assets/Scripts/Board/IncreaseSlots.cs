@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static SetPlayers;
@@ -9,6 +10,7 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
     private string faction;
     private bool isP1Neutral;
     private bool isP2Neutral;
+    private string player;
 
     //Variables para soltar la carta en las slots
     public GameObject DragParent;
@@ -29,11 +31,13 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
         {
             faction = player1.Faction;
             graveyard = player1.Graveyard;
+            player = "1";
         } 
         else 
         {
             faction = player2.Faction;
             graveyard = player2.Graveyard;
+            player = "2";
         }
 
         Card cardScript = DragParent.GetComponentInChildren<Card>();
@@ -68,5 +72,8 @@ public class IncreaseSlots : MonoBehaviour, IDropHandler
             DragHandler.itemDragging.transform.SetParent(graveyard);
             DragHandler.itemDragging.transform.position = graveyard.position;
         }
+
+        TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+        text.text = $"Doubled the power of {type} type cards of the player {player}";
     }
 }

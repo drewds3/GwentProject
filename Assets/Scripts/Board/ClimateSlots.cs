@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static SetPlayers;
@@ -27,6 +28,9 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
             afectS = false;
 
             Debug.Log("Clima removido");
+
+            TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+            text.text = "Clear weather";
         }
     }
 
@@ -90,7 +94,9 @@ public class ClimateSlots : MonoBehaviour, IDropHandler
 
                 Debug.Log("Filas S afectadas");
             } 
-                
+            
+            TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+            text.text = $"Weather activated for {type} type cards";
         }
         //Si se usa el despeje se elimina el clima
         else if(cardScript.Type == "Clearance" && item != null)

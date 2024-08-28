@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using TMPro;
 
 public class LeaderEffect : MonoBehaviour
 {   
@@ -26,6 +27,9 @@ public class LeaderEffect : MonoBehaviour
 
                 Debug.Log("Efecto de líder elfo activado");
 
+                TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+                text.text = "Active leader effect";
+
                 TurnsBasedSystem turnsController = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>();
 
                 //Además pasa de turno si el otro jugador no ha pasado
@@ -38,11 +42,17 @@ public class LeaderEffect : MonoBehaviour
             catch (IndexOutOfRangeException)
             {
                 Debug.Log("No hay cartas de unidades en el campo");
+
+                TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+                text.text = "There are no cards on the ally field";
             }
         }
         else //Solo se puede activar una vez
         {
             Debug.Log("Ya se usó una vez");
+
+            TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+            text.text = "Already it used once";
         }
         
     }
@@ -58,6 +68,9 @@ public class LeaderEffect : MonoBehaviour
             
             Debug.Log("Efecto de líder nórdico activado");
 
+            TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+            text.text = "Active leader effect";
+
             TurnsBasedSystem turnsController = GameObject.Find("Tablero").GetComponent<TurnsBasedSystem>();
 
             //Además pasa de turno si el otro jugador no ha pasado
@@ -69,6 +82,9 @@ public class LeaderEffect : MonoBehaviour
         else //Solo se puede activar una vez
         {
             Debug.Log("Ya se usó una vez");
+
+            TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+            text.text = "Already it used once";
         }
     }
 }

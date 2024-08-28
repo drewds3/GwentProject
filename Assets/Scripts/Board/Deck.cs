@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static SetPlayers;
 using static TurnsBasedSystem;
@@ -49,6 +50,9 @@ public class Deck : MonoBehaviour
         if(deck.Count == 0)
         {
             Debug.LogError("Se acabaron las cartas");
+
+            TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+            text.text = "You ran out of cards :(";
         }
         else
         {  
@@ -59,22 +63,28 @@ public class Deck : MonoBehaviour
                 if(hand.childCount < 10)
                 {
                     draw();
+
+                    //Si ya tiene las 10 se le permite jugar y se activa la posibilidad de cambiar de carta
+                    if(hand.childCount == 10 && count == 0)
+                    {
+                        blockRows1.SetActive(false);
+                        blockRows2.SetActive(false);
+                        blockPassButton.SetActive(false);
+
+                        cardChangeSlot.SetActive(true);
+
+                        Debug.Log("Ya puedes jugar");
+
+                        TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+                        text.text = "Now, you can change up to two cards by shuffling them into the deck, play a card, or pass a turn";
+                    }
                 }
                 else
                 {
                     Debug.Log("No puedes robar más en este turno");
-                }
 
-                //Si ya tiene las 10 se le permite jugar y se activa la posibilidad de cambiar de carta
-                if(hand.childCount == 10 && count == 0)
-                {
-                    blockRows1.SetActive(false);
-                    blockRows2.SetActive(false);
-                    blockPassButton.SetActive(false);
-
-                    cardChangeSlot.SetActive(true);
-
-                    Debug.Log("Ya puedes jugar");
+                    TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+                    text.text = "You can't draw more cards in this turn";
                 }
             }
             //Si estamos en la 2da o 3ra ronda y es el primer turno roban 2 cartas
@@ -109,6 +119,9 @@ public class Deck : MonoBehaviour
                     blockPassButton.SetActive(false);
 
                     Debug.Log("Ya puedes jugar");
+
+                    TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+                    text.text = "You can play now!";
                 }
 
             }
@@ -116,6 +129,9 @@ public class Deck : MonoBehaviour
             else
             {
                 Debug.Log("No puedes robar cartas en este turno");
+
+                TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+                text.text = "You can't draw more cards in this turn";
             }
         }
     }
