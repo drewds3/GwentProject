@@ -558,7 +558,7 @@ MonoBehaviour:
   Range2: Siege
   Range3: null
   NumEffect: 0
-  Owner: 
+  Owner: Player1
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0

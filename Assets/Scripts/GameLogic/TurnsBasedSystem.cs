@@ -23,6 +23,15 @@ public class TurnsBasedSystem : MonoBehaviour
     public static int round = 1;
     public static int winner = 0;
     public static bool victory;
+
+    //Método para reiniciar las variables estáticas al comenzar una partida nueva
+    void Awake()
+    {
+        currentTurn = 0;
+        round = 1;
+        winner = 0;
+        victory = false;
+    }
     
     //Método para cambiar de turno
     public void NextTurn()
@@ -69,6 +78,10 @@ public class TurnsBasedSystem : MonoBehaviour
             NextTurn();
 
             passCount++;
+
+            TMP_Text text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
+            if(currentTurn % 2 != 0) text.text = "Player 1 has passed, and will not play again until the next round";
+            else text.text = "Player 2 has passed, and will not play again until the next round";
         }
         else //Si se vuelve a pulsar el botón verifica quién gano y pasa a la siguiente ronda
         {

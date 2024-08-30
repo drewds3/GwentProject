@@ -163,9 +163,19 @@ public class Deck : MonoBehaviour
         {
             index = Random.Range(0, deck.Count);
 
-            GameObject card = Instantiate(deck[index], hand);
+            if(deck[index].GetComponent<Card>() is not NewCard)
+            {
+                GameObject card = Instantiate(deck[index], hand);
+                card.GetComponent<Card>().Owner = owner;
+            }
+            else
+            {
+                GameObject card = deck[index];
 
-            card.GetComponent<Card>().Owner = owner;
+                card.transform.position = hand.position;
+                card.transform.SetParent(hand);
+                card.GetComponent<Card>().Owner = owner;
+            }
 
             deck.Remove(deck[index]);
         }
@@ -181,7 +191,6 @@ public class Deck : MonoBehaviour
             card.GetComponent<Card>().Owner = owner;
         
             deck.Remove(deck[index]);
-
         }
     }
 

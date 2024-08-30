@@ -219,7 +219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Orco
+  m_text: "Guerrero n\xF3rdico"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -430,7 +430,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 68dbd33efac1b5e4e8c3344d84673d93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b77a7ad6c482d34282e0002a86602c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: -8077461281738308923}
   - component: {fileID: -5262470235149670892}
   m_Layer: 3
-  m_Name: OrcoCardNordic
+  m_Name: VikingoCardNordic
   m_TagString: Carta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06393e5ca1aeef64ba8023fbbcf34afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Orco
+  Name: Vikingo
   Type: Silver
   Faction: Dragon
   Power: 6
@@ -557,7 +557,7 @@ MonoBehaviour:
   Range2: null
   Range3: null
   NumEffect: 0
-  Owner: 
+  Owner: Player1
 --- !u!114 &-5262470235149670892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,7 +636,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Un orco, esa es la descripci\xF3n"
+  m_text: "Un feroz guerrero, fortalecido a trav\xE9s de las m\xE1s duras batallas."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -98,18 +98,10 @@ public class DropSlot : MonoBehaviour, IDropHandler
             }
 
             //Se activa el efecto creado a través del DSL de tener
-            try
-            {
-                NewCard newCard = DragParent.GetComponentInChildren<NewCard>();
+            NewCard newCard = DragParent.GetComponentInChildren<NewCard>();
 
-                if(newCard != null) newCard.Activate();
-            }
-            /*Al declararse a través de un DSL y activarse en tiempo de juego pueden
-              producirse diversos errores comunes al ejecutarse dicho efecto*/
-            catch 
-            {
-                Debug.LogError("Se produjo un error al intentar activar el efecto");
-            }
+            if(newCard != null) newCard.Activate();
+            
             
 
             /* Luego, establece el objeto que se está arrastrando

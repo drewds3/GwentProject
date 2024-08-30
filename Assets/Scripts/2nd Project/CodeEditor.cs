@@ -25,4 +25,10 @@ public class CodeEditor : MonoBehaviour
             inputField.ForceLabelUpdate();
         }
     }
+
+    //Método para limpiar la entrada de texto
+    public void CleanInputField()
+    {
+        inputField.text = "";
+    }
 }

@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using static SetPlayers;
 
 public class CardCreator : MonoBehaviour
@@ -56,12 +59,18 @@ public class CardCreator : MonoBehaviour
 
             translator.cards.Add(CardInstance);
         }
+
+        //Se le otorga una descripción por defecto a la carta si no es de las que pueden tener efectos
+        if(cardScript.Type != "Leader" && cardScript.Type != "Silver" && cardScript.Type != "Gold")
+        SetDescription();
     }
 
      public void Create(List<Property> properties, List<Effect> effects)
      {
         Create(properties);
         foreach(Effect effect in effects) CardInstance.GetComponent<NewCard>().Effects.Add((Effect)effect.Clone());
+
+        SetDescription();
      }
 
     //Método para agregarle las propiedades a la carta nueva
@@ -142,5 +151,50 @@ public class CardCreator : MonoBehaviour
             else if(property.Type == "Type") return "Other";
         }
         throw new Exception("This card has no type");
+    }
+
+    private void SetDescription()
+    {
+        TMP_Text description = CardInstance.GetComponentInChildren<TMP_Text>();
+        NewCard properties = CardInstance.GetComponent<NewCard>();
+        
+        if(properties.Type == "Climate") description.text = "Carta de clima";
+        else if(properties.Type == "Lure") description.text = "Carta de señuelo";
+        else if(properties.Type == "Increase") description.text = "Carta de aumento";
+        else if(properties.Type == "Leader") description.text = "Carta de líder";
+        else if(properties.Type == "Gold") description.text = "Carta de unidad de plata";
+        else if(properties.Type == "Silver") description.text = "Carta de unidad de oro";
+        else if(properties.Type == "Clearance") description.text = "Carta de despeje";
+
+        if(properties.Effects.Count > 0)
+        {
+            description.text += "\n Efectos:";
+            
+            int count = 0;
+
+            for(int i = 0; i < properties.Effects.Count; i++)
+            {
+                description.text += $"\n - \"{properties.Effects[i].Name}\"";
+
+                count++;
+
+                for(Effect effect = properties.Effects[i]; effect.PostEffect != null;)
+                {
+                    description.text += $"\n - \"{effect.PostEffect.Name}\"";
+
+                    effect = effect.PostEffect;
+
+                    count++;
+
+                    if(count == 2) break;
+                }
+
+                if(count == 2)
+                {
+                    description.text += "\n y más...";
+                    break;
+                } 
+            }
+        }
     }
 }

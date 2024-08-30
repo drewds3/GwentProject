@@ -29,7 +29,7 @@ public class Parser
     public void Parse()
     {
         //Comprueba si el primer token es correcto
-        if(CurrentToken.Type == TokenType.Keyword)
+        if(CurrentToken.Type == TokenType.Keyword || CurrentToken.Value == "card")
         {
             //De ser así y mientras sea "effect" se crearan los efectos correspondientes
             while(CurrentToken.Value == "effect")
@@ -1400,6 +1400,9 @@ public class Parser
 
             dNext = NextAndSavePredicate;
             Predicate(effect.Variables);
+
+            //Se borra la variable declarada dentro del predicado para evitar posibles errores
+            CurrentVariables.Clear();
         } 
         else throw new Exception("Predicate expected");
 

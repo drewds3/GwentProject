@@ -35,6 +35,9 @@ public class Effect : ICloneable
     //Efecto anidado (si es que tiene)
     public Effect PostEffect {get;set;}
 
+    //Efecto padre (si es que tiene)
+    public Effect ParentEffect {get;set;}
+
     //Instrucción actual
     private Instruction CurrentInstruction;
     private int CurrentInstructionIndex;
@@ -75,9 +78,11 @@ public class Effect : ICloneable
         {
             SourceTargets = SourceTargets,
             Single = Single,
-            PostEffect = PostEffect,
             Predicate = (Instruction)Predicate.Clone()
         };
+
+        if(PostEffect != null) effect.PostEffect = (Effect)PostEffect.Clone();
+        if(ParentEffect != null) effect.ParentEffect = (Effect)ParentEffect.Clone();
 
         List<Instruction> instructions = new();
 
@@ -178,7 +183,11 @@ public class Effect : ICloneable
         {
             FinishInstruction();
         }
-        else PostEffect?.Activate();
+        else if(PostEffect != null)
+        {
+            PostEffect.ParentEffect = this;
+            PostEffect.Activate();
+        } 
     }
 
     private void Source()
@@ -194,6 +203,12 @@ public class Effect : ICloneable
                 else if(SourceTargets == "otherDeck") variable.Value = DeckOfPlayer(OtherPlayer);
                 else if(SourceTargets == "field") variable.Value = FieldOfPlayer(TriggerPlayer);
                 else if(SourceTargets == "otherField") variable.Value = FieldOfPlayer(OtherPlayer);
+                else if(SourceTargets == "parent") 
+                {
+                    // En este caso se le otorga el valor del efecto padre
+                    foreach(Variable variableP in ParentEffect.Variables)
+                    if(variableP.Name == ParentEffect.TargetsName) variable.Value = variableP.Value;
+                } 
                 else if(SourceTargets == "void") variable.Value = new List<GameObject>();
 
                 if(SourceTargets != "void")
@@ -374,7 +389,15 @@ public class Effect : ICloneable
                         Next();
                         GameObject card = cards[NumericExpression()];
                         Next();
-                        return card;
+                        
+                        if(CurrentKeyWordIndex == 0) return card;
+                        else if(CurrentKeyWord == "Owner")
+                        {
+                            Next();
+
+                            if(card.GetComponent<Card>().Owner == "Player1") return player1;
+                            else if(card.GetComponent<Card>().Owner == "Player2") return player2;
+                        }
                     }
                     else if(CurrentKeyWord == "Find")
                     {
@@ -438,7 +461,15 @@ public class Effect : ICloneable
                     Next();
                     GameObject card = cards[NumericExpression()];
                     Next();
-                    return card;
+
+                    if(CurrentKeyWordIndex == 0) return card;
+                    else if(CurrentKeyWord == "Owner")
+                    {
+                        Next();
+
+                        if(card.GetComponent<Card>().Owner == "Player1") return player1;
+                        else if(card.GetComponent<Card>().Owner == "Player2") return player2;
+                    }
                 }
                 else if(CurrentKeyWord == "Find")
                 {
@@ -1021,11 +1052,12 @@ public class Effect : ICloneable
             {
                 //Se instancia en el cementerio
                 GameObject cardCopy = MonoBehaviour.Instantiate(card, player2.Graveyard.transform);
-                NewCard properties = cardCopy.GetComponent<NewCard>();
+                Card properties = cardCopy.GetComponent<Card>();
 
                 //Se añaden los efectos porque se suelen perder al ser por referencia
+                if(properties is NewCard properties2)
                 foreach(Effect effect in card.GetComponent<NewCard>().Effects)
-                properties.Effects.Add((Effect)effect.Clone());
+                properties2.Effects.Add((Effect)effect.Clone());
 
                 //Se cambia el dueño y el tag, y la facción de ser necesario
                 if(properties.Faction != "Neutral") properties.Faction = player2.Faction;
@@ -1049,14 +1081,20 @@ public class Effect : ICloneable
             }
             else if(cards.SequenceEqual(DeckOfPlayer(player2)))
             {
-                card = MonoBehaviour.Instantiate(card);
-                Card properties = card.GetComponent<Card>();
+                GameObject cardCopy = MonoBehaviour.Instantiate(card, GameObject.Find("NewDeck2").transform);
+                NewCard properties = cardCopy.GetComponent<NewCard>();
+
+                //Se añaden los efectos porque se suelen perder al ser por referencia
+                foreach(Effect effect in card.GetComponent<NewCard>().Effects)
+                properties.Effects.Add((Effect)effect.Clone());
 
                 //Se cambia el dueño y el tag, y la facción de ser necesario
                 if(properties.Faction != "Neutral") properties.Faction = player2.Faction;
 
                 properties.Owner = "Player2";
-                card.tag = "Carta";
+                cardCopy.tag = "Carta";
+
+                card = cardCopy;
             }
             else if(cards.SequenceEqual(Board) || cards.SequenceEqual(FieldOfPlayer(player1)) || cards.SequenceEqual(FieldOfPlayer(player2)))
             Debug.Log("Al tablero y campos solo se le pueden colocar cartas manualmente");
