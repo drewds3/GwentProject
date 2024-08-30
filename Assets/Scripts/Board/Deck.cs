@@ -168,7 +168,7 @@ public class Deck : MonoBehaviour
                 GameObject card = Instantiate(deck[index], hand);
                 card.GetComponent<Card>().Owner = owner;
             }
-            else
+            else // Si es una carta de las creadas por el DSL se procede diferente
             {
                 GameObject card = deck[index];
 

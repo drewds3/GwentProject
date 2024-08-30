@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
-using System.Linq.Expressions;
 
 //Clase encargada de realizar el análisis sintáctico
 public class Parser
@@ -14,7 +13,7 @@ public class Parser
     private Instruction CurrentInstruction = new(); //Instrucción actual
     private List<Effect> Effects = new(); //Lista de todos los efectos declarados
     private List<Effect> CardEffects = new(); //Efectos que se añadirán a la carta actual
-    private LinkedList<Variable> CurrentVariables = new(); //
+    private LinkedList<Variable> CurrentVariables = new(); //Lista de variables disponibles para usarse en los métodos de afuera del Parser()
 
     //Constructor de la clase
     public Parser(List<Token> tokens)
@@ -40,9 +39,12 @@ public class Parser
                 //Se recoge el nombre del efecto
                 if(CurrentToken.Value == "Name") Next(TokenType.Keyword);
                 else throw new Exception("You have not declared the name of the effect correctly");    
+
                 Next(TokenType.Colon);
                 dNext = Next;
+
                 string nameEffect = ParseString();
+
                 Next(TokenType.Comma);
 
                 /*Se recogen los parámetros si es que tiene 
@@ -65,6 +67,7 @@ public class Parser
                         string type;
                         object value;
                         
+                        //Se recoge el valor del parámetro junto con su tipo
                         if(CurrentToken.Value == "Number")
                         {
                             type = CurrentToken.Value;
@@ -84,6 +87,7 @@ public class Parser
                         
                         Next(TokenType.Keyword);
                         
+                        //Se guarda el parámetro
                         Variable param = new(name, type){Value = value};
                         parameters.AddLast(param);
                         variables.AddLast(param);
@@ -96,6 +100,7 @@ public class Parser
                     Next(TokenType.Comma);
                 }
 
+                //Necesario al debuguear los parámetros
                 if(parameters.Count != 0)
                 {
                     Debug.Log("Parámetros del efecto:");
@@ -135,7 +140,7 @@ public class Parser
                 variables2.AddLast(new Variable(targets, "List<Card>"));
                 variables2.AddLast(new Variable(context, "Context")); 
                 
-                int count = 0;
+                int count = 0; //Para saber el número de la instrucción al debuguear
 
                 ActionRecolector();
 
@@ -149,13 +154,13 @@ public class Parser
                 if(parameters != null) Effects.Add(new Effect(nameEffect, targets, instructions, variables2, parameters));
                 else Effects.Add(new Effect(nameEffect, targets, instructions, variables2));
 
-                CurrentVariables.Clear();
+                CurrentVariables.Clear(); // Se vacía para ser utilizada en futuras ocasiones
                 
                 Debug.Log("Efecto creado con éxito");
 
                 //--------------------------------------------Métodos-del-Método----------------------------------------------------------
-                //Método que recoge las varibles y llamadas a métodos
                 
+                //Método que recoge las varibles y llamadas a métodos
                 void ActionRecolector()
                 {
                     InstructionsCollector(false);
@@ -166,15 +171,14 @@ public class Parser
                     Debug.Log("Action recolectado correctamente");
                 }
                 
-                
+                //Método complementario del anterior
                 void InstructionsCollector(bool OneInstruction)
                 {   
                     //Se añaden instrucciones hasta que el token actual sea una llave de cierre
                     if(CurrentToken.Type != TokenType.RCBracket)
                     {
-                        //Si es una declaración de una variable se añade si está correctamente declarada
                         if(Enum.IsDefined(typeof(KeyWords), CurrentToken.Value)) throw new Exception($"You shouldn't use \"{CurrentToken.Value}\" like that");
-                        else if(CurrentToken.Value == "for")
+                        else if(CurrentToken.Value == "for") // En caso de ser un bucle for
                         {
                             //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
                             instructions.Add(new Instruction());
@@ -202,7 +206,7 @@ public class Parser
                             if(!IsCardList()) throw new Exception("There can only be lists of cards");
                             NextAndSave(TokenType.Word);
 
-                            bool isOneInstruction;
+                            bool isOneInstruction; // Necesario para saber no hay llaves y el bucle solo tendrá una única instrucción
 
                             if(CurrentToken.Type == TokenType.LCBracket)
                             {
@@ -236,7 +240,7 @@ public class Parser
                             Debug.Log($"Instrucción {++count} recogida correctamente: \"for\"");
                             if(!OneInstruction) InstructionsCollector(false);
                         }
-                        else if(CurrentToken.Value == "while")
+                        else if(CurrentToken.Value == "while") // En caso de ser un bucle while
                         {
                             //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
                             instructions.Add(new Instruction());
@@ -252,6 +256,7 @@ public class Parser
 
                             NextAndSave(TokenType.Word);
 
+                            // Se verifica la expresión booleana
                             Next(TokenType.LParen);
 
                             dNext = NextAndSave;
@@ -259,7 +264,7 @@ public class Parser
 
                             Next(TokenType.RParen);
 
-                            bool isOneInstruction;
+                            bool isOneInstruction; // Necesario para saber no hay llaves y el bucle solo tendrá una única instrucción
 
                             if(CurrentToken.Type == TokenType.LCBracket)
                             {
@@ -299,6 +304,7 @@ public class Parser
                             instructions.Add(new Instruction());
                             CurrentInstruction = instructions.Last();
 
+                            //Comprueba si es una propiedad
                             if(IsNumericProperty())
                             {
                                 NextAndSave(TokenType.Word);
@@ -307,6 +313,7 @@ public class Parser
                             }
                             else if(CurrentToken.Type == TokenType.Word) NextAndSave(TokenType.Word);
 
+                            //Procede en dependencia de la operación compuesta
                             if(CurrentToken.Type == TokenType.PlusCom)
                             {
                                 NextAndSave(TokenType.PlusCom);
@@ -348,7 +355,7 @@ public class Parser
                             }
                             else throw new Exception("Semicolon was expected");
                         }
-                        else if(CurrentToken.Type == TokenType.Increase) //Incremento
+                        else if(CurrentToken.Type == TokenType.Increase) // En caso de ser un incremento
                         {
                             //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
                             instructions.Add(new Instruction());
@@ -356,6 +363,7 @@ public class Parser
 
                             NextAndSave(TokenType.Increase);
 
+                            //Comprueba si es una propiedad
                             if(IsNumericProperty())
                             {
                                 NextAndSave(TokenType.Word);
@@ -379,11 +387,13 @@ public class Parser
                             instructions.Add(new Instruction());
                             CurrentInstruction = instructions.Last();
 
+                            //Se guarda el nombre de la nueva variable
                             string name = CurrentToken.Value;
                             NextAndSave(TokenType.Word);
                             NextAndSave(TokenType.Asign);
 
-                            if(IsVariable())
+                            // Procede en dependencia del tipo de variable
+                            if(IsVariable()) // Si es contexto, carta, lista...
                             {
                                 CurrentVariables = variables;
                                 
@@ -392,7 +402,7 @@ public class Parser
                                 variables.AddLast(variable);
                                 variables2.AddLast(variable);
                             } 
-                            else if(IsBoolean()) //Declaración de una variable tipo bool
+                            else if(IsBoolean()) // Si es booleana
                             {
                                 CurrentVariables = variables;
 
@@ -402,7 +412,7 @@ public class Parser
                                 variables.AddLast(boolean);
                                 variables2.AddLast(boolean);
                             }
-                            else if(CurrentToken.Type == TokenType.QMark || IsString()) //Declaración de una variable tipo string
+                            else if(CurrentToken.Type == TokenType.QMark || IsString()) // Si es string
                             {
                                 CurrentVariables = variables;
 
@@ -412,7 +422,7 @@ public class Parser
                                 variables.AddLast(variable);
                                 variables2.AddLast(variable);
                             }
-                            else //Entonces es una declaración de un número
+                            else // Si es un numérica
                             {
                                 CurrentVariables = variables;
 
@@ -432,7 +442,7 @@ public class Parser
                             }
                             else throw new Exception("Semicolon was expected");
                         }
-                        else if(IsVariable()) //Si es una variable se espera que llame a un método
+                        else if(IsVariable()) //Si es una variable que ya ha sido declarada entonces se espera que se llame a un método
                         {
                             //Se añade una nueva instrucción y se cambia la referencia de la instrucción actual
                             instructions.Add(new Instruction());
@@ -477,6 +487,7 @@ public class Parser
                     }
                 }
 
+                // Para comprobar si es variable numérica
                 bool IsNumericVariable()
                 {
                     if(Enum.IsDefined(typeof(KeyWords), CurrentToken.Value)) return false;
@@ -490,6 +501,7 @@ public class Parser
                     }
                 }
 
+                // Si es una propiedad numérica de una carta
                 bool IsNumericProperty()
                 {
                     if(Enum.IsDefined(typeof(KeyWords), CurrentToken.Value)) return false;
@@ -504,6 +516,7 @@ public class Parser
                     }
                 }
 
+                // Si es un string
                 bool IsString()
                 {
                     if(Enum.IsDefined(typeof(KeyWords), CurrentToken.Value)) return false;
@@ -521,8 +534,7 @@ public class Parser
                     }
                 }
 
-
-                //Método para comprobar si es una variable
+                //Método para comprobar si es una variable de tipo "List<Card>"
                 bool IsCardList()
                 {
                     foreach(Variable variable in variables)
@@ -542,7 +554,7 @@ public class Parser
                         {
                             if(variable.Name == CurrentToken.Value)
                             {
-                                if(variable.Type == "Context")
+                                if(variable.Type == "Context") // En caso de ser de tipo "contexto"
                                 {
                                     NextAndSave(TokenType.Word);
                                     if(CurrentToken.Type == TokenType.Point) Next(TokenType.Point);
@@ -550,7 +562,7 @@ public class Parser
                                     if(Enum.IsDefined(typeof(ContextMethods), CurrentToken.Value)) return CheckMethodCall();
                                     else return false;
                                 }
-                                else if(variable.Type == "List<Card>")
+                                else if(variable.Type == "List<Card>") // En caso de ser de tipo "List<Card>"
                                 {
                                     NextAndSave(TokenType.Word);
                                     if(CurrentToken.Type == TokenType.Point) Next(TokenType.Point);
@@ -566,20 +578,22 @@ public class Parser
                     //De lo contrario comprueba que sea un método válido
                     else if(Enum.IsDefined(typeof(ContextMethods), CurrentToken.Value))
                     {
-                        if(Enum.IsDefined(typeof(SyntacticSugarContext), CurrentToken.Value))
+                        // Si es la forma compacta de las propiedades del "contexto"
+                        if(Enum.IsDefined(typeof(SyntacticSugarContext), CurrentToken.Value)) 
                         {
                             NextAndSave(TokenType.Keyword);
                             Next(TokenType.Point);
                             if(Enum.IsDefined(typeof(CardListMethods), CurrentToken.Value)) return CheckMethodCall();
                             else return false;
                         }
-                        else
+                        else // Si es la forma completa
                         {
                             NextAndSave(TokenType.Keyword);
                             Next(TokenType.LParen);
 
                             bool correct = false;
          
+                            //Se comprueba que el parámetro pasado sea correcto
                             foreach(Variable variable in variables)
                             {
                                 if(variable.Name == CurrentToken.Value && WichTypeIs(TokenType.RParen) == "Player") correct = true;
@@ -590,12 +604,14 @@ public class Parser
 
                             Next(TokenType.Point);
                             
+                            //Se espera un método de la clase "List<Card>"
                             if(Enum.IsDefined(typeof(CardListMethods), CurrentToken.Value)) return CheckMethodCall();
                             else return false;
                         }
                     }
-                    else if(Enum.IsDefined(typeof(CardListMethods), CurrentToken.Value))
+                    else if(Enum.IsDefined(typeof(CardListMethods), CurrentToken.Value)) // Si es de la clase "List<Card>"
                     {
+                        // Se procede en dependencia del método
                         if(CurrentToken.Value == "Shuffle")
                         {
                             NextAndSave(TokenType.Keyword);
@@ -653,6 +669,7 @@ public class Parser
                                     else if(CurrentToken.Type == TokenType.Point)
                                     {
                                         Next(TokenType.Point);
+                                        
                                         if(Enum.IsDefined(typeof(ContextPropertiesAndMethods), CurrentToken.Value)) return WichTypeIs(finalToken);
                                         else throw new Exception("Uknown method or property of context");
                                     } 
@@ -861,22 +878,25 @@ public class Parser
 
                 //Luego, se crea (por fin) la carta
                 CardCreator cardCreator = GameObject.Find("Botón Confirmar").GetComponent<CardCreator>();
+
                 if(!IsCardWithEffectCorrect() && CardEffects.Count == 0) cardCreator.Create(properties);
                 else if(IsCardWithEffectCorrect()) cardCreator.Create(properties, CardEffects);
                 else throw new Exception("This card cannot have effects");
 
+                // Necesario para debuguear la carta y sus propiedades
                 Debug.Log("Carta creada con las siguientes propiedades:");
                 foreach(Property property in properties)
                 {
-                    Debug.Log($"Propiedad: {property.Type}, Valor: {property.ValueS}");
+                    Debug.Log($"Propiedad: {property.Type}, Valor: {property.Value}");
                 }
                 
+                // Se limpian las variables para usarse nuevamente
                 properties.Clear();
                 CardEffects.Clear();
             }
             if(CurrentToken.Type != TokenType.Fin) throw new Exception($"Syntax error in: {CurrentToken.Position}");  
         }
-        else throw new Exception($"Syntax error in: {CurrentToken.Position}");
+        else throw new Exception($"Effect or card declaration was expected");
     }
 
     //Método para cambiar al siguiente token
@@ -893,6 +913,7 @@ public class Parser
         }
     }
 
+    //---------------------------------------------Números------------------------------------------------------------------------------
     //Método para procesar números
     private int Factor()
     {
@@ -950,7 +971,7 @@ public class Parser
             }
             return result;
         }
-        else if(CurrentToken.Type == TokenType.Word)
+        else if(CurrentToken.Type == TokenType.Word) // En caso de ser una variable que alamcena un valor numérico
         {
             foreach(Variable variable in CurrentVariables)
             {
@@ -981,6 +1002,7 @@ public class Parser
                     }
                     return result;
                 }
+                // En caso de ser una propiedad numérica
                 else if(variable.Name == CurrentToken.Value && variable.Type == "Card" && Tokens[CurrentTokenIndex + 2].Value == "Power")
                 {
                     dNext(TokenType.Word);
@@ -1014,7 +1036,7 @@ public class Parser
             }
             throw new Exception("This word is not a variable with a \"int value\"");
         }
-        else if(CurrentToken.Type == TokenType.Increase)
+        else if(CurrentToken.Type == TokenType.Increase) // En caso de ser un incremento
         {
             dNext(TokenType.Increase);
 
@@ -1101,6 +1123,7 @@ public class Parser
         return result;
     }
 
+    //-----------------------------------------------------Propiedades-de-las-cartas------------------------------------------------------
     //Método para recolectar las propiedades declaradas
     private void Properties()
     {   
@@ -1116,6 +1139,8 @@ public class Parser
             Next(TokenType.Keyword);
             Next(TokenType.Colon);
             dNext = Next;
+
+            // Se van añadiendo las propiedades
             if(token.Value == "Power") ToProperty(token.Value);
             else if(token.Value == "Range")
             {
@@ -1188,9 +1213,9 @@ public class Parser
         {
             if(property.Type == "Type")
             {   
-                if(property.ValueS == "Clearance" || property.ValueS == "Climate" || property.ValueS == "Leader"
-                                                  || property.ValueS == "Lure" || property.ValueS == "Increase") isSpecialCard = true;
-                else if(property.ValueS != "Gold" && property.ValueS != "Silver") throw new Exception("This type of card does not exist");
+                if((string)property.Value == "Clearance" || (string)property.Value == "Climate" || (string)property.Value == "Leader"
+                                                  || (string)property.Value == "Lure" || (string)property.Value == "Increase") isSpecialCard = true;
+                else if((string)property.Value != "Gold" && (string)property.Value != "Silver") throw new Exception("This type of card does not exist");
             
                 hasType = true;
             }
@@ -1198,7 +1223,7 @@ public class Parser
             else if(property.Type == "Faction") hasFaction = true;
             else if(property.Type == "Power")
             {
-                if(property.ValueI < 0) throw new Exception("Power cannot be negative");
+                if((int)property.Value < 0) throw new Exception("Power cannot be negative");
                 else hasPower = true;
             } 
             else if(property.Type == "Range") hasRange = true;
@@ -1210,6 +1235,7 @@ public class Parser
         throw new Exception("Misstatement of card properties");
     }
 
+    //------------------------------------------------OnActivation---------------------------------------------------------------------
     //Método que recoge los efectos que tiene la carta
     private void CardEffect()
     {
@@ -1308,6 +1334,7 @@ public class Parser
         throw new Exception("That effect does not exist");
     }
 
+    // Método para otorgarle el valor a los parámetros
     private void SetParams(Effect effect, ref int count)
     {
         bool isCorrectParam = false;
@@ -1416,6 +1443,7 @@ public class Parser
         }
     }
 
+    // Método para el funcionamiento del predicate
     private void Predicate(LinkedList<Variable> variables)
     {
         Next(TokenType.LParen);
@@ -1424,6 +1452,7 @@ public class Parser
         if(variable.Name == CurrentToken.Value) 
         throw new Exception("You cannot use this variable in this context");
         
+        // Se crea la variable nueva 
         if(CurrentToken.Type == TokenType.Word) 
         {
             CurrentVariables.AddLast(new Variable(CurrentToken.Value, "Card"));
@@ -1438,6 +1467,7 @@ public class Parser
         Next(TokenType.Asign);
         Next(TokenType.Greater);
 
+        // Y finalmente se parsea la expresión lambda
         ParseBooleanExpression();
     }
 
@@ -1500,14 +1530,17 @@ public class Parser
         Debug.Log("Efecto posterior correcto");
     }
 
+    //-----------------------------------------------Extras---------------------------------------------------------------------------
+    // Para comprobar si la carta puede tener efectos
     private bool IsCardWithEffectCorrect()
     {
         foreach(Property property in properties)
-        if(property.ValueS == "Silver" || property.ValueS == "Gold" || property.ValueS == "Leader") return true;
+        if((string)property.Value == "Silver" || (string)property.Value == "Gold" || (string)property.Value == "Leader") return true;
                     
         return false;
     }   
 
+    // Comprueba si la expresión es booleana
     private bool IsBoolean()
     {
         int startTokenIndex = CurrentTokenIndex;
@@ -1764,6 +1797,7 @@ public class Parser
     }
 
     //-------------------------------------------String--------------------------------------------------------------------------------
+    // Para parsear strings
     private string ParseString()
     { 
         string result = null;

@@ -4943,6 +4943,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card: {fileID: 4791996619338446980, guid: 4153cf4ff9bd5764d963bd5fb74a208c, type: 3}
   leaderCard: {fileID: 4791996619338446980, guid: e315a4f6bf239c944a8fbb198f5e183f, type: 3}
+  climate: {fileID: 21300000, guid: e4187c1a6ed320f4b808448cee681f00, type: 3}
+  lure: {fileID: 21300000, guid: d62a7d002763821478711ce3a5795597, type: 3}
+  clearance: {fileID: 21300000, guid: 3ed04652c8d1fc343817d21b95864e83, type: 3}
+  goldUnit: {fileID: 21300000, guid: 088946db1f7746f4fa318f532840db77, type: 3}
+  increase: {fileID: 21300000, guid: 2ebf190dc7a950442b4141c7fec4b664, type: 3}
+  meleeSilver: {fileID: 21300000, guid: 2985cdb648543fa419652aad7953ec9f, type: 3}
+  rangedSilver: {fileID: 21300000, guid: 88af9f1f42e047540bc0e16d4f62e742, type: 3}
+  siegeSilver: {fileID: 21300000, guid: 2985cdb648543fa419652aad7953ec9f, type: 3}
 --- !u!1 &621710137
 GameObject:
   m_ObjectHideFlags: 0
@@ -5126,7 +5134,6 @@ GameObject:
   - component: {fileID: 640250292}
   - component: {fileID: 640250291}
   - component: {fileID: 640250290}
-  - component: {fileID: 640250289}
   m_Layer: 5
   m_Name: "Bot\xF3n Limpiar"
   m_TagString: Untagged
@@ -5155,18 +5162,6 @@ RectTransform:
   m_AnchoredPosition: {x: 134, y: 80.212}
   m_SizeDelta: {x: 175.2099, y: 68.5689}
   m_Pivot: {x: 0.50000006, y: 0.5}
---- !u!114 &640250289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 640250287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36fe525c68a76bf49a68719edb1b4bb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &640250290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5211,7 +5206,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 640250289}
+      - m_Target: {fileID: 2006543597}
         m_TargetAssemblyTypeName: CodeEditor, Assembly-CSharp
         m_MethodName: CleanInputField
         m_Mode: 1
@@ -14287,7 +14282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1745969052
 RectTransform:
   m_ObjectHideFlags: 0

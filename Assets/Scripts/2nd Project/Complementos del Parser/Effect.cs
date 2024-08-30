@@ -46,7 +46,7 @@ public class Effect : ICloneable
     private string CurrentKeyWord;
     private int CurrentKeyWordIndex;
 
-    //
+    // Delegado para mayor eficiencia en las listas devueltas
     delegate List<GameObject> ListReturn(Player player);
 
     //Constructores
@@ -119,10 +119,14 @@ public class Effect : ICloneable
     {   
         Debug.Log($"Inicio de ejecución del efecto: \"{Name}\"");
         
+        // Primero se le otorga un valor a los "targets"
         Source();
+
+        // Luego, se comienzan a seguir las instrucciones
         FinishInstruction();
     }
 
+    // Método para controlar el cumplimiento de las instrucciones
     private void FinishInstruction()
     {
         Debug.Log("Instruccion iniciada");
@@ -132,6 +136,7 @@ public class Effect : ICloneable
         // Si el segundo string es un "igual" entonces es una declaración
         if(CurrentInstruction.KeyWords[1] == "=") 
         {
+            // Se comprueba de qué tipo es la variable declarada y se procede en consecuencia
             foreach(Variable variable in Variables)
             {
                 if(variable.Name == CurrentKeyWord && variable.Value is int)
@@ -179,21 +184,24 @@ public class Effect : ICloneable
             MethodCall();
         }
 
+        // Si aún no se han terminado las instrucciones se continua con la siguiente
         if(CurrentInstruction.Count != 0)
         {
             FinishInstruction();
         }
-        else if(PostEffect != null)
+        else if(PostEffect != null) // De haberse concluido con el efecto, se activa el PostAction de tenerlo
         {
             PostEffect.ParentEffect = this;
             PostEffect.Activate();
         } 
     }
 
+    // Método para otorgar valor a los "targets"
     private void Source()
     {
         foreach(Variable variable in Variables)
         {
+            // Se le otorga el valor del "source"
             if(variable.Name == TargetsName)
             {
                 if(SourceTargets == "board") variable.Value = Board;
@@ -211,15 +219,17 @@ public class Effect : ICloneable
                 } 
                 else if(SourceTargets == "void") variable.Value = new List<GameObject>();
 
+                // Si es diferente de "void" se continua
                 if(SourceTargets != "void")
-                {
-                    if(Single) 
+                {   
+                    if(Single) // Se comprueba si se debe tomar una única carta o todas
                     {
                         List<GameObject> cards = (List<GameObject>)variable.Value;
                         List<GameObject> cards2 = new(){cards[0]};
                         variable.Value = cards2;
                     }
 
+                    // Por último se descartan las cartas que no cumplan con el predicado
                     Predicate.Debug();
                     CurrentInstruction = Predicate;
                     CurrentKeyWord = CurrentInstruction.KeyWords[0]; 
@@ -227,6 +237,7 @@ public class Effect : ICloneable
                     
                     Next();
 
+                    // Como no se puede modificar una lista mientras está en un foreach se crea una nueva igual a la actual
                     List<GameObject> cards3 = new();
                     foreach(GameObject card in (List<GameObject>)variable.Value)
                     cards3.Add(card);
@@ -246,6 +257,7 @@ public class Effect : ICloneable
                     
                     variable.Value = cards3;
 
+                    // Finalmente se establece la instrucción actual como la primera de la lista del efecto
                     CurrentInstruction = Instructions[0];
                     CurrentKeyWord = CurrentInstruction.KeyWords[0];
                     CurrentInstructionIndex = 0;
@@ -287,6 +299,7 @@ public class Effect : ICloneable
         }
     }
 
+    // Método para controllar las declaraciones de variables
     private object Declaration()
     {
         Next(); 
@@ -294,9 +307,11 @@ public class Effect : ICloneable
         return Parameter();
     }
 
+    // Método para controlar los párametros y complementario del anterior
     private object Parameter()
     {
-        if(VariableType() == "Context")
+        // Comprueba de qué tipo es la variable
+        if(VariableType() == "Context") // En caso de ser de tipo "context"
         {
             Next();
             
@@ -306,7 +321,7 @@ public class Effect : ICloneable
                 Next();
                 return TriggerPlayer;
             }
-            else
+            else // Si es una propiedad de tipo "List<Card>"
             {
                 ListReturn listReturn;
                 Player player;
@@ -374,6 +389,7 @@ public class Effect : ICloneable
                     cards = listReturn(player);
                 }
 
+                // Mientras que sea alguna de esos métodos o se indexe
                 while(CurrentKeyWord == "Pop" || CurrentKeyWord == "Find" || CurrentKeyWordIndex == 0 || CurrentKeyWord == "[")
                 {
                     if(CurrentKeyWordIndex == 0) return cards;
@@ -438,7 +454,7 @@ public class Effect : ICloneable
                 throw new Exception();
             }
         }
-        else if(VariableType() == "List<Card>")
+        else if(VariableType() == "List<Card>") // En caso de ser de tipo "List<Card>"
         {
             string nameVariable = CurrentKeyWord;
 
@@ -509,7 +525,7 @@ public class Effect : ICloneable
             }
             throw new Exception(); 
         }
-        else if(VariableType() == "Card")
+        else if(VariableType() == "Card") // En caso de ser de tipo "Card"
         {
             string nameVariable = CurrentKeyWord;
 
@@ -528,7 +544,7 @@ public class Effect : ICloneable
 
             throw new Exception();
         }
-        else if(VariableType() == "Player")
+        else if(VariableType() == "Player") // En caso de ser de tipo "Player"
         {
             string nameVariable = CurrentKeyWord;
 
@@ -539,6 +555,7 @@ public class Effect : ICloneable
         else throw new Exception();
     }
 
+    // Devuelve el tipo de la variable actual
     private string VariableType()
     {
         foreach(Variable variable in Variables)
@@ -551,6 +568,7 @@ public class Effect : ICloneable
         return null;
     }
 
+    // Devuelve el valor de la variable actual
     private Variable SetVariableValue(string name)
     {
         foreach(Variable variable in Variables)
@@ -559,6 +577,7 @@ public class Effect : ICloneable
         throw new Exception();
     }
 
+    // Para controlar las llamadas a métodos
     private void MethodCall()
     {
         foreach(Variable variable in Variables)
@@ -573,6 +592,7 @@ public class Effect : ICloneable
         } 
     }
 
+    // Comprueba si es una variable numérica
     public bool IsNumericVariable()
     {
         foreach(Variable variable in Variables)
@@ -582,6 +602,7 @@ public class Effect : ICloneable
         return false;
     }
 
+    // Comprueba si es una propiedad con valor numérico
     public bool IsNumericProperty()
     {
         foreach(Variable variable in Variables)
@@ -592,13 +613,15 @@ public class Effect : ICloneable
         return false;
     }
 
+    // Para controlar las operaciones compuestas y los incrementos
     private void IncreaseAndComposedOperations()
     {
-        if(CurrentKeyWord != "++")
+        if(CurrentKeyWord != "++") // Si es una operación compuesta o el incremento está a la derecha
         {
             string variableName = CurrentKeyWord;
             int newValue = 0;
 
+            // Se comprueba si es una variable o propiedad de valor numérico
             foreach(Variable variable in Variables)
             {
                 if(variable.Name == CurrentKeyWord && variable.Value is int value)
@@ -620,6 +643,7 @@ public class Effect : ICloneable
                 }
             } 
 
+            // Se realiza la operación en cuestión
             if(CurrentKeyWord == "+=")
             {
                 Next();
@@ -651,6 +675,7 @@ public class Effect : ICloneable
                 newValue++;
             }
 
+            // Se le otorga el nuevo valor a la variable o propiedad
             foreach(Variable variable in Variables)
             {
                 if(variable.Name == variableName && variable.Value is int value1)
@@ -670,7 +695,7 @@ public class Effect : ICloneable
                 }
             }
         }
-        else
+        else // Si es un incremento a la izquierda
         {
             Next();
 
@@ -702,6 +727,7 @@ public class Effect : ICloneable
         }
     }
 
+    // Controlador de los bucles "for"
     private void ForIntruction()
     {
         Next();
@@ -710,19 +736,24 @@ public class Effect : ICloneable
         List<GameObject> cards = (List<GameObject>)SetVariableValue(CurrentKeyWord).Value;
         Next();
 
+        // Se guarda la instrucción actual
         Instruction startInstruction = CurrentInstruction;
         int startInstructionIndex = CurrentInstructionIndex;
 
         int count = cards.Count - 1;
 
+        // Se inicia el bucle
         foreach(GameObject card in cards)
-        {
+        {   
+            // Se le otorga el valor actual a la variable "card"
             Variable variable = SetVariableValue(nameCard);
             variable.Value = card;
 
+            // Se realizan las operaciones del bucle
             FinishFor(count--);
         }
 
+        // Al terminar el bucle se sigue por su final
         while(CurrentKeyWord != "ForFinal") Next();
 
         Next();
@@ -739,6 +770,7 @@ public class Effect : ICloneable
             {
                 foreach(Variable variable in Variables)
                 {
+                    // Se comprueba el tipo de la variable
                     if(variable.Name == CurrentKeyWord && variable.Value is int)
                     {
                         Next();
@@ -798,14 +830,16 @@ public class Effect : ICloneable
         }
     }
     
+    // Para controlar los bucles "while"
     private void WhileInstruction()
     {
         Next();
 
+        // Se guarda la instrucción actual
         Instruction startInstruction = CurrentInstruction;
         int startInstructionIndex = CurrentInstructionIndex;
 
-        bool argument = BooleanExpressionWhile();
+        bool argument = BooleanExpressionWhile(); // Se recoge el argumento del bucle
 
         if(!argument)
         {
@@ -816,14 +850,18 @@ public class Effect : ICloneable
             Next();
         }  
 
+        // Se inicia el bucle
         while(argument)
         {
+            // Se realizan las instrucciones del bucle
             FinishWhile();
 
+            // Se vuelve a comprobar el valor del argumento
             if(!BooleanExpressionWhile())
             {
                 argument = false;
 
+                // Si es falso entonces se termina el bucle y se sigue por su final
                 while(CurrentKeyWord != "WhileFinal")
                 {
                     Next();
@@ -843,7 +881,8 @@ public class Effect : ICloneable
             if(CurrentInstruction.KeyWords[1] == "=")
             {
                 foreach(Variable variable in Variables)
-                {
+                {   
+                    // Se comprueba el tipo de variable
                     if(variable.Name == CurrentKeyWord && variable.Value is int)
                     {
                         Next();
@@ -896,6 +935,7 @@ public class Effect : ICloneable
             }
         }
 
+        // Método para volver a comprobar el valor del argumento del bucle
         bool BooleanExpressionWhile()
         {
             CurrentInstruction = startInstruction;
@@ -907,12 +947,14 @@ public class Effect : ICloneable
         }
     }
 
+    // Método para controlar los métodos del "Contexto"
     private void Context()
     {
         ListReturn listReturn;
         Player player;
         List<GameObject> cards;
 
+        // Se otorgan los valores
         if(CurrentKeyWord == "Board")
         {
             Next();
@@ -976,11 +1018,14 @@ public class Effect : ICloneable
         }
         else throw new Exception();
         
+        // Y se pasan al controlador de las listas de cartas
         CardList(cards);
     }
 
+    // Para controlar las listas de cartas
     private void CardList(List<GameObject> cards)
     {
+        // Se comprueba a cuál método se está llamando
         if(CurrentKeyWord == "Push" || CurrentKeyWord == "Add" || CurrentKeyWord == "SendBottom")
         {
             string function = CurrentKeyWord;
@@ -990,7 +1035,7 @@ public class Effect : ICloneable
             //Se recoge la carta a la que se hace referencia
             GameObject card = (GameObject)Parameter();
             
-            // Si se añade a la mano o cementerio de algún jugador se procede algo diferente
+            // En dependencia de dónde se añadan se procede de manera diferente
             if(cards.SequenceEqual(HandOfPlayer(player1)))
             {
                 //Se instancia en la mano
@@ -1103,7 +1148,7 @@ public class Effect : ICloneable
             if(function != "SendBottom") cards.Add(card);
             else cards.Insert(0, card);
         }
-        else if(CurrentKeyWord == "Remove")
+        else if(CurrentKeyWord == "Remove") // En caso del "Remove"
         {
             Next();
 
@@ -1120,7 +1165,7 @@ public class Effect : ICloneable
 
             cards.Remove(card);
         }
-        else if(CurrentKeyWord == "Shuffle")
+        else if(CurrentKeyWord == "Shuffle") // En caso del "Shuffle
         {
             Next();
 
@@ -1136,12 +1181,13 @@ public class Effect : ICloneable
                 (cards[n], cards[k]) = (cards[k], cards[n]);
             }
         }
-        else if(CurrentKeyWord == "Find")
+        else if(CurrentKeyWord == "Find") // En caso del "Find"
         {
             Next();
             Variable variable = SetVariableValue(CurrentKeyWord);
             Next();
-    
+
+            // Se guarda la instrucción actual
             Instruction startInstruction = CurrentInstruction;
             int startInstructionIndex = CurrentInstructionIndex;
             string startKeyWord = CurrentKeyWord;
@@ -1152,6 +1198,7 @@ public class Effect : ICloneable
             foreach(GameObject card in cards)
             cards2.Add(card);
 
+            // Se descartan las cartas que no cumplan con el predicado
             foreach(GameObject card in cards)
             {
                 CurrentInstruction = startInstruction;
@@ -1620,11 +1667,12 @@ public class Effect : ICloneable
     }
 
     //-------------------------------------------String--------------------------------------------------------------------------------
+      // Para procesar strings
       private string StringExpression()
       { 
         string result = null;
-
-        if(CurrentKeyWord == "\"")
+        
+        if(CurrentKeyWord == "\"") // Si hay una comilla se recoge el token siguiente
         {
             Next();
             result = "";
@@ -1632,12 +1680,13 @@ public class Effect : ICloneable
             Next();
             Next();
         }
-        else if(char.IsLetter(CurrentKeyWord[0]))
+        else if(char.IsLetter(CurrentKeyWord[0])) // En caso de ser una palabra
         {
             bool IsCorrect = false;
 
             foreach(Variable variable in Variables)
-            {
+            {   
+                // Se comprueba si es una variable de tipo string y se recoge su valor
                 if(variable.Name == CurrentKeyWord && variable.Value is string value)
                 {
                     result = "";
@@ -1645,6 +1694,7 @@ public class Effect : ICloneable
                     Next();
                     IsCorrect = true;
                 }
+                // Si no lo es se verifica si es de tipo "Card" y si le sigue una propiedad de tipo string y se recoge también su valor
                 else if(variable.Name == CurrentKeyWord && variable.Type == "Card" 
                         && (CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Name"
                         || CurrentInstruction.KeyWords[CurrentKeyWordIndex + 1] == "Type" 
@@ -1675,6 +1725,7 @@ public class Effect : ICloneable
             if(!IsCorrect) throw new Exception("This word is not a correct variable");
         }
 
+        // Finalmente se verifica si está concatenada con otros string
         if(CurrentKeyWord == "@")
         {
             Next();

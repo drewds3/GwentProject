@@ -2,12 +2,14 @@ using TMPro;
 using UnityEngine;
 using static TurnsBasedSystem;
 
+// Clase de la salida de texto de ayuda al usuario
 public class HUDhelp : MonoBehaviour
 {
     TMP_Text text;
     GameObject BLeader1;
     GameObject BLeader2;
 
+    // Se inicializan variables
     void Start()
     {
         text = GameObject.Find("Contexto").GetComponent<TMP_Text>();
@@ -29,6 +31,7 @@ public class HUDhelp : MonoBehaviour
         }
     }
 
+    // Otra ayudita :)
     public void BlockEffectLeader()
     {
         if((BLeader1.activeSelf && !BLeader2.activeSelf && currentTurn%2 != 0) 
